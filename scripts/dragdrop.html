@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Drag &amp; Drop &mdash; lux 0.1a2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="lux 0.1a2 documentation" href="../index.html" />
+    <link rel="up" title="Javascript" href="index.html" />
+    <link rel="next" title="Dialog" href="dialog.html" />
+    <link rel="prev" title="Data table" href="datatable.html" /> 
+  </head>
+  <body>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="dialog.html" title="Dialog"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="datatable.html" title="Data table"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">lux 0.1a2 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Javascript</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="deck">
+<div class="header">
+    
+        <p class="developmentversion">
+        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
+        <a href="http://pythonhosted.org/lux/">release docs here</a>.
+        </p>
+    
+</div>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="drag-drop">
+<span id="js-dnd"></span><h1>Drag &amp; Drop<a class="headerlink" href="#drag-drop" title="Permalink to this headline">¶</a></h1>
+<p>HTML5 extensions for dragging and dropping elements.</p>
+<div class="section" id="available-options">
+<h2>Available Options<a class="headerlink" href="#available-options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dropzone">
+<span id="js-dnd-dropzone"></span><h3>dropzone<a class="headerlink" href="#dropzone" title="Permalink to this headline">¶</a></h3>
+<p>Can be a selector or a jQuery element. If not available
+it is assumed the dropzone is the whole html <tt class="docutils literal"><span class="pre">body</span></tt>.</p>
+</div>
+<div class="section" id="dragenter">
+<h3>dragenter<a class="headerlink" href="#dragenter" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt>
+<tt class="descname">dragenter</tt><big>(</big><em>draggable</em>, <em>target</em>, <em>e</em><big>)</big></dt>
+<dd><p>Handle the <tt class="docutils literal"><span class="pre">dragenter</span></tt> event <tt class="docutils literal"><span class="pre">e</span></tt> when the <tt class="docutils literal"><span class="pre">draggable</span></tt> enters a
+<tt class="docutils literal"><span class="pre">target</span></tt> element from the <a class="reference internal" href="#js-dnd-dropzone"><em>dropzone</em></a> selector.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="drop">
+<h3>drop<a class="headerlink" href="#drop" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt>
+<tt class="descname">drop</tt><big>(</big><em>draggable</em>, <em>target</em>, <em>e</em><big>)</big></dt>
+<dd><p>Handle the <tt class="docutils literal"><span class="pre">drop</span></tt> event <tt class="docutils literal"><span class="pre">e</span></tt> when the <tt class="docutils literal"><span class="pre">draggable</span></tt> is dropped into
+<tt class="docutils literal"><span class="pre">target</span></tt>.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+<a href="../index.html">
+  <img class="logo" width="200" src="../_static/lux.jpg" alt="lux" title="lux"/>
+</a>
+</p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Drag &amp; Drop</a><ul>
+<li><a class="reference internal" href="#available-options">Available Options</a><ul>
+<li><a class="reference internal" href="#dropzone">dropzone</a></li>
+<li><a class="reference internal" href="#dragenter">dragenter</a></li>
+<li><a class="reference internal" href="#drop">drop</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="datatable.html"
+                        title="previous chapter">Data table</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dialog.html"
+                        title="next chapter">Dialog</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/scripts/dragdrop.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-2013, Luca Sbardella.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  
+  _gaq.push(['_setAccount', 'UA-3900561-8']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

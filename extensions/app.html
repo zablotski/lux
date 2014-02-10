@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Application &mdash; lux 0.1a2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="lux 0.1a2 documentation" href="../index.html" />
+    <link rel="up" title="Extensions" href="index.html" />
+    <link rel="next" title="Base" href="base.html" />
+    <link rel="prev" title="Extensions" href="index.html" /> 
+  </head>
+  <body>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="base.html" title="Base"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Extensions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">lux 0.1a2 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Extensions</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="deck">
+<div class="header">
+    
+        <p class="developmentversion">
+        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
+        <a href="http://pythonhosted.org/lux/">release docs here</a>.
+        </p>
+    
+</div>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-lux.core.app">
+<span id="the-application"></span><span id="middleware-base"></span><h1>The Application<a class="headerlink" href="#module-lux.core.app" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="description">
+<span id="std:setting-DESCRIPTION"></span><h3>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">None</span></tt></p>
+<p>A description to display before the argument help on the command line when running commands</p>
+</div>
+<div class="section" id="encoding">
+<span id="std:setting-ENCODING"></span><h3>ENCODING<a class="headerlink" href="#encoding" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'utf-8'</span></tt></p>
+<p>Default encoding for text.</p>
+</div>
+<div class="section" id="error-handler">
+<span id="std:setting-ERROR_HANDLER"></span><h3>ERROR_HANDLER<a class="headerlink" href="#error-handler" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">None</span></tt></p>
+<p>Handler of Http exceptions</p>
+</div>
+<div class="section" id="extensions">
+<span id="std:setting-EXTENSIONS"></span><h3>EXTENSIONS<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">[]</span></tt></p>
+<p>List of extension names to use in your application. The order matter since the wsgi middleware of extension is processed in the order given by this setting.</p>
+</div>
+<div class="section" id="html-head-title">
+<span id="std:setting-HTML_HEAD_TITLE"></span><h3>HTML_HEAD_TITLE<a class="headerlink" href="#html-head-title" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'Lux'</span></tt></p>
+<p>Default HTML Title</p>
+</div>
+<div class="section" id="logging-config">
+<span id="std:setting-LOGGING_CONFIG"></span><h3>LOGGING_CONFIG<a class="headerlink" href="#logging-config" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">None</span></tt></p>
+<p>Dictionary for configuring logging</p>
+</div>
+<div class="section" id="use-socket-io">
+<span id="std:setting-USE_SOCKET_IO"></span><h3>USE_SOCKET_IO<a class="headerlink" href="#use-socket-io" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt></p>
+<p>Indicate if to use SocketIO rather than standard WebSocket when websocket middleware is used.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+<a href="../index.html">
+  <img class="logo" width="200" src="../_static/lux.jpg" alt="lux" title="lux"/>
+</a>
+</p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The Application</a><ul>
+<li><a class="reference internal" href="#parameters">Parameters</a><ul>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#encoding">ENCODING</a></li>
+<li><a class="reference internal" href="#error-handler">ERROR_HANDLER</a></li>
+<li><a class="reference internal" href="#extensions">EXTENSIONS</a></li>
+<li><a class="reference internal" href="#html-head-title">HTML_HEAD_TITLE</a></li>
+<li><a class="reference internal" href="#logging-config">LOGGING_CONFIG</a></li>
+<li><a class="reference internal" href="#use-socket-io">USE_SOCKET_IO</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Extensions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="base.html"
+                        title="next chapter">Base</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/extensions/app.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-2013, Luca Sbardella.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  
+  _gaq.push(['_setAccount', 'UA-3900561-8']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

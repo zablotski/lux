@@ -1,0 +1,577 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lux.extensions.cms.views &mdash; lux 0.1a2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1a2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="top" title="lux 0.1a2 documentation" href="../../../../index.html" />
+    <link rel="up" title="lux.extensions.cms" href="../cms.html" /> 
+  </head>
+  <body>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">lux 0.1a2 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../cms.html" accesskey="U">lux.extensions.cms</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="deck">
+<div class="header">
+    
+        <p class="developmentversion">
+        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
+        <a href="http://pythonhosted.org/lux/">release docs here</a>.
+        </p>
+    
+</div>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lux.extensions.cms.views</h1><div class="highlight"><pre>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Several Routers are used by this extension and all of them are also subclasses</span>
+<span class="sd">of the :class:`PageMixin` which implements the retrieval of the page instance</span>
+<span class="sd">as well as the page template object.</span>
+
+<span class="sd">The :class:`CmsRouter` handles ``get`` requests on paths which are not served</span>
+<span class="sd">by any other router in your application. The :class:`EditPage` is a</span>
+<span class="sd">:ref:`CRUD router &lt;crud-router&gt;` which serves the page editing urls.</span>
+
+
+<span class="sd">Page Mixin</span>
+<span class="sd">===============</span>
+
+<span class="sd">.. autoclass:: PageMixin</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+
+<span class="sd">Cms Router</span>
+<span class="sd">===============</span>
+
+<span class="sd">.. autoclass:: CmsRouter</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Edit Pages Router</span>
+<span class="sd">=====================</span>
+
+<span class="sd">.. autoclass:: EditPage</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Cms Content</span>
+<span class="sd">===============</span>
+
+<span class="sd">.. autoclass:: CmsContent</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Cms Response Hook</span>
+<span class="sd">==========================</span>
+
+<span class="sd">.. autoclass:: CmsResponse</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">WebSocket Updates</span>
+<span class="sd">========================</span>
+
+<span class="sd">.. autoclass:: PageUpdates</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+
+<span class="kn">from</span> <span class="nn">pulsar</span> <span class="kn">import</span> <span class="p">(</span><span class="n">PermissionDenied</span><span class="p">,</span> <span class="n">HttpException</span><span class="p">,</span> <span class="n">Http404</span><span class="p">,</span> <span class="n">HttpRedirect</span><span class="p">,</span>
+                    <span class="n">MethodNotAllowed</span><span class="p">,</span> <span class="n">ContentNotAccepted</span><span class="p">,</span> <span class="n">coroutine_return</span><span class="p">,</span>
+                    <span class="n">async</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pulsar.apps</span> <span class="kn">import</span> <span class="n">ws</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.httpurl</span> <span class="kn">import</span> <span class="n">iri_to_uri</span><span class="p">,</span> <span class="n">JSON_CONTENT_TYPES</span>
+<span class="kn">from</span> <span class="nn">pulsar.apps.wsgi</span> <span class="kn">import</span> <span class="n">Json</span>
+
+<span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">Router</span><span class="p">,</span> <span class="n">forms</span><span class="p">,</span> <span class="n">route</span><span class="p">,</span> <span class="n">Html</span><span class="p">,</span> <span class="n">RouterParam</span>
+<span class="kn">from</span> <span class="nn">lux.extensions</span> <span class="kn">import</span> <span class="n">api</span>
+<span class="kn">from</span> <span class="nn">lux.forms</span> <span class="kn">import</span> <span class="n">smart_redirect</span>
+
+<span class="kn">from</span> <span class="nn">.templates</span> <span class="kn">import</span> <span class="n">Dialog</span>
+<span class="kn">from</span> <span class="nn">.grid</span> <span class="kn">import</span> <span class="n">CmsContext</span>
+<span class="kn">from</span> <span class="nn">.forms</span> <span class="kn">import</span> <span class="n">PageForm</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">create_content</span>
+
+
+<span class="n">CONTENT_API_URL</span> <span class="o">=</span> <span class="s">&#39;content&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">same_pk</span><span class="p">(</span><span class="n">pk1</span><span class="p">,</span> <span class="n">pk2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">pk1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">pk2</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">PageContentManager</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">ContentManager</span><span class="p">):</span>
+    <span class="n">required_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;url&#39;</span><span class="p">,)</span>
+
+    <span class="k">def</span> <span class="nf">html_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">path</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">absolute_uri</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="PageMixin"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.PageMixin">[docs]</a><span class="k">class</span> <span class="nc">PageMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A mixin for retrieving page models.</span>
+
+<span class="sd">    This mixin is used by all cms view classes.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">form_factory</span> <span class="o">=</span> <span class="n">PageForm</span>
+
+<div class="viewcode-block" id="PageMixin.get_page"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.PageMixin.get_page">[docs]</a>    <span class="k">def</span> <span class="nf">get_page</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">site_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Retrieve a page instance if not already available.&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="s">&#39;pages&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+            <span class="n">site_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;SITE_ID&#39;</span><span class="p">]</span>
+            <span class="n">page</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">page_list</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">request</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">page</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">site</span><span class="o">=</span><span class="n">site_id</span><span class="p">)</span><span class="o">.</span><span class="n">load_related</span><span class="p">(</span><span class="s">&#39;site&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+            <span class="n">pages</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(((</span><span class="n">p</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">page_list</span><span class="p">))</span>
+            <span class="n">pages_id</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(((</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">id</span><span class="p">),</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">page_list</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">id</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="n">url</span> <span class="o">==</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&#39;url and id should provided together!&#39;</span>
+                <span class="n">page</span> <span class="o">=</span> <span class="n">pages_id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">url</span><span class="p">:</span>
+                    <span class="n">page</span> <span class="o">=</span> <span class="n">pages</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">page</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">page</span> <span class="o">=</span> <span class="n">pages</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">page</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">site</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">request</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">site_id</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">site</span><span class="p">:</span>
+                    <span class="n">site</span> <span class="o">=</span> <span class="n">site</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">site</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">request</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">site_id</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">site</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">site</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">site</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">pages</span> <span class="o">=</span> <span class="n">pages</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">pages_id</span> <span class="o">=</span> <span class="n">pages</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">page</span> <span class="o">=</span> <span class="n">page</span>
+        <span class="n">coroutine_return</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">page</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">get_router_page</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">handler</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app_handler</span>
+        <span class="n">rule</span> <span class="o">=</span> <span class="n">handler</span><span class="o">.</span><span class="n">rule</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_page</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">pages</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(((</span><span class="n">p</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">page</span><span class="p">))</span>
+            <span class="n">page</span> <span class="o">=</span> <span class="n">pages</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">pages</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rule</span><span class="p">))</span>
+        <span class="n">coroutine_return</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PageMixin.create_page_form"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.PageMixin.create_page_form">[docs]</a>    <span class="k">def</span> <span class="nf">create_page_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Called when an authorised user lands on a non-existing page.&#39;&#39;&#39;</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">form_factory</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;url&#39;</span><span class="p">:</span> <span class="n">path</span><span class="p">})</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">full_path</span><span class="p">(</span><span class="s">&#39;/</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;PAGE_EDIT_URL&#39;</span><span class="p">],</span>
+                                   <span class="n">redirect</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">full_path</span><span class="p">())</span>
+        <span class="n">formhtml</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">form</span><span class="o">.</span><span class="n">layout</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">dia</span> <span class="o">=</span> <span class="n">Dialog</span><span class="p">(</span><span class="n">request</span><span class="p">,</span>
+                     <span class="p">{</span><span class="s">&#39;title&#39;</span><span class="p">:</span> <span class="s">&#39;This page does not exist, Create one ?&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;body&#39;</span><span class="p">:</span> <span class="n">formhtml</span><span class="p">})</span>
+        <span class="n">coroutine_return</span><span class="p">(</span><span class="n">dia</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">create_page_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_page_form</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;CREATE_PAGE_TEMPLATE&#39;</span><span class="p">]</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">template</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;this&#39;</span><span class="p">:</span> <span class="n">dialog</span><span class="p">})</span>
+        <span class="n">coroutine_return</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PageMixin.page_template"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.PageMixin.page_template">[docs]</a>    <span class="k">def</span> <span class="nf">page_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">page</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Get the :class:`.PageTemplate` instance for the current ``page``.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">templates</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;PAGE_TEMPLATES&#39;</span><span class="p">]</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">template</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">template</span><span class="p">:</span>
+            <span class="n">templates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">templates</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">templates</span><span class="p">:</span>
+                <span class="n">template</span> <span class="o">=</span> <span class="n">templates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">template</span>
+
+</div></div>
+<div class="viewcode-block" id="CmsResponse"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.CmsResponse">[docs]</a><span class="k">class</span> <span class="nc">CmsResponse</span><span class="p">(</span><span class="n">PageMixin</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Hook for :ref:`routers &lt;router&gt;` to display their contents within</span>
+<span class="sd">    the CMS framework.</span>
+
+<span class="sd">    This class is used by the</span>
+<span class="sd">    :meth:`lux.extensions.cms.Extension.on_html_response` callback.</span>
+
+<span class="sd">    For more information check the</span>
+<span class="sd">    :ref:`on_html_response &lt;event_on_html_document&gt;` documentation.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">html</span><span class="p">):</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">html_document</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">Html</span><span class="p">)</span> <span class="ow">and</span> <span class="n">body</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s">&#39;role&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#39;page&#39;</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">html</span><span class="p">[</span><span class="s">&#39;body&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">body</span><span class="p">),</span> <span class="n">request</span><span class="o">.</span><span class="n">_loop</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">html_document</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_router_page</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">page</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">page</span> <span class="o">=</span> <span class="n">page</span>
+            <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_template</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">addClass</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">body_class</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">template</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;NO_PAGE_TEMPLATE&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">has_permission</span><span class="p">(</span><span class="s">&#39;create&#39;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">page</span><span class="p">):</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app_handler</span><span class="o">.</span><span class="n">rule</span>
+                <span class="n">body</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_page_form</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">template</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;this&#39;</span><span class="p">:</span> <span class="n">body</span><span class="p">})</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">html</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">coroutine_return</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="CmsRouter"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.CmsRouter">[docs]</a><span class="k">class</span> <span class="nc">CmsRouter</span><span class="p">(</span><span class="n">Router</span><span class="p">,</span> <span class="n">PageMixin</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A :ref:`router &lt;router&gt;` for rendering a page on the web.</span>
+
+<span class="sd">    This should be the last Router in the list of middleware of your</span>
+<span class="sd">    application.</span>
+<span class="sd">    It picks up any url which has not been served by any of the previous</span>
+<span class="sd">    routers.</span>
+
+<span class="sd">    The ``get`` method is the only method available.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">urlargs</span><span class="p">[</span><span class="s">&#39;path&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s">&#39;/&#39;</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_page</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">page</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">has_permission</span><span class="p">(</span><span class="s">&#39;create&#39;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">page</span><span class="p">):</span>
+                <span class="n">doc</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_page_doc</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">Http404</span>
+        <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">has_permission</span><span class="p">(</span><span class="s">&#39;read&#39;</span><span class="p">,</span> <span class="n">page</span><span class="p">):</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">html_document</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">addClass</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">body_class</span><span class="p">)</span>
+            <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_template</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
+            <span class="n">html_page</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">template</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">html_page</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PermissionDenied</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">doc</span><span class="o">.</span><span class="n">http_response</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">coroutine_return</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="CmsContent"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.CmsContent">[docs]</a><span class="k">class</span> <span class="nc">CmsContent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A mixin for :ref:`Router &lt;htmlrouter&gt;` which implements the</span>
+<span class="sd">    :meth:`get` method for rendering client request as ``text/html`` or</span>
+<span class="sd">    ``json`` object which contains ``html`` as the only field.</span>
+
+<span class="sd">    It can be used with or without the ``cms`` extensions in your site.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">html</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">HttpRedirect</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">smart_redirect</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;location&#39;</span><span class="p">],</span> <span class="n">e</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">content_type</span> <span class="o">==</span> <span class="s">&#39;text/html&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">html_response</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">content_type</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">json_response</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ContentNotAccepted</span>
+
+<div class="viewcode-block" id="CmsContent.requires"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.CmsContent.requires">[docs]</a>    <span class="k">def</span> <span class="nf">requires</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;List of scripts required by this content.</span>
+
+<span class="sd">        Override if you application requires script to be loaded</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="CmsContent.render"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.CmsContent.render">[docs]</a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Render the :meth:`get` method has html</span>
+
+<span class="sd">        **Must be implemented by subclasses**&#39;&#39;&#39;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</div>
+    <span class="k">def</span> <span class="nf">html_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">html</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">require</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="ow">or</span> <span class="p">():</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">html_document</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">scripts</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="n">require</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">http_response</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">json_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">html</span><span class="p">):</span>
+        <span class="n">scripts</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">html_document</span><span class="o">.</span><span class="n">scripts</span>
+        <span class="k">for</span> <span class="n">script</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="ow">or</span> <span class="p">():</span>
+            <span class="n">scripts</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="n">script</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Json</span><span class="p">({</span><span class="s">&#39;html&#39;</span><span class="p">:</span> <span class="n">html</span><span class="p">,</span>
+                     <span class="s">&#39;requires&#39;</span><span class="p">:</span> <span class="n">scripts</span><span class="o">.</span><span class="n">required</span><span class="p">})</span><span class="o">.</span><span class="n">http_response</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="EditPage"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.EditPage">[docs]</a><span class="k">class</span> <span class="nc">EditPage</span><span class="p">(</span><span class="n">PageMixin</span><span class="p">,</span> <span class="n">api</span><span class="o">.</span><span class="n">Crud</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A :class:`.Crud` Router for inline editing web-pages.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">content_manager</span> <span class="o">=</span> <span class="n">PageContentManager</span><span class="p">()</span>
+    <span class="n">exit_icon</span> <span class="o">=</span> <span class="n">RouterParam</span><span class="p">(</span><span class="s">&#39;lock&#39;</span><span class="p">)</span>
+    <span class="n">edit_icon</span> <span class="o">=</span> <span class="n">RouterParam</span><span class="p">(</span><span class="s">&#39;unlock&#39;</span><span class="p">)</span>
+
+    <span class="nd">@route</span><span class="p">(</span><span class="s">&#39;&lt;id&gt;&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;edit&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="EditPage.read"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.EditPage.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Handle the html view of a page in editing mode.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_page</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">request</span><span class="o">.</span><span class="n">urlargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">page</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">Http404</span>
+        <span class="c"># We have permissions</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">has_permission</span><span class="p">(</span><span class="s">&#39;update&#39;</span><span class="p">,</span> <span class="n">page</span><span class="p">):</span>
+            <span class="n">this_url</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="o">**</span><span class="n">request</span><span class="o">.</span><span class="n">url_data</span><span class="p">)</span>
+            <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">form_factory</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="n">page</span><span class="p">,</span>
+                                     <span class="n">manager</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="p">)</span>
+            <span class="c">#</span>
+            <span class="c"># Add document information</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">html_document</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">addClass</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">body_class</span><span class="p">)</span>
+            <span class="n">edit</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">layout</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">full_path</span><span class="p">())</span>
+            <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_template</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
+            <span class="n">html_page</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">template</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="c">#</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Html</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">edit</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="s">&#39;cms-control&#39;</span><span class="p">))</span>
+            <span class="c">#</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">data</span><span class="p">({</span><span class="s">&#39;this_url&#39;</span><span class="p">:</span> <span class="n">this_url</span><span class="p">,</span>
+                      <span class="s">&#39;content_urls&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">content_urls</span><span class="p">(</span><span class="n">request</span><span class="p">)})</span>
+            <span class="c">#</span>
+            <span class="n">scheme</span> <span class="o">=</span> <span class="s">&#39;ws&#39;</span>
+            <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">is_secure</span><span class="p">:</span>
+                <span class="n">scheme</span> <span class="o">=</span> <span class="s">&#39;wss&#39;</span>
+            <span class="n">ws</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">absolute_uri</span><span class="p">(</span><span class="s">&#39;updates&#39;</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="n">scheme</span><span class="p">)</span>
+            <span class="n">html_page</span><span class="o">.</span><span class="n">data</span><span class="p">({</span><span class="s">&#39;editing&#39;</span><span class="p">:</span> <span class="n">page</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                            <span class="s">&#39;backend_url&#39;</span><span class="p">:</span> <span class="n">ws</span><span class="p">})</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">html_page</span><span class="p">)</span>
+            <span class="c">#</span>
+            <span class="c"># Url for api, to add datatable content and retrieve content</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;API_URL&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">url</span><span class="p">:</span>
+                <span class="n">html_page</span><span class="o">.</span><span class="n">data</span><span class="p">({</span><span class="s">&#39;api&#39;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
+                                <span class="s">&#39;content_url&#39;</span><span class="p">:</span> <span class="s">&#39;</span><span class="si">%s%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">url</span><span class="p">,</span>
+                                                         <span class="n">CONTENT_API_URL</span><span class="p">)})</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">doc</span><span class="o">.</span><span class="n">http_response</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="n">coroutine_return</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PermissionDenied</span>
+</div>
+    <span class="nd">@route</span><span class="p">(</span><span class="s">&#39;&lt;id&gt;&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;post&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_update_instance</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">data</span><span class="p">[</span><span class="s">&#39;site&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;SITE_ID&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="nd">@route</span><span class="p">(</span><span class="s">&#39;&lt;id&gt;/exit&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;exit edit&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">exit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_page</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">request</span><span class="o">.</span><span class="n">urlargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">page</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">Http404</span>
+        <span class="k">raise</span> <span class="n">HttpRedirect</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="o">**</span><span class="n">request</span><span class="o">.</span><span class="n">url_data</span><span class="p">))</span>
+
+<div class="viewcode-block" id="EditPage.navigation_visit"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.EditPage.navigation_visit">[docs]</a>    <span class="k">def</span> <span class="nf">navigation_visit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">navigation</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Accessed by the :mod:`lux.extensions.sitemap` extension.</span>
+
+<span class="sd">        It adds the ``edit`` or ``exit`` links to the user links if</span>
+<span class="sd">        the user is authenticated and has valid permissions.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">session</span><span class="p">:</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">user</span>
+            <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+                <span class="n">edit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_route</span><span class="p">(</span><span class="s">&#39;edit&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">app_handler</span> <span class="o">==</span> <span class="n">edit</span><span class="p">:</span>
+                    <span class="n">route</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_route</span><span class="p">(</span><span class="s">&#39;exit edit&#39;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">route</span><span class="p">:</span>
+                        <span class="n">url</span> <span class="o">=</span> <span class="n">iri_to_uri</span><span class="p">(</span><span class="n">route</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="o">**</span><span class="n">request</span><span class="o">.</span><span class="n">urlargs</span><span class="p">),</span>
+                                         <span class="n">request</span><span class="o">.</span><span class="n">url_data</span><span class="p">)</span>
+                        <span class="n">navigation</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">navigation</span><span class="o">.</span><span class="n">item</span><span class="p">(</span>
+                            <span class="n">url</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">exit_icon</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;exit&#39;</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">page</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">page</span>
+                    <span class="k">if</span> <span class="n">page</span><span class="p">:</span>
+                        <span class="n">url</span> <span class="o">=</span> <span class="n">iri_to_uri</span><span class="p">(</span><span class="n">edit</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">page</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
+                                         <span class="n">request</span><span class="o">.</span><span class="n">urlargs</span><span class="p">)</span>
+                        <span class="n">navigation</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">navigation</span><span class="o">.</span><span class="n">item</span><span class="p">(</span>
+                            <span class="n">url</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">edit_icon</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;edit&#39;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="EditPage.content_urls"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.EditPage.content_urls">[docs]</a>    <span class="k">def</span> <span class="nf">content_urls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;The list of :ref:`cms site content &lt;contenturl&gt;` available.&#39;&#39;&#39;</span>
+        <span class="n">urls</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">handle</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">handler</span><span class="o">.</span><span class="n">middleware</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">Router</span><span class="p">):</span>
+                <span class="n">urls</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_content_urls</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">handle</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">urls</span>
+</div>
+    <span class="k">def</span> <span class="nf">_content_urls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">handle</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="s">&#39;cms_content&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">content</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">handle</span><span class="o">.</span><span class="n">path</span><span class="p">()</span>
+            <span class="k">yield</span> <span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">router</span> <span class="ow">in</span> <span class="n">handle</span><span class="o">.</span><span class="n">routes</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">cp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_content_urls</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">router</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">cp</span>
+
+</div>
+<div class="viewcode-block" id="PageUpdates"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.PageUpdates">[docs]</a><span class="k">class</span> <span class="nc">PageUpdates</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">CrudWebSocket</span><span class="p">,</span> <span class="n">PageMixin</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;The :class:`.CrudWebSocket` handler for Page and Contents.</span>
+
+<span class="sd">    This websocket handler is activated when the cms is in editing mode.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">on_open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">websocket</span><span class="p">):</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">websocket</span><span class="o">.</span><span class="n">handshake</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_page</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">request</span><span class="o">.</span><span class="n">urlargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">page</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">Http404</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">has_permission</span><span class="p">(</span><span class="s">&#39;update&#39;</span><span class="p">,</span> <span class="n">page</span><span class="p">):</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">started</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PermissionDenied</span>
+
+<div class="viewcode-block" id="PageUpdates.manager"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.PageUpdates.manager">[docs]</a>    <span class="k">def</span> <span class="nf">manager</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">websocket</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Get the manager for a CRUD message.&#39;&#39;&#39;</span>
+        <span class="n">content_type</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;model&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">content_type</span> <span class="o">==</span> <span class="s">&#39;page&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">websocket</span><span class="o">.</span><span class="n">handshake</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">page</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">websocket</span><span class="o">.</span><span class="n">handshake</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+            <span class="n">m</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;model&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">m</span>
+</div>
+<div class="viewcode-block" id="PageUpdates.update_create"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.views.PageUpdates.update_create">[docs]</a>    <span class="k">def</span> <span class="nf">update_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">websocket</span><span class="p">,</span> <span class="n">manager</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Override :meth:`.CrudWebSocket.update_create` method to handle</span>
+<span class="sd">        Content and Page models.&#39;&#39;&#39;</span>
+        <span class="n">content_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">manager</span><span class="p">,</span> <span class="s">&#39;content_type&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">fields</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;timestamp&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">fields</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;created&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">content_type</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">instance</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">create_content</span><span class="p">(</span><span class="n">manager</span><span class="p">,</span> <span class="n">content_type</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">same_pk</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">pkvalue</span><span class="p">(),</span> <span class="n">fields</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)):</span>
+                <span class="n">instance</span><span class="o">.</span><span class="n">set_fields</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">manager</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c"># this is a page</span>
+            <span class="k">if</span> <span class="n">instance</span><span class="p">:</span>
+                <span class="n">request</span> <span class="o">=</span> <span class="n">websocket</span><span class="o">.</span><span class="n">handshake</span>
+                <span class="n">contents</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;content&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">()</span>
+                <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_template</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">instance</span><span class="p">)</span>
+                <span class="n">page_contents</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">site_contents</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
+                    <span class="n">context</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">CmsContext</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">all_pages</span><span class="p">:</span>
+                            <span class="n">site_contents</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">contents</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">page_contents</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">contents</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="c"># site contents, update site</span>
+                <span class="k">if</span> <span class="n">site_contents</span><span class="p">:</span>
+                    <span class="n">fields</span><span class="p">[</span><span class="s">&#39;content&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">page_contents</span>
+                    <span class="n">site</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">site</span>
+                    <span class="n">site</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">site_contents</span><span class="p">)</span>
+                    <span class="n">request</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">site</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">PageUpdates</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">update_create</span><span class="p">(</span><span class="n">websocket</span><span class="p">,</span> <span class="n">manager</span><span class="p">,</span>
+                                                          <span class="n">fields</span><span class="p">,</span> <span class="n">instance</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">write_instances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">websocket</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">instances</span><span class="p">):</span>
+        <span class="n">content_type</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;model&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">content_type</span> <span class="o">==</span> <span class="s">&#39;page&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">PageUpdates</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">write_instances</span><span class="p">(</span><span class="n">websocket</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span>
+                                                            <span class="n">instances</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">instances</span><span class="p">:</span>
+                <span class="n">instances</span> <span class="o">=</span> <span class="p">[{</span><span class="s">&#39;fields&#39;</span><span class="p">:</span> <span class="n">i</span><span class="o">.</span><span class="n">fields</span><span class="p">(),</span>
+                              <span class="s">&#39;id&#39;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s">&#39;_cid&#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">pkvalue</span><span class="p">())}</span>
+                             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">instances</span><span class="p">]</span>
+            <span class="n">message</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">instances</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">websocket</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+<a href="../../../../index.html">
+  <img class="logo" width="200" src="../../../../_static/lux.jpg" alt="lux" title="lux"/>
+</a>
+</p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-2013, Luca Sbardella.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  
+  _gaq.push(['_setAccount', 'UA-3900561-8']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,854 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>User Interface &mdash; lux 0.1a2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="top" title="lux 0.1a2 documentation" href="../index.html" />
+    <link rel="up" title="Extensions" href="index.html" />
+    <link rel="next" title="RESTful web API" href="api.html" />
+    <link rel="prev" title="Base" href="base.html" /> 
+  </head>
+  <body>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="RESTful web API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="base.html" title="Base"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">lux 0.1a2 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Extensions</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="deck">
+<div class="header">
+    
+        <p class="developmentversion">
+        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
+        <a href="http://pythonhosted.org/lux/">release docs here</a>.
+        </p>
+    
+</div>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-lux.extensions.ui">
+<span id="user-interface"></span><span id="extension-ui"></span><h1>User Interface<a class="headerlink" href="#module-lux.extensions.ui" title="Permalink to this headline">¶</a></h1>
+<p>User interface for styling HTML5 pages.</p>
+<p>To use this extension, add the <tt class="docutils literal"><span class="pre">lux.extensions.ui</span></tt> entry into the
+<a class="reference internal" href="app.html#std:setting-EXTENSIONS"><tt class="xref std std-setting docutils literal"><span class="pre">EXTENSIONS</span></tt></a> list in your config file.
+To add additional <tt class="docutils literal"><span class="pre">css</span></tt> rules, a user extension module must provide the
+<tt class="docutils literal"><span class="pre">add_css</span></tt> function which accept one parameter only, the <tt class="docutils literal"><span class="pre">css</span></tt> container.
+The <tt class="docutils literal"><span class="pre">add_css</span></tt> function is called when building the css file via the <tt class="docutils literal"><span class="pre">style</span></tt>
+command.</p>
+<p><strong>Requires</strong>: <a class="reference internal" href="base.html#module-lux.extensions.base" title="lux.extensions.base"><tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.base</span></tt></a></p>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="icon-provider">
+<span id="std:setting-ICON_PROVIDER"></span><h3>ICON_PROVIDER<a class="headerlink" href="#icon-provider" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'fontawesome'</span></tt></p>
+<p>Icons used</p>
+</div>
+<div class="section" id="theme">
+<span id="std:setting-THEME"></span><h3>THEME<a class="headerlink" href="#theme" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">None</span></tt></p>
+</div>
+</div>
+<div class="section" id="module-lux.extensions.ui.style">
+<span id="styling"></span><span id="ui-style"></span><h2>Styling<a class="headerlink" href="#module-lux.extensions.ui.style" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="#module-lux.extensions.ui.style" title="lux.extensions.ui.style"><tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.ui.style</span></tt></a> defines the base styling for lux. It uses
+the <a class="reference internal" href="#python-css-tools"><em>python css tools</em></a> library.</p>
+<div class="section" id="skins">
+<h3>Skins<a class="headerlink" href="#skins" title="Permalink to this headline">¶</a></h3>
+<p>It defines the following <tt class="xref py py-class docutils literal"><span class="pre">lux.extensions.ui.lib.Skin</span></tt>:</p>
+<ul>
+<li><p class="first"><tt class="docutils literal"><span class="pre">base</span></tt>: it has the same background and color as the body.</p>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">default</span></tt>: The default skin for element with different background from body</dt>
+<dd><p class="first last">(for example buttons, headers and so forth).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-lux.extensions.ui.lib.base">
+<span id="variables-and-symbols"></span><span id="python-css-tools"></span><h2>Variables and Symbols<a class="headerlink" href="#module-lux.extensions.ui.lib.base" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="symbolic">
+<h3>Symbolic<a class="headerlink" href="#symbolic" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.base.Symbolic">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.base.</tt><tt class="descname">Symbolic</tt><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Symbolic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Symbolic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for <a class="reference internal" href="#lux.extensions.ui.lib.base.Variable" title="lux.extensions.ui.lib.base.Variable"><tt class="xref py py-class docutils literal"><span class="pre">Variable</span></tt></a> and <tt class="xref py py-class docutils literal"><span class="pre">Unit</span></tt>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="variable">
+<h3>Variable<a class="headerlink" href="#variable" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.base.Variable">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.base.</tt><tt class="descname">Variable</tt><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for <a class="reference internal" href="#lux.extensions.ui.lib.base.Variable" title="lux.extensions.ui.lib.base.Variable"><tt class="xref py py-class docutils literal"><span class="pre">Variable</span></tt></a> which can be stored in
+a <a class="reference internal" href="#lux.extensions.ui.lib.base.Variables" title="lux.extensions.ui.lib.base.Variables"><tt class="xref py py-class docutils literal"><span class="pre">Variables</span></tt></a> container.</p>
+<dl class="method">
+<dt id="lux.extensions.ui.lib.base.Variable.value">
+<tt class="descname">value</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Variable.value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Variable.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current value of this <a class="reference internal" href="#lux.extensions.ui.lib.base.Variable" title="lux.extensions.ui.lib.base.Variable"><tt class="xref py py-class docutils literal"><span class="pre">Variable</span></tt></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="symbol">
+<h3>Symbol<a class="headerlink" href="#symbol" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.base.Symbol">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.base.</tt><tt class="descname">Symbol</tt><big>(</big><em>name</em>, <em>value=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Symbol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Symbol" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#lux.extensions.ui.lib.base.Variable" title="lux.extensions.ui.lib.base.Variable"><tt class="xref py py-class docutils literal"><span class="pre">Variable</span></tt></a> with a <tt class="xref py py-attr docutils literal"><span class="pre">name</span></tt> and an underlying value which
+can be another <a class="reference internal" href="#lux.extensions.ui.lib.base.Variable" title="lux.extensions.ui.lib.base.Variable"><tt class="xref py py-class docutils literal"><span class="pre">Variable</span></tt></a>.</p>
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.base.Symbol.value">
+<tt class="descname">value</tt><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Symbol.value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Symbol.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>The value of this variable. It can be another Variable</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="lazy">
+<h3>Lazy<a class="headerlink" href="#lazy" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.base.Lazy">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.base.</tt><tt class="descname">Lazy</tt><big>(</big><em>callable</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Lazy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Lazy" title="Permalink to this definition">¶</a></dt>
+<dd><p>A lazy <a class="reference internal" href="#lux.extensions.ui.lib.base.Variable" title="lux.extensions.ui.lib.base.Variable"><tt class="xref py py-class docutils literal"><span class="pre">Variable</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>callable</strong> &#8211; the callable invoked when accessing the <a class="reference internal" href="#lux.extensions.ui.lib.base.Variable.value" title="lux.extensions.ui.lib.base.Variable.value"><tt class="xref py py-meth docutils literal"><span class="pre">Variable.value()</span></tt></a>
+method of this lazy variable.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="variables">
+<h3>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.base.Variables">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.base.</tt><tt class="descname">Variables</tt><big>(</big><em>parent=None</em>, <em>name=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Variables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>A container of <a class="reference internal" href="#lux.extensions.ui.lib.base.Variable" title="lux.extensions.ui.lib.base.Variable"><tt class="xref py py-class docutils literal"><span class="pre">Variable</span></tt></a> with name-spaces:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">v</span> <span class="o">=</span> <span class="n">Variables</span><span class="p">()</span>
+<span class="n">v</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">px</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If the body name-space is not available is automatically created.</p>
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.base.Variables.name">
+<tt class="descname">name</tt><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Variables.name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Variables.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of this container of <a class="reference internal" href="#lux.extensions.ui.lib.base.Variable" title="lux.extensions.ui.lib.base.Variable"><tt class="xref py py-class docutils literal"><span class="pre">Variable</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.base.Variables.parent">
+<tt class="descname">parent</tt><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Variables.parent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Variables.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parent <a class="reference internal" href="#lux.extensions.ui.lib.base.Variables" title="lux.extensions.ui.lib.base.Variables"><tt class="xref py py-class docutils literal"><span class="pre">Variables</span></tt></a> container.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.ui.lib.base.Variables.value">
+<tt class="descname">value</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Variables.value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Variables.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provide the value method which returns <tt class="docutils literal"><span class="pre">None</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.ui.lib.base.Variables.valid">
+<tt class="descname">valid</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Variables.valid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Variables.valid" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">True</span></tt> if the <a class="reference internal" href="#lux.extensions.ui.lib.base.Variables" title="lux.extensions.ui.lib.base.Variables"><tt class="xref py py-class docutils literal"><span class="pre">Variables</span></tt></a> are part of a root dictionary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.ui.lib.base.Variables.copy">
+<tt class="descname">copy</tt><big>(</big><em>parent=None</em>, <em>name=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Variables.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Variables.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy the <a class="reference internal" href="#lux.extensions.ui.lib.base.Variables" title="lux.extensions.ui.lib.base.Variables"><tt class="xref py py-class docutils literal"><span class="pre">Variables</span></tt></a> in a recursive way.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.ui.lib.base.Variables.params">
+<tt class="descname">params</tt><big>(</big><em>recursive=False</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Variables.params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Variables.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return this <a class="reference internal" href="#lux.extensions.ui.lib.base.Variables" title="lux.extensions.ui.lib.base.Variables"><tt class="xref py py-class docutils literal"><span class="pre">Variables</span></tt></a> container as a dictionary
+of named variables.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="mixin">
+<h3>Mixin<a class="headerlink" href="#mixin" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.base.Mixin">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.base.</tt><tt class="descname">Mixin</tt><a class="reference internal" href="../_modules/lux/extensions/ui/lib/base.html#Mixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.base.Mixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>A css <em>Mixin</em> is a generator of <tt class="xref py py-class docutils literal"><span class="pre">css</span></tt> and other
+<a class="reference internal" href="#lux.extensions.ui.lib.base.Mixin" title="lux.extensions.ui.lib.base.Mixin"><tt class="xref py py-class docutils literal"><span class="pre">Mixin</span></tt></a> elements. All <a class="reference internal" href="#lux.extensions.ui.lib.base.Mixin" title="lux.extensions.ui.lib.base.Mixin"><tt class="xref py py-class docutils literal"><span class="pre">Mixin</span></tt></a> must implement the
+callable method which receives the <tt class="xref py py-class docutils literal"><span class="pre">css</span></tt> element which
+contains them.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-lux.extensions.ui.lib.colorvar">
+<span id="colours"></span><h2>Colours<a class="headerlink" href="#module-lux.extensions.ui.lib.colorvar" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rgba">
+<h3>RGBA<a class="headerlink" href="#rgba" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.colorvar.RGBA">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.colorvar.</tt><tt class="descname">RGBA</tt><a class="reference internal" href="../_modules/lux/extensions/ui/lib/colorvar.html#RGBA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.colorvar.RGBA" title="Permalink to this definition">¶</a></dt>
+<dd><p>CSS3 red-green-blue &amp; alpha color definition. It contains conversions
+to and from <a class="reference external" href="http://en.wikipedia.org/wiki/HSL_and_HSV">HSL</a> and HSV representations.</p>
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.colorvar.RGBA.red">
+<tt class="descname">red</tt><a class="headerlink" href="#lux.extensions.ui.lib.colorvar.RGBA.red" title="Permalink to this definition">¶</a></dt>
+<dd><p>red light (0 to 255)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.colorvar.RGBA.green">
+<tt class="descname">green</tt><a class="headerlink" href="#lux.extensions.ui.lib.colorvar.RGBA.green" title="Permalink to this definition">¶</a></dt>
+<dd><p>green light (0 to 255)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.colorvar.RGBA.blue">
+<tt class="descname">blue</tt><a class="headerlink" href="#lux.extensions.ui.lib.colorvar.RGBA.blue" title="Permalink to this definition">¶</a></dt>
+<dd><p>blue light (0 to 255)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.colorvar.RGBA.alpha">
+<tt class="descname">alpha</tt><a class="headerlink" href="#lux.extensions.ui.lib.colorvar.RGBA.alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>opacity level (0 to 1)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.ui.lib.colorvar.RGBA.tohsla">
+<tt class="descname">tohsla</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/colorvar.html#RGBA.tohsla"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.colorvar.RGBA.tohsla" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to HSL representation (hue, saturation, lightness).
+Note all values are number between 0 and 1. Therefore for the hue, to obtain
+the angle value you need to multiply by 360.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">a four elements tuple containing hue, saturation, lightness, alpha</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.ui.lib.colorvar.RGBA.tohsva">
+<tt class="descname">tohsva</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/colorvar.html#RGBA.tohsva"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.colorvar.RGBA.tohsva" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to HSV representation (hue, saturation, value). This
+is also called HSB (hue, saturation, brightness).
+Note all values are number between 0 and 1. Therefore for the hue, to obtain
+the angle value you need to multiply by 360.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">a four elements tuple containing hue, saturation, value, alpha</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.ui.lib.colorvar.RGBA.darken">
+<tt class="descname">darken</tt><big>(</big><em>weight</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/colorvar.html#RGBA.darken"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.colorvar.RGBA.darken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Darken the color by a given <em>weight</em> in percentage. It return a
+new <a class="reference internal" href="#lux.extensions.ui.lib.colorvar.RGBA" title="lux.extensions.ui.lib.colorvar.RGBA"><tt class="xref py py-class docutils literal"><span class="pre">RGBA</span></tt></a> color with lightness decreased by that amount.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.ui.lib.colorvar.RGBA.lighten">
+<tt class="descname">lighten</tt><big>(</big><em>weight</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/colorvar.html#RGBA.lighten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.colorvar.RGBA.lighten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lighten the color by a given <em>weight</em> in percentage. It return a
+new <a class="reference internal" href="#lux.extensions.ui.lib.colorvar.RGBA" title="lux.extensions.ui.lib.colorvar.RGBA"><tt class="xref py py-class docutils literal"><span class="pre">RGBA</span></tt></a> color with lightness increased by that amount.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="color">
+<h3>color<a class="headerlink" href="#color" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="lux.extensions.ui.lib.colorvar.color">
+<tt class="descclassname">lux.extensions.ui.lib.colorvar.</tt><tt class="descname">color</tt><big>(</big><em>col</em>, <em>*cols</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/colorvar.html#color"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.colorvar.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Safely build a <a class="reference internal" href="#lux.extensions.ui.lib.colorvar.RGBA" title="lux.extensions.ui.lib.colorvar.RGBA"><tt class="xref py py-class docutils literal"><span class="pre">RGBA</span></tt></a> from several type of inputs.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-lux.extensions.ui.lib.mixins">
+<span id="mixins"></span><h2>Mixins<a class="headerlink" href="#module-lux.extensions.ui.lib.mixins" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bcd">
+<h3>Bcd<a class="headerlink" href="#bcd" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Bcd">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Bcd</tt><big>(</big><em>background=None</em>, <em>color=None</em>, <em>text_shadow=None</em>, <em>text_decoration=None</em>, <em>border=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#Bcd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Bcd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Background-color-decorator <tt class="xref py py-class docutils literal"><span class="pre">Mixin</span></tt>. It can be applied to any
+element and tt forms the basis for the <a class="reference internal" href="#lux.extensions.ui.lib.mixins.Clickable" title="lux.extensions.ui.lib.mixins.Clickable"><tt class="xref py py-class docutils literal"><span class="pre">Clickable</span></tt></a> Mixin.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>background</strong> &#8211; backgroud or css3 <a class="reference internal" href="#lux.extensions.ui.lib.mixins.Gradient" title="lux.extensions.ui.lib.mixins.Gradient"><tt class="xref py py-class docutils literal"><span class="pre">Gradient</span></tt></a>.</li>
+<li><strong>colour</strong> &#8211; text colour</li>
+<li><strong>text_shadow</strong> &#8211; text shadow</li>
+<li><strong>text_decoration</strong> &#8211; text decoration</li>
+<li><strong>border</strong> &#8211; <a class="reference internal" href="#lux.extensions.ui.lib.mixins.Border" title="lux.extensions.ui.lib.mixins.Border"><tt class="xref py py-class docutils literal"><span class="pre">Border</span></tt></a> or parameters for <a class="reference internal" href="#lux.extensions.ui.lib.mixins.Border" title="lux.extensions.ui.lib.mixins.Border"><tt class="xref py py-class docutils literal"><span class="pre">Border</span></tt></a>. If
+specified, the element will have a border definition.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="border">
+<h3>Border<a class="headerlink" href="#border" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Border">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Border</tt><big>(</big><em>color=None</em>, <em>style=None</em>, <em>width=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#Border"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Border" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <tt class="xref py py-class docutils literal"><span class="pre">Mixin</span></tt> for adding border to a css element.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>color</strong> &#8211; border color. If not set no border color is specified.</li>
+<li><strong>style</strong> &#8211; border style. If not set, <tt class="docutils literal"><span class="pre">solid</span></tt> is used. Could be
+one of: <tt class="docutils literal"><span class="pre">solid</span></tt>, <tt class="docutils literal"><span class="pre">dotted</span></tt>, <tt class="docutils literal"><span class="pre">none</span></tt>.</li>
+<li><strong>width</strong> &#8211; border width. If not set <tt class="docutils literal"><span class="pre">1px</span></tt> is used.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="boxsizing">
+<h3>BoxSizing<a class="headerlink" href="#boxsizing" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.BoxSizing">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">BoxSizing</tt><big>(</big><em>value=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#BoxSizing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.BoxSizing" title="Permalink to this definition">¶</a></dt>
+<dd><p>The box-sizing CSS3 property.</p>
+<p>This property allows you to define certain elements to fit an area in a
+certain way.</p>
+<p>The only parameter is <tt class="docutils literal"><span class="pre">value</span></tt> which can be one of:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">content-box</span></tt>: This is the behavior of width and height as specified by
+CSS2. The specified width and height (and min/max properties) apply to the
+width and height respectively of the content box of the element.
+The padding and border of the element are laid out and drawn outside the
+specified width and height.</li>
+<li><tt class="docutils literal"><span class="pre">border-box</span></tt>: The specified width and height (and min/max properties)
+on this element determine the border box of the element.
+That is, any padding or border specified on the element is laid out and
+drawn inside this specified width and height. The content width and height
+are calculated by subtracting the border and padding widths of the
+respective sides from the specified &#8216;width&#8217; and &#8216;height&#8217; properties.</li>
+<li><tt class="docutils literal"><span class="pre">inherit</span></tt></li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="clearfix">
+<h3>Clearfix<a class="headerlink" href="#clearfix" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Clearfix">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Clearfix</tt><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#Clearfix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Clearfix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <tt class="docutils literal"><span class="pre">clearfix</span></tt> is a way for an element to automatically clear after
+itself, so that you don&#8217;t need to add additional markup.
+It&#8217;s generally used in float layouts where elements are floated to be
+stacked horizontally.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="clickable">
+<h3>Clickable<a class="headerlink" href="#clickable" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Clickable">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Clickable</tt><big>(</big><em>default=None</em>, <em>hover=None</em>, <em>active=None</em>, <em>cursor='pointer'</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#Clickable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Clickable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the default, hover and active state.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="cssinclude">
+<h3>CssInclude<a class="headerlink" href="#cssinclude" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.CssInclude">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">CssInclude</tt><big>(</big><em>path</em>, <em>location=None</em>, <em>replace=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#CssInclude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.CssInclude" title="Permalink to this definition">¶</a></dt>
+<dd><p>Include one or more css resources. The correct use of this
+<tt class="xref py py-class docutils literal"><span class="pre">Mixin</span></tt> is with the <em>body</em> tag only:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">css</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">,</span> <span class="n">css_include</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>path can be both an internett address as well as a local url.</p>
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.CssInclude.path">
+<tt class="descname">path</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.CssInclude.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>A valid file location or a fully qualified internet address</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.CssInclude.location">
+<tt class="descname">location</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.CssInclude.location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional relative location of imports. If specified <tt class="docutils literal"><span class="pre">url(...)</span></tt>
+entries in the css string will be modified.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.CssInclude.replace">
+<tt class="descname">replace</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.CssInclude.replace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional string to replace just after a <tt class="docutils literal"><span class="pre">url(</span></tt> element in the
+css file.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="fontface">
+<h3>Fontface<a class="headerlink" href="#fontface" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Fontface">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Fontface</tt><big>(</big><em>base</em>, <em>svg=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#Fontface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Fontface" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="gradient">
+<h3>Gradient<a class="headerlink" href="#gradient" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Gradient">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Gradient</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#Gradient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Gradient" title="Permalink to this definition">¶</a></dt>
+<dd><p>css3 gradient. Don&#8217;t initialise directly, use <tt class="xref py py-func docutils literal"><span class="pre">gradient()</span></tt>
+instead.</p>
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Gradient.direction">
+<tt class="descname">direction</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Gradient.direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>One of <tt class="docutils literal"><span class="pre">v</span></tt> for vertical, <tt class="docutils literal"><span class="pre">h</span></tt> for horizontal.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Gradient.start">
+<tt class="descname">start</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Gradient.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>The start color.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Gradient.end">
+<tt class="descname">end</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Gradient.end" title="Permalink to this definition">¶</a></dt>
+<dd><p>The start color.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="media">
+<h3>Media<a class="headerlink" href="#media" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Media">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Media</tt><big>(</big><em>query</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#Media"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Media" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add &#64;media queries to css.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="opacity">
+<h3>Opacity<a class="headerlink" href="#opacity" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Opacity">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Opacity</tt><big>(</big><em>o</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#Opacity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Opacity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add opacity to an element.</p>
+<p>param o: a number between 0 and 1.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="radius">
+<h3>Radius<a class="headerlink" href="#radius" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Radius">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Radius</tt><big>(</big><em>radius</em>, <em>location=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#Radius"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>css3 border radius. The optional location parameter specifies the
+location where to apply the radius. For example, &#8216;top&#8217;, &#8216;bottom&#8217;, &#8216;left&#8217;,
+&#8216;right&#8217;, &#8216;top-left&#8217;, &#8216;top-right&#8217; and so on.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="shadow">
+<h3>Shadow<a class="headerlink" href="#shadow" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Shadow">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Shadow</tt><big>(</big><em>hshadow=None</em>, <em>vshadow=None</em>, <em>blur=None</em>, <em>spread=None</em>, <em>color=None</em>, <em>inset=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#Shadow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Shadow" title="Permalink to this definition">¶</a></dt>
+<dd><p>The box-shadow css3 property attaches one or more drop-shadows to the
+box. The property is a comma-separated list of shadows, each specified by
+2-4 length values, an optional color, and an optional inset keyword.
+Omitted lengths are 0:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Shadow</span><span class="p">(</span><span class="n">hshadow</span><span class="p">,</span> <span class="n">vshadow</span><span class="p">,</span> <span class="n">blur</span><span class="p">,</span> <span class="n">spread</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">inset</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Shadow.hshadow">
+<tt class="descname">hshadow</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Shadow.hshadow" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position of the horizontal shadow. Negative values are allowed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Shadow.vshadow">
+<tt class="descname">vshadow</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Shadow.vshadow" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position of the vertical shadow. Negative values are allowed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Shadow.blur">
+<tt class="descname">blur</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Shadow.blur" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional blur distance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Shadow.spread">
+<tt class="descname">spread</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Shadow.spread" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size of shadow.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Shadow.color">
+<tt class="descname">color</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Shadow.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional color of the shadow.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Shadow.inset">
+<tt class="descname">inset</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Shadow.inset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional boolean to changes the shadow from an outer shadow (outset)
+to an inner shadow.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="stack">
+<h3>Stack<a class="headerlink" href="#stack" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Stack">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Stack</tt><big>(</big><em>*mixins</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#Stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Stack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stack <tt class="xref py py-class docutils literal"><span class="pre">Stackable</span></tt> mixins.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="transition">
+<h3>Transition<a class="headerlink" href="#transition" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Transition">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Transition</tt><big>(</big><em>property</em>, <em>duration=None</em>, <em>easing=None</em>, <em>delay=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/mixins.html#Transition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Transition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a CSS3 transition.</p>
+<p>A transition is controlled via the following parameters:</p>
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Transition.property">
+<tt class="descname">property</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Transition.property" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies the name or names of the CSS properties to which transitions
+should be applied. Only properties listed here are animated during
+transitions; changes to all other properties occur instantaneously
+as usual.</p>
+<p>Valid values are: <tt class="docutils literal"><span class="pre">opacity</span></tt>, <tt class="docutils literal"><span class="pre">left</span></tt>, <tt class="docutils literal"><span class="pre">top</span></tt>, <tt class="docutils literal"><span class="pre">height</span></tt> and so forth.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Transition.duration">
+<tt class="descname">duration</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Transition.duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies the duration over which transitions should occur. You can specify
+a single duration that applies to all properties during the transition,
+or multiple values to allow each property to transition over a different
+period of time.</p>
+<p>Valid value is a string of type <tt class="docutils literal"><span class="pre">0.5s</span></tt>, <tt class="docutils literal"><span class="pre">2s,</span> <span class="pre">5s</span></tt> and so forth.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Transition.easing">
+<tt class="descname">easing</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Transition.easing" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://easings.net/">easing function</a> to use. Default: <tt class="docutils literal"><span class="pre">linear</span></tt>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Transition.delay">
+<tt class="descname">delay</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Transition.delay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines how long to wait between the time a property is changed and the
+transition actually begins.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-lux.extensions.ui.lib.skins">
+<span id="creating-skins"></span><span id="ui-create-skin"></span><h2>Creating Skins<a class="headerlink" href="#module-lux.extensions.ui.lib.skins" title="Permalink to this headline">¶</a></h2>
+<p>To add skins to an element one uses the <a class="reference internal" href="#lux.extensions.ui.lib.skins.Skin" title="lux.extensions.ui.lib.skins.Skin"><tt class="xref py py-class docutils literal"><span class="pre">Skin</span></tt></a> mixin.</p>
+<p>To create a new skin one uses the <a class="reference internal" href="#lux.extensions.ui.lib.skins.createskin" title="lux.extensions.ui.lib.skins.createskin"><tt class="xref py py-func docutils literal"><span class="pre">createskin()</span></tt></a> function which sets
+background, color, border and other properties for three the different states:
+<tt class="docutils literal"><span class="pre">default</span></tt>, <tt class="docutils literal"><span class="pre">hover</span></tt>, <tt class="docutils literal"><span class="pre">active</span></tt>. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">add_css</span><span class="p">(</span><span class="nb">all</span><span class="p">):</span>
+    <span class="n">myskin</span> <span class="o">=</span> <span class="n">createskin</span><span class="p">(</span><span class="nb">all</span><span class="o">.</span><span class="n">cssv</span><span class="p">,</span> <span class="s">&#39;myskin&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;background&#39;</span><span class="p">:</span> <span class="s">&#39;#fff&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<div class="section" id="skin-mixin">
+<h3>Skin Mixin<a class="headerlink" href="#skin-mixin" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.skins.Skin">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.skins.</tt><tt class="descname">Skin</tt><big>(</big><em>child=None</em>, <em>clickable=False</em>, <em>only=None</em>, <em>exclude=None</em>, <em>gradient=None</em>, <em>cursor=None</em>, <em>applyto=None</em>, <em>border_width=None</em>, <em>border_style=None</em>, <em>default=None</em>, <em>active=None</em>, <em>hover=None</em>, <em>**params</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/skins.html#Skin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.skins.Skin" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#lux.extensions.ui.lib.base.Mixin" title="lux.extensions.ui.lib.base.Mixin"><tt class="xref py py-class docutils literal"><span class="pre">Mixin</span></tt></a> which adds <a class="reference internal" href="#ui-create-skin"><em>available skins</em></a> to
+an element.</p>
+<p>A Skin cover the following css properties:</p>
+<ul class="simple">
+<li>background</li>
+<li>color</li>
+<li>border</li>
+<li>text_decoration</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>child</strong> &#8211; an optional css selector for the child element to which
+this <a class="reference internal" href="#lux.extensions.ui.lib.skins.Skin" title="lux.extensions.ui.lib.skins.Skin"><tt class="xref py py-class docutils literal"><span class="pre">Skin</span></tt></a> will be applied. If not supplied, the mixin
+is applied to the element which has it.</li>
+<li><strong>clickable</strong> &#8211; if <tt class="docutils literal"><span class="pre">True</span></tt> the element is clickable and css
+will be added to handle <tt class="docutils literal"><span class="pre">hover</span></tt> and <tt class="docutils literal"><span class="pre">active</span></tt> states. If set to one
+of <tt class="docutils literal"><span class="pre">default</span></tt>, <tt class="docutils literal"><span class="pre">hover</span></tt> or <tt class="docutils literal"><span class="pre">active</span></tt>, all the states will be set
+with values from the <tt class="docutils literal"><span class="pre">clickable</span></tt> state.
+Otherwise, it only handles the <tt class="docutils literal"><span class="pre">default</span></tt> state.</li>
+<li><strong>only</strong> &#8211; specify a tuple of skin names to apply (can also be
+a string). If not provided all skins created with <em class="xref std std-ref">createskin</em>
+are applied.
+Skins with same class name are not applied.</li>
+<li><strong>exclude</strong> &#8211; specify a tuple of skins to exclude (can also be
+a string). If not provided, none of the skins are excluded.</li>
+<li><strong>gradient</strong> &#8211; if set to <tt class="docutils literal"><span class="pre">False</span></tt> background are monocromatic
+only (no gradients). If a callable, it is called with the
+background gradient and should return another background gradient
+or color or nothing.</li>
+<li><strong>cursor</strong> &#8211; if set it overrides the default <tt class="docutils literal"><span class="pre">cursor</span></tt> in the
+<a class="reference internal" href="#lux.extensions.ui.lib.mixins.Clickable" title="lux.extensions.ui.lib.mixins.Clickable"><tt class="xref py py-class docutils literal"><span class="pre">Clickable</span></tt></a> mixin. This parameter is meaningful only when
+<tt class="docutils literal"><span class="pre">clickable</span></tt> is <tt class="docutils literal"><span class="pre">True</span></tt>.</li>
+<li><strong>applyto</strong> &#8211; <p>optional tuple/list containing the properties
+required in the styling. If this is specified only the properties
+in the list are applied. For example one could pass:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">...</span><span class="p">,</span> <span class="n">applyto</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;background&#39;</span><span class="p">,</span> <span class="s">&#39;border&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><strong>border_with</strong> &#8211; optional border width (as spacing too) which
+overrides the default value in all the applied skins.</li>
+<li><strong>border_style</strong> &#8211; optional border style which overrides
+the default value in all the applied skins.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="create-skin">
+<h3>create skin<a class="headerlink" href="#create-skin" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="lux.extensions.ui.lib.skins.createskin">
+<tt class="descclassname">lux.extensions.ui.lib.skins.</tt><tt class="descname">createskin</tt><big>(</big><em>cssv</em>, <em>name</em>, <em>default</em>, <em>hover=None</em>, <em>active=None</em>, <em>class_name=True</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/ui/lib/skins.html#createskin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.skins.createskin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new <tt class="xref py py-class docutils literal"><span class="pre">Variables</span></tt> container with <tt class="xref py py-attr docutils literal"><span class="pre">Variables</span></tt>.name``
+attribute set to <tt class="docutils literal"><span class="pre">name</span></tt> and containing variables which define a
+css skin.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>cssv</strong> &#8211; <p>the <tt class="xref py py-class docutils literal"><span class="pre">Variables</span></tt> container which holds the <tt class="docutils literal"><span class="pre">skins</span></tt>
+container which holds the new container returned by this function.
+For example, if <tt class="docutils literal"><span class="pre">name</span></tt> is <tt class="docutils literal"><span class="pre">myskin</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">cssv</span><span class="o">.</span><span class="n">skins</span><span class="o">.</span><span class="n">myskin</span> <span class="o">=</span> <span class="n">V</span>
+</pre></div>
+</div>
+<p>where <tt class="docutils literal"><span class="pre">V</span></tt> is the <tt class="xref py py-class docutils literal"><span class="pre">Variables</span></tt> container for <tt class="docutils literal"><span class="pre">myskin</span></tt>, which
+is also returned by this function.</p>
+</li>
+<li><strong>name</strong> &#8211; Skin name (default, primary, moon and so forth)</li>
+<li><strong>default</strong> &#8211; container of variables for the <tt class="docutils literal"><span class="pre">default</span></tt> state.</li>
+<li><strong>hover</strong> &#8211; optional container of variables for the <tt class="docutils literal"><span class="pre">hover</span></tt> state.</li>
+<li><strong>active</strong> &#8211; optional container of variables for the <tt class="docutils literal"><span class="pre">active</span></tt> state.</li>
+<li><strong>class_name</strong> &#8211; optional class name for this skin.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a <tt class="xref py py-class docutils literal"><span class="pre">Variables</span></tt> container.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+<a href="../index.html">
+  <img class="logo" width="200" src="../_static/lux.jpg" alt="lux" title="lux"/>
+</a>
+</p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">User Interface</a><ul>
+<li><a class="reference internal" href="#parameters">Parameters</a><ul>
+<li><a class="reference internal" href="#icon-provider">ICON_PROVIDER</a></li>
+<li><a class="reference internal" href="#theme">THEME</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-lux.extensions.ui.style">Styling</a><ul>
+<li><a class="reference internal" href="#skins">Skins</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-lux.extensions.ui.lib.base">Variables and Symbols</a><ul>
+<li><a class="reference internal" href="#symbolic">Symbolic</a></li>
+<li><a class="reference internal" href="#variable">Variable</a></li>
+<li><a class="reference internal" href="#symbol">Symbol</a></li>
+<li><a class="reference internal" href="#lazy">Lazy</a></li>
+<li><a class="reference internal" href="#variables">Variables</a></li>
+<li><a class="reference internal" href="#mixin">Mixin</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-lux.extensions.ui.lib.colorvar">Colours</a><ul>
+<li><a class="reference internal" href="#rgba">RGBA</a></li>
+<li><a class="reference internal" href="#color">color</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-lux.extensions.ui.lib.mixins">Mixins</a><ul>
+<li><a class="reference internal" href="#bcd">Bcd</a></li>
+<li><a class="reference internal" href="#border">Border</a></li>
+<li><a class="reference internal" href="#boxsizing">BoxSizing</a></li>
+<li><a class="reference internal" href="#clearfix">Clearfix</a></li>
+<li><a class="reference internal" href="#clickable">Clickable</a></li>
+<li><a class="reference internal" href="#cssinclude">CssInclude</a></li>
+<li><a class="reference internal" href="#fontface">Fontface</a></li>
+<li><a class="reference internal" href="#gradient">Gradient</a></li>
+<li><a class="reference internal" href="#media">Media</a></li>
+<li><a class="reference internal" href="#opacity">Opacity</a></li>
+<li><a class="reference internal" href="#radius">Radius</a></li>
+<li><a class="reference internal" href="#shadow">Shadow</a></li>
+<li><a class="reference internal" href="#stack">Stack</a></li>
+<li><a class="reference internal" href="#transition">Transition</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-lux.extensions.ui.lib.skins">Creating Skins</a><ul>
+<li><a class="reference internal" href="#skin-mixin">Skin Mixin</a></li>
+<li><a class="reference internal" href="#create-skin">create skin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="base.html"
+                        title="previous chapter">Base</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="next chapter">RESTful web API</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/extensions/ui.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-2013, Luca Sbardella.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  
+  _gaq.push(['_setAccount', 'UA-3900561-8']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

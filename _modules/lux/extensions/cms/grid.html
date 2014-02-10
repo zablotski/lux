@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lux.extensions.cms.grid &mdash; lux 0.1a2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1a2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="top" title="lux 0.1a2 documentation" href="../../../../index.html" />
+    <link rel="up" title="lux.extensions.cms" href="../cms.html" /> 
+  </head>
+  <body>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">lux 0.1a2 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../cms.html" accesskey="U">lux.extensions.cms</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="deck">
+<div class="header">
+    
+        <p class="developmentversion">
+        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
+        <a href="http://pythonhosted.org/lux/">release docs here</a>.
+        </p>
+    
+</div>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lux.extensions.cms.grid</h1><div class="highlight"><pre>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">The :mod:`lux.extensions.cms.grid` module contains several components</span>
+<span class="sd">for creating :class:`PageTemplate` to use with the content management system.</span>
+
+<span class="sd">PageTemplate</span>
+<span class="sd">=================</span>
+
+<span class="sd">.. autoclass:: PageTemplate</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Grid</span>
+<span class="sd">=============</span>
+
+<span class="sd">.. autoclass:: Grid</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+
+<span class="sd">Row</span>
+<span class="sd">=============</span>
+
+<span class="sd">.. autoclass:: Row</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Column</span>
+<span class="sd">=============</span>
+
+<span class="sd">.. autoclass:: Column</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">CmsContext</span>
+<span class="sd">=================</span>
+
+<span class="sd">.. autoclass:: CmsContext</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Mapping</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+
+<span class="kn">from</span> <span class="nn">pulsar</span> <span class="kn">import</span> <span class="n">coroutine_return</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.pep</span> <span class="kn">import</span> <span class="n">iteritems</span><span class="p">,</span> <span class="n">is_string</span>
+
+<span class="kn">import</span> <span class="nn">lux</span>
+<span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">Html</span><span class="p">,</span> <span class="n">Template</span><span class="p">,</span> <span class="n">Context</span>
+
+
+<div class="viewcode-block" id="Column"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.grid.Column">[docs]</a><span class="k">class</span> <span class="nc">Column</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A column can have one or more :class:`Block`.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;div&#39;</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="s">&#39;column&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">span</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;span&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Column</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">span</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Column span &quot;</span><span class="si">%s</span><span class="s">&quot; greater than one!&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">span</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="Row"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.grid.Row">[docs]</a><span class="k">class</span> <span class="nc">Row</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A :class:`Row` is a container of :class:`Column` elements.</span>
+<span class="sd">    It  must contain at least one :class:`Column`.</span>
+
+<span class="sd">    Note that a :class:`.Row` template can be used indipendently</span>
+<span class="sd">    from the content management system.</span>
+
+<span class="sd">    :param column: Optional parameter which set the :attr:`column` attribute.</span>
+
+<span class="sd">    .. attribute:: column</span>
+
+<span class="sd">        It can be either 12 or 24 and it indicates the number of column</span>
+<span class="sd">        spans available.</span>
+
+<span class="sd">        Default: 24</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;div&#39;</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="mi">24</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;columns&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="s">&#39;grid</span><span class="si">%s</span><span class="s"> row&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Row</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">child_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">Column</span><span class="p">):</span>
+            <span class="n">child</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="n">span</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">span</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="n">child</span><span class="o">.</span><span class="n">classes</span> <span class="o">+=</span> <span class="s">&#39; span</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">span</span>
+        <span class="k">return</span> <span class="n">child</span>
+
+</div>
+<div class="viewcode-block" id="Grid"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.grid.Grid">[docs]</a><span class="k">class</span> <span class="nc">Grid</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A container of :class:`Row` or :class:`CmsContext` templates.</span>
+
+<span class="sd">    Note that a :class:`.Grid` template can be used independently</span>
+<span class="sd">    from the content management system.</span>
+
+<span class="sd">    :parameter fixed: optional boolean flag to indicate if the grid is</span>
+<span class="sd">        fixed (html class ``grid fixed``) or fluid (html class ``grid fluid``).</span>
+<span class="sd">        If not specified the grid is considered fluid (it changes width when</span>
+<span class="sd">        the browser window changes width).</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;div&#39;</span>
+
+    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Grid</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">cn</span> <span class="o">=</span> <span class="s">&#39;grid fixed&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">fixed</span> <span class="k">else</span> <span class="s">&#39;grid fluid&#39;</span>
+        <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">addClass</span><span class="p">(</span><span class="n">cn</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">child_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="p">(</span><span class="n">Row</span><span class="p">,</span> <span class="n">CmsContext</span><span class="p">)):</span>
+            <span class="n">child</span> <span class="o">=</span> <span class="n">Row</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">child</span>
+
+</div>
+<div class="viewcode-block" id="PageTemplate"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.grid.PageTemplate">[docs]</a><span class="k">class</span> <span class="nc">PageTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;The main :class:`.Template` of the content management system extension.</span>
+
+<span class="sd">    The template renders the inner part of the HTML ``body`` tag.</span>
+<span class="sd">    A page template is created by including the page components during</span>
+<span class="sd">    initialisation, for example::</span>
+
+<span class="sd">        from lux.extensions.cms.grid import PageTemplate</span>
+
+<span class="sd">        head_body_foot = PageTemplate(</span>
+<span class="sd">            Row()</span>
+<span class="sd">            Grid(CmsContext(&#39;content&#39;)),</span>
+<span class="sd">            Grid(CmsContext(&#39;footer&#39;, all_pages=True)))</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;div&#39;</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="s">&#39;cms-page&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">params</span><span class="p">[</span><span class="s">&#39;role&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;page&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PageTemplate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">PageTemplate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span>
+                                              <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="p">:</span>
+            <span class="n">site_contents</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;content_ids&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ids</span><span class="p">:</span>
+                <span class="n">contents</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">request</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">ids</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="p">()):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">apply_content</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">html_document</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">scripts</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="s">&#39;cms&#39;</span><span class="p">)</span>
+        <span class="n">coroutine_return</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">apply_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+        <span class="n">elem</span><span class="o">.</span><span class="n">data</span><span class="p">({</span><span class="s">&#39;id&#39;</span><span class="p">:</span> <span class="n">content</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s">&#39;content_type&#39;</span><span class="p">:</span> <span class="n">content</span><span class="o">.</span><span class="n">content_type</span><span class="p">})</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(((</span><span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="n">content</span><span class="o">.</span><span class="n">title</span><span class="p">),</span>
+                                  <span class="p">(</span><span class="s">&#39;keywords&#39;</span><span class="p">,</span> <span class="n">content</span><span class="o">.</span><span class="n">keywords</span><span class="p">)),</span>
+                                 <span class="n">iteritems</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">data</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_string</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+                <span class="n">elem</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">value</span><span class="p">:</span>
+                <span class="n">elem</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Html</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">name</span><span class="p">))</span>
+
+</div>
+<div class="viewcode-block" id="CmsContext"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.grid.CmsContext">[docs]</a><span class="k">class</span> <span class="nc">CmsContext</span><span class="p">(</span><span class="n">Context</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A specialised :class:`.Context` for rendering</span>
+<span class="sd">    the dynamic content in a :class:`PageTemplate`.</span>
+
+<span class="sd">    The dynamic content is retrieved from data in a backend database.</span>
+
+<span class="sd">    :param all_pages: optional boolean to pass during initialisation,</span>
+<span class="sd">        it sets the :attr:`all_pages` attribute</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;div&#39;</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="s">&#39;cms-grid&#39;</span>
+
+    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">page</span> <span class="k">if</span> <span class="n">request</span> <span class="k">else</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">page</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_content</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_pages</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">CmsContext</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="CmsContext.all_pages"><a class="viewcode-back" href="../../../../extensions/cms.html#lux.extensions.cms.grid.CmsContext.all_pages">[docs]</a>    <span class="k">def</span> <span class="nf">all_pages</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;When ``True``, this context is used by all pages.&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">all_pages</span>
+</div>
+    <span class="k">def</span> <span class="nf">_get_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">page</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="n">container</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s">&#39;content_ids&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+            <span class="n">context</span><span class="p">[</span><span class="s">&#39;content_ids&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">ids</span> <span class="o">=</span> <span class="n">context</span><span class="p">[</span><span class="s">&#39;content_ids&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">)</span> <span class="ow">or</span> <span class="p">():</span>
+            <span class="n">template</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;template&#39;</span><span class="p">)</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;children&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">():</span>
+                <span class="n">column</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">content</span> <span class="ow">or</span> <span class="p">():</span>
+                    <span class="n">block</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">bc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;template&#39;</span><span class="p">))</span>
+                    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">bc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;children&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">():</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+                            <span class="k">continue</span>
+                        <span class="n">wrapper</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;wrapper&#39;</span><span class="p">)</span>
+                        <span class="n">content</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;content&#39;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                            <span class="n">elem</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">content</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="c"># id, we need to retrieve the content</span>
+                            <span class="n">elem</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">:</span>
+                                <span class="n">ids</span><span class="p">[</span><span class="n">content</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">ids</span><span class="p">[</span><span class="n">content</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">elem</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">wrapper</span><span class="p">:</span>
+                            <span class="n">elem</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s">&#39;wrapper&#39;</span><span class="p">,</span> <span class="n">wrapper</span><span class="p">)</span>
+                        <span class="n">block</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+                    <span class="n">column</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+                <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+            <span class="n">container</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">container</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+<a href="../../../../index.html">
+  <img class="logo" width="200" src="../../../../_static/lux.jpg" alt="lux" title="lux"/>
+</a>
+</p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-2013, Luca Sbardella.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  
+  _gaq.push(['_setAccount', 'UA-3900561-8']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Development &mdash; lux 0.1a2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1a2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="top" title="lux 0.1a2 documentation" href="index.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="Dialog" href="scripts/dialog.html" /> 
+  </head>
+  <body>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="changelog.html" title="Changelog"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="scripts/dialog.html" title="Dialog"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">lux 0.1a2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="deck">
+<div class="header">
+    
+        <p class="developmentversion">
+        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
+        <a href="http://pythonhosted.org/lux/">release docs here</a>.
+        </p>
+    
+</div>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="development">
+<h1>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h1>
+<p>To develop lux or lux -based applications there are additional requirements:</p>
+<ul>
+<li><p class="first"><a href="#id1"><span class="problematic" id="id2">gruntjs_</span></a> and therefore <a href="#id3"><span class="problematic" id="id4">nodejs_</span></a>:</p>
+<div class="highlight-python"><pre>npm install -g grunt-cli</pre>
+</div>
+<p>will install the grunt command line. Then on the <tt class="docutils literal"><span class="pre">lux</span></tt> distribution
+directory type:</p>
+<div class="highlight-python"><pre>npm install</pre>
+</div>
+<p>to locally install <tt class="docutils literal"><span class="pre">grunt`</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">other</span> <span class="pre">javascript</span> <span class="pre">libraries</span> <span class="pre">used</span>
+<span class="pre">during</span> <span class="pre">development</span> <span class="pre">(specified</span> <span class="pre">in</span> <span class="pre">``package.json</span></tt>).</p>
+</li>
+</ul>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>To build the documentation one needs <a href="#id5"><span class="problematic" id="id6">sphinx_</span></a> and <a href="#id7"><span class="problematic" id="id8">docco_</span></a> for the javascript code.
+Before compiling the documentation you need to create the <tt class="docutils literal"><span class="pre">docs/lux/html</span></tt>
+directory one level up from the package directory:</p>
+<div class="highlight-python"><pre>- lux
+    - docs
+    - lux
+    ...
+- docs
+    - lux
+        - html
+            - docco</pre>
+</div>
+<p>from within the <tt class="docutils literal"><span class="pre">lux/docs</span></tt> directory type:</p>
+<div class="highlight-python"><pre>make html</pre>
+</div>
+<p>To build the javascript documents, from the <tt class="docutils literal"><span class="pre">lux</span></tt> directory type:</p>
+<div class="highlight-python"><pre>grunt docco</pre>
+</div>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>To test Lux</p>
+<ul class="simple">
+<li>Create a <tt class="docutils literal"><span class="pre">test_settings.py</span></tt> in the distribution directory and add the
+various API ids and secret keys.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+<a href="index.html">
+  <img class="logo" width="200" src="_static/lux.jpg" alt="lux" title="lux"/>
+</a>
+</p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Development</a><ul>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="scripts/dialog.html"
+                        title="previous chapter">Dialog</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="changelog.html"
+                        title="next chapter">Changelog</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/development.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-2013, Luca Sbardella.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  
+  _gaq.push(['_setAccount', 'UA-3900561-8']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

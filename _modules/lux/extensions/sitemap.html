@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lux.extensions.sitemap &mdash; lux 0.1a2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1a2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="top" title="lux 0.1a2 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">lux 0.1a2 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="deck">
+<div class="header">
+    
+        <p class="developmentversion">
+        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
+        <a href="http://pythonhosted.org/lux/">release docs here</a>.
+        </p>
+    
+</div>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lux.extensions.sitemap</h1><div class="highlight"><pre>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">An extension for managing navigation on a web site. The extension does not add</span>
+<span class="sd">any :ref:`middleware &lt;middleware&gt;` to the lux WSGi handler, instead it</span>
+<span class="sd">adds an handler to the :ref:`on_html_document event &lt;event_on_html_document&gt;`.</span>
+<span class="sd">Therefore, the extension is only used when the response to a client</span>
+<span class="sd">request has a ``text/html`` content type.</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">================</span>
+
+<span class="sd">.. lux_extension:: lux.extensions.sitemap</span>
+
+
+<span class="sd">Usage</span>
+<span class="sd">=============</span>
+<span class="sd">This extensions is only used when the HTTP response has a ``text/html``</span>
+<span class="sd">content type.</span>
+<span class="sd">In this case, when the :attr:`.WsgiRequest.html_document` is accessed for the</span>
+<span class="sd">first time, the extension, via the :meth:`~Extension.on_html_document` handler,</span>
+<span class="sd">adds a :class:`NavigationInfo` object to the ``request.cache`` dictionary.</span>
+<span class="sd">This object can be accessed via ``request.cache.html_navigation`` if needed.</span>
+
+<span class="sd">The ``html_navigation`` can be used to render a navigation toolbar via</span>
+<span class="sd">the :class:`Navigation` template.:</span>
+
+<span class="sd">    &gt;&gt;&gt; from lux.extensions.sitemap import Navigation</span>
+<span class="sd">    &gt;&gt;&gt; toolbar = Navigation()</span>
+<span class="sd">    &gt;&gt;&gt; html = toolbar.render()</span>
+
+<span class="sd">This extension should be positioned, within the :setting:`EXTENSIONS` list,</span>
+<span class="sd">before extensions which need to access the ``html_navigation`` instance</span>
+<span class="sd">in the ``request.cache`` dictionary. Since it does not add any</span>
+<span class="sd">wsgi middleware, it is safe to add it as the first extension.</span>
+
+
+<span class="sd">Adding entries</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">The :class:`NavigationInfo` works by looping over all wsgi middleware</span>
+<span class="sd">which is a instance of :class:`.Router` and check if the ``navigation_visit``</span>
+<span class="sd">method is available.</span>
+
+<span class="sd">For example this router implement a &#39;doc&#39; link::</span>
+
+<span class="sd">    class SomeRouter(lux.Router):</span>
+
+<span class="sd">        def navigation_visit(self, request, nav):</span>
+<span class="sd">            ...</span>
+
+<span class="sd">For example, in the :ref:`cms extensions &lt;extension-cms&gt;`, the</span>
+<span class="sd">:class:`.EditPage` router adds links to edit or exit-editing of pages.</span>
+
+<span class="sd">API</span>
+<span class="sd">==========</span>
+
+<span class="sd">Extension</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: Extension</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">NavigationInfo</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: NavigationInfo</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Navigation</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: Navigation</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="kn">from</span> <span class="nn">pulsar.apps.wsgi</span> <span class="kn">import</span> <span class="n">Html</span>
+
+<span class="kn">import</span> <span class="nn">lux</span>
+<span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">Router</span><span class="p">,</span> <span class="n">Parameter</span>
+
+<span class="kn">from</span> <span class="nn">.links</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.ui</span> <span class="kn">import</span> <span class="n">add_css</span>
+
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;lux.navigation&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">request_from_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">urlargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">urlargs</span> <span class="o">=</span> <span class="n">urlargs</span> <span class="k">if</span> <span class="n">urlargs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">request</span><span class="o">.</span><span class="n">urlargs</span>
+    <span class="k">if</span> <span class="n">view</span> <span class="o">==</span> <span class="n">request</span><span class="o">.</span><span class="n">view</span> <span class="ow">and</span> <span class="n">urlargs</span> <span class="o">==</span> <span class="n">request</span><span class="o">.</span><span class="n">urlargs</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">request</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">route</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="o">**</span><span class="n">urlargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">RequestView</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">environ</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">urlargs</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">request_children</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;generator of all direct children of request&#39;&#39;&#39;</span>
+    <span class="n">parent_route</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">route</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="n">parent_route</span><span class="o">.</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">routes</span><span class="p">:</span>
+        <span class="n">route</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">route</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">route</span><span class="o">.</span><span class="n">level</span> <span class="o">==</span> <span class="n">level</span> <span class="ow">and</span>
+                <span class="n">route</span><span class="o">.</span><span class="n">breadcrumbs</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">parent_route</span><span class="o">.</span><span class="n">breadcrumbs</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">view</span>
+
+
+<span class="k">def</span> <span class="nf">request_known_children</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">app_handler</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app_handler</span>
+    <span class="k">if</span> <span class="n">app_handler</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">app_handler</span><span class="p">,</span> <span class="s">&#39;routes&#39;</span><span class="p">):</span>
+        <span class="n">parent_route</span> <span class="o">=</span> <span class="n">app_handler</span><span class="o">.</span><span class="n">route</span>
+        <span class="k">for</span> <span class="n">router</span> <span class="ow">in</span> <span class="n">app_handler</span><span class="o">.</span><span class="n">routes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">router</span><span class="o">.</span><span class="n">route</span><span class="o">.</span><span class="n">arguments</span> <span class="o">==</span> <span class="n">parent_route</span><span class="o">.</span><span class="n">arguments</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">router</span>
+
+
+<span class="k">def</span> <span class="nf">navigation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Generator of :class:`RequestView` to include in a navigation.&#39;&#39;&#39;</span>
+    <span class="c"># view serving the request</span>
+    <span class="n">levels</span> <span class="o">=</span> <span class="n">levels</span> <span class="ow">or</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">root</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">root</span> <span class="ow">or</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">request_known_children</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="n">in_nav</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="s">&#39;in_navigation&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">in_nav</span><span class="p">:</span>
+            <span class="n">req</span> <span class="o">=</span> <span class="n">request_from_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">req</span><span class="o">.</span><span class="n">has_permissions</span><span class="p">():</span>
+                <span class="k">yield</span> <span class="n">req</span>
+
+
+<div class="viewcode-block" id="NavigationInfo"><a class="viewcode-back" href="../../../extensions/sitemap.html#lux.extensions.sitemap.NavigationInfo">[docs]</a><span class="k">class</span> <span class="nc">NavigationInfo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Collect navigation information.</span>
+
+<span class="sd">    All attributes are optional and only those available are rendered</span>
+<span class="sd">    via the :class:`Navigation` template.</span>
+
+<span class="sd">    .. attribute:: brand</span>
+
+<span class="sd">        A brand name for the web site</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">brand</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">brand</span> <span class="o">=</span> <span class="n">brand</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">primary</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secondary</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">search</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="NavigationInfo.item"><a class="viewcode-back" href="../../../extensions/sitemap.html#lux.extensions.sitemap.NavigationInfo.item">[docs]</a>    <span class="k">def</span> <span class="nf">item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create a :class:`.Link` object</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">title</span> <span class="ow">or</span> <span class="n">text</span>
+        <span class="k">if</span> <span class="n">text</span> <span class="ow">and</span> <span class="n">icon</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="s">&#39; </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">text</span>
+        <span class="k">return</span> <span class="n">Link</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="n">icon</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">(</span><span class="n">text</span><span class="p">,),</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="NavigationInfo.load"><a class="viewcode-back" href="../../../extensions/sitemap.html#lux.extensions.sitemap.NavigationInfo.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Load navigation information from routers serving the application.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span>
+        <span class="k">for</span> <span class="n">handle</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">handler</span><span class="o">.</span><span class="n">middleware</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">Router</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_link</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">add_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">handle</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="s">&#39;navigation_visit&#39;</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">handle</span><span class="o">.</span><span class="n">navigation_visit</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">&#39;Could not add link&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">router</span> <span class="ow">in</span> <span class="n">handle</span><span class="o">.</span><span class="n">routes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_link</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">router</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="Navigation"><a class="viewcode-back" href="../../../extensions/sitemap.html#lux.extensions.sitemap.Navigation">[docs]</a><span class="k">class</span> <span class="nc">Navigation</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A :class:`.Template` which can be used to render the</span>
+<span class="sd">    :class:`NavigationInfo` object stored in the ``request.cache``</span>
+<span class="sd">    dictionary.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">request</span><span class="p">:</span>
+            <span class="n">info</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">html_navigation</span>
+            <span class="k">if</span> <span class="n">info</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;To use the navigation you must include &#39;</span>
+                               <span class="s">&#39;lux.extensions.sitemap in your EXTENSIONS &#39;</span>
+                               <span class="s">&#39;list&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">info</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+                <span class="n">nav</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">layout</span> <span class="o">==</span> <span class="s">&#39;horizontal&#39;</span><span class="p">:</span>
+                    <span class="n">nav</span><span class="o">.</span><span class="n">addClass</span><span class="p">(</span><span class="s">&#39;inner clearfix&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">layout</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">nav</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">layout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">nav</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s">&#39;NAVIGATION_TEMPLATE&#39;</span><span class="p">]</span>
+        <span class="n">levels</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s">&#39;NAVIGATION_LEVELS&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">template</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">handle</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">handle</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">handle</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+                <span class="n">nav</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nav</span>
+
+    <span class="k">def</span> <span class="nf">brand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">link</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;NAVIGATION_BRAND_LINK&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="s">&#39;brand&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="n">link</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;ul&#39;</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="s">&#39;nav&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">ul</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ul</span>
+
+    <span class="k">def</span> <span class="nf">secondary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;ul&#39;</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="s">&#39;nav secondary&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">ul</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ul</span>
+
+    <span class="k">def</span> <span class="nf">user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;ul&#39;</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="s">&#39;nav user&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">ul</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ul</span>
+
+</div>
+<div class="viewcode-block" id="Extension"><a class="viewcode-back" href="../../../extensions/sitemap.html#lux.extensions.sitemap.Extension">[docs]</a><span class="k">class</span> <span class="nc">Extension</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Extension</span><span class="p">):</span>
+    <span class="n">_config</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;NAVIGATION_LEVELS&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;NAVIGATION_BRAND&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;Html string for the brand in the toolbar&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;NAVIGATION_BRAND_LINK&#39;</span><span class="p">,</span> <span class="s">&#39;/&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;The href value of the anchor which display the brand in the&#39;</span>
+                  <span class="s">&#39; navigation toolbar&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;NAVIGATION_TEMPLATE&#39;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="s">&#39;brand&#39;</span><span class="p">,</span> <span class="s">&#39;main&#39;</span><span class="p">,</span> <span class="s">&#39;secondary&#39;</span><span class="p">,</span> <span class="s">&#39;user&#39;</span><span class="p">),</span>
+                  <span class="s">&#39;Layout of the Navigation Toolbar&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;NAVIGATION_CLASSES&#39;</span><span class="p">,</span> <span class="s">&#39;nav nav-list standard&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)]</span>
+
+<div class="viewcode-block" id="Extension.on_html_document"><a class="viewcode-back" href="../../../extensions/sitemap.html#lux.extensions.sitemap.Extension.on_html_document">[docs]</a>    <span class="k">def</span> <span class="nf">on_html_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">html</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Add the ``html_navigation`` entry in the ``request.cache``.</span>
+
+<span class="sd">        Loop over all Routers which have the ``navigation_visit`` method</span>
+<span class="sd">        implemented. The ``html_navigation`` is an instance of</span>
+<span class="sd">        :class:`NavigationInfo` and can be used to add navigation</span>
+<span class="sd">        items as well as logos and search boxes.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">brand</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;NAVIGATION_BRAND&#39;</span><span class="p">]</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">html_navigation</span> <span class="o">=</span> <span class="n">NavigationInfo</span><span class="p">(</span><span class="n">brand</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Extension.navigation"><a class="viewcode-back" href="../../../extensions/sitemap.html#lux.extensions.sitemap.Extension.navigation">[docs]</a>    <span class="k">def</span> <span class="nf">navigation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">routers</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create an ul with links.&#39;&#39;&#39;</span>
+        <span class="n">levels</span> <span class="o">=</span> <span class="n">levels</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;NAVIGATION_LEVELS&#39;</span><span class="p">]</span>
+        <span class="n">ul</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;ul&#39;</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;NAVIGATION_CLASSES&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">router</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ordered_nav</span><span class="p">(</span><span class="n">routers</span><span class="p">),</span>
+                                <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">router</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">navigation</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">link</span> <span class="o">=</span> <span class="n">router</span><span class="o">.</span><span class="n">link</span><span class="p">()</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">ul</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ul</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">_ordered_nav</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">routers</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">router</span> <span class="ow">in</span> <span class="n">routers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">router</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">navigation</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">router</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">navigation</span><span class="p">,</span> <span class="n">router</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+<a href="../../../index.html">
+  <img class="logo" width="200" src="../../../_static/lux.jpg" alt="lux" title="lux"/>
+</a>
+</p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-2013, Luca Sbardella.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  
+  _gaq.push(['_setAccount', 'UA-3900561-8']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>
