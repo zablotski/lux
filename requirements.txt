@@ -1,3 +1,0 @@
-pulsar
-python-stdnet
-oauthlib
