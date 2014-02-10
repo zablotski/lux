@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lux.forms.layouts &mdash; lux 0.1b2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1b2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../../static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../static/favicon.ico"/>
+    <link rel="top" title="lux 0.1b2 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="deck">
+<div class="header">
+    
+        <p class="developmentversion">
+        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
+        <a href="http://pythonhosted.org/lux/">release docs here</a>.
+        </p>
+    
+</div>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lux.forms.layouts</h1><div class="highlight"><pre>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Layout</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: Layout</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Layout style</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: LayoutStyle</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Registering layouts</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autofunction:: register_layout_style</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">isclass</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+
+<span class="kn">import</span> <span class="nn">lux</span>
+<span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">Html</span><span class="p">,</span> <span class="n">coroutine_return</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Layout&#39;</span><span class="p">,</span> <span class="s">&#39;Fieldset&#39;</span><span class="p">,</span> <span class="s">&#39;register_layout_style&#39;</span><span class="p">,</span> <span class="s">&#39;LayoutStyle&#39;</span><span class="p">]</span>
+
+
+<span class="n">SUBMITS</span> <span class="o">=</span> <span class="s">&#39;submits&#39;</span>  <span class="c"># string indicating submits in forms</span>
+<span class="n">LAYOUT_HANDLERS</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<span class="k">def</span> <span class="nf">check_fields</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">missings</span><span class="p">,</span> <span class="n">layout</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Utility function for checking fields in layouts&#39;&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">missings</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">field</span> <span class="o">==</span> <span class="n">SUBMITS</span><span class="p">:</span>
+                <span class="n">field</span> <span class="o">=</span> <span class="n">SubmitElement</span><span class="p">()</span>
+                <span class="n">field</span><span class="o">.</span><span class="n">check_fields</span><span class="p">(</span><span class="n">missings</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">missings</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">FormLayoutElement</span><span class="p">):</span>
+            <span class="n">field</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">missings</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">field</span>
+
+
+<span class="k">class</span> <span class="nc">FieldMaker</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Template</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">container</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="n">field</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">container</span> <span class="o">=</span> <span class="n">container</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">render</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Return an iterable over Html objects or strings.&#39;&#39;&#39;</span>
+        <span class="n">bound_field</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">dfields</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="p">]</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">bound_field</span><span class="o">.</span><span class="n">widget</span><span class="p">()</span>
+        <span class="n">hidden</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&#39;type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#39;hidden&#39;</span> <span class="ow">or</span> <span class="n">html</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s">&#39;display&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#39;none&#39;</span>
+        <span class="k">if</span> <span class="n">hidden</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">addClass</span><span class="p">(</span><span class="s">&#39;hidden&#39;</span><span class="p">),)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">bound_field</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">container</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Fieldset</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A :class:`BaseFormLayout` class for :class:`FormLayout`</span>
+<span class="sd">components. An instance of this class render one or several</span>
+<span class="sd">:class:`Field` of a form.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;fieldset&#39;</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">legend</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;legend&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;tag&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;style&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">show_label</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;show_label&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Fieldset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">handler</span> <span class="o">=</span> <span class="n">LAYOUT_HANDLERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">,</span> <span class="n">LAYOUT_HANDLERS</span><span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">])</span>
+        <span class="n">render</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">handler</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">legend</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;&lt;legend&gt;</span><span class="si">%s</span><span class="s">&lt;/legend&gt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">legend</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">txt</span> <span class="ow">in</span> <span class="n">child</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">render</span><span class="p">):</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">html</span>
+
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">missings</span><span class="p">,</span> <span class="n">layout</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Check if the specified fields are available in the form and</span>
+<span class="sd">remove available fields from the *missings* set.&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">form_class</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s">&#39;Fieldset already setup&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">style</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">form_class</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">form_class</span>
+        <span class="n">children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">check_fields</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">missings</span><span class="p">,</span> <span class="n">layout</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">Fieldset</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">form_class</span><span class="o">.</span><span class="n">base_fields</span><span class="p">:</span>
+                    <span class="n">field</span> <span class="o">=</span> <span class="n">FieldMaker</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">SubmitElement</span><span class="p">(</span><span class="n">Fieldset</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">missings</span><span class="p">,</span> <span class="n">layout</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Html</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span>
+                    <span class="n">Html</span><span class="p">(</span><span class="s">&#39;button&#39;</span><span class="p">,</span> <span class="s">&#39;submit&#39;</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="s">&#39;btn&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;submit&#39;</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="Layout"><a class="viewcode-back" href="../../../api/index.html#lux.forms.layouts.Layout">[docs]</a><span class="k">class</span> <span class="nc">Layout</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A :class:`Layout` renders the form into an HTML page.</span>
+
+<span class="sd">:param style: Optional style name. A style handler must be registered via the</span>
+<span class="sd">    :func:`register_layout_style` function. It sets the :attr:style:</span>
+<span class="sd">    attribute</span>
+
+<span class="sd">.. attribute:: style</span>
+
+<span class="sd">    The name of the :class:`LayoutStyle` for this :class:`Layout`.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+    <span class="n">default_element</span> <span class="o">=</span> <span class="n">Fieldset</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;style&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_submits</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;add_submits&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Layout</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">form_class</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">form_class</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">form_class</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
+    <span class="n">__str__</span> <span class="o">=</span> <span class="n">__repr__</span>
+
+    <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">instance_type</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">form</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">form_class</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">form_class</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">__class__</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">form_class</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">form</span><span class="o">.</span><span class="n">__class__</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s">&#39;Form layout element for multiple forms&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="s">&#39;form&#39;</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;post&#39;</span><span class="p">,</span>
+                 <span class="n">enctype</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">enctype</span> <span class="o">=</span> <span class="n">enctype</span> <span class="ow">or</span> <span class="s">&#39;multipart/form-data&#39;</span>
+        <span class="k">if</span> <span class="n">request</span><span class="p">:</span>
+            <span class="n">cn</span> <span class="o">=</span> <span class="n">cn</span> <span class="ow">or</span> <span class="s">&#39;ajax&#39;</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">html_document</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">scripts</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="s">&#39;jquery-form&#39;</span><span class="p">)</span>
+        <span class="c"># we need to make sure the form is validated</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="n">cn</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">enctype</span><span class="o">=</span><span class="n">enctype</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">addClass</span><span class="p">(</span><span class="s">&#39;form-</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inner_form</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">request</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">html</span>
+
+    <span class="k">def</span> <span class="nf">_inner_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">request</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">form</span><span class="o">.</span><span class="n">inputs</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">html</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">coroutine_return</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">missings</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">form_class</span><span class="o">.</span><span class="n">base_fields</span><span class="p">)</span>
+        <span class="n">children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">SUBMITS</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">missings</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_submits</span><span class="p">:</span>
+            <span class="n">missings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SUBMITS</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">Fieldset</span><span class="p">):</span>
+                <span class="n">field</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">missings</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+        <span class="n">add_submits</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">SUBMITS</span> <span class="ow">in</span> <span class="n">missings</span><span class="p">:</span>
+            <span class="n">add_submits</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">missings</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">SUBMITS</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">missings</span><span class="p">:</span>
+            <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_element</span><span class="p">(</span><span class="o">*</span><span class="n">missings</span><span class="p">)</span>
+            <span class="n">field</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">missings</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">add_submits</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SubmitElement</span><span class="p">())</span>
+
+</div>
+<div class="viewcode-block" id="register_layout_style"><a class="viewcode-back" href="../../../api/index.html#lux.forms.layouts.register_layout_style">[docs]</a><span class="k">def</span> <span class="nf">register_layout_style</span><span class="p">(</span><span class="n">handler</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Register a new :class:`LayoutStyle` for rendring forms.&#39;&#39;&#39;</span>
+    <span class="k">global</span> <span class="n">LAYOUT_HANDLERS</span>
+    <span class="n">LAYOUT_HANDLERS</span><span class="p">[</span><span class="n">handler</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">handler</span>
+
+</div>
+<div class="viewcode-block" id="LayoutStyle"><a class="viewcode-back" href="../../../api/index.html#lux.forms.layouts.LayoutStyle">[docs]</a><span class="k">class</span> <span class="nc">LayoutStyle</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Layout style handler.</span>
+
+<span class="sd">.. attribute:: name</span>
+
+<span class="sd">    The name for this :class:`LayoutStyle. The name is used by the</span>
+<span class="sd">    :class:`Layout` to create the form class. For example the ``horizontal``</span>
+<span class="sd">    layout has a form class ``form-horizontal``.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">bound_field</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">html</span>
+
+    <span class="k">def</span> <span class="nf">fieldset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">bfield</span><span class="p">,</span> <span class="n">container</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">html</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&#39;type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#39;checkbox&#39;</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">bfield</span><span class="o">.</span><span class="n">label</span> <span class="k">if</span> <span class="n">container</span><span class="o">.</span><span class="n">show_label</span> <span class="k">else</span> <span class="s">&#39;&#39;</span>
+            <span class="k">yield</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;label&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="s">&#39;checkbox&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">container</span><span class="o">.</span><span class="n">show_label</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="s">&#39;&lt;label&gt;</span><span class="si">%s</span><span class="s">&lt;/label&gt;&#39;</span> <span class="o">%</span> <span class="n">bfield</span><span class="o">.</span><span class="n">label</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&#39;placeholder&#39;</span><span class="p">,</span> <span class="n">bfield</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">html</span>
+
+</div>
+<span class="k">class</span> <span class="nc">HorizontalLayout</span><span class="p">(</span><span class="n">LayoutStyle</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;horizontal&#39;</span>
+
+    <span class="k">def</span> <span class="nf">fieldset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">bfield</span><span class="p">,</span> <span class="n">container</span><span class="p">):</span>
+        <span class="n">control</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="s">&#39;control-group&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">html</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&#39;type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#39;checkbox&#39;</span><span class="p">:</span>
+            <span class="n">control</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Html</span><span class="p">(</span><span class="s">&#39;label&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">bfield</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="s">&#39;checkbox&#39;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;label&#39;</span><span class="p">,</span> <span class="n">bfield</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="s">&#39;control-label&#39;</span><span class="p">)</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&#39;for&#39;</span><span class="p">,</span> <span class="n">bfield</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="n">control</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+            <span class="n">control</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Html</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="s">&#39;controls&#39;</span><span class="p">))</span>
+        <span class="k">yield</span> <span class="n">control</span>
+
+
+<span class="n">register_layout_style</span><span class="p">(</span><span class="n">LayoutStyle</span><span class="p">())</span>
+<span class="n">register_layout_style</span><span class="p">(</span><span class="n">HorizontalLayout</span><span class="p">())</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+<a href="../../../index.html">
+  <img class="logo" width="200" src="../../../static/lux.jpg" alt="lux" title="lux"/>
+</a>
+</p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-2013, Luca Sbardella.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  
+  _gaq.push(['_setAccount', 'UA-3900561-8']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

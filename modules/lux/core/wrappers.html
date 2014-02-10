@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lux.core.wrappers &mdash; lux 0.1b2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1b2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../../static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../static/favicon.ico"/>
+    <link rel="top" title="lux 0.1b2 documentation" href="../../../index.html" />
+    <link rel="up" title="lux.core" href="../core.html" /> 
+  </head>
+  <body>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../core.html" accesskey="U">lux.core</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="deck">
+<div class="header">
+    
+        <p class="developmentversion">
+        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
+        <a href="http://pythonhosted.org/lux/">release docs here</a>.
+        </p>
+    
+</div>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lux.core.wrappers</h1><div class="highlight"><pre>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">.. _router:</span>
+
+<span class="sd">Router</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: Router</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+
+<span class="sd">.. _htmlrouter:</span>
+
+<span class="sd">Html Router</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: HtmlRouter</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Wsgi Request</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: WsgiRequest</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+
+<span class="kn">from</span> <span class="nn">pulsar</span> <span class="kn">import</span> <span class="n">HttpException</span><span class="p">,</span> <span class="n">ContentNotAccepted</span><span class="p">,</span> <span class="n">Http404</span><span class="p">,</span> <span class="n">get_event_loop</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.structures</span> <span class="kn">import</span> <span class="n">AttributeDictionary</span>
+<span class="kn">from</span> <span class="nn">pulsar.apps.wsgi</span> <span class="kn">import</span> <span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">wsgi_request</span><span class="p">,</span> <span class="n">cached_property</span><span class="p">,</span>
+                              <span class="n">EnvironMixin</span><span class="p">,</span> <span class="n">html_factory</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pulsar.apps</span> <span class="kn">import</span> <span class="n">wsgi</span>
+<span class="kn">from</span> <span class="nn">pulsar.apps.wsgi</span> <span class="kn">import</span> <span class="n">RouterParam</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.httpurl</span> <span class="kn">import</span> <span class="n">JSON_CONTENT_TYPES</span>
+
+<span class="kn">from</span> <span class="nn">lux.utils</span> <span class="kn">import</span> <span class="n">unique_tuple</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Html&#39;</span><span class="p">,</span> <span class="s">&#39;HtmlRouter&#39;</span><span class="p">,</span> <span class="s">&#39;headers&#39;</span><span class="p">,</span>
+           <span class="s">&#39;WsgiRequest&#39;</span><span class="p">,</span> <span class="s">&#39;Router&#39;</span><span class="p">,</span> <span class="s">&#39;route&#39;</span><span class="p">,</span> <span class="s">&#39;wsgi_request&#39;</span><span class="p">,</span> <span class="s">&#39;as_tag&#39;</span><span class="p">,</span>
+           <span class="s">&#39;cached_property&#39;</span><span class="p">,</span> <span class="s">&#39;EnvironMixin&#39;</span><span class="p">,</span> <span class="s">&#39;html_factory&#39;</span><span class="p">,</span>
+           <span class="s">&#39;get_event_loop&#39;</span><span class="p">,</span> <span class="s">&#39;RouterParam&#39;</span><span class="p">,</span> <span class="s">&#39;JSON_CONTENT_TYPES&#39;</span><span class="p">,</span>
+           <span class="s">&#39;DEFAULT_CONTENT_TYPES&#39;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">frozen_set</span><span class="p">(</span><span class="o">*</span><span class="n">elems</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">elems</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">elem</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">elem</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">el</span>
+    <span class="k">return</span> <span class="nb">frozenset</span><span class="p">(</span><span class="n">_</span><span class="p">())</span>
+
+
+<span class="k">def</span> <span class="nf">as_tag</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">wsgi</span><span class="o">.</span><span class="n">Html</span><span class="p">)</span> <span class="ow">or</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span> <span class="o">!=</span> <span class="n">tag</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Html</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">elem</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">elem</span>
+
+
+<span class="n">DEFAULT_CONTENT_TYPES</span> <span class="o">=</span> <span class="n">unique_tuple</span><span class="p">((</span><span class="s">&#39;text/html&#39;</span><span class="p">,</span> <span class="s">&#39;text/plain&#39;</span><span class="p">,</span> <span class="s">&#39;text/csv&#39;</span><span class="p">),</span>
+                                     <span class="n">JSON_CONTENT_TYPES</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="WsgiRequest"><a class="viewcode-back" href="../../../api/index.html#lux.core.wrappers.WsgiRequest">[docs]</a><span class="k">class</span> <span class="nc">WsgiRequest</span><span class="p">(</span><span class="n">wsgi</span><span class="o">.</span><span class="n">WsgiRequest</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Extend pulsar Wsgi Request with additional methods and attributes.&#39;&#39;&#39;</span>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="WsgiRequest.app"><a class="viewcode-back" href="../../../api/index.html#lux.core.wrappers.WsgiRequest.app">[docs]</a>    <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;The :class:`lux.core.App` running the website.&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">app</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="WsgiRequest.models"><a class="viewcode-back" href="../../../api/index.html#lux.core.wrappers.WsgiRequest.models">[docs]</a>    <span class="k">def</span> <span class="nf">models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;The router to registered models for the application serving</span>
+<span class="sd">        the request&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">models</span>
+</div>
+    <span class="nd">@cached_property</span>
+<div class="viewcode-block" id="WsgiRequest.html_document"><a class="viewcode-back" href="../../../api/index.html#lux.core.wrappers.WsgiRequest.html_document">[docs]</a>    <span class="k">def</span> <span class="nf">html_document</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;The HTML document for this request.&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">html_document</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="WsgiRequest.has_permission"><a class="viewcode-back" href="../../../api/index.html#lux.core.wrappers.WsgiRequest.has_permission">[docs]</a>    <span class="k">def</span> <span class="nf">has_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Check if this request has permission on ``model`` to perform a</span>
+<span class="sd">        given ``action``&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">permissions</span><span class="o">.</span><span class="n">has</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+
+</div></div>
+<span class="n">wsgi</span><span class="o">.</span><span class="n">set_wsgi_request_class</span><span class="p">(</span><span class="n">WsgiRequest</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">headers</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="n">content_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">cache</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">):</span>
+
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">router</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">response</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">content_type</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content_type</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span>
+                        <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;HTTP_ACCEPT&#39;</span><span class="p">)):</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">content_type</span>
+                <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">content_type</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">content_type</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ContentNotAccepted</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="n">router</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">_</span>
+
+
+<div class="viewcode-block" id="Router"><a class="viewcode-back" href="../../../api/index.html#lux.core.wrappers.Router">[docs]</a><span class="k">class</span> <span class="nc">Router</span><span class="p">(</span><span class="n">wsgi</span><span class="o">.</span><span class="n">Router</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Extend pulsar Router with content management.&#39;&#39;&#39;</span>
+    <span class="n">content_manager</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="sd">&#39;&#39;&#39;Optional :class:`lux.core.content.ContentManager`.</span>
+
+<span class="sd">    A content manager can be used to separate the matching and parsing</span>
+<span class="sd">    of a URL, provided by the :class:`Router` with the actual handling of</span>
+<span class="sd">    the request.&#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Router</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">content_manager</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">content_manager</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">content_manager</span><span class="o">.</span><span class="n">_clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Router.html_url"><a class="viewcode-back" href="../../../api/index.html#lux.core.wrappers.Router.html_url">[docs]</a>    <span class="k">def</span> <span class="nf">html_url</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Return an :ref:`Html Link &lt;html-link&gt;` object for ``item``.&#39;&#39;&#39;</span>
+        <span class="k">pass</span>
+
+</div></div>
+<div class="viewcode-block" id="HtmlRouter"><a class="viewcode-back" href="../../../api/index.html#lux.core.wrappers.HtmlRouter">[docs]</a><span class="k">class</span> <span class="nc">HtmlRouter</span><span class="p">(</span><span class="n">Router</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A pulsar Router for html content.</span>
+
+<span class="sd">It introduces the following:</span>
+
+<span class="sd">.. attribute:: in_sitemap</span>
+
+<span class="sd">    Boolean indicating if the route served by the Router can be included in</span>
+<span class="sd">    the site-map.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">response_content_types</span> <span class="o">=</span> <span class="n">RouterParam</span><span class="p">(</span><span class="n">DEFAULT_CONTENT_TYPES</span><span class="p">)</span>
+    <span class="n">in_sitemap</span> <span class="o">=</span> <span class="n">RouterParam</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">icon</span> <span class="o">=</span> <span class="bp">None</span>
+
+</div>
+<span class="k">class</span> <span class="nc">Html</span><span class="p">(</span><span class="n">wsgi</span><span class="o">.</span><span class="n">Html</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">http_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">html_document</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;body&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="p">}</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">fire</span><span class="p">(</span><span class="s">&#39;on_html_response&#39;</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+        <span class="n">inner</span> <span class="o">=</span> <span class="n">html</span><span class="p">[</span><span class="s">&#39;body&#39;</span><span class="p">]</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">html</span><span class="p">[</span><span class="s">&#39;body&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">doc</span><span class="o">.</span><span class="n">http_response</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+<a href="../../../index.html">
+  <img class="logo" width="200" src="../../../static/lux.jpg" alt="lux" title="lux"/>
+</a>
+</p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-2013, Luca Sbardella.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  
+  _gaq.push(['_setAccount', 'UA-3900561-8']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

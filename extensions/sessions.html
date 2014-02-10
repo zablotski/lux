@@ -6,25 +6,25 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Users and Sessions &mdash; lux 0.1a2 documentation</title>
+    <title>Users and Sessions &mdash; lux 0.1b2 documentation</title>
     
-    <link rel="stylesheet" href="../_static/pulsar.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1a2',
+        VERSION:     '0.1b2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="lux 0.1a2 documentation" href="../index.html" />
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <link rel="shortcut icon" href="../static/favicon.ico"/>
+    <link rel="top" title="lux 0.1b2 documentation" href="../index.html" />
     <link rel="up" title="Extensions" href="index.html" />
     <link rel="next" title="Content Management System" href="cms.html" />
     <link rel="prev" title="RESTful web API" href="api.html" /> 
@@ -46,7 +46,7 @@
         <li class="right" >
           <a href="api.html" title="RESTful web API"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">lux 0.1a2 documentation</a> &raquo;</li>
+        <li><a href="../index.html">lux 0.1b2 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Extensions</a> &raquo;</li> 
       </ul>
     </div>
@@ -87,7 +87,7 @@ list of <tt class="docutils literal"><span class="pre">EXTENSIONS</span></tt> of
 </div>
 <div class="section" id="check-username">
 <span id="std:setting-CHECK_USERNAME"></span><h3>CHECK_USERNAME<a class="headerlink" href="#check-username" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">&lt;function</span> <span class="pre">Extension.&lt;lambda&gt;</span> <span class="pre">at</span> <span class="pre">0x10d792290&gt;</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">&lt;function</span> <span class="pre">Extension.&lt;lambda&gt;</span> <span class="pre">at</span> <span class="pre">0x112b3b560&gt;</span></tt></p>
 <p>Check if the username is valid</p>
 </div>
 <div class="section" id="crypt-algorithm">
@@ -156,7 +156,7 @@ to specific <strong>roles</strong>.</p>
 a <tt class="docutils literal"><span class="pre">owner</span></tt>.</p>
 <dl class="class">
 <dt id="lux.extensions.sessions.models.Role">
-<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.models.</tt><tt class="descname">Role</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/sessions/models.html#Role"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.Role" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.models.</tt><tt class="descname">Role</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/models.html#Role"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.Role" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#lux.extensions.sessions.models.Role" title="lux.extensions.sessions.models.Role"><tt class="xref py py-class docutils literal"><span class="pre">Role</span></tt></a> is uniquely identified by its <a class="reference internal" href="#lux.extensions.sessions.models.Role.name" title="lux.extensions.sessions.models.Role.name"><tt class="xref py py-attr docutils literal"><span class="pre">name</span></tt></a> and
 <a class="reference internal" href="#lux.extensions.sessions.models.Role.owner" title="lux.extensions.sessions.models.Role.owner"><tt class="xref py py-attr docutils literal"><span class="pre">owner</span></tt></a>.</p>
 <dl class="attribute">
@@ -179,14 +179,14 @@ a <tt class="docutils literal"><span class="pre">owner</span></tt>.</p>
 
 <dl class="method">
 <dt id="lux.extensions.sessions.models.Role.add_permission">
-<tt class="descname">add_permission</tt><big>(</big><em>resource</em>, <em>operation</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/sessions/models.html#Role.add_permission"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.Role.add_permission" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">add_permission</tt><big>(</big><em>resource</em>, <em>operation</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/models.html#Role.add_permission"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.Role.add_permission" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a new <tt class="xref py py-class docutils literal"><span class="pre">Permission</span></tt> for <tt class="docutils literal"><span class="pre">resource</span></tt> to perform an
 <tt class="docutils literal"><span class="pre">operation</span></tt>. The resource can be either an object or a model.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.extensions.sessions.models.Role.assignto">
-<tt class="descname">assignto</tt><big>(</big><em>subject</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/sessions/models.html#Role.assignto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.Role.assignto" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">assignto</tt><big>(</big><em>subject</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/models.html#Role.assignto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.Role.assignto" title="Permalink to this definition">¶</a></dt>
 <dd><p>Assign this <a class="reference internal" href="#lux.extensions.sessions.models.Role" title="lux.extensions.sessions.models.Role"><tt class="xref py py-class docutils literal"><span class="pre">Role</span></tt></a> to <tt class="docutils literal"><span class="pre">subject</span></tt>.</p>
 </dd></dl>
 
@@ -202,7 +202,7 @@ are implemented via the <a class="reference internal" href="#lux.extensions.sess
 <tt class="xref py py-class docutils literal"><span class="pre">stdnet.odm.ManyToManyField</span></tt>.</p>
 <dl class="class">
 <dt id="lux.extensions.sessions.models.Group">
-<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.models.</tt><tt class="descname">Group</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/sessions/models.html#Group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.Group" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.models.</tt><tt class="descname">Group</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/models.html#Group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.Group" title="Permalink to this definition">¶</a></dt>
 <dd><p>A group of users.</p>
 </dd></dl>
 
@@ -211,7 +211,7 @@ assigned to <a class="reference internal" href="#lux.extensions.sessions.models.
 groups he belongs to.</p>
 <dl class="class">
 <dt id="lux.extensions.sessions.models.User">
-<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.models.</tt><tt class="descname">User</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/sessions/models.html#User"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.User" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.models.</tt><tt class="descname">User</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/models.html#User"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.User" title="Permalink to this definition">¶</a></dt>
 <dd><p>The user of a system.</p>
 <p>The only field required is the <tt class="xref py py-attr docutils literal"><span class="pre">username</span></tt>.
 which is also unique across all users.</p>
@@ -264,7 +264,7 @@ for <tt class="docutils literal"><span class="pre">user</span></tt> with permiss
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../index.html">
-  <img class="logo" width="200" src="../_static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../static/lux.jpg" alt="lux" title="lux"/>
 </a>
 </p>
   <h3><a href="../index.html">Table Of Contents</a></h3>
@@ -302,7 +302,7 @@ for <tt class="docutils literal"><span class="pre">user</span></tt> with permiss
                         title="next chapter">Content Management System</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/extensions/sessions.txt"
+    <li><a href="../sources/extensions/sessions.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">

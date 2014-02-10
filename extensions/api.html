@@ -6,25 +6,25 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>RESTful web API &mdash; lux 0.1a2 documentation</title>
+    <title>RESTful web API &mdash; lux 0.1b2 documentation</title>
     
-    <link rel="stylesheet" href="../_static/pulsar.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1a2',
+        VERSION:     '0.1b2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="lux 0.1a2 documentation" href="../index.html" />
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <link rel="shortcut icon" href="../static/favicon.ico"/>
+    <link rel="top" title="lux 0.1b2 documentation" href="../index.html" />
     <link rel="up" title="Extensions" href="index.html" />
     <link rel="next" title="Users and Sessions" href="sessions.html" />
     <link rel="prev" title="User Interface" href="ui.html" /> 
@@ -46,7 +46,7 @@
         <li class="right" >
           <a href="ui.html" title="User Interface"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">lux 0.1a2 documentation</a> &raquo;</li>
+        <li><a href="../index.html">lux 0.1b2 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Extensions</a> &raquo;</li> 
       </ul>
     </div>
@@ -190,7 +190,7 @@ router. The router serves requests at the <tt class="docutils literal"><span cla
 <h3>API Extension<a class="headerlink" href="#api-extension" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.api.Extension">
-<em class="property">class </em><tt class="descclassname">lux.extensions.api.</tt><tt class="descname">Extension</tt><a class="reference internal" href="../_modules/lux/extensions/api.html#Extension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.extensions.api.</tt><tt class="descname">Extension</tt><a class="reference internal" href="../modules/lux/extensions/api.html#Extension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension" title="Permalink to this definition">¶</a></dt>
 <dd><p>A RESTful API <em class="xref std std-ref">lux extension</em>.</p>
 <dl class="attribute">
 <dt id="lux.extensions.api.Extension.html_crud_routers">
@@ -206,7 +206,7 @@ router. The router serves requests at the <tt class="docutils literal"><span cla
 
 <dl class="method">
 <dt id="lux.extensions.api.Extension.middleware">
-<tt class="descname">middleware</tt><big>(</big><em>app</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api.html#Extension.middleware"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension.middleware" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">middleware</tt><big>(</big><em>app</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api.html#Extension.middleware"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension.middleware" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the API middleware.</p>
 <p>If <a class="reference internal" href="#std:setting-API_URL"><tt class="xref std std-setting docutils literal"><span class="pre">API_URL</span></tt></a> is defined, it loops through all extensions
 and checks if the <tt class="docutils literal"><span class="pre">api_sections</span></tt> method is available.</p>
@@ -214,20 +214,20 @@ and checks if the <tt class="docutils literal"><span class="pre">api_sections</s
 
 <dl class="method">
 <dt id="lux.extensions.api.Extension.on_config">
-<tt class="descname">on_config</tt><big>(</big><em>app</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api.html#Extension.on_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension.on_config" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">on_config</tt><big>(</big><em>app</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api.html#Extension.on_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension.on_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a pulsar mapper with all models registered.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.extensions.api.Extension.on_html_document">
-<tt class="descname">on_html_document</tt><big>(</big><em>app</em>, <em>request</em>, <em>html</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api.html#Extension.on_html_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension.on_html_document" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">on_html_document</tt><big>(</big><em>app</em>, <em>request</em>, <em>html</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api.html#Extension.on_html_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension.on_html_document" title="Permalink to this definition">¶</a></dt>
 <dd><p>When the document is created add stylesheet and default
 scripts to the document media.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.extensions.api.Extension.add_to_html_router">
-<tt class="descname">add_to_html_router</tt><big>(</big><em>router</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api.html#Extension.add_to_html_router"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension.add_to_html_router" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">add_to_html_router</tt><big>(</big><em>router</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api.html#Extension.add_to_html_router"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension.add_to_html_router" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add <tt class="docutils literal"><span class="pre">router</span></tt> to the <a class="reference internal" href="#lux.extensions.api.Extension.html_crud_routers" title="lux.extensions.api.Extension.html_crud_routers"><tt class="xref py py-attr docutils literal"><span class="pre">html_crud_routers</span></tt></a> dictionary if
 the default content type is <tt class="docutils literal"><span class="pre">text/html</span></tt> and the router model is not
 already available.</p>
@@ -235,7 +235,7 @@ already available.</p>
 
 <dl class="method">
 <dt id="lux.extensions.api.Extension.set_search_engine">
-<tt class="descname">set_search_engine</tt><big>(</big><em>app</em>, <em>mapper</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api.html#Extension.set_search_engine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension.set_search_engine" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_search_engine</tt><big>(</big><em>app</em>, <em>mapper</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api.html#Extension.set_search_engine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension.set_search_engine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the full-text search engine.</p>
 </dd></dl>
 
@@ -246,11 +246,11 @@ already available.</p>
 <h3>API Router<a class="headerlink" href="#api-router" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.api.Api">
-<em class="property">class </em><tt class="descclassname">lux.extensions.api.</tt><tt class="descname">Api</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api.html#Api"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Api" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.extensions.api.</tt><tt class="descname">Api</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api.html#Api"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Api" title="Permalink to this definition">¶</a></dt>
 <dd><p><a class="reference internal" href="../api/index.html#router"><em>Router</em></a> to use as root for all api routers.</p>
 <dl class="method">
 <dt id="lux.extensions.api.Api.get">
-<tt class="descname">get</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api.html#Api.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Api.get" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api.html#Api.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Api.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get all routes grouped in sections.</p>
 <p>This is the only method available for the router base route.</p>
 </dd></dl>
@@ -262,17 +262,17 @@ already available.</p>
 <h3>CRUD ContentManager<a class="headerlink" href="#crud-contentmanager" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.api.content.ContentManager">
-<em class="property">class </em><tt class="descclassname">lux.extensions.api.content.</tt><tt class="descname">ContentManager</tt><big>(</big><em>columns=None</em>, <em>html_collection=None</em>, <em>html_object=None</em>, <em>filters=False</em>, <em>sortable=True</em>, <em>head=True</em>, <em>foot=False</em>, <em>table_class_name=None</em>, <em>required_fields=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/content.html#ContentManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.content.ContentManager" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.extensions.api.content.</tt><tt class="descname">ContentManager</tt><big>(</big><em>columns=None</em>, <em>html_collection=None</em>, <em>html_object=None</em>, <em>filters=False</em>, <em>sortable=True</em>, <em>head=True</em>, <em>foot=False</em>, <em>table_class_name=None</em>, <em>required_fields=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/content.html#ContentManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.content.ContentManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Model-based <a class="reference internal" href="../api/index.html#api-content"><em>ContentManager</em></a>.</p>
 <dl class="method">
 <dt id="lux.extensions.api.content.ContentManager.html_form">
-<tt class="descname">html_form</tt><big>(</big><em>form</em>, <em>**params</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/content.html#ContentManager.html_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.content.ContentManager.html_form" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">html_form</tt><big>(</big><em>form</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/content.html#ContentManager.html_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.content.ContentManager.html_form" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return an Html <tt class="docutils literal"><span class="pre">form</span></tt> element.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.extensions.api.content.ContentManager.form_response">
-<tt class="descname">form_response</tt><big>(</big><em>form</em>, <em>instance=None</em>, <em>action=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/content.html#ContentManager.form_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.content.ContentManager.form_response" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">form_response</tt><big>(</big><em>form</em>, <em>instance=None</em>, <em>action=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/content.html#ContentManager.form_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.content.ContentManager.form_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called once a <a class="reference internal" href="../api/index.html#form"><em>Form</em></a> has processed input data.</p>
 <p>If the form&#8217;s <tt class="docutils literal"><span class="pre">errors</span></tt> dictionary is not empty, the form did not
 validate and <tt class="docutils literal"><span class="pre">actions</span></tt> and <tt class="docutils literal"><span class="pre">instance</span></tt> are not provided. Otherwise
@@ -281,7 +281,7 @@ it did validate.</p>
 
 <dl class="method">
 <dt id="lux.extensions.api.content.ContentManager.paginate">
-<tt class="descname">paginate</tt><big>(</big><em>request</em>, <em>query</em>, <em>parameters</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/content.html#ContentManager.paginate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.content.ContentManager.paginate" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">paginate</tt><big>(</big><em>request</em>, <em>query</em>, <em>parameters</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/content.html#ContentManager.paginate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.content.ContentManager.paginate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Refine <tt class="docutils literal"><span class="pre">query</span></tt> from input <tt class="docutils literal"><span class="pre">parameters</span></tt> and perform
 pagination.</p>
 <p>Return a pagination info object</p>
@@ -294,7 +294,7 @@ pagination.</p>
 <h3>CRUD Router<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.api.crud.Crud">
-<em class="property">class </em><tt class="descclassname">lux.extensions.api.crud.</tt><tt class="descname">Crud</tt><big>(</big><em>route</em>, <em>manager</em>, <em>*routes</em>, <em>**params</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.extensions.api.crud.</tt><tt class="descname">Crud</tt><big>(</big><em>route</em>, <em>manager</em>, <em>*routes</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard CRUD router.</p>
 <p>A <a class="reference internal" href="../api/index.html#router"><em>Router</em></a> which implements the four basic functions of
 persistent storage: <tt class="docutils literal"><span class="pre">create</span></tt>, <tt class="docutils literal"><span class="pre">read</span></tt>, <tt class="docutils literal"><span class="pre">update</span></tt> and <tt class="docutils literal"><span class="pre">delete</span></tt>.</p>
@@ -342,7 +342,7 @@ Default: <tt class="docutils literal"><span class="pre">None</span></tt>.</li>
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.get">
-<tt class="descname">get</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.get" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle the <tt class="docutils literal"><span class="pre">get</span></tt> request on this CRUD url.</p>
 <p>It retrieve the collection of model instances satisfying the query in
 the request <tt class="docutils literal"><span class="pre">QUERY_STRING</span></tt>. Subsequently it invokes the
@@ -352,20 +352,20 @@ the <a class="reference internal" href="../api/index.html#lux.core.content.Conte
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.put">
-<tt class="descname">put</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.put" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">put</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.put" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update a bunch of instances in one go.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.delete">
-<tt class="descname">delete</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.delete" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">delete</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.delete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete a bunch of instances in one go.</p>
 <p>The instances primary keys must be passed in the <tt class="docutils literal"><span class="pre">QUERY_STRING</span></tt>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.post">
-<tt class="descname">post</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.post" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">post</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.post" title="Permalink to this definition">¶</a></dt>
 <dd><p>The <tt class="docutils literal"><span class="pre">C</span></tt> in CRUD.</p>
 <p>This method creates an instance of <tt class="xref py py-attr docutils literal"><span class="pre">_model</span></tt>.
 It responds to the <tt class="docutils literal"><span class="pre">post</span></tt> method and, like <tt class="xref py py-meth docutils literal"><span class="pre">update()</span></tt>, it invokes
@@ -374,7 +374,7 @@ the <a class="reference internal" href="#lux.extensions.api.crud.Crud.create_upd
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.handle_read_instance">
-<tt class="descname">handle_read_instance</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.handle_read_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.handle_read_instance" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">handle_read_instance</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.handle_read_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.handle_read_instance" title="Permalink to this definition">¶</a></dt>
 <dd><p>The <tt class="docutils literal"><span class="pre">R</span></tt> in CRUD.</p>
 <p>This method read an instance of <tt class="xref py py-attr docutils literal"><span class="pre">_model</span></tt>. By default it is
 responds to the <tt class="docutils literal"><span class="pre">/&lt;id&gt;</span></tt> relative url and <tt class="docutils literal"><span class="pre">get</span></tt> method.
@@ -384,7 +384,7 @@ It invokes the <a class="reference internal" href="#lux.extensions.api.crud.Crud
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.handle_update_instance">
-<tt class="descname">handle_update_instance</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.handle_update_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.handle_update_instance" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">handle_update_instance</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.handle_update_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.handle_update_instance" title="Permalink to this definition">¶</a></dt>
 <dd><p>The <tt class="docutils literal"><span class="pre">U</span></tt> in CRUD.</p>
 <p>This method updates an instance of <tt class="xref py py-attr docutils literal"><span class="pre">_model</span></tt>.
 By default it is responds to the <tt class="docutils literal"><span class="pre">/&lt;id&gt;</span></tt> relative url and <tt class="docutils literal"><span class="pre">post</span></tt>
@@ -393,7 +393,7 @@ method. It invokes the <a class="reference internal" href="#lux.extensions.api.c
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.handle_delete_instance">
-<tt class="descname">handle_delete_instance</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.handle_delete_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.handle_delete_instance" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">handle_delete_instance</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.handle_delete_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.handle_delete_instance" title="Permalink to this definition">¶</a></dt>
 <dd><p>The <tt class="docutils literal"><span class="pre">D</span></tt> in CRUD.</p>
 <p>This method delete an instance of <tt class="xref py py-attr docutils literal"><span class="pre">_model</span></tt>.
 By default it is responds to the <tt class="docutils literal"><span class="pre">/&lt;id&gt;</span></tt> relative url and
@@ -402,7 +402,7 @@ By default it is responds to the <tt class="docutils literal"><span class="pre">
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.handle_html_edit_instance">
-<tt class="descname">handle_html_edit_instance</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.handle_html_edit_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.handle_html_edit_instance" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">handle_html_edit_instance</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.handle_html_edit_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.handle_html_edit_instance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handler for Html edit requests of an <tt class="docutils literal"><span class="pre">instance</span></tt>.</p>
 <p>This handler is available only when <tt class="docutils literal"><span class="pre">html_edit</span></tt> is passed during
 initialisation.</p>
@@ -410,7 +410,7 @@ initialisation.</p>
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.read_instance">
-<tt class="descname">read_instance</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.read_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.read_instance" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">read_instance</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.read_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.read_instance" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Internal method</strong>. Read an instance of <tt class="xref py py-attr docutils literal"><span class="pre">_model</span></tt>.</p>
 <p>Return the best possible representation (text, html, json) to
 the requesting client.</p>
@@ -418,7 +418,7 @@ the requesting client.</p>
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.create_update_instance">
-<tt class="descname">create_update_instance</tt><big>(</big><em>request</em>, <em>instance=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.create_update_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.create_update_instance" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">create_update_instance</tt><big>(</big><em>request</em>, <em>instance=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.create_update_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.create_update_instance" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Internal method</strong>. Create/Update an <tt class="docutils literal"><span class="pre">instance</span></tt> of
 <tt class="xref py py-attr docutils literal"><span class="pre">_model</span></tt>.</p>
 <p>This method is invoked by both the <a class="reference internal" href="#lux.extensions.api.crud.Crud.post" title="lux.extensions.api.crud.Crud.post"><tt class="xref py py-meth docutils literal"><span class="pre">post()</span></tt></a> and <tt class="xref py py-meth docutils literal"><span class="pre">update()</span></tt>
@@ -439,7 +439,7 @@ the data is for an <tt class="docutils literal"><span class="pre">update</span><
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.get_url">
-<tt class="descname">get_url</tt><big>(</big><em>instance=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.get_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.get_url" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_url</tt><big>(</big><em>instance=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.get_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.get_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve the full url for <tt class="docutils literal"><span class="pre">instance</span></tt> and <tt class="docutils literal"><span class="pre">method</span></tt>.
 If <tt class="docutils literal"><span class="pre">method</span></tt> is not given and <tt class="docutils literal"><span class="pre">instance</span></tt> is given, the <tt class="docutils literal"><span class="pre">read</span></tt>
 path will be returned.</p>
@@ -447,7 +447,7 @@ path will be returned.</p>
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.create_instance">
-<tt class="descname">create_instance</tt><big>(</big><em>request</em>, <em>data</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.create_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.create_instance" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">create_instance</tt><big>(</big><em>request</em>, <em>data</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.create_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.create_instance" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Internal method</strong>. Create an <tt class="docutils literal"><span class="pre">instance</span></tt> of <tt class="xref py py-attr docutils literal"><span class="pre">_model</span></tt>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -463,7 +463,7 @@ path will be returned.</p>
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.update_instance">
-<tt class="descname">update_instance</tt><big>(</big><em>request</em>, <em>instance</em>, <em>data</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.update_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.update_instance" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">update_instance</tt><big>(</big><em>request</em>, <em>instance</em>, <em>data</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.update_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.update_instance" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Internal method</strong>. Update an <tt class="docutils literal"><span class="pre">instance</span></tt> of <tt class="xref py py-attr docutils literal"><span class="pre">_model</span></tt>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -484,7 +484,7 @@ path will be returned.</p>
 
 <dl class="method">
 <dt id="lux.extensions.api.crud.Crud.query">
-<tt class="descname">query</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/crud.html#Crud.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.query" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">query</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/crud.html#Crud.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.crud.Crud.query" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Internal method</strong>. The top level query for <tt class="xref py py-attr docutils literal"><span class="pre">_model</span></tt>.</p>
 <p>Can be re-implemented by subclasses.</p>
 </dd></dl>
@@ -496,11 +496,11 @@ path will be returned.</p>
 <h3>CRUD Websocket<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.api.websocket.CrudWebSocket">
-<em class="property">class </em><tt class="descclassname">lux.extensions.api.websocket.</tt><tt class="descname">CrudWebSocket</tt><a class="reference internal" href="../_modules/lux/extensions/api/websocket.html#CrudWebSocket"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.extensions.api.websocket.</tt><tt class="descname">CrudWebSocket</tt><a class="reference internal" href="../modules/lux/extensions/api/websocket.html#CrudWebSocket"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket" title="Permalink to this definition">¶</a></dt>
 <dd><p>A websocket handler for CRUD operations</p>
 <dl class="method">
 <dt id="lux.extensions.api.websocket.CrudWebSocket.on_message">
-<tt class="descname">on_message</tt><big>(</big><em>websocket</em>, <em>message</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/websocket.html#CrudWebSocket.on_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.on_message" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">on_message</tt><big>(</big><em>websocket</em>, <em>message</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/websocket.html#CrudWebSocket.on_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.on_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle an incoming text message which is JSON encoded.</p>
 <p>The decoded message is a dictionary containing the following entries:</p>
 <ul class="simple">
@@ -515,38 +515,38 @@ Available out of the box are the CRUD actions <a class="reference internal" href
 
 <dl class="method">
 <dt id="lux.extensions.api.websocket.CrudWebSocket.get">
-<tt class="descname">get</tt><big>(</big><em>websocket</em>, <em>message</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/websocket.html#CrudWebSocket.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.get" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get</tt><big>(</big><em>websocket</em>, <em>message</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/websocket.html#CrudWebSocket.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle get response. Requires a model.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.extensions.api.websocket.CrudWebSocket.post">
-<tt class="descname">post</tt><big>(</big><em>websocket</em>, <em>message</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/websocket.html#CrudWebSocket.post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.post" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">post</tt><big>(</big><em>websocket</em>, <em>message</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/websocket.html#CrudWebSocket.post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.post" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle post response for a bulk update/creation of models.</p>
 <p>Requires a model.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.extensions.api.websocket.CrudWebSocket.put">
-<tt class="descname">put</tt><big>(</big><em>websocket</em>, <em>message</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/websocket.html#CrudWebSocket.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.put" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">put</tt><big>(</big><em>websocket</em>, <em>message</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/websocket.html#CrudWebSocket.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.put" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle put response. Requires a model.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.extensions.api.websocket.CrudWebSocket.delete">
-<tt class="descname">delete</tt><big>(</big><em>websocket</em>, <em>message</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/websocket.html#CrudWebSocket.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.delete" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">delete</tt><big>(</big><em>websocket</em>, <em>message</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/websocket.html#CrudWebSocket.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.delete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle get response. Requires a model.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.extensions.api.websocket.CrudWebSocket.manager">
-<tt class="descname">manager</tt><big>(</big><em>websocket</em>, <em>message</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/websocket.html#CrudWebSocket.manager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.manager" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">manager</tt><big>(</big><em>websocket</em>, <em>message</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/websocket.html#CrudWebSocket.manager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.manager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the manager for a <a class="reference internal" href="#crud-message"><em>CRUD message</em></a>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.extensions.api.websocket.CrudWebSocket.update_create">
-<tt class="descname">update_create</tt><big>(</big><em>websocket</em>, <em>manager</em>, <em>fields</em>, <em>instance=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/websocket.html#CrudWebSocket.update_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.update_create" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">update_create</tt><big>(</big><em>websocket</em>, <em>manager</em>, <em>fields</em>, <em>instance=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/websocket.html#CrudWebSocket.update_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.update_create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Internal method invoked by both the <a class="reference internal" href="#lux.extensions.api.websocket.CrudWebSocket.post" title="lux.extensions.api.websocket.CrudWebSocket.post"><tt class="xref py py-meth docutils literal"><span class="pre">post()</span></tt></a> and and <a class="reference internal" href="#lux.extensions.api.websocket.CrudWebSocket.put" title="lux.extensions.api.websocket.CrudWebSocket.put"><tt class="xref py py-meth docutils literal"><span class="pre">put()</span></tt></a>
 method, respectively when creating and updating an <tt class="docutils literal"><span class="pre">instance</span></tt> of a model.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -571,7 +571,7 @@ method, respectively when creating and updating an <tt class="docutils literal">
 
 <dl class="method">
 <dt id="lux.extensions.api.websocket.CrudWebSocket.error">
-<tt class="descname">error</tt><big>(</big><em>websocket</em>, <em>message</em>, <em>msg</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/api/websocket.html#CrudWebSocket.error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.error" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">error</tt><big>(</big><em>websocket</em>, <em>message</em>, <em>msg</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api/websocket.html#CrudWebSocket.error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.websocket.CrudWebSocket.error" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handle an error in response</p>
 </dd></dl>
 
@@ -591,7 +591,7 @@ method, respectively when creating and updating an <tt class="docutils literal">
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../index.html">
-  <img class="logo" width="200" src="../_static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../static/lux.jpg" alt="lux" title="lux"/>
 </a>
 </p>
   <h3><a href="../index.html">Table Of Contents</a></h3>
@@ -639,7 +639,7 @@ method, respectively when creating and updating an <tt class="docutils literal">
                         title="next chapter">Users and Sessions</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/extensions/api.txt"
+    <li><a href="../sources/extensions/api.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">

@@ -6,25 +6,25 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Sitemap and Navigation &mdash; lux 0.1a2 documentation</title>
+    <title>Sitemap and Navigation &mdash; lux 0.1b2 documentation</title>
     
-    <link rel="stylesheet" href="../_static/pulsar.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1a2',
+        VERSION:     '0.1b2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
-    <link rel="top" title="lux 0.1a2 documentation" href="../index.html" />
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <link rel="shortcut icon" href="../static/favicon.ico"/>
+    <link rel="top" title="lux 0.1b2 documentation" href="../index.html" />
     <link rel="up" title="Extensions" href="index.html" />
     <link rel="next" title="Services" href="services.html" />
     <link rel="prev" title="Content Management System" href="cms.html" /> 
@@ -46,7 +46,7 @@
         <li class="right" >
           <a href="cms.html" title="Content Management System"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">lux 0.1a2 documentation</a> &raquo;</li>
+        <li><a href="../index.html">lux 0.1b2 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Extensions</a> &raquo;</li> 
       </ul>
     </div>
@@ -141,10 +141,10 @@ method is available.</p>
 <h3>Extension<a class="headerlink" href="#extension" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.sitemap.Extension">
-<em class="property">class </em><tt class="descclassname">lux.extensions.sitemap.</tt><tt class="descname">Extension</tt><a class="reference internal" href="../_modules/lux/extensions/sitemap.html#Extension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.Extension" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.extensions.sitemap.</tt><tt class="descname">Extension</tt><a class="reference internal" href="../modules/lux/extensions/sitemap.html#Extension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.Extension" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="lux.extensions.sitemap.Extension.on_html_document">
-<tt class="descname">on_html_document</tt><big>(</big><em>app</em>, <em>request</em>, <em>html</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/sitemap.html#Extension.on_html_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.Extension.on_html_document" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">on_html_document</tt><big>(</big><em>app</em>, <em>request</em>, <em>html</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sitemap.html#Extension.on_html_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.Extension.on_html_document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the <tt class="docutils literal"><span class="pre">html_navigation</span></tt> entry in the <tt class="docutils literal"><span class="pre">request.cache</span></tt>.</p>
 <p>Loop over all Routers which have the <tt class="docutils literal"><span class="pre">navigation_visit</span></tt> method
 implemented. The <tt class="docutils literal"><span class="pre">html_navigation</span></tt> is an instance of
@@ -154,7 +154,7 @@ items as well as logos and search boxes.</p>
 
 <dl class="method">
 <dt id="lux.extensions.sitemap.Extension.navigation">
-<tt class="descname">navigation</tt><big>(</big><em>request</em>, <em>routers</em>, <em>levels=None</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/sitemap.html#Extension.navigation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.Extension.navigation" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">navigation</tt><big>(</big><em>request</em>, <em>routers</em>, <em>levels=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sitemap.html#Extension.navigation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.Extension.navigation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an ul with links.</p>
 </dd></dl>
 
@@ -165,7 +165,7 @@ items as well as logos and search boxes.</p>
 <h3>NavigationInfo<a class="headerlink" href="#navigationinfo" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.sitemap.NavigationInfo">
-<em class="property">class </em><tt class="descclassname">lux.extensions.sitemap.</tt><tt class="descname">NavigationInfo</tt><big>(</big><em>brand=''</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/sitemap.html#NavigationInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.NavigationInfo" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.extensions.sitemap.</tt><tt class="descname">NavigationInfo</tt><big>(</big><em>brand=''</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sitemap.html#NavigationInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.NavigationInfo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collect navigation information.</p>
 <p>All attributes are optional and only those available are rendered
 via the <a class="reference internal" href="#lux.extensions.sitemap.Navigation" title="lux.extensions.sitemap.Navigation"><tt class="xref py py-class docutils literal"><span class="pre">Navigation</span></tt></a> template.</p>
@@ -177,13 +177,13 @@ via the <a class="reference internal" href="#lux.extensions.sitemap.Navigation" 
 
 <dl class="method">
 <dt id="lux.extensions.sitemap.NavigationInfo.item">
-<tt class="descname">item</tt><big>(</big><em>url</em>, <em>text=None</em>, <em>icon=None</em>, <em>title=None</em>, <em>**kw</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/sitemap.html#NavigationInfo.item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.NavigationInfo.item" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">item</tt><big>(</big><em>url</em>, <em>text=None</em>, <em>icon=None</em>, <em>title=None</em>, <em>**kw</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sitemap.html#NavigationInfo.item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.NavigationInfo.item" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a <tt class="xref py py-class docutils literal"><span class="pre">Link</span></tt> object</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.extensions.sitemap.NavigationInfo.load">
-<tt class="descname">load</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/sitemap.html#NavigationInfo.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.NavigationInfo.load" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">load</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sitemap.html#NavigationInfo.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.NavigationInfo.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load navigation information from routers serving the application.</p>
 </dd></dl>
 
@@ -194,7 +194,7 @@ via the <a class="reference internal" href="#lux.extensions.sitemap.Navigation" 
 <h3>Navigation<a class="headerlink" href="#navigation" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.sitemap.Navigation">
-<em class="property">class </em><tt class="descclassname">lux.extensions.sitemap.</tt><tt class="descname">Navigation</tt><big>(</big><em>*children</em>, <em>**parameters</em><big>)</big><a class="reference internal" href="../_modules/lux/extensions/sitemap.html#Navigation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.Navigation" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.extensions.sitemap.</tt><tt class="descname">Navigation</tt><big>(</big><em>*children</em>, <em>**parameters</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sitemap.html#Navigation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.Navigation" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="../api/index.html#lux.core.content.Template" title="lux.core.content.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> which can be used to render the
 <a class="reference internal" href="#lux.extensions.sitemap.NavigationInfo" title="lux.extensions.sitemap.NavigationInfo"><tt class="xref py py-class docutils literal"><span class="pre">NavigationInfo</span></tt></a> object stored in the <tt class="docutils literal"><span class="pre">request.cache</span></tt>
 dictionary.</p>
@@ -211,7 +211,7 @@ dictionary.</p>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../index.html">
-  <img class="logo" width="200" src="../_static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../static/lux.jpg" alt="lux" title="lux"/>
 </a>
 </p>
   <h3><a href="../index.html">Table Of Contents</a></h3>
@@ -247,7 +247,7 @@ dictionary.</p>
                         title="next chapter">Services</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/extensions/sitemap.txt"
+    <li><a href="../sources/extensions/sitemap.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">

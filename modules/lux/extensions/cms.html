@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lux.extensions.cms &mdash; lux 0.1b2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1b2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../../static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../static/favicon.ico"/>
+    <link rel="top" title="lux 0.1b2 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="deck">
+<div class="header">
+    
+        <p class="developmentversion">
+        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
+        <a href="http://pythonhosted.org/lux/">release docs here</a>.
+        </p>
+    
+</div>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lux.extensions.cms</h1><div class="highlight"><pre>
+<span class="sd">&#39;&#39;&#39;Content management system using Pages and blocks in pages.</span>
+
+<span class="sd">**Requirements**: :mod:`lux.extensions.base`, :mod:`lux.extensions.api`</span>
+
+<span class="sd">The extension add two :ref:`routers &lt;router&gt;` to the list of your application</span>
+<span class="sd">middleware.</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">================</span>
+
+<span class="sd">.. lux_extension:: lux.extensions.cms</span>
+
+<span class="sd">Usage</span>
+<span class="sd">=======</span>
+
+<span class="sd">This adds a :ref:`on_html_response &lt;event_on_html_document&gt;` callback</span>
+<span class="sd">for handling the html layout. The callback is implemented via the</span>
+<span class="sd">:class:`.CmsResponse` class.</span>
+
+<span class="sd">Positioning and editing</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">When the configuration parageter ``PAGE_EDIT_URL`` is enabled, it is</span>
+<span class="sd">possible to edit html page layout by moving content around and adding</span>
+<span class="sd">new content.</span>
+
+<span class="sd">* A page specify a given template which in turns can have several</span>
+<span class="sd">  (usually one or two) grid elements.</span>
+<span class="sd">* Each ``grid`` element contain one or more ``row`` elements.</span>
+<span class="sd">* Each ``row`` element contain one or more ``column`` elements.</span>
+<span class="sd">* Each ``column`` element contain one or more ``block`` elements, rendered</span>
+<span class="sd">  vertically, one after the other.</span>
+<span class="sd">* Finally a ``block`` element contains one or more ``position`` elements which</span>
+<span class="sd">  display a ``content``.</span>
+
+<span class="sd">The ``content`` is stored in the :class:`models.Content` model.</span>
+
+
+<span class="sd">.. _contenturl:</span>
+
+<span class="sd">Site Content</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~</span>
+<span class="sd">A special :ref:`cms content type &lt;cms-content-type&gt;` is the site content.</span>
+<span class="sd">Any :ref:`Router &lt;router&gt;` with a ``get`` method implemented which can</span>
+<span class="sd">respond to a request for ``text/html`` content type, can be included as site</span>
+<span class="sd">content.</span>
+
+<span class="sd">Site content can than be displayed anywhere on the web site thanks to</span>
+<span class="sd">the content management system positioning and editing functionalities.</span>
+
+<span class="sd">To include a router, one must set the attribute ``cms_content`` to a title</span>
+<span class="sd">string used by the content management system in the drop-down selection</span>
+<span class="sd">of site contents. For example::</span>
+
+<span class="sd">  class SimpleContent(lux.Router):</span>
+<span class="sd">      cms_content = &#39;A simple Hello&#39;</span>
+
+<span class="sd">      def get(self, request):</span>
+<span class="sd">          return &#39;Hello!&#39;</span>
+
+
+<span class="sd">The :meth:`views.EditPage.content_urls` method is responsible for collecting</span>
+<span class="sd">all valid site content to include in the drop-down selection element.</span>
+
+
+<span class="sd">API</span>
+<span class="sd">=========</span>
+
+<span class="sd">API Extension</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: Extension</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Routes &amp; Hooks</span>
+<span class="sd">~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. automodule:: lux.extensions.cms.views</span>
+
+<span class="sd">Page Components</span>
+<span class="sd">~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. automodule:: lux.extensions.cms.grid</span>
+
+<span class="sd">Models</span>
+<span class="sd">~~~~~~~~~~~~~</span>
+
+<span class="sd">.. automodule:: lux.extensions.cms.models</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">pulsar</span> <span class="kn">import</span> <span class="n">HttpException</span><span class="p">,</span> <span class="n">HttpRedirect</span><span class="p">,</span> <span class="n">PermissionDenied</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.structures</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">pulsar.apps.ws</span> <span class="kn">import</span> <span class="n">WebSocket</span>
+
+<span class="kn">import</span> <span class="nn">lux</span>
+<span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">route</span><span class="p">,</span> <span class="n">Parameter</span>
+<span class="kn">from</span> <span class="nn">lux.extensions</span> <span class="kn">import</span> <span class="n">api</span>
+
+<span class="kn">from</span> <span class="nn">.ui</span> <span class="kn">import</span> <span class="n">add_css</span>
+<span class="kn">from</span> <span class="nn">.forms</span> <span class="kn">import</span> <span class="n">ContentForm</span>
+<span class="kn">from</span> <span class="nn">.views</span> <span class="kn">import</span> <span class="p">(</span><span class="n">EditPage</span><span class="p">,</span> <span class="n">CmsRouter</span><span class="p">,</span> <span class="n">PageUpdates</span><span class="p">,</span> <span class="n">PageForm</span><span class="p">,</span>
+                    <span class="n">PageContentManager</span><span class="p">,</span> <span class="n">CmsResponse</span><span class="p">,</span> <span class="n">CmsContent</span><span class="p">,</span>
+                    <span class="n">CONTENT_API_URL</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">templates</span>
+
+
+<div class="viewcode-block" id="Extension"><a class="viewcode-back" href="../../../extensions/cms.html#lux.extensions.cms.Extension">[docs]</a><span class="k">class</span> <span class="nc">Extension</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Extension</span><span class="p">):</span>
+    <span class="n">_config</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;PAGE_TEMPLATES&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">templates</span><span class="o">.</span><span class="n">nav_page</span><span class="p">,</span>
+                                     <span class="n">templates</span><span class="o">.</span><span class="n">center_page</span><span class="p">],</span>
+                  <span class="s">&#39;A list of Templates which can be used to render a page.&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;SITE_ID&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;The database id of the site&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;PAGE_EDIT_URL&#39;</span><span class="p">,</span> <span class="s">&#39;pages&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;Base url for editing pages on the browser.&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;CREATE_PAGE_TEMPLATE&#39;</span><span class="p">,</span> <span class="n">templates</span><span class="o">.</span><span class="n">center_page</span><span class="p">,</span>
+                  <span class="s">&#39;Function which return an Html element to which render the &#39;</span>
+                  <span class="s">&#39;create new page form&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;NO_PAGE_TEMPLATE&#39;</span><span class="p">,</span> <span class="n">templates</span><span class="o">.</span><span class="n">center_page</span><span class="p">,</span>
+                  <span class="s">&#39;Template Page for a response on a resource without &#39;</span>
+                  <span class="s">&#39;own page&#39;</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">on_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cms_response</span> <span class="o">=</span> <span class="n">CmsResponse</span><span class="p">()</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;PAGE_EDIT_URL&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">url</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">):</span>
+            <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;PAGE_EDIT_URL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">/&#39;</span> <span class="o">%</span> <span class="n">url</span>
+
+    <span class="k">def</span> <span class="nf">on_loaded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+        <span class="n">templates</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;PAGE_TEMPLATES&#39;</span><span class="p">]</span>
+        <span class="n">dtemplates</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">template</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;PAGE_TEMPLATES&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">template</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+                <span class="n">template</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="s">&#39;Template </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">id</span>
+            <span class="n">dtemplates</span><span class="p">[</span><span class="n">template</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">template</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;PAGE_TEMPLATES&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dtemplates</span>
+        <span class="n">models</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">models</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;PAGE_EDIT_URL&#39;</span><span class="p">]</span>
+        <span class="n">ws</span> <span class="o">=</span> <span class="n">WebSocket</span><span class="p">(</span><span class="s">&#39;&lt;id&gt;/updates&#39;</span><span class="p">,</span> <span class="n">PageUpdates</span><span class="p">())</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="n">EditPage</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">page</span><span class="p">,</span> <span class="n">ws</span><span class="p">),</span>
+                                   <span class="n">CmsRouter</span><span class="p">(</span><span class="s">&#39;&lt;path:path&gt;&#39;</span><span class="p">)))</span>
+
+<div class="viewcode-block" id="Extension.on_html_response"><a class="viewcode-back" href="../../../extensions/cms.html#lux.extensions.cms.Extension.on_html_response">[docs]</a>    <span class="k">def</span> <span class="nf">on_html_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">html</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Fired when an HTML response is about to be sent to the client.</span>
+
+<span class="sd">        It delegates the handling of the ``html`` to the</span>
+<span class="sd">        :class:`.CmsResponse` class.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cms_response</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Extension.api_sections"><a class="viewcode-back" href="../../../extensions/cms.html#lux.extensions.cms.Extension.api_sections">[docs]</a>    <span class="k">def</span> <span class="nf">api_sections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Add api support for ``pages`` and ``content``.&#39;&#39;&#39;</span>
+        <span class="k">yield</span> <span class="s">&#39;Content Management System&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api_routes</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+    <span class="c">#    INTERNALS</span>
+</div>
+    <span class="k">def</span> <span class="nf">_api_routes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+        <span class="n">models</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">models</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">models</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Cms extensions requires models extension&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">api</span><span class="o">.</span><span class="n">Crud</span><span class="p">(</span><span class="s">&#39;pages&#39;</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">page</span><span class="p">,</span>
+                           <span class="n">form_class</span><span class="o">=</span><span class="n">PageForm</span><span class="p">,</span>
+                           <span class="n">content_manager</span><span class="o">=</span><span class="n">PageContentManager</span><span class="p">())</span>
+            <span class="k">yield</span> <span class="n">api</span><span class="o">.</span><span class="n">Crud</span><span class="p">(</span><span class="n">CONTENT_API_URL</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_or_create_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span>
+        <span class="n">site_id</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;SITE_ID&#39;</span><span class="p">]</span>
+        <span class="n">site</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">request</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">site_id</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">site</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">request</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">site_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">site</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+<a href="../../../index.html">
+  <img class="logo" width="200" src="../../../static/lux.jpg" alt="lux" title="lux"/>
+</a>
+</p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-2013, Luca Sbardella.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  
+  _gaq.push(['_setAccount', 'UA-3900561-8']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>
