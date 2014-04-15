@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>lux.extensions.ui.lib.base &mdash; lux 0.1b2 documentation</title>
+    <title>lux.extensions.ui.lib.base &mdash; lux 0.1.0-beta.1 documentation</title>
     
     <link rel="stylesheet" href="../../../../../static/pulsar.css" type="text/css" />
     <link rel="stylesheet" href="../../../../../static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../../',
-        VERSION:     '0.1b2',
+        VERSION:     '0.1.0-beta.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../../../../static/underscore.js"></script>
     <script type="text/javascript" src="../../../../../static/doctools.js"></script>
     <link rel="shortcut icon" href="../../../../../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1b2 documentation" href="../../../../../index.html" />
+    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../../../../../index.html" />
     <link rel="up" title="Module code" href="../../../../index.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="../../../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../../../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+        <li><a href="../../../../../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
           <li><a href="../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>
@@ -91,6 +91,13 @@
 <span class="sd">   :members:</span>
 <span class="sd">   :member-order: bysource</span>
 
+<span class="sd">Spacing</span>
+<span class="sd">~~~~~~~~~~~~~</span>
+<span class="sd">.. autoclass:: Spacing</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">.. autofunction:: spacing</span>
 
 <span class="sd">Mixin</span>
 <span class="sd">~~~~~~~~~~~~~</span>
@@ -104,6 +111,8 @@
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">import_module</span>
 
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Mapping</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
@@ -112,9 +121,9 @@
 <span class="kn">from</span> <span class="nn">pulsar.utils.pep</span> <span class="kn">import</span> <span class="n">itervalues</span><span class="p">,</span> <span class="n">iteritems</span><span class="p">,</span> <span class="n">ispy3k</span>
 <span class="kn">from</span> <span class="nn">pulsar.utils.html</span> <span class="kn">import</span> <span class="n">UnicodeMixin</span>
 <span class="kn">from</span> <span class="nn">pulsar.apps.http</span> <span class="kn">import</span> <span class="n">HttpClient</span>
+<span class="kn">from</span> <span class="nn">pulsar.apps</span> <span class="kn">import</span> <span class="n">wsgi</span>
 
-<span class="kn">from</span> <span class="nn">lux.utils.test</span> <span class="kn">import</span> <span class="n">Stream</span>
-
+<span class="kn">import</span> <span class="nn">lux</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Css&#39;</span><span class="p">,</span> <span class="s">&#39;Variable&#39;</span><span class="p">,</span> <span class="s">&#39;Symbol&#39;</span><span class="p">,</span> <span class="s">&#39;Mixin&#39;</span><span class="p">,</span>
            <span class="s">&#39;px&#39;</span><span class="p">,</span> <span class="s">&#39;em&#39;</span><span class="p">,</span> <span class="s">&#39;pc&#39;</span><span class="p">,</span> <span class="s">&#39;size&#39;</span><span class="p">,</span> <span class="s">&#39;as_value&#39;</span><span class="p">,</span> <span class="s">&#39;Lazy&#39;</span><span class="p">,</span>
@@ -157,18 +166,19 @@
         <span class="k">return</span> <span class="n">v</span>
 
 
-<span class="k">def</span> <span class="nf">as_params</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">default_name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Convert ``v`` into a dictionary.&#39;&#39;&#39;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">Variables</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="n">params</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">v</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">as_params</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">default_name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Convert ``value`` into a dictionary.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Variables</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">params</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">{}</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">v</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span>
     <span class="k">elif</span> <span class="n">default_name</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">{</span><span class="n">default_name</span><span class="p">:</span> <span class="n">v</span><span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">default_name</span><span class="p">:</span> <span class="n">value</span><span class="p">}</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;&quot;</span><span class="si">%s</span><span class="s">&quot; is not a mapping&#39;</span> <span class="o">%</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;&quot;</span><span class="si">%s</span><span class="s">&quot; is not a mapping&#39;</span> <span class="o">%</span> <span class="n">value</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="Symbolic"><a class="viewcode-back" href="../../../../../extensions/ui.html#lux.extensions.ui.lib.base.Symbolic">[docs]</a><span class="k">class</span> <span class="nc">Symbolic</span><span class="p">(</span><span class="n">UnicodeMixin</span><span class="p">):</span>
@@ -339,7 +349,7 @@
                             <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
 
 
-<span class="k">class</span> <span class="nc">Spacing</span><span class="p">(</span><span class="n">Unit</span><span class="p">):</span>
+<div class="viewcode-block" id="Spacing"><a class="viewcode-back" href="../../../../../extensions/ui.html#lux.extensions.ui.lib.base.Spacing">[docs]</a><span class="k">class</span> <span class="nc">Spacing</span><span class="p">(</span><span class="n">Unit</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Css spacing with same unit. It can be used to specify padding,</span>
 <span class="sd">marging or any other css parameters which requires spacing box of</span>
 <span class="sd">the form (top, right, bottom, left).&#39;&#39;&#39;</span>
@@ -419,7 +429,7 @@
 
 
 <span class="c">############################################################################</span>
-<span class="c">##    factory functions</span>
+<span class="c">##    factory functions</span></div>
 <span class="n">px</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">size</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s">&#39;px&#39;</span><span class="p">)</span>
 <span class="n">pc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">size</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s">&#39;%&#39;</span><span class="p">)</span>
 <span class="n">em</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">size</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s">&#39;em&#39;</span><span class="p">)</span>
@@ -452,7 +462,7 @@
             <span class="k">return</span> <span class="n">Size</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="k">else</span> <span class="mi">0</span>
 
 
-<span class="k">def</span> <span class="nf">spacing</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="o">*</span><span class="n">vals</span><span class="p">):</span>
+<div class="viewcode-block" id="spacing"><a class="viewcode-back" href="../../../../../extensions/ui.html#lux.extensions.ui.lib.base.spacing">[docs]</a><span class="k">def</span> <span class="nf">spacing</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="o">*</span><span class="n">vals</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Create a :class:`Spacing` element.&#39;&#39;&#39;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">Spacing</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">vals</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">v</span>
@@ -462,7 +472,7 @@
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;spacing() takes at most 4 arguments (</span><span class="si">%s</span><span class="s"> given)&#39;</span> <span class="o">%</span>
                         <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 
-
+</div>
 <span class="k">class</span> <span class="nc">CssBase</span><span class="p">(</span><span class="n">UnicodeMixin</span><span class="p">):</span>
 
     <span class="nd">@property</span>
@@ -474,6 +484,9 @@
 
     <span class="k">def</span> <span class="nf">set_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
 
 
 <div class="viewcode-block" id="Mixin"><a class="viewcode-back" href="../../../../../extensions/ui.html#lux.extensions.ui.lib.base.Mixin">[docs]</a><span class="k">class</span> <span class="nc">Mixin</span><span class="p">(</span><span class="n">CssBase</span><span class="p">):</span>
@@ -500,31 +513,37 @@
 <span class="k">class</span> <span class="nc">Css</span><span class="p">(</span><span class="n">CssBase</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A :class:`css` element in python.</span>
 
-<span class="sd">.. attribute:: attributes</span>
+<span class="sd">    .. attribute:: attributes</span>
 
-<span class="sd">    List of css attributes for the css element.</span>
+<span class="sd">        List of css attributes for the css element.</span>
 
-<span class="sd">.. attribute:: children</span>
+<span class="sd">    .. attribute:: children</span>
 
-<span class="sd">    An ordered dictionary of children for this :class:`css` element.</span>
-<span class="sd">    Children are either other :class:`css` elements or :class:`Mixin`.</span>
+<span class="sd">        An ordered dictionary of children for this :class:`css` element.</span>
+<span class="sd">        Children are either other :class:`css` elements or :class:`Mixin`.</span>
 
-<span class="sd">.. attribute:: parent</span>
+<span class="sd">    .. attribute:: parent</span>
 
-<span class="sd">    The :class:`css` ancestor for this :class:`css` element.</span>
+<span class="sd">        The :class:`css` ancestor for this :class:`css` element.</span>
 
-<span class="sd">&#39;&#39;&#39;</span>
-    <span class="c"># pointer to the global css body. The root of all css elements</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">rendered</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">_app</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">_css_libs</span> <span class="o">=</span> <span class="bp">None</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">known_libraries</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tag</span> <span class="o">=</span> <span class="n">tag</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_http</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_children</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_attributes</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="k">if</span> <span class="n">app</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">tag</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&#39;app should be passed to the root element only&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_app</span> <span class="o">=</span> <span class="n">app</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tag</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">known_libraries</span> <span class="o">=</span> <span class="n">known_libraries</span> <span class="ow">or</span> <span class="n">lux</span><span class="o">.</span><span class="n">media_libraries</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_css_libs</span> <span class="o">=</span> <span class="n">wsgi</span><span class="o">.</span><span class="n">Css</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s">&#39;MEDIA_URL&#39;</span><span class="p">,</span> <span class="s">&#39;/media/&#39;</span><span class="p">),</span>
+                                      <span class="n">known_libraries</span><span class="o">=</span><span class="n">known_libraries</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">variables</span> <span class="o">=</span> <span class="n">Variables</span><span class="p">()</span> <span class="k">if</span> <span class="nb">vars</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="nb">vars</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">Variables</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">hover</span> <span class="o">=</span> <span class="s">&#39;hover&#39;</span>
@@ -532,10 +551,21 @@
         <span class="k">elif</span> <span class="ow">not</span> <span class="n">tag</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;A tag must be defined&#39;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">_children</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(((</span><span class="n">name</span><span class="p">,</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">children</span><span class="p">])</span>
+                                   <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">children</span> <span class="ow">in</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">_attributes</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attributes</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">c</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">tag</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;The tag for this :class:`Css` element. Always defined unless this</span>
-<span class="sd">is a root instance.&#39;&#39;&#39;</span>
+        <span class="sd">&#39;&#39;&#39;The tag for this :class:`Css` element.</span>
+
+<span class="sd">        Always defined unless this is the root instance.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_full_tag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tag</span><span class="p">)</span>
 
     <span class="nd">@property</span>
@@ -565,6 +595,10 @@
             <span class="k">return</span> <span class="bp">self</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">_app</span>
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">http</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">http</span>
@@ -585,9 +619,8 @@
     <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&#39;cannot get item&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="k">else</span> <span class="n">default</span>
 
     <span class="k">def</span> <span class="nf">css</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="o">*</span><span class="n">components</span><span class="p">,</span> <span class="o">**</span><span class="n">attributes</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;A child :class:`Css` elements.&#39;&#39;&#39;</span>
@@ -595,7 +628,7 @@
             <span class="n">elems</span> <span class="o">=</span> <span class="p">[</span><span class="n">Css</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">alltags</span><span class="p">(</span><span class="n">tag</span><span class="p">)]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">elems</span> <span class="o">=</span> <span class="p">[</span><span class="n">Css</span><span class="p">(</span><span class="n">tag</span><span class="p">)]</span>
-        <span class="k">for</span> <span class="n">css</span> <span class="ow">in</span> <span class="n">elems</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">clone</span><span class="p">,</span> <span class="n">css</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">elems</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">iteritems</span><span class="p">(</span><span class="n">attributes</span><span class="p">):</span>
                 <span class="n">css</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
             <span class="n">css</span><span class="o">.</span><span class="n">set_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -604,8 +637,20 @@
                 <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cl</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
                     <span class="n">cl</span> <span class="o">=</span> <span class="p">(</span><span class="n">cl</span><span class="p">,)</span>
                 <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cl</span><span class="p">:</span>
-                    <span class="n">css</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+                    <span class="n">css</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span> <span class="k">if</span> <span class="n">clone</span> <span class="k">else</span> <span class="n">c</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">elems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">elems</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">elems</span>
+
+    <span class="k">def</span> <span class="nf">get_media_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Build the url for a media path.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">libs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">_css_libs</span>
+        <span class="k">if</span> <span class="n">libs</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">libs</span><span class="o">.</span><span class="n">absolute_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;http&#39;</span><span class="p">):</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;http:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">path</span>
+            <span class="k">return</span> <span class="n">path</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s">&#39;No css libs configured&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">mapping_iterator</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
@@ -613,7 +658,8 @@
 
     <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Add a child :class:`css` or a class:`Mixin`.&#39;&#39;&#39;</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">set_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">CssBase</span><span class="p">):</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">set_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
         <span class="n">clist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
@@ -734,20 +780,26 @@
 <span class="s">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">created</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">),</span> <span class="n">nice_dt</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">intro</span> <span class="o">+</span> <span class="n">body</span>
 
-    <span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theme</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dump_variables</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">minify</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theme</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dump_variables</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span>
-        <span class="n">target</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">()</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">app</span>
+        <span class="k">if</span> <span class="n">app</span><span class="p">:</span>
+            <span class="n">module</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="c"># Import applications styles if available</span>
+            <span class="k">for</span> <span class="n">extension</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;EXTENSIONS&#39;</span><span class="p">]:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">module</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="n">extension</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="s">&#39;add_css&#39;</span><span class="p">):</span>
+                        <span class="n">module</span><span class="o">.</span><span class="n">add_css</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+                        <span class="n">app</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Imported style from &quot;</span><span class="si">%s</span><span class="s">&quot;.&#39;</span> <span class="o">%</span> <span class="n">extension</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">app</span><span class="o">.</span><span class="n">write_err</span><span class="p">(</span><span class="s">&#39;Cannot import style </span><span class="si">%s</span><span class="s">: &quot;</span><span class="si">%s</span><span class="s">&quot;.&#39;</span> <span class="o">%</span>
+                                   <span class="p">(</span><span class="n">extension</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">dump_variables</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">tojson</span><span class="p">()</span>
-            <span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">render_all</span><span class="p">()</span>
-            <span class="n">target</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">minify</span><span class="p">:</span>
-                <span class="n">target</span> <span class="o">=</span> <span class="n">csscompress</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">data</span>
+            <span class="k">return</span> <span class="n">root</span><span class="o">.</span><span class="n">render_all</span><span class="p">()</span>
 
     <span class="c">########################################################################</span>
     <span class="c">##    PRIVATE METHODS</span>
@@ -874,14 +926,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-
-
-<span class="c">############################################################################</span>
-<span class="c">##    API FUNCTIONS</span>
-<span class="c">############################################################################</span></div>
-<span class="k">def</span> <span class="nf">csscompress</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>  <span class="c"># pragma: no cover</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&#39;yuicompressor.jar --type css -o {0} {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
@@ -890,7 +935,7 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../../../../../index.html">
-  <img class="logo" width="200" src="../../../../../static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../../../../../static/lux.svg" alt="lux" title="lux"/>
 </a>
 </p>
 <div id="searchbox" style="display: none">

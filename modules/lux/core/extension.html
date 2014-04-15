@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>lux.core.extension &mdash; lux 0.1b2 documentation</title>
+    <title>lux.core.extension &mdash; lux 0.1.0-beta.1 documentation</title>
     
     <link rel="stylesheet" href="../../../static/pulsar.css" type="text/css" />
     <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.1b2',
+        VERSION:     '0.1.0-beta.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../../static/underscore.js"></script>
     <script type="text/javascript" src="../../../static/doctools.js"></script>
     <link rel="shortcut icon" href="../../../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1b2 documentation" href="../../../index.html" />
+    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../../../index.html" />
     <link rel="up" title="lux.core" href="../core.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+        <li><a href="../../../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >Module code</a> &raquo;</li>
           <li><a href="../core.html" accesskey="U">lux.core</a> &raquo;</li> 
       </ul>
@@ -68,6 +68,7 @@
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">getfile</span>
 
 <span class="kn">from</span> <span class="nn">pulsar.utils.path</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.pep</span> <span class="kn">import</span> <span class="n">native_str</span>
 
 <span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">__version__</span>
 
@@ -196,9 +197,8 @@
 
 
 <div class="viewcode-block" id="Extension"><a class="viewcode-back" href="../../../api/index.html#lux.core.extension.Extension">[docs]</a><span class="k">class</span> <span class="nc">Extension</span><span class="p">(</span><span class="n">ExtensionType</span><span class="p">(</span><span class="s">&#39;ExtBase&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">object</span><span class="p">,),</span> <span class="p">{</span><span class="s">&#39;abstract&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">})):</span>
-    <span class="sd">&#39;&#39;&#39;Base class for :ref:`lux extensions &lt;extensions&gt;`.</span>
-
-<span class="sd">    It is also the base class of lux :class:`App`.</span>
+    <span class="sd">&#39;&#39;&#39;Base class for :ref:`lux extensions &lt;extensions&gt;`</span>
+<span class="sd">    including :class:`.App`.</span>
 
 <span class="sd">    .. attribute:: meta</span>
 
@@ -249,6 +249,22 @@
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="p">()</span>
 </div>
+<div class="viewcode-block" id="Extension.write"><a class="viewcode-back" href="../../../api/index.html#lux.core.extension.Extension.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Write ``msg`` into ``stream`` or ``sys.stdout``</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">stream</span> <span class="ow">or</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
+        <span class="k">if</span> <span class="n">msg</span><span class="p">:</span>
+            <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">native_str</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Extension.write_err"><a class="viewcode-back" href="../../../api/index.html#lux.core.extension.Extension.write_err">[docs]</a>    <span class="k">def</span> <span class="nf">write_err</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Write ``msg`` into ``stream`` or ``sys.stderr``</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">stream</span> <span class="ow">or</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
+        <span class="k">if</span> <span class="n">msg</span><span class="p">:</span>
+            <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">native_str</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</div>
     <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="k">pass</span>
 
@@ -265,7 +281,7 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../../../index.html">
-  <img class="logo" width="200" src="../../../static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../../../static/lux.svg" alt="lux" title="lux"/>
 </a>
 </p>
 <div id="searchbox" style="display: none">

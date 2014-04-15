@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>lux.extensions.sitemap &mdash; lux 0.1b2 documentation</title>
+    <title>lux.extensions.sitemap &mdash; lux 0.1.0-beta.1 documentation</title>
     
     <link rel="stylesheet" href="../../../static/pulsar.css" type="text/css" />
     <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.1b2',
+        VERSION:     '0.1.0-beta.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../../static/underscore.js"></script>
     <script type="text/javascript" src="../../../static/doctools.js"></script>
     <link rel="shortcut icon" href="../../../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1b2 documentation" href="../../../index.html" />
+    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+        <li><a href="../../../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
           <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>
@@ -62,23 +62,15 @@
   <h1>Source code for lux.extensions.sitemap</h1><div class="highlight"><pre>
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">An extension for managing navigation on a web site. The extension does not add</span>
-<span class="sd">any :ref:`middleware &lt;middleware&gt;` to the lux WSGi handler, instead it</span>
-<span class="sd">adds an handler to the :ref:`on_html_document event &lt;event_on_html_document&gt;`.</span>
-<span class="sd">Therefore, the extension is only used when the response to a client</span>
-<span class="sd">request has a ``text/html`` content type.</span>
-
-<span class="sd">Parameters</span>
-<span class="sd">================</span>
-
-<span class="sd">.. lux_extension:: lux.extensions.sitemap</span>
-
+<span class="sd">any :ref:`middleware &lt;middleware&gt;` to the lux WSGI callable, instead it</span>
+<span class="sd">adds an handler to the :ref:`on_html_document &lt;event_on_html_document&gt;` event.</span>
+<span class="sd">In other words, the sitemap extension operates on ``text/html``</span>
+<span class="sd">responses only.</span>
 
 <span class="sd">Usage</span>
 <span class="sd">=============</span>
-<span class="sd">This extensions is only used when the HTTP response has a ``text/html``</span>
-<span class="sd">content type.</span>
-<span class="sd">In this case, when the :attr:`.WsgiRequest.html_document` is accessed for the</span>
-<span class="sd">first time, the extension, via the :meth:`~Extension.on_html_document` handler,</span>
+<span class="sd">When the :attr:`.WsgiRequest.html_document` attribute is accessed for the</span>
+<span class="sd">first time, the extension, via the :meth:`~Extension.on_html_document` event,</span>
 <span class="sd">adds a :class:`NavigationInfo` object to the ``request.cache`` dictionary.</span>
 <span class="sd">This object can be accessed via ``request.cache.html_navigation`` if needed.</span>
 
@@ -112,6 +104,12 @@
 <span class="sd">For example, in the :ref:`cms extensions &lt;extension-cms&gt;`, the</span>
 <span class="sd">:class:`.EditPage` router adds links to edit or exit-editing of pages.</span>
 
+<span class="sd">Parameters</span>
+<span class="sd">================</span>
+
+<span class="sd">.. lux_extension:: lux.extensions.sitemap</span>
+
+
 <span class="sd">API</span>
 <span class="sd">==========</span>
 
@@ -137,19 +135,11 @@
 <span class="sd">   :member-order: bysource</span>
 
 <span class="sd">&#39;&#39;&#39;</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-
-<span class="kn">from</span> <span class="nn">pulsar.apps.wsgi</span> <span class="kn">import</span> <span class="n">Html</span>
-
 <span class="kn">import</span> <span class="nn">lux</span>
-<span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">Router</span><span class="p">,</span> <span class="n">Parameter</span>
+<span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">Router</span><span class="p">,</span> <span class="n">Parameter</span><span class="p">,</span> <span class="n">Html</span>
 
 <span class="kn">from</span> <span class="nn">.links</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">.ui</span> <span class="kn">import</span> <span class="n">add_css</span>
-
-
-<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;lux.navigation&#39;</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">request_from_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">urlargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
@@ -217,8 +207,10 @@
         <span class="sd">&#39;&#39;&#39;Create a :class:`.Link` object</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">title</span> <span class="o">=</span> <span class="n">title</span> <span class="ow">or</span> <span class="n">text</span>
+        <span class="k">return</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="n">icon</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">text</span> <span class="ow">and</span> <span class="n">icon</span><span class="p">:</span>
             <span class="n">text</span> <span class="o">=</span> <span class="s">&#39; </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">text</span>
+
         <span class="k">return</span> <span class="n">Link</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="n">icon</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">(</span><span class="n">text</span><span class="p">,),</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="NavigationInfo.load"><a class="viewcode-back" href="../../../extensions/sitemap.html#lux.extensions.sitemap.NavigationInfo.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
@@ -248,9 +240,10 @@
         <span class="k">if</span> <span class="n">request</span><span class="p">:</span>
             <span class="n">info</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">html_navigation</span>
             <span class="k">if</span> <span class="n">info</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;To use the navigation you must include &#39;</span>
-                               <span class="s">&#39;lux.extensions.sitemap in your EXTENSIONS &#39;</span>
-                               <span class="s">&#39;list&#39;</span><span class="p">)</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;To use the &quot;Navigation&quot; template &#39;</span>
+                                           <span class="s">&#39;you need to include the &#39;</span>
+                                           <span class="s">&#39;&quot;lux.extensions.sitemap&quot; &#39;</span>
+                                           <span class="s">&#39;in your EXTENSIONS list&#39;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">info</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
                 <span class="n">nav</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
@@ -307,7 +300,7 @@
                   <span class="s">&#39;Layout of the Navigation Toolbar&#39;</span><span class="p">),</span>
         <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;NAVIGATION_CLASSES&#39;</span><span class="p">,</span> <span class="s">&#39;nav nav-list standard&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)]</span>
 
-<div class="viewcode-block" id="Extension.on_html_document"><a class="viewcode-back" href="../../../extensions/sitemap.html#lux.extensions.sitemap.Extension.on_html_document">[docs]</a>    <span class="k">def</span> <span class="nf">on_html_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">html</span><span class="p">):</span>
+<div class="viewcode-block" id="Extension.on_html_document"><a class="viewcode-back" href="../../../extensions/sitemap.html#lux.extensions.sitemap.Extension.on_html_document">[docs]</a>    <span class="k">def</span> <span class="nf">on_html_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">doc</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Add the ``html_navigation`` entry in the ``request.cache``.</span>
 
 <span class="sd">        Loop over all Routers which have the ``navigation_visit`` method</span>
@@ -315,8 +308,9 @@
 <span class="sd">        :class:`NavigationInfo` and can be used to add navigation</span>
 <span class="sd">        items as well as logos and search boxes.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="n">brand</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;NAVIGATION_BRAND&#39;</span><span class="p">]</span>
-        <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">html_navigation</span> <span class="o">=</span> <span class="n">NavigationInfo</span><span class="p">(</span><span class="n">brand</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">doc</span><span class="o">.</span><span class="n">has_default_content_type</span><span class="p">:</span>
+            <span class="n">brand</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;NAVIGATION_BRAND&#39;</span><span class="p">]</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">html_navigation</span> <span class="o">=</span> <span class="n">NavigationInfo</span><span class="p">(</span><span class="n">brand</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="Extension.navigation"><a class="viewcode-back" href="../../../extensions/sitemap.html#lux.extensions.sitemap.Extension.navigation">[docs]</a>    <span class="k">def</span> <span class="nf">navigation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">routers</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Create an ul with links.&#39;&#39;&#39;</span>
@@ -344,7 +338,7 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../../../index.html">
-  <img class="logo" width="200" src="../../../static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../../../static/lux.svg" alt="lux" title="lux"/>
 </a>
 </p>
 <div id="searchbox" style="display: none">

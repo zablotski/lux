@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>lux.extensions.ui.lib.mixins &mdash; lux 0.1b2 documentation</title>
+    <title>lux.extensions.ui.lib.mixins &mdash; lux 0.1.0-beta.1 documentation</title>
     
     <link rel="stylesheet" href="../../../../../static/pulsar.css" type="text/css" />
     <link rel="stylesheet" href="../../../../../static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../../',
-        VERSION:     '0.1b2',
+        VERSION:     '0.1.0-beta.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../../../../static/underscore.js"></script>
     <script type="text/javascript" src="../../../../../static/doctools.js"></script>
     <link rel="shortcut icon" href="../../../../../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1b2 documentation" href="../../../../../index.html" />
+    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../../../../../index.html" />
     <link rel="up" title="Module code" href="../../../../index.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="../../../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../../../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+        <li><a href="../../../../../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
           <li><a href="../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>
@@ -177,11 +177,9 @@
 <span class="sd">It&#39;s generally used in float layouts where elements are floated to be</span>
 <span class="sd">stacked horizontally.&#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;*zoom&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">elem</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s">&#39;:before,:after&#39;</span><span class="p">,</span>
                  <span class="n">display</span><span class="o">=</span><span class="s">&#39;table&#39;</span><span class="p">,</span>
-                 <span class="n">line_height</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                 <span class="n">content</span><span class="o">=</span><span class="s">&#39;&quot;&quot;&#39;</span><span class="p">)</span>
+                 <span class="n">content</span><span class="o">=</span><span class="s">&#39;&quot; &quot;&#39;</span><span class="p">)</span>
         <span class="n">elem</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s">&#39;:after&#39;</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="s">&#39;both&#39;</span><span class="p">)</span>
 
 
@@ -243,13 +241,21 @@
 <div class="viewcode-block" id="Border"><a class="viewcode-back" href="../../../../../extensions/ui.html#lux.extensions.ui.lib.mixins.Border">[docs]</a><span class="k">class</span> <span class="nc">Border</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A :class:`Mixin` for adding border to a css element.</span>
 
-<span class="sd">:param color: border color. If not set no border color is specified.</span>
-<span class="sd">:param style: border style. If not set, ``solid`` is used. Could be</span>
-<span class="sd">    one of: ``solid``, ``dotted``, ``none``.</span>
-<span class="sd">:param width: border width. If not set ``1px`` is used.&#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<span class="sd">    :param color: border color. If not set no border color is specified.</span>
+<span class="sd">    :param style: border style. If not set, ``solid`` is used. Could be</span>
+<span class="sd">        one of: ``solid``, ``dotted``, ``none``.</span>
+<span class="sd">    :param width: border width. If not set ``1px`` is used.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">right</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">style</span>
+        <span class="n">has_spacing</span> <span class="o">=</span> <span class="p">(</span><span class="n">top</span> <span class="ow">or</span> <span class="n">bottom</span> <span class="ow">or</span> <span class="n">right</span> <span class="ow">or</span> <span class="n">left</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">width</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">has_spacing</span><span class="p">:</span>
+                <span class="n">width</span> <span class="o">=</span> <span class="n">spacing</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">left</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="ow">not</span> <span class="n">has_spacing</span><span class="p">,</span> <span class="s">&#39;bad inputs in Border mixin&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
@@ -258,18 +264,28 @@
         <span class="n">w</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="s">&#39;none&#39;</span><span class="p">:</span>
             <span class="n">elem</span><span class="p">[</span><span class="s">&#39;border&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">):</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="ow">or</span> <span class="s">&#39;solid&#39;</span>
-            <span class="n">w</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">w</span> <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">px</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-            <span class="k">if</span> <span class="s">&#39; &#39;</span> <span class="ow">in</span> <span class="n">w</span><span class="p">:</span>
-                <span class="n">elem</span><span class="p">[</span><span class="s">&#39;border-width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span>
-                <span class="n">elem</span><span class="p">[</span><span class="s">&#39;border-style&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
-                <span class="k">if</span> <span class="n">c</span><span class="p">:</span>
-                    <span class="n">elem</span><span class="p">[</span><span class="s">&#39;border-color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">c</span><span class="p">:</span>
-                <span class="n">elem</span><span class="p">[</span><span class="s">&#39;border&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">elem</span><span class="p">[</span><span class="s">&#39;border&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bits</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s">&#39; &#39;</span> <span class="ow">in</span> <span class="n">w</span><span class="p">:</span>
+                    <span class="n">elem</span><span class="p">[</span><span class="s">&#39;border-width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">bits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">s</span> <span class="ow">or</span> <span class="n">w</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="ow">or</span> <span class="s">&#39;solid&#39;</span>
+                <span class="k">if</span> <span class="n">bits</span><span class="p">:</span>
+                    <span class="n">bits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">elem</span><span class="p">[</span><span class="s">&#39;border-style&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
+            <span class="k">if</span> <span class="n">c</span><span class="p">:</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">color</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">bits</span><span class="p">:</span>
+                    <span class="n">bits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">elem</span><span class="p">[</span><span class="s">&#39;border-color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
+            <span class="k">if</span> <span class="n">bits</span><span class="p">:</span>
+                <span class="n">elem</span><span class="p">[</span><span class="s">&#39;border&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span>
 
 
 <span class="c">################################################# CSS3 BOX SHADOW</span></div>
@@ -528,16 +544,18 @@
 
 <span class="c">################################################# BCD - BACKGROUND-COLOR-DECO</span>
 <div class="viewcode-block" id="Bcd"><a class="viewcode-back" href="../../../../../extensions/ui.html#lux.extensions.ui.lib.mixins.Bcd">[docs]</a><span class="k">class</span> <span class="nc">Bcd</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Background-color-decorator :class:`Mixin`. It can be applied to any</span>
-<span class="sd">element and tt forms the basis for the :class:`Clickable` Mixin.</span>
+    <span class="sd">&#39;&#39;&#39;Background-color-decorator :class:`Mixin`.</span>
 
-<span class="sd">:parameter background: backgroud or css3 :class:`Gradient`.</span>
-<span class="sd">:parameter colour: text colour</span>
-<span class="sd">:parameter text_shadow: text shadow</span>
-<span class="sd">:parameter text_decoration: text decoration</span>
-<span class="sd">:parameter border: :class:`Border` or parameters for :class:`Border`. If</span>
-<span class="sd">    specified, the element will have a border definition.</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    It can be applied to any element and it forms the basis for the</span>
+<span class="sd">    :class:`Clickable` Mixin.</span>
+
+<span class="sd">    :parameter background: backgroud or css3 :class:`Gradient`.</span>
+<span class="sd">    :parameter colour: text colour</span>
+<span class="sd">    :parameter text_shadow: text shadow</span>
+<span class="sd">    :parameter text_decoration: text decoration</span>
+<span class="sd">    :parameter border: :class:`Border` or parameters for :class:`Border`. If</span>
+<span class="sd">        specified, the element will have a border definition.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">text_shadow</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                  <span class="n">text_decoration</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="n">background</span>
@@ -545,7 +563,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">text_shadow</span> <span class="o">=</span> <span class="n">text_shadow</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text_decoration</span> <span class="o">=</span> <span class="n">text_decoration</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">border</span><span class="p">,</span> <span class="n">Border</span><span class="p">)</span> <span class="ow">and</span> <span class="n">border</span><span class="p">:</span>
-            <span class="n">border</span> <span class="o">=</span> <span class="n">Border</span><span class="p">(</span><span class="o">**</span><span class="n">as_params</span><span class="p">(</span><span class="n">border</span><span class="p">,</span> <span class="s">&#39;style&#39;</span><span class="p">))</span>
+            <span class="n">border</span> <span class="o">=</span> <span class="n">Border</span><span class="p">(</span><span class="o">**</span><span class="n">as_params</span><span class="p">(</span><span class="n">border</span><span class="p">,</span> <span class="s">&#39;color&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">border</span> <span class="o">=</span> <span class="n">border</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
@@ -967,7 +985,7 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../../../../../index.html">
-  <img class="logo" width="200" src="../../../../../static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../../../../../static/lux.svg" alt="lux" title="lux"/>
 </a>
 </p>
 <div id="searchbox" style="display: none">

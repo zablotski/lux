@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>lux.core.content &mdash; lux 0.1b2 documentation</title>
+    <title>lux.core.content &mdash; lux 0.1.0-beta.1 documentation</title>
     
     <link rel="stylesheet" href="../../../static/pulsar.css" type="text/css" />
     <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.1b2',
+        VERSION:     '0.1.0-beta.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../../static/underscore.js"></script>
     <script type="text/javascript" src="../../../static/doctools.js"></script>
     <link rel="shortcut icon" href="../../../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1b2 documentation" href="../../../index.html" />
+    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../../../index.html" />
     <link rel="up" title="lux.core" href="../core.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+        <li><a href="../../../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >Module code</a> &raquo;</li>
           <li><a href="../core.html" accesskey="U">lux.core</a> &raquo;</li> 
       </ul>
@@ -74,22 +74,6 @@
 <span class="sd">~~~~~~~~~~~~~~~~~~~~</span>
 
 <span class="sd">.. autoclass:: Html</span>
-<span class="sd">   :members:</span>
-<span class="sd">   :member-order: bysource</span>
-
-
-<span class="sd">Template</span>
-<span class="sd">~~~~~~~~~~~~~~~~~~~~</span>
-
-<span class="sd">.. autoclass:: Template</span>
-<span class="sd">   :members:</span>
-<span class="sd">   :member-order: bysource</span>
-
-
-<span class="sd">Context</span>
-<span class="sd">~~~~~~~~~~~~~~~~~~~~</span>
-
-<span class="sd">.. autoclass:: Context</span>
 <span class="sd">   :members:</span>
 <span class="sd">   :member-order: bysource</span>
 
@@ -140,7 +124,7 @@
         <span class="n">dw</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
 
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;HtmlLink&#39;</span><span class="p">,</span> <span class="s">&#39;Column&#39;</span><span class="p">,</span> <span class="s">&#39;ContentManager&#39;</span><span class="p">,</span> <span class="s">&#39;Template&#39;</span><span class="p">,</span> <span class="s">&#39;Context&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;HtmlLink&#39;</span><span class="p">,</span> <span class="s">&#39;Column&#39;</span><span class="p">,</span> <span class="s">&#39;ContentManager&#39;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="HtmlLink"><a class="viewcode-back" href="../../../api/index.html#lux.core.content.HtmlLink">[docs]</a><span class="k">class</span> <span class="nc">HtmlLink</span><span class="p">(</span><span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;HtmlLinkBase&#39;</span><span class="p">,</span> <span class="s">&#39;href text icon&#39;</span><span class="p">)):</span>
@@ -230,7 +214,8 @@
 
 <span class="sd">    No assumption is made on the type of object or collection to be managed.</span>
 
-<span class="sd">    :param columns: Optional list of fields to include in responses.</span>
+<span class="sd">    :param columns: Optional list of fields to include in responses</span>
+<span class="sd">    :param exclude: Optional set of fields to exclude in responses</span>
 <span class="sd">    :param html_collection: Optional string to specify the ``html`` rendering</span>
 <span class="sd">        style for collections. If not supplied, ``html`` requests are</span>
 <span class="sd">        rendered using a ``table`` element via the</span>
@@ -257,10 +242,11 @@
 
     <span class="n">_router</span> <span class="o">=</span> <span class="bp">None</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">html_collection</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">html_object</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">filters</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">sortable</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">head</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">foot</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-                 <span class="n">table_class_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">required_fields</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">html_collection</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">html_object</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">sortable</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">head</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                 <span class="n">foot</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">table_class_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">required_fields</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_columns</span> <span class="o">=</span> <span class="n">columns</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_exclude</span> <span class="o">=</span> <span class="n">exclude</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sortable</span> <span class="o">=</span> <span class="n">sortable</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">table_class_name</span> <span class="o">=</span> <span class="n">table_class_name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_class_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_html_collection_as</span> <span class="o">=</span> <span class="n">html_collection</span> <span class="ow">or</span> <span class="s">&#39;table&#39;</span>
@@ -562,149 +548,7 @@
 
     <span class="k">def</span> <span class="nf">_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_columns</span> <span class="ow">or</span> <span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">Column</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">]</span>
-
-</div>
-<div class="viewcode-block" id="Template"><a class="viewcode-back" href="../../../api/index.html#lux.core.content.Template">[docs]</a><span class="k">class</span> <span class="nc">Template</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;A factory of :class:`Html` objects.</span>
-
-<span class="sd">    This is a callable class used for creating :class:`Html` instances from</span>
-<span class="sd">    a template::</span>
-
-<span class="sd">        &gt;&gt;&gt; simple = Template(Context(&#39;foo&#39;, tag=&#39;span&#39;), tag=&#39;div&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; html = simple(cn=&#39;test&#39;, context={&#39;foo&#39;: &#39;bla&#39;})</span>
-<span class="sd">        &gt;&gt;&gt; html.render()</span>
-<span class="sd">        &lt;div class=&#39;test&#39;&gt;&lt;span data-context=&#39;foo&#39;&gt;bla&lt;/span&gt;&lt;/div&gt;</span>
-
-<span class="sd">    .. attribute:: key</span>
-
-<span class="sd">        An optional string which identify this :class:`Template`.</span>
-
-<span class="sd">    .. attribute:: children</span>
-
-<span class="sd">        List of :class:`Template` objects which are rendered as children</span>
-<span class="sd">        of this :class:`Template`</span>
-
-<span class="sd">    .. attribute:: parameters</span>
-
-<span class="sd">        An attribute dictionary containing all key-valued parameters.</span>
-
-<span class="sd">        it is initialised by the :meth:`init_parameters` method at the end</span>
-<span class="sd">        of initialisation.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">key</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="n">tag</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="n">classes</span> <span class="o">=</span> <span class="bp">None</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
-        <span class="k">if</span> <span class="s">&#39;key&#39;</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;key&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">children</span><span class="p">:</span>
-            <span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">child_template</span><span class="p">()]</span>
-        <span class="n">new_children</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
-            <span class="n">child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">child_template</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">child</span><span class="p">:</span>
-                <span class="n">new_children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="n">new_children</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">(</span><span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">(</span><span class="si">%s</span><span class="s">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="ow">or</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__repr__</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">child_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">child</span>
-
-<div class="viewcode-block" id="Template.init_parameters"><a class="viewcode-back" href="../../../api/index.html#lux.core.content.Template.init_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">init_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Called at the and of initialisation.</span>
-
-<span class="sd">        It fills the :attr:`parameters` attribute.</span>
-<span class="sd">        It can be overwritten to customise behaviour.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">AttributeDictionary</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
-</div>
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Create an Html element from this template.&#39;&#39;&#39;</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
-            <span class="n">child</span> <span class="o">=</span> <span class="n">child</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="n">c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">post_process_child</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">children</span><span class="p">:</span>
-            <span class="n">c</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">children</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<div class="viewcode-block" id="Template.html"><a class="viewcode-back" href="../../../api/index.html#lux.core.content.Template.html">[docs]</a>    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Create the :class:`Html` instance.</span>
-
-<span class="sd">        This method is invoked at the end of the ``__call__`` method with</span>
-<span class="sd">        a list of ``children`` elements and a ``context`` dictionary.</span>
-<span class="sd">        This method shouldn&#39;t be accessed directly.</span>
-
-<span class="sd">        :param request: a client request, can be ``None``.</span>
-<span class="sd">        :param context: a dictionary of :class:`Html` or strings to include.</span>
-<span class="sd">        :param children: list of children elements.</span>
-<span class="sd">        :param kwargs: additional parameters used when initialising the</span>
-<span class="sd">            :attr:`Html` for this template.</span>
-<span class="sd">        :return: an :class:`Html` object.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
-        <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
-            <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-            <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">html</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
-        <span class="n">html</span><span class="o">.</span><span class="n">maker</span> <span class="o">=</span> <span class="bp">self</span>
-        <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">addClass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">)</span>
-</div>
-<div class="viewcode-block" id="Template.get"><a class="viewcode-back" href="../../../api/index.html#lux.core.content.Template.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Retrieve a children :class:`Template` with :attr:`Template.key`</span>
-<span class="sd">equal to ``key``. The search is done recursively and the first match is</span>
-<span class="sd">returned. If not available return ``None``.&#39;&#39;&#39;</span>
-        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">child</span>
-        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
-            <span class="n">elem</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">elem</span>
-</div>
-    <span class="k">def</span> <span class="nf">post_process_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">child</span>
-
-</div>
-<div class="viewcode-block" id="Context"><a class="viewcode-back" href="../../../api/index.html#lux.core.content.Context">[docs]</a><span class="k">class</span> <span class="nc">Context</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;A specialised :class:`Template` which uses the :attr:`Template.key`</span>
-<span class="sd">    to extract content from the ``context`` dictionary passed to the template</span>
-<span class="sd">    callable method.</span>
-
-<span class="sd">    :param key: initialise the :attr:`Template.key` attribute. It must be</span>
-<span class="sd">        provided.</span>
-
-<span class="sd">    Fore example::</span>
-
-<span class="sd">        &gt;&gt;&gt; from lux import Context</span>
-<span class="sd">        &gt;&gt;&gt; template = Context(&#39;foo&#39;, tag=&#39;div&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; template.key</span>
-<span class="sd">        &#39;foo&#39;</span>
-<span class="sd">        &gt;&gt;&gt; html = template(context={&#39;foo&#39;: &#39;pippo&#39;})</span>
-<span class="sd">        &gt;&gt;&gt; html.render()</span>
-<span class="sd">        &lt;div&gt;pippo&lt;/div&gt;</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="n">params</span><span class="p">[</span><span class="s">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
-        <span class="n">params</span><span class="p">[</span><span class="s">&#39;context&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Context</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">html</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Context</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">context</span><span class="p">:</span>
-            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">html</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">Column</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">]</span></div>
 </pre></div>
 
           </div>
@@ -713,7 +557,7 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../../../index.html">
-  <img class="logo" width="200" src="../../../static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../../../static/lux.svg" alt="lux" title="lux"/>
 </a>
 </p>
 <div id="searchbox" style="display: none">

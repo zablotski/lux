@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>lux.commands &mdash; lux 0.1b2 documentation</title>
+    <title>lux.commands &mdash; lux 0.1.0-beta.1 documentation</title>
     
     <link rel="stylesheet" href="../../static/pulsar.css" type="text/css" />
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.1b2',
+        VERSION:     '0.1.0-beta.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../static/underscore.js"></script>
     <script type="text/javascript" src="../../static/doctools.js"></script>
     <link rel="shortcut icon" href="../../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1b2 documentation" href="../../index.html" />
+    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
           <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>
@@ -82,9 +82,12 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">set_event_loop</span>
 
-<span class="kn">from</span> <span class="nn">pulsar</span> <span class="kn">import</span> <span class="n">Setting</span><span class="p">,</span> <span class="n">get_event_loop</span><span class="p">,</span> <span class="n">new_event_loop</span><span class="p">,</span> <span class="n">async</span><span class="p">,</span> <span class="n">Application</span>
+<span class="kn">from</span> <span class="nn">pulsar</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Setting</span><span class="p">,</span> <span class="n">get_event_loop</span><span class="p">,</span> <span class="n">arbiter</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">Application</span><span class="p">,</span>
+                    <span class="n">maybe_async</span><span class="p">,</span> <span class="n">Future</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pulsar.utils.pep</span> <span class="kn">import</span> <span class="n">native_str</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.log</span> <span class="kn">import</span> <span class="n">configured_logger</span>
 
 <span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">__version__</span>
 
@@ -143,15 +146,17 @@
         <span class="k">return</span> <span class="n">parser</span>
 
 </div>
-<span class="k">class</span> <span class="nc">DummyApp</span><span class="p">(</span><span class="n">Application</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">LuxApp</span><span class="p">(</span><span class="n">Application</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;lux&#39;</span>
 
     <span class="k">def</span> <span class="nf">on_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
+        <span class="n">set_event_loop</span><span class="p">(</span><span class="n">actor</span><span class="o">.</span><span class="n">_loop</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
 
 
 <div class="viewcode-block" id="Command"><a class="viewcode-back" href="../../api/index.html#lux.commands.Command">[docs]</a><span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">ConsoleParser</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Signature class for lux commands. A :class:`Command` is never</span>
-<span class="sd">    created directly, instead, the :meth:`App.get_command` method is used.</span>
+    <span class="sd">&#39;&#39;&#39;Signature class for lux commands. A :class:`.Command` is never</span>
+<span class="sd">    created directly, instead, the :meth:`.App.get_command` method is used.</span>
 
 <span class="sd">    .. attribute:: name</span>
 
@@ -159,7 +164,7 @@
 
 <span class="sd">    .. attribute:: app</span>
 
-<span class="sd">        The :class:`App` running this :class:`Command`.</span>
+<span class="sd">        The :class:`.App` running this :class:`.Command`.</span>
 
 <span class="sd">    .. attribute:: stdout</span>
 
@@ -180,10 +185,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">stderr</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">argv</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_parser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">help</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">options</span><span class="p">,</span> <span class="n">rest</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_known_args</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pulsar_app</span><span class="p">(</span><span class="n">rest</span><span class="p">,</span> <span class="n">loghandlers</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;console_level_message&#39;</span><span class="p">])</span>
+        <span class="n">app</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Command.get_version"><a class="viewcode-back" href="../../api/index.html#lux.commands.Command.get_version">[docs]</a>    <span class="k">def</span> <span class="nf">get_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the :class:`Command` version.</span>
+        <span class="sd">&quot;&quot;&quot;Return the :class:`.Command` version.</span>
 
 <span class="sd">        By default it is the same version as lux.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -194,7 +203,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config_module</span>
 
 <div class="viewcode-block" id="Command.options"><a class="viewcode-back" href="../../api/index.html#lux.commands.Command.options">[docs]</a>    <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argv</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;parse the *argv* list and set up logger.</span>
+        <span class="sd">&#39;&#39;&#39;parse the *argv* list</span>
 
 <span class="sd">        Return the options namespace</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -204,9 +213,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">pulsar_cfg</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">options</span>
 </div>
-    <span class="k">def</span> <span class="nf">log_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s">&#39;root&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;console_message&#39;</span><span class="p">]}}</span>
-
 <div class="viewcode-block" id="Command.run"><a class="viewcode-back" href="../../api/index.html#lux.commands.Command.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Run this :class:`Command`.</span>
 
@@ -214,22 +220,19 @@
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 </div>
-<div class="viewcode-block" id="Command.run_async"><a class="viewcode-back" href="../../api/index.html#lux.commands.Command.run_async">[docs]</a>    <span class="k">def</span> <span class="nf">run_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+<div class="viewcode-block" id="Command.run_until_complete"><a class="viewcode-back" href="../../api/index.html#lux.commands.Command.run_until_complete">[docs]</a>    <span class="k">def</span> <span class="nf">run_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Run a command using pulsar asynchronous engine.&#39;&#39;&#39;</span>
         <span class="n">loop</span> <span class="o">=</span> <span class="n">get_event_loop</span><span class="p">()</span>
-        <span class="n">run_until_complete</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="k">if</span> <span class="n">loop</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">run_until_complete</span> <span class="o">=</span> <span class="bp">True</span>
-            <span class="n">loop</span> <span class="o">=</span> <span class="n">new_event_loop</span><span class="p">()</span>
-        <span class="n">future</span> <span class="o">=</span> <span class="n">async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">argv</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">),</span> <span class="n">loop</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">run_until_complete</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">maybe_async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">),</span> <span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">Future</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="ow">not</span> <span class="n">loop</span><span class="o">.</span><span class="n">is_running</span><span class="p">(),</span> <span class="s">&#39;Loop already running&#39;</span>
+            <span class="k">return</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">future</span>
+            <span class="k">return</span> <span class="n">result</span>
 </div>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;lux.command.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;lux.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Command.write"><a class="viewcode-back" href="../../api/index.html#lux.commands.Command.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Write ``stream`` to the :attr:`stdout`.&#39;&#39;&#39;</span>
@@ -245,23 +248,19 @@
             <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">native_str</span><span class="p">(</span><span class="n">stream</span><span class="p">))</span>
         <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
 </div>
-    <span class="k">def</span> <span class="nf">pulsar_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="n">application</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">application</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">application</span> <span class="o">=</span> <span class="n">DummyApp</span>
+    <span class="k">def</span> <span class="nf">pulsar_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="n">application</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">log_name</span><span class="o">=</span><span class="s">&#39;lux&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span>
+        <span class="k">if</span> <span class="n">application</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">application</span> <span class="o">=</span> <span class="n">LuxApp</span>
         <span class="k">return</span> <span class="n">application</span><span class="p">(</span><span class="nb">callable</span><span class="o">=</span><span class="n">app</span><span class="p">,</span>
                            <span class="n">desc</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;DESCRIPTION&#39;</span><span class="p">),</span>
                            <span class="n">epilog</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;EPILOG&#39;</span><span class="p">),</span>
                            <span class="n">argv</span><span class="o">=</span><span class="n">argv</span><span class="p">,</span>
+                           <span class="n">log_name</span><span class="o">=</span><span class="n">log_name</span><span class="p">,</span>
                            <span class="n">version</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">version</span><span class="p">,</span>
                            <span class="n">debug</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span>
                            <span class="n">config</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">config_module</span><span class="p">,</span>
                            <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">pulsar_cfg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argv</span><span class="p">):</span>
-        <span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pulsar_app</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
-        <span class="n">app</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">cfg</span>
 
 </div>
 <span class="k">def</span> <span class="nf">execute_app</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">argv</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
@@ -282,6 +281,7 @@
         <span class="k">except</span> <span class="n">CommandError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">.&#39;</span> <span class="o">%</span> <span class="n">e</span><span class="p">,</span> <span class="s">&#39;Pass -h for list of commands&#39;</span><span class="p">)))</span>
             <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c"># Make sure the loop exists</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">command</span><span class="p">(</span><span class="n">argr</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">CommandError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -299,7 +299,7 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../../index.html">
-  <img class="logo" width="200" src="../../static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../../static/lux.svg" alt="lux" title="lux"/>
 </a>
 </p>
 <div id="searchbox" style="display: none">

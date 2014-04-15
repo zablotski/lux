@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Sitemap and Navigation &mdash; lux 0.1b2 documentation</title>
+    <title>Sitemap and Navigation &mdash; lux 0.1.0-beta.1 documentation</title>
     
     <link rel="stylesheet" href="../static/pulsar.css" type="text/css" />
     <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1b2',
+        VERSION:     '0.1.0-beta.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../static/underscore.js"></script>
     <script type="text/javascript" src="../static/doctools.js"></script>
     <link rel="shortcut icon" href="../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1b2 documentation" href="../index.html" />
+    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../index.html" />
     <link rel="up" title="Extensions" href="index.html" />
     <link rel="next" title="Services" href="services.html" />
     <link rel="prev" title="Content Management System" href="cms.html" /> 
@@ -46,7 +46,7 @@
         <li class="right" >
           <a href="cms.html" title="Content Management System"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+        <li><a href="../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Extensions</a> &raquo;</li> 
       </ul>
     </div>
@@ -70,42 +70,14 @@
   <div class="section" id="module-lux.extensions.sitemap">
 <span id="sitemap-and-navigation"></span><span id="extension-sitemap"></span><h1>Sitemap and Navigation<a class="headerlink" href="#module-lux.extensions.sitemap" title="Permalink to this headline">¶</a></h1>
 <p>An extension for managing navigation on a web site. The extension does not add
-any <em class="xref std std-ref">middleware</em> to the lux WSGi handler, instead it
-adds an handler to the <a class="reference internal" href="../tutorials/extensions.html#event-on-html-document"><em>on_html_document event</em></a>.
-Therefore, the extension is only used when the response to a client
-request has a <tt class="docutils literal"><span class="pre">text/html</span></tt> content type.</p>
-<div class="section" id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="navigation-brand">
-<span id="std:setting-NAVIGATION_BRAND"></span><h3>NAVIGATION_BRAND<a class="headerlink" href="#navigation-brand" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">''</span></tt></p>
-<p>Html string for the brand in the toolbar</p>
-</div>
-<div class="section" id="navigation-brand-link">
-<span id="std:setting-NAVIGATION_BRAND_LINK"></span><h3>NAVIGATION_BRAND_LINK<a class="headerlink" href="#navigation-brand-link" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'/'</span></tt></p>
-<p>The href value of the anchor which display the brand in the navigation toolbar</p>
-</div>
-<div class="section" id="navigation-classes">
-<span id="std:setting-NAVIGATION_CLASSES"></span><h3>NAVIGATION_CLASSES<a class="headerlink" href="#navigation-classes" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'nav</span> <span class="pre">nav-list</span> <span class="pre">standard'</span></tt></p>
-</div>
-<div class="section" id="navigation-levels">
-<span id="std:setting-NAVIGATION_LEVELS"></span><h3>NAVIGATION_LEVELS<a class="headerlink" href="#navigation-levels" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">1</span></tt></p>
-</div>
-<div class="section" id="navigation-template">
-<span id="std:setting-NAVIGATION_TEMPLATE"></span><h3>NAVIGATION_TEMPLATE<a class="headerlink" href="#navigation-template" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'not</span> <span class="pre">all</span> <span class="pre">arguments</span> <span class="pre">converted</span> <span class="pre">during</span> <span class="pre">string</span> <span class="pre">formatting'</span></tt></p>
-<p>Layout of the Navigation Toolbar</p>
-</div>
-</div>
+any <em class="xref std std-ref">middleware</em> to the lux WSGI callable, instead it
+adds an handler to the <a class="reference internal" href="../tutorials/extensions.html#event-on-html-document"><em>on_html_document</em></a> event.
+In other words, the sitemap extension operates on <tt class="docutils literal"><span class="pre">text/html</span></tt>
+responses only.</p>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>This extensions is only used when the HTTP response has a <tt class="docutils literal"><span class="pre">text/html</span></tt>
-content type.
-In this case, when the <a class="reference internal" href="../api/index.html#lux.core.wrappers.WsgiRequest.html_document" title="lux.core.wrappers.WsgiRequest.html_document"><tt class="xref py py-attr docutils literal"><span class="pre">WsgiRequest.html_document</span></tt></a> is accessed for the
-first time, the extension, via the <a class="reference internal" href="#lux.extensions.sitemap.Extension.on_html_document" title="lux.extensions.sitemap.Extension.on_html_document"><tt class="xref py py-meth docutils literal"><span class="pre">on_html_document()</span></tt></a> handler,
+<p>When the <a class="reference internal" href="../api/index.html#lux.core.wrappers.WsgiRequest.html_document" title="lux.core.wrappers.WsgiRequest.html_document"><tt class="xref py py-attr docutils literal"><span class="pre">WsgiRequest.html_document</span></tt></a> attribute is accessed for the
+first time, the extension, via the <a class="reference internal" href="#lux.extensions.sitemap.Extension.on_html_document" title="lux.extensions.sitemap.Extension.on_html_document"><tt class="xref py py-meth docutils literal"><span class="pre">on_html_document()</span></tt></a> event,
 adds a <a class="reference internal" href="#lux.extensions.sitemap.NavigationInfo" title="lux.extensions.sitemap.NavigationInfo"><tt class="xref py py-class docutils literal"><span class="pre">NavigationInfo</span></tt></a> object to the <tt class="docutils literal"><span class="pre">request.cache</span></tt> dictionary.
 This object can be accessed via <tt class="docutils literal"><span class="pre">request.cache.html_navigation</span></tt> if needed.</p>
 <p>The <tt class="docutils literal"><span class="pre">html_navigation</span></tt> can be used to render a navigation toolbar via
@@ -132,7 +104,33 @@ method is available.</p>
 </pre></div>
 </div>
 <p>For example, in the <a class="reference internal" href="cms.html#extension-cms"><em>cms extensions</em></a>, the
-<a class="reference internal" href="cms.html#lux.extensions.cms.views.EditPage" title="lux.extensions.cms.views.EditPage"><tt class="xref py py-class docutils literal"><span class="pre">EditPage</span></tt></a> router adds links to edit or exit-editing of pages.</p>
+<tt class="xref py py-class docutils literal"><span class="pre">EditPage</span></tt> router adds links to edit or exit-editing of pages.</p>
+</div>
+</div>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="navigation-brand">
+<span id="std:setting-NAVIGATION_BRAND"></span><h3>NAVIGATION_BRAND<a class="headerlink" href="#navigation-brand" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">''</span></tt></p>
+<p>Html string for the brand in the toolbar</p>
+</div>
+<div class="section" id="navigation-brand-link">
+<span id="std:setting-NAVIGATION_BRAND_LINK"></span><h3>NAVIGATION_BRAND_LINK<a class="headerlink" href="#navigation-brand-link" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'/'</span></tt></p>
+<p>The href value of the anchor which display the brand in the navigation toolbar</p>
+</div>
+<div class="section" id="navigation-classes">
+<span id="std:setting-NAVIGATION_CLASSES"></span><h3>NAVIGATION_CLASSES<a class="headerlink" href="#navigation-classes" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'nav</span> <span class="pre">nav-list</span> <span class="pre">standard'</span></tt></p>
+</div>
+<div class="section" id="navigation-levels">
+<span id="std:setting-NAVIGATION_LEVELS"></span><h3>NAVIGATION_LEVELS<a class="headerlink" href="#navigation-levels" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'1'</span></tt></p>
+</div>
+<div class="section" id="navigation-template">
+<span id="std:setting-NAVIGATION_TEMPLATE"></span><h3>NAVIGATION_TEMPLATE<a class="headerlink" href="#navigation-template" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;('brand',</span> <span class="pre">'main',</span> <span class="pre">'secondary',</span> <span class="pre">'user')&quot;</span></tt></p>
+<p>Layout of the Navigation Toolbar</p>
 </div>
 </div>
 <div class="section" id="api">
@@ -144,7 +142,7 @@ method is available.</p>
 <em class="property">class </em><tt class="descclassname">lux.extensions.sitemap.</tt><tt class="descname">Extension</tt><a class="reference internal" href="../modules/lux/extensions/sitemap.html#Extension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.Extension" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="lux.extensions.sitemap.Extension.on_html_document">
-<tt class="descname">on_html_document</tt><big>(</big><em>app</em>, <em>request</em>, <em>html</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sitemap.html#Extension.on_html_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.Extension.on_html_document" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">on_html_document</tt><big>(</big><em>app</em>, <em>request</em>, <em>doc</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sitemap.html#Extension.on_html_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.Extension.on_html_document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the <tt class="docutils literal"><span class="pre">html_navigation</span></tt> entry in the <tt class="docutils literal"><span class="pre">request.cache</span></tt>.</p>
 <p>Loop over all Routers which have the <tt class="docutils literal"><span class="pre">navigation_visit</span></tt> method
 implemented. The <tt class="docutils literal"><span class="pre">html_navigation</span></tt> is an instance of
@@ -195,7 +193,7 @@ via the <a class="reference internal" href="#lux.extensions.sitemap.Navigation" 
 <dl class="class">
 <dt id="lux.extensions.sitemap.Navigation">
 <em class="property">class </em><tt class="descclassname">lux.extensions.sitemap.</tt><tt class="descname">Navigation</tt><big>(</big><em>*children</em>, <em>**parameters</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sitemap.html#Navigation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sitemap.Navigation" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="../api/index.html#lux.core.content.Template" title="lux.core.content.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> which can be used to render the
+<dd><p>A <a class="reference internal" href="../api/index.html#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> which can be used to render the
 <a class="reference internal" href="#lux.extensions.sitemap.NavigationInfo" title="lux.extensions.sitemap.NavigationInfo"><tt class="xref py py-class docutils literal"><span class="pre">NavigationInfo</span></tt></a> object stored in the <tt class="docutils literal"><span class="pre">request.cache</span></tt>
 dictionary.</p>
 </dd></dl>
@@ -211,22 +209,22 @@ dictionary.</p>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../index.html">
-  <img class="logo" width="200" src="../static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../static/lux.svg" alt="lux" title="lux"/>
 </a>
 </p>
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Sitemap and Navigation</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#adding-entries">Adding entries</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#parameters">Parameters</a><ul>
 <li><a class="reference internal" href="#navigation-brand">NAVIGATION_BRAND</a></li>
 <li><a class="reference internal" href="#navigation-brand-link">NAVIGATION_BRAND_LINK</a></li>
 <li><a class="reference internal" href="#navigation-classes">NAVIGATION_CLASSES</a></li>
 <li><a class="reference internal" href="#navigation-levels">NAVIGATION_LEVELS</a></li>
 <li><a class="reference internal" href="#navigation-template">NAVIGATION_TEMPLATE</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#usage">Usage</a><ul>
-<li><a class="reference internal" href="#adding-entries">Adding entries</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#api">API</a><ul>

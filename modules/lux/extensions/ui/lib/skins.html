@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>lux.extensions.ui.lib.skins &mdash; lux 0.1b2 documentation</title>
+    <title>lux.extensions.ui.lib.skins &mdash; lux 0.1.0-beta.1 documentation</title>
     
     <link rel="stylesheet" href="../../../../../static/pulsar.css" type="text/css" />
     <link rel="stylesheet" href="../../../../../static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../../',
-        VERSION:     '0.1b2',
+        VERSION:     '0.1.0-beta.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../../../../static/underscore.js"></script>
     <script type="text/javascript" src="../../../../../static/doctools.js"></script>
     <link rel="shortcut icon" href="../../../../../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1b2 documentation" href="../../../../../index.html" />
+    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../../../../../index.html" />
     <link rel="up" title="Module code" href="../../../../index.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="../../../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../../../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+        <li><a href="../../../../../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
           <li><a href="../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>
@@ -98,7 +98,7 @@
 <span class="n">STATES</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">((</span><span class="s">&#39;default&#39;</span><span class="p">,</span> <span class="s">&#39;hover&#39;</span><span class="p">,</span> <span class="s">&#39;active&#39;</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="createskin"><a class="viewcode-back" href="../../../../../extensions/ui.html#lux.extensions.ui.lib.skins.createskin">[docs]</a><span class="k">def</span> <span class="nf">createskin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">hover</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">class_name</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="createskin"><a class="viewcode-back" href="../../../../../extensions/ui.html#lux.extensions.ui.lib.skins.createskin">[docs]</a><span class="k">def</span> <span class="nf">createskin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">hover</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Create a new :class:`Variables` container with :attr:`Variables`.name``</span>
 <span class="sd">    attribute set to ``name`` and containing variables which define a</span>
 <span class="sd">    css skin.</span>
@@ -121,8 +121,6 @@
     <span class="k">assert</span> <span class="n">default</span><span class="p">,</span> <span class="s">&#39;Default skin data must be defined&#39;</span>
     <span class="n">skins</span> <span class="o">=</span> <span class="n">cssv</span><span class="o">.</span><span class="n">skins</span>
     <span class="n">s</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">skins</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">class_name</span><span class="p">:</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">class_name</span> <span class="o">=</span> <span class="n">name</span>
     <span class="n">s</span><span class="o">.</span><span class="n">is_skin</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="c">#</span>
     <span class="n">_set</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">default</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
@@ -136,37 +134,46 @@
         <span class="nb">setattr</span><span class="p">(</span><span class="nb">vars</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">darkenskin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">transform_skin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">darken</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">darkenskin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">transform_skin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">darken</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">lightenskin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">transform_skin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">lighten</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">lightenskin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">transform_skin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">lighten</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">transform_skin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                   <span class="n">color</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">transform_skin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                   <span class="n">color</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">hover</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                   <span class="n">hover_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Transform a skin&#39;&#39;&#39;</span>
-    <span class="k">assert</span> <span class="n">default</span><span class="p">,</span> <span class="s">&#39;Default skin data must be defined&#39;</span>
-    <span class="n">border_color</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">background</span><span class="p">:</span>
-        <span class="n">background</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="n">default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;background&#39;</span><span class="p">))</span>
-        <span class="n">border</span> <span class="o">=</span> <span class="n">default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;border&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">border</span><span class="p">:</span>
-            <span class="n">border_color</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="n">border</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;color&#39;</span><span class="p">))</span>
+    <span class="n">default</span> <span class="o">=</span> <span class="n">default</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="n">background</span> <span class="o">=</span> <span class="n">background</span> <span class="ow">or</span> <span class="n">as_value</span><span class="p">(</span><span class="n">default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;background&#39;</span><span class="p">))</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">color</span> <span class="ow">or</span> <span class="n">as_value</span><span class="p">(</span><span class="n">default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;color&#39;</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="n">background</span><span class="p">,</span> <span class="s">&quot;No background information&quot;</span>
+    <span class="k">assert</span> <span class="n">color</span><span class="p">,</span> <span class="s">&quot;No color information&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">border</span><span class="p">:</span>
+        <span class="n">border</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="n">default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;border&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">border</span><span class="p">:</span>
+            <span class="n">border</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="n">size</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">border</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">border</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
     <span class="n">b2</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">border_color</span><span class="p">:</span>
-        <span class="n">border_color</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="n">size</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">border_color</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">border_color</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
     <span class="c">#</span>
-    <span class="n">border</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;color&#39;</span><span class="p">:</span> <span class="n">border_color</span><span class="p">}</span>
     <span class="n">new_default</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;background&#39;</span><span class="p">:</span> <span class="n">gradient</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">,</span> <span class="n">background</span><span class="p">,</span> <span class="n">b2</span><span class="p">),</span>
                    <span class="s">&#39;color&#39;</span><span class="p">:</span> <span class="n">color</span> <span class="ow">or</span> <span class="n">default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;color&#39;</span><span class="p">),</span>
                    <span class="s">&#39;border&#39;</span><span class="p">:</span> <span class="n">border</span><span class="p">}</span>
-    <span class="n">hover</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;background&#39;</span><span class="p">:</span> <span class="n">gradient</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">background</span><span class="p">),</span>
-             <span class="s">&#39;border&#39;</span><span class="p">:</span> <span class="n">border</span><span class="p">}</span>
-    <span class="n">active</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;background&#39;</span><span class="p">:</span> <span class="n">b2</span><span class="p">,</span> <span class="s">&#39;border&#39;</span><span class="p">:</span> <span class="n">border</span><span class="p">}</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">hover</span><span class="p">:</span>
+        <span class="n">hover</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;background&#39;</span><span class="p">:</span> <span class="n">gradient</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">background</span><span class="p">),</span>
+                 <span class="s">&#39;border&#39;</span><span class="p">:</span> <span class="n">border</span><span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">background</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="n">hover</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;background&#39;</span><span class="p">))</span>
+        <span class="n">b2</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">background</span><span class="p">,</span> <span class="n">hover_size</span><span class="p">)</span>
+        <span class="n">hover</span><span class="p">[</span><span class="s">&#39;background&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gradient</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">background</span><span class="p">)</span>
+        <span class="n">border</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="n">hover</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;border&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="n">border</span>
+
+    <span class="n">active</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;background&#39;</span><span class="p">:</span> <span class="n">gradient</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">b2</span><span class="p">),</span>
+              <span class="s">&#39;border&#39;</span><span class="p">:</span> <span class="n">border</span><span class="p">}</span>
     <span class="k">return</span> <span class="n">createskin</span><span class="p">(</span><span class="n">cssv</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">new_default</span><span class="p">,</span> <span class="n">hover</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
 
@@ -179,22 +186,40 @@
 <span class="sd">    * background</span>
 <span class="sd">    * color</span>
 <span class="sd">    * border</span>
-<span class="sd">    * text_decoration</span>
 
 <span class="sd">    :parameter child: an optional css selector for the child element to which</span>
 <span class="sd">        this :class:`.Skin` will be applied. If not supplied, the mixin</span>
 <span class="sd">        is applied to the element which has it.</span>
 <span class="sd">    :parameter clickable: if ``True`` the element is clickable and css</span>
-<span class="sd">        will be added to handle ``hover`` and ``active`` states. If set to one</span>
-<span class="sd">        of ``default``, ``hover`` or ``active``, all the states will be set</span>
-<span class="sd">        with values from the ``clickable`` state.</span>
-<span class="sd">        Otherwise, it only handles the ``default`` state.</span>
-<span class="sd">    :parameter only: specify a tuple of skin names to apply (can also be</span>
-<span class="sd">        a string). If not provided all skins created with :ref:`createskin`</span>
+<span class="sd">        will be added to handle ``hover`` and ``active`` states.</span>
+<span class="sd">        There are several whay for customising behaviour:</span>
+
+<span class="sd">        * if not provided it only handles the ``default`` state or the state</span>
+<span class="sd">          set by the ``default`` keyword. For example::</span>
+
+<span class="sd">              Skin()</span>
+
+<span class="sd">          handle the ``default`` state with values from the ``default`` state,</span>
+<span class="sd">          while::</span>
+
+<span class="sd">              Skin(default=&#39;active&#39;)</span>
+
+<span class="sd">          handle the ``default`` state with values from the ``active`` state.</span>
+<span class="sd">        * if ``clickable`` is set to one  of ``default``, ``hover`` or</span>
+<span class="sd">          ``active``, all the states will be set with values from the</span>
+<span class="sd">          ``clickable`` state.</span>
+<span class="sd">        * If ``clickable`` is switch on, single states can be switched off</span>
+<span class="sd">          by specifying the state with ``False`` value. For exmple::</span>
+
+<span class="sd">              Skin(ckickable=True, active=False)</span>
+
+<span class="sd">          Only affect the ``default`` and ``hover`` states</span>
+<span class="sd">    :parameter only: specify a tuple of ``skin names`` to apply (can also be</span>
+<span class="sd">        a string). If not provided all skins created with :func:`createskin`</span>
 <span class="sd">        are applied.</span>
 <span class="sd">        Skins with same class name are not applied.</span>
-<span class="sd">    :parameter exclude: specify a tuple of skins to exclude (can also be</span>
-<span class="sd">        a string). If not provided, none of the skins are excluded.</span>
+<span class="sd">    :parameter exclude: specify a tuple of ``skin names`` to exclude (can also</span>
+<span class="sd">        be a string). If not provided, none of the skins are excluded.</span>
 <span class="sd">    :parameter gradient: if set to ``False`` background are monocromatic</span>
 <span class="sd">        only (no gradients). If a callable, it is called with the</span>
 <span class="sd">        background gradient and should return another background gradient</span>
@@ -212,87 +237,110 @@
 <span class="sd">        overrides the default value in all the applied skins.</span>
 <span class="sd">    :parameter border_style: optional border style which overrides</span>
 <span class="sd">        the default value in all the applied skins.</span>
+<span class="sd">    :parameter prefix: Optional prefix to add to the skin classes. For example</span>
+<span class="sd">        ``prefix=&quot;btn&quot;`` create css rules for ``btn-&lt;skinname&gt;``.</span>
+<span class="sd">    :parameter noclass: Optional skin name applied to the element without</span>
+<span class="sd">        adding the skin class name.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">clickable</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">only</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                  <span class="n">gradient</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cursor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">applyto</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">border_width</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">border_style</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">hover</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">border_style</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">noclass</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">child</span> <span class="ow">or</span> <span class="s">&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clickable</span> <span class="o">=</span> <span class="n">clickable</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">states</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="n">default</span><span class="p">,</span>
-                       <span class="s">&#39;hover&#39;</span><span class="p">:</span> <span class="n">hover</span><span class="p">,</span>
-                       <span class="s">&#39;active&#39;</span><span class="p">:</span> <span class="n">active</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">states</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">STATES</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">False</span><span class="p">:</span> <span class="c"># if False, the state is switched off</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="n">cursor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">applyto</span> <span class="o">=</span> <span class="n">applyto</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">applyto</span> <span class="o">=</span> <span class="n">as_tuple</span><span class="p">(</span><span class="n">applyto</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">border_width</span> <span class="o">=</span> <span class="n">border_width</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">border_style</span> <span class="o">=</span> <span class="n">border_style</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">only</span> <span class="o">=</span> <span class="n">as_tuple</span><span class="p">(</span><span class="n">only</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">exclude</span> <span class="o">=</span> <span class="n">as_tuple</span><span class="p">(</span><span class="n">exclude</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gradient</span> <span class="o">=</span> <span class="n">gradient</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noclass</span> <span class="o">=</span> <span class="n">noclass</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
         <span class="n">skins</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">skins</span>
-        <span class="n">classes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">css</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">css</span>
+        <span class="c">#</span>
+        <span class="c"># Apply border information</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">border_width</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">border_style</span><span class="p">:</span>
+            <span class="n">border</span> <span class="o">=</span> <span class="n">Border</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">border_width</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">border_style</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">:</span>
+                <span class="n">css</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">,</span> <span class="n">border</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">border</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+
         <span class="c"># loop over possible skins</span>
         <span class="k">for</span> <span class="n">skin</span> <span class="ow">in</span> <span class="n">skins</span><span class="p">:</span>
+            <span class="n">class_name</span> <span class="o">=</span> <span class="n">skin</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">if</span> <span class="n">class_name</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">noclass</span><span class="p">:</span>
+                <span class="n">class_name</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="c"># Not a skin created by createskin</span>
             <span class="k">if</span> <span class="n">as_value</span><span class="p">(</span><span class="n">skin</span><span class="o">.</span><span class="n">is_skin</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">True</span><span class="p">:</span>
                 <span class="k">continue</span>
-            <span class="n">class_name</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="n">skin</span><span class="o">.</span><span class="n">class_name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>
-                <span class="n">class_name</span> <span class="o">=</span> <span class="n">skin</span><span class="o">.</span><span class="n">name</span>
-                <span class="k">if</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>
-                    <span class="k">continue</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">only</span> <span class="ow">and</span> <span class="n">skin</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">only</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exclude</span> <span class="ow">and</span> <span class="n">skin</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">exclude</span><span class="p">:</span>
                 <span class="k">continue</span>
-            <span class="n">classes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">class_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">class_name</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="p">:</span>
+                <span class="n">class_name</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
+
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">clickable</span><span class="p">:</span>
                 <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">:</span>
                     <span class="n">params</span><span class="p">[</span><span class="s">&#39;cursor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">clickable</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
-                    <span class="k">for</span> <span class="n">dha</span> <span class="ow">in</span> <span class="n">skin</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dha</span><span class="p">,</span> <span class="n">Variables</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dha</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">STATES</span><span class="p">:</span>
-                            <span class="n">bcd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bcd_params</span><span class="p">(</span><span class="n">dha</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dha</span><span class="o">.</span><span class="n">params</span><span class="p">())</span>
-                            <span class="n">params</span><span class="p">[</span><span class="n">dha</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bcd</span><span class="p">(</span><span class="n">bcd</span><span class="p">)</span>
+                    <span class="c"># Loop through skin variables and pick states</span>
+                    <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">skin</span><span class="p">:</span>
+                        <span class="n">state_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="n">skin</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">state_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                            <span class="n">params</span><span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bcd</span><span class="p">(</span><span class="n">state_params</span><span class="p">)</span>
                 <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">clickable</span> <span class="ow">in</span> <span class="n">STATES</span><span class="p">:</span>
-                    <span class="n">bcd</span> <span class="o">=</span> <span class="n">skin</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">clickable</span><span class="p">]</span><span class="o">.</span><span class="n">params</span><span class="p">()</span>
-                    <span class="n">bcd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bcd_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clickable</span><span class="p">,</span> <span class="n">bcd</span><span class="p">)</span>
-                    <span class="n">override</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bcd</span><span class="p">(</span><span class="n">bcd</span><span class="p">)</span>
-                    <span class="k">for</span> <span class="n">dha</span> <span class="ow">in</span> <span class="n">skin</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dha</span><span class="p">,</span> <span class="n">Variables</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dha</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">STATES</span><span class="p">:</span>
-                            <span class="n">params</span><span class="p">[</span><span class="n">dha</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">override</span>
+                    <span class="c"># the parameters for the clickable state</span>
+                    <span class="n">state_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="n">skin</span><span class="p">,</span> <span class="n">skin</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">clickable</span><span class="p">],</span> <span class="bp">True</span><span class="p">)</span>
+                    <span class="n">override</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bcd</span><span class="p">(</span><span class="n">state_params</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">skin</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="n">skin</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                            <span class="n">params</span><span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">override</span>
                 <span class="k">if</span> <span class="n">params</span><span class="p">:</span>
                     <span class="n">mixin</span> <span class="o">=</span> <span class="n">Clickable</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">mixin</span> <span class="o">=</span> <span class="n">Mixin</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">mixin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bcd</span><span class="p">(</span><span class="n">skin</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">params</span><span class="p">())</span>
-            <span class="n">css</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">css</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">class_name</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">:</span>
-                    <span class="n">css</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">,</span> <span class="n">mixin</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">mixin</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
-                    <span class="n">elem</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">:</span>
+                <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="n">skin</span><span class="p">,</span> <span class="n">skin</span><span class="p">[</span><span class="s">&#39;default&#39;</span><span class="p">],</span> <span class="bp">True</span><span class="p">)</span>
+                <span class="n">mixin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bcd</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">class_name</span><span class="p">:</span>
                     <span class="n">css</span><span class="p">(</span><span class="s">&#39;.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">class_name</span><span class="p">,</span>
                         <span class="n">css</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">,</span> <span class="n">mixin</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">))</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">css</span><span class="p">(</span><span class="s">&#39;.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">mixin</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
-                    <span class="k">except</span><span class="p">:</span>
-                        <span class="k">raise</span>
+                    <span class="n">css</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">,</span> <span class="n">mixin</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">class_name</span><span class="p">:</span>
+                    <span class="n">css</span><span class="p">(</span><span class="s">&#39;.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">mixin</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">mixin</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_bcd_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">p</span><span class="p">:</span>
-            <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">params</span>
+    <span class="k">def</span> <span class="nf">state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">skin</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">Variables</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">state</span><span class="o">.</span><span class="n">params</span><span class="p">()</span> <span class="k">if</span> <span class="n">force</span> <span class="k">else</span> <span class="bp">None</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">state</span> <span class="o">=</span> <span class="n">skin</span><span class="p">[</span><span class="n">val</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">Variables</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">state</span><span class="o">.</span><span class="n">params</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">params</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">params</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">params</span>
 
     <span class="k">def</span> <span class="nf">bcd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">applyto</span><span class="p">:</span>
@@ -302,6 +350,7 @@
                 <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                     <span class="n">nparams</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
             <span class="n">params</span> <span class="o">=</span> <span class="n">nparams</span>
+        <span class="c">#</span>
         <span class="c"># Remove gradient</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gradient</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">bg</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;background&#39;</span><span class="p">))</span>
@@ -313,18 +362,8 @@
                     <span class="n">bg</span> <span class="o">=</span> <span class="n">bg</span><span class="o">.</span><span class="n">end</span>
                 <span class="n">params</span><span class="p">[</span><span class="s">&#39;background&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="n">bg</span><span class="p">)</span>
         <span class="c">#</span>
-        <span class="c"># get border infomation</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">border_width</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">border_style</span><span class="p">:</span>
-            <span class="n">bd</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;border&#39;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">bd</span><span class="p">:</span>
-                <span class="n">bd</span> <span class="o">=</span> <span class="n">as_params</span><span class="p">(</span><span class="n">bd</span><span class="p">,</span> <span class="s">&#39;style&#39;</span><span class="p">)</span>
-                <span class="c"># copy parameters</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">border_width</span><span class="p">:</span>
-                    <span class="n">bd</span><span class="p">[</span><span class="s">&#39;width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">border_width</span><span class="p">)</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">border_style</span><span class="p">:</span>
-                    <span class="n">bd</span><span class="p">[</span><span class="s">&#39;style&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">border_style</span><span class="p">)</span>
-                <span class="n">params</span><span class="p">[</span><span class="s">&#39;border&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bd</span>
-        <span class="k">return</span> <span class="n">bcd</span><span class="p">(</span><span class="n">params</span><span class="p">)</span></div>
+        <span class="c"># get border information</span>
+        <span class="k">return</span> <span class="n">Bcd</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
@@ -333,7 +372,7 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../../../../../index.html">
-  <img class="logo" width="200" src="../../../../../static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../../../../../static/lux.svg" alt="lux" title="lux"/>
 </a>
 </p>
 <div id="searchbox" style="display: none">

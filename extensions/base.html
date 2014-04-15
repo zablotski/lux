@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Base &mdash; lux 0.1b2 documentation</title>
+    <title>Base &mdash; lux 0.1.0-beta.1 documentation</title>
     
     <link rel="stylesheet" href="../static/pulsar.css" type="text/css" />
     <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1b2',
+        VERSION:     '0.1.0-beta.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../static/underscore.js"></script>
     <script type="text/javascript" src="../static/doctools.js"></script>
     <link rel="shortcut icon" href="../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1b2 documentation" href="../index.html" />
+    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../index.html" />
     <link rel="up" title="Extensions" href="index.html" />
     <link rel="next" title="User Interface" href="ui.html" />
     <link rel="prev" title="The Application" href="app.html" /> 
@@ -46,7 +46,7 @@
         <li class="right" >
           <a href="app.html" title="The Application"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+        <li><a href="../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Extensions</a> &raquo;</li> 
       </ul>
     </div>
@@ -78,54 +78,34 @@ for example).</p>
 <h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="clean-url">
 <span id="std:setting-CLEAN_URL"></span><h3>CLEAN_URL<a class="headerlink" href="#clean-url" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">True</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">'True'</span></tt></p>
 <p>When <tt class="docutils literal"><span class="pre">True</span></tt>, requests on url with consecutive slashes are converted to valid url and redirected.</p>
-</div>
-<div class="section" id="css">
-<span id="std:setting-CSS"></span><h3>CSS<a class="headerlink" href="#css" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">{}</span></tt></p>
-<p>Dictionary of css locations.</p>
 </div>
 <div class="section" id="favicon">
 <span id="std:setting-FAVICON"></span><h3>FAVICON<a class="headerlink" href="#favicon" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">None</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
 <p>Adds wsgi middleware to handle favicon url <tt class="docutils literal"><span class="pre">/favicon.ico``served</span> <span class="pre">from</span> <span class="pre">``MEDIA_URL/FAVICON</span></tt></p>
 </div>
 <div class="section" id="gzip-min-length">
 <span id="std:setting-GZIP_MIN_LENGTH"></span><h3>GZIP_MIN_LENGTH<a class="headerlink" href="#gzip-min-length" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">200</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">'200'</span></tt></p>
 <p>If a positive integer, a response middleware is added so that it encodes the response via the gzip algorithm.</p>
-</div>
-<div class="section" id="html-meta">
-<span id="std:setting-HTML_META"></span><h3>HTML_META<a class="headerlink" href="#html-meta" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">[{'content':</span> <span class="pre">'IE=edge',</span> <span class="pre">'http-equiv':</span> <span class="pre">'X-UA-Compatible'},</span> <span class="pre">{'name':</span> <span class="pre">'viewport',</span> <span class="pre">'content':</span> <span class="pre">'width=device-width,</span> <span class="pre">initial-scale=1'}]</span></tt></p>
-<p>List of default <tt class="docutils literal"><span class="pre">meta</span></tt> elements to add to the html headelement</p>
-</div>
-<div class="section" id="media-url">
-<span id="std:setting-MEDIA_URL"></span><h3>MEDIA_URL<a class="headerlink" href="#media-url" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'media'</span></tt></p>
-<p>the base url for static files</p>
-</div>
-<div class="section" id="minified-media">
-<span id="std:setting-MINIFIED_MEDIA"></span><h3>MINIFIED_MEDIA<a class="headerlink" href="#minified-media" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">True</span></tt></p>
-<p>Use minified media files. All media files will replace their extensions with .min.ext. For example, javascript links <a href="#id1"><span class="problematic" id="id2">*</span></a>.js become <a href="#id3"><span class="problematic" id="id4">*</span></a>.min.js</p>
 </div>
 <div class="section" id="serve-static-files">
 <span id="std:setting-SERVE_STATIC_FILES"></span><h3>SERVE_STATIC_FILES<a class="headerlink" href="#serve-static-files" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">'False'</span></tt></p>
 <p>if <tt class="docutils literal"><span class="pre">True</span></tt> add middleware to serve static files.</p>
 </div>
 <div class="section" id="use-etags">
 <span id="std:setting-USE_ETAGS"></span><h3>USE_ETAGS<a class="headerlink" href="#use-etags" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">'False'</span></tt></p>
 </div>
 </div>
 <div class="section" id="media-handling">
 <h2>Media Handling<a class="headerlink" href="#media-handling" title="Permalink to this headline">¶</a></h2>
 <p>When the <a class="reference internal" href="#std:setting-SERVE_STATIC_FILES"><tt class="xref std std-setting docutils literal"><span class="pre">SERVE_STATIC_FILES</span></tt></a> parameter is set to <tt class="docutils literal"><span class="pre">True</span></tt>,
 this extension adds middleware for serving static files from
-<a class="reference internal" href="#std:setting-MEDIA_URL"><tt class="xref std std-setting docutils literal"><span class="pre">MEDIA_URL</span></tt></a>.
+<a class="reference internal" href="app.html#std:setting-MEDIA_URL"><tt class="xref std std-setting docutils literal"><span class="pre">MEDIA_URL</span></tt></a>.
 In addition, a <a class="reference internal" href="#std:setting-FAVICON"><tt class="xref std std-setting docutils literal"><span class="pre">FAVICON</span></tt></a> location can also be specified.</p>
 </div>
 <div class="section" id="api">
@@ -141,32 +121,11 @@ In addition, a <a class="reference internal" href="#std:setting-FAVICON"><tt cla
 <dd><p>Add two middleware handlers if configured to do so.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="lux.extensions.base.Extension.on_html_document">
-<tt class="descname">on_html_document</tt><big>(</big><em>app</em>, <em>request</em>, <em>html</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/base.html#Extension.on_html_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.base.Extension.on_html_document" title="Permalink to this definition">¶</a></dt>
-<dd><p>When the document is created add stylesheet and default
-scripts to the document media.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
 <div class="section" id="scripts">
 <h3>Scripts<a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="lux.extensions.base.Scripts">
-<em class="property">class </em><tt class="descclassname">lux.extensions.base.</tt><tt class="descname">Scripts</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lux.extensions.base.Scripts" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="lux.extensions.base.Scripts.require">
-<tt class="descname">require</tt><big>(</big><em>*scripts</em><big>)</big><a class="headerlink" href="#lux.extensions.base.Scripts.require" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a <tt class="docutils literal"><span class="pre">script</span></tt> to the list of <tt class="xref py py-attr docutils literal"><span class="pre">required</span></tt> scripts.</p>
-<p>The <tt class="docutils literal"><span class="pre">script</span></tt> can be a name in the <tt class="xref py py-attr docutils literal"><span class="pre">known_libraries</span></tt>,
-an absolute uri or a relative url.</p>
-<p>The script will be loaded using the <tt class="docutils literal"><span class="pre">require</span></tt> javascript package.</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 </div>
@@ -178,7 +137,7 @@ an absolute uri or a relative url.</p>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../index.html">
-  <img class="logo" width="200" src="../static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../static/lux.svg" alt="lux" title="lux"/>
 </a>
 </p>
   <h3><a href="../index.html">Table Of Contents</a></h3>
@@ -186,12 +145,8 @@ an absolute uri or a relative url.</p>
 <li><a class="reference internal" href="#">Base</a><ul>
 <li><a class="reference internal" href="#parameters">Parameters</a><ul>
 <li><a class="reference internal" href="#clean-url">CLEAN_URL</a></li>
-<li><a class="reference internal" href="#css">CSS</a></li>
 <li><a class="reference internal" href="#favicon">FAVICON</a></li>
 <li><a class="reference internal" href="#gzip-min-length">GZIP_MIN_LENGTH</a></li>
-<li><a class="reference internal" href="#html-meta">HTML_META</a></li>
-<li><a class="reference internal" href="#media-url">MEDIA_URL</a></li>
-<li><a class="reference internal" href="#minified-media">MINIFIED_MEDIA</a></li>
 <li><a class="reference internal" href="#serve-static-files">SERVE_STATIC_FILES</a></li>
 <li><a class="reference internal" href="#use-etags">USE_ETAGS</a></li>
 </ul>

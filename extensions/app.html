@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>The Application &mdash; lux 0.1b2 documentation</title>
+    <title>The Application &mdash; lux 0.1.0-beta.1 documentation</title>
     
     <link rel="stylesheet" href="../static/pulsar.css" type="text/css" />
     <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1b2',
+        VERSION:     '0.1.0-beta.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../static/underscore.js"></script>
     <script type="text/javascript" src="../static/doctools.js"></script>
     <link rel="shortcut icon" href="../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1b2 documentation" href="../index.html" />
+    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../index.html" />
     <link rel="up" title="Extensions" href="index.html" />
     <link rel="next" title="Base" href="base.html" />
     <link rel="prev" title="Extensions" href="index.html" /> 
@@ -46,7 +46,7 @@
         <li class="right" >
           <a href="index.html" title="Extensions"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+        <li><a href="../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Extensions</a> &raquo;</li> 
       </ul>
     </div>
@@ -71,9 +71,24 @@
 <span id="the-application"></span><span id="middleware-base"></span><h1>The Application<a class="headerlink" href="#module-lux.core.app" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="css">
+<span id="std:setting-CSS"></span><h3>CSS<a class="headerlink" href="#css" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'{}'</span></tt></p>
+<p>Dictionary of css locations.</p>
+</div>
+<div class="section" id="date-format">
+<span id="std:setting-DATE_FORMAT"></span><h3>DATE_FORMAT<a class="headerlink" href="#date-format" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'%Y</span> <span class="pre">%b</span> <span class="pre">%d</span> <span class="pre">%H:%M:%S'</span></tt></p>
+<p>Default formatting for dates</p>
+</div>
+<div class="section" id="default-template-engine">
+<span id="std:setting-DEFAULT_TEMPLATE_ENGINE"></span><h3>DEFAULT_TEMPLATE_ENGINE<a class="headerlink" href="#default-template-engine" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'python'</span></tt></p>
+<p>Default template engine</p>
+</div>
 <div class="section" id="description">
 <span id="std:setting-DESCRIPTION"></span><h3>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">None</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
 <p>A description to display before the argument help on the command line when running commands</p>
 </div>
 <div class="section" id="encoding">
@@ -83,12 +98,12 @@
 </div>
 <div class="section" id="error-handler">
 <span id="std:setting-ERROR_HANDLER"></span><h3>ERROR_HANDLER<a class="headerlink" href="#error-handler" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">None</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
 <p>Handler of Http exceptions</p>
 </div>
 <div class="section" id="extensions">
 <span id="std:setting-EXTENSIONS"></span><h3>EXTENSIONS<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">[]</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">'[]'</span></tt></p>
 <p>List of extension names to use in your application. The order matter since the wsgi middleware of extension is processed in the order given by this setting.</p>
 </div>
 <div class="section" id="html-head-title">
@@ -96,15 +111,45 @@
 <p>Default: <tt class="docutils literal"><span class="pre">'Lux'</span></tt></p>
 <p>Default HTML Title</p>
 </div>
+<div class="section" id="html-meta">
+<span id="std:setting-HTML_META"></span><h3>HTML_META<a class="headerlink" href="#html-meta" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;[{'content':</span> <span class="pre">'IE=edge',</span> <span class="pre">'http-equiv':</span> <span class="pre">'X-UA-Compatible'},</span> <span class="pre">{'content':</span> <span class="pre">'width=device-width,</span> <span class="pre">initial-scale=1',</span> <span class="pre">'name':</span> <span class="pre">'viewport'}]&quot;</span></tt></p>
+<p>List of default <tt class="docutils literal"><span class="pre">meta</span></tt> elements to add to the html headelement</p>
+</div>
+<div class="section" id="jsrequired">
+<span id="std:setting-JSREQUIRED"></span><h3>JSREQUIRED<a class="headerlink" href="#jsrequired" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;('jquery',</span> <span class="pre">'lodash',</span> <span class="pre">'json',</span> <span class="pre">'lux')&quot;</span></tt></p>
+<p>Default Required javascript. Loaded via requirejs.</p>
+</div>
+<div class="section" id="jsrequire-callback">
+<span id="std:setting-JSREQUIRE_CALLBACK"></span><h3>JSREQUIRE_CALLBACK<a class="headerlink" href="#jsrequire-callback" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'lux.initWeb'</span></tt></p>
+<p>Callback used by requirejs.</p>
+</div>
+<div class="section" id="links">
+<span id="std:setting-LINKS"></span><h3>LINKS<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;{'python':</span> <span class="pre">'https://www.python.org/',</span> <span class="pre">'lux':</span> <span class="pre">'https://github.com/quantmind/lux',</span> <span class="pre">'pulsar':</span> <span class="pre">'http://pythonhosted.org/pulsar/index.html'}&quot;</span></tt></p>
+<p>Links used throught the web site</p>
+</div>
 <div class="section" id="logging-config">
 <span id="std:setting-LOGGING_CONFIG"></span><h3>LOGGING_CONFIG<a class="headerlink" href="#logging-config" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">None</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
 <p>Dictionary for configuring logging</p>
 </div>
-<div class="section" id="use-socket-io">
-<span id="std:setting-USE_SOCKET_IO"></span><h3>USE_SOCKET_IO<a class="headerlink" href="#use-socket-io" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt></p>
-<p>Indicate if to use SocketIO rather than standard WebSocket when websocket middleware is used.</p>
+<div class="section" id="media-url">
+<span id="std:setting-MEDIA_URL"></span><h3>MEDIA_URL<a class="headerlink" href="#media-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'media'</span></tt></p>
+<p>the base url for static files</p>
+</div>
+<div class="section" id="minified-media">
+<span id="std:setting-MINIFIED_MEDIA"></span><h3>MINIFIED_MEDIA<a class="headerlink" href="#minified-media" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'True'</span></tt></p>
+<p>Use minified media files. All media files will replace their extensions with .min.ext. For example, javascript links <a href="#id1"><span class="problematic" id="id2">*</span></a>.js become <a href="#id3"><span class="problematic" id="id4">*</span></a>.min.js</p>
+</div>
+<div class="section" id="site-url">
+<span id="std:setting-SITE_URL"></span><h3>SITE_URL<a class="headerlink" href="#site-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Web site url</p>
 </div>
 </div>
 </div>
@@ -116,20 +161,29 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../index.html">
-  <img class="logo" width="200" src="../static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../static/lux.svg" alt="lux" title="lux"/>
 </a>
 </p>
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">The Application</a><ul>
 <li><a class="reference internal" href="#parameters">Parameters</a><ul>
+<li><a class="reference internal" href="#css">CSS</a></li>
+<li><a class="reference internal" href="#date-format">DATE_FORMAT</a></li>
+<li><a class="reference internal" href="#default-template-engine">DEFAULT_TEMPLATE_ENGINE</a></li>
 <li><a class="reference internal" href="#description">DESCRIPTION</a></li>
 <li><a class="reference internal" href="#encoding">ENCODING</a></li>
 <li><a class="reference internal" href="#error-handler">ERROR_HANDLER</a></li>
 <li><a class="reference internal" href="#extensions">EXTENSIONS</a></li>
 <li><a class="reference internal" href="#html-head-title">HTML_HEAD_TITLE</a></li>
+<li><a class="reference internal" href="#html-meta">HTML_META</a></li>
+<li><a class="reference internal" href="#jsrequired">JSREQUIRED</a></li>
+<li><a class="reference internal" href="#jsrequire-callback">JSREQUIRE_CALLBACK</a></li>
+<li><a class="reference internal" href="#links">LINKS</a></li>
 <li><a class="reference internal" href="#logging-config">LOGGING_CONFIG</a></li>
-<li><a class="reference internal" href="#use-socket-io">USE_SOCKET_IO</a></li>
+<li><a class="reference internal" href="#media-url">MEDIA_URL</a></li>
+<li><a class="reference internal" href="#minified-media">MINIFIED_MEDIA</a></li>
+<li><a class="reference internal" href="#site-url">SITE_URL</a></li>
 </ul>
 </li>
 </ul>

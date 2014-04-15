@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>lux.core.wrappers &mdash; lux 0.1b2 documentation</title>
+    <title>lux.core.wrappers &mdash; lux 0.1.0-beta.1 documentation</title>
     
     <link rel="stylesheet" href="../../../static/pulsar.css" type="text/css" />
     <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.1b2',
+        VERSION:     '0.1.0-beta.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../../static/underscore.js"></script>
     <script type="text/javascript" src="../../../static/doctools.js"></script>
     <link rel="shortcut icon" href="../../../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1b2 documentation" href="../../../index.html" />
+    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../../../index.html" />
     <link rel="up" title="lux.core" href="../core.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">lux 0.1b2 documentation</a> &raquo;</li>
+        <li><a href="../../../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >Module code</a> &raquo;</li>
           <li><a href="../core.html" accesskey="U">lux.core</a> &raquo;</li> 
       </ul>
@@ -90,7 +90,9 @@
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 
-<span class="kn">from</span> <span class="nn">pulsar</span> <span class="kn">import</span> <span class="n">HttpException</span><span class="p">,</span> <span class="n">ContentNotAccepted</span><span class="p">,</span> <span class="n">Http404</span><span class="p">,</span> <span class="n">get_event_loop</span>
+<span class="kn">from</span> <span class="nn">pulsar</span> <span class="kn">import</span> <span class="p">(</span><span class="n">HttpException</span><span class="p">,</span> <span class="n">ContentNotAccepted</span><span class="p">,</span> <span class="n">Http404</span><span class="p">,</span> <span class="n">get_event_loop</span><span class="p">,</span>
+                    <span class="n">multi_async</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.system</span> <span class="kn">import</span> <span class="n">json</span>
 <span class="kn">from</span> <span class="nn">pulsar.utils.structures</span> <span class="kn">import</span> <span class="n">AttributeDictionary</span>
 <span class="kn">from</span> <span class="nn">pulsar.apps.wsgi</span> <span class="kn">import</span> <span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">wsgi_request</span><span class="p">,</span> <span class="n">cached_property</span><span class="p">,</span>
                               <span class="n">EnvironMixin</span><span class="p">,</span> <span class="n">html_factory</span><span class="p">)</span>
@@ -180,7 +182,8 @@
 
 
 <div class="viewcode-block" id="Router"><a class="viewcode-back" href="../../../api/index.html#lux.core.wrappers.Router">[docs]</a><span class="k">class</span> <span class="nc">Router</span><span class="p">(</span><span class="n">wsgi</span><span class="o">.</span><span class="n">Router</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Extend pulsar Router with content management.&#39;&#39;&#39;</span>
+    <span class="sd">&#39;&#39;&#39;Extend pulsar :class:`~pulsar.apps.wsgi.routers.Router` with content</span>
+<span class="sd">    management.&#39;&#39;&#39;</span>
     <span class="n">content_manager</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="sd">&#39;&#39;&#39;Optional :class:`lux.core.content.ContentManager`.</span>
 
@@ -217,11 +220,30 @@
 
     <span class="k">def</span> <span class="nf">http_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
         <span class="n">doc</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">html_document</span>
-        <span class="n">html</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;body&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="p">}</span>
-        <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">fire</span><span class="p">(</span><span class="s">&#39;on_html_response&#39;</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
-        <span class="n">inner</span> <span class="o">=</span> <span class="n">html</span><span class="p">[</span><span class="s">&#39;body&#39;</span><span class="p">]</span>
-        <span class="n">doc</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">html</span><span class="p">[</span><span class="s">&#39;body&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">doc</span><span class="o">.</span><span class="n">has_default_content_type</span><span class="p">:</span>
+            <span class="c"># if the content type is text/html fire the on_html_response event</span>
+            <span class="n">html</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;body&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="p">}</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">fire</span><span class="p">(</span><span class="s">&#39;on_html_response&#39;</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">html</span><span class="p">[</span><span class="s">&#39;body&#39;</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">doc</span><span class="o">.</span><span class="n">http_response</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">JsonDocument</span><span class="p">(</span><span class="n">wsgi</span><span class="o">.</span><span class="n">HtmlDocument</span><span class="p">):</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_html</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">do_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">_tag</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">multi_async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">_tag</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;body&#39;</span><span class="p">:</span> <span class="n">body</span><span class="p">}</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+        <span class="n">coroutine_return</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </pre></div>
 
           </div>
@@ -230,7 +252,7 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper"><p class="logo">
 <a href="../../../index.html">
-  <img class="logo" width="200" src="../../../static/lux.jpg" alt="lux" title="lux"/>
+  <img class="logo" width="200" src="../../../static/lux.svg" alt="lux" title="lux"/>
 </a>
 </p>
 <div id="searchbox" style="display: none">
