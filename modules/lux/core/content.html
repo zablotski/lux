@@ -388,7 +388,7 @@
         <span class="sd">&#39;&#39;&#39;Return an icon used in links for ``instance``.&#39;&#39;&#39;</span>
         <span class="k">pass</span>
 
-    <span class="c">##  COLLECTION RENDERERS</span></div>
+    <span class="c"># COLLECTION RENDERERS</span></div>
 <div class="viewcode-block" id="ContentManager.html_collection_table"><a class="viewcode-back" href="../../../api/index.html#lux.core.content.ContentManager.html_collection_table">[docs]</a>    <span class="k">def</span> <span class="nf">html_collection_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Render a collection as an html table.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -433,7 +433,7 @@
             <span class="n">objs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">column_to_name</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">pretty</span><span class="p">)))</span>
         <span class="k">return</span> <span class="n">Json</span><span class="p">(</span><span class="n">objs</span><span class="p">)</span>
 
-    <span class="c">##  INSTANCE RENDERERS</span>
+    <span class="c"># INSTANCE RENDERERS</span>
 
 <div class="viewcode-block" id="ContentManager.html_object"><a class="viewcode-back" href="../../../api/index.html#lux.core.content.ContentManager.html_object">[docs]</a>    <span class="k">def</span> <span class="nf">html_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Render ``instance`` as ``html``.</span>

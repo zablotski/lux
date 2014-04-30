@@ -62,6 +62,12 @@
             
   <h1>Source code for lux.core.templates</h1><div class="highlight"><pre>
 <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">The :class:`.Template` defines a family of classes which can be used to</span>
+<span class="sd">build HTML elements in a pythonic fashion. No template specific language is</span>
+<span class="sd">required, instead a template for an html element is created by adding children</span>
+<span class="sd">:class:`.Template` to a parent one.</span>
+
+
 <span class="sd">Template</span>
 <span class="sd">~~~~~~~~~~~~~~~~~~~~</span>
 
@@ -127,10 +133,17 @@
 <span class="sd">        &gt;&gt;&gt; html.render()</span>
 <span class="sd">        &lt;div class=&#39;test&#39;&gt;&lt;span data-context=&#39;foo&#39;&gt;bla&lt;/span&gt;&lt;/div&gt;</span>
 
+<span class="sd">    .. attribute:: tag</span>
+
+<span class="sd">        An optional HTML tag_ for the outer element of this template.</span>
+<span class="sd">        If not specified, this template is a container of other templates</span>
+<span class="sd">        and no outer element is rendered.</span>
+
 <span class="sd">    .. attribute:: key</span>
 
 <span class="sd">        An optional string which identify this :class:`Template` within</span>
-<span class="sd">        other templates.</span>
+<span class="sd">        other templates. It is also used for extracting content from the</span>
+<span class="sd">        ``context`` dictionary passed to the template callable method.</span>
 
 <span class="sd">    .. attribute:: children</span>
 
@@ -139,10 +152,14 @@
 
 <span class="sd">    .. attribute:: parameters</span>
 
-<span class="sd">        An attribute dictionary containing all key-valued parameters.</span>
+<span class="sd">        An attribute dictionary containing all key-valued parameters passed</span>
+<span class="sd">        during initialisation. These parameters are used when building an</span>
+<span class="sd">        :class:`.Html` element via the callable method.</span>
 
 <span class="sd">        it is initialised by the :meth:`init_parameters` method at the end</span>
 <span class="sd">        of initialisation.</span>
+
+<span class="sd">    .. _tag: http://www.w3schools.com/tags/</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">key</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="n">tag</span> <span class="o">=</span> <span class="bp">None</span>
@@ -211,6 +228,8 @@
             <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">html</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
         <span class="n">html</span><span class="o">.</span><span class="n">maker</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">if</span> <span class="n">context</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">))</span>
         <span class="n">classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="s">&#39;__call__&#39;</span><span class="p">):</span>
             <span class="n">classes</span> <span class="o">=</span> <span class="n">classes</span><span class="p">()</span>
@@ -223,7 +242,7 @@
             <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
                 <span class="k">yield</span> <span class="n">child</span><span class="o">.</span><span class="n">key</span>
             <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">child</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                <span class="k">yield</span>  <span class="n">key</span>
+                <span class="k">yield</span> <span class="n">key</span>
 </div>
 <div class="viewcode-block" id="Template.get"><a class="viewcode-back" href="../../../api/index.html#lux.core.templates.Template.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Retrieve a children :class:`Template` with :attr:`Template.key`</span>
@@ -245,12 +264,8 @@
 
 </div>
 <div class="viewcode-block" id="Context"><a class="viewcode-back" href="../../../api/index.html#lux.core.templates.Context">[docs]</a><span class="k">class</span> <span class="nc">Context</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;A specialised :class:`Template` which uses the :attr:`Template.key`</span>
-<span class="sd">    to extract content from the ``context`` dictionary passed to the template</span>
-<span class="sd">    callable method.</span>
-
-<span class="sd">    :param key: initialise the :attr:`Template.key` attribute. It must be</span>
-<span class="sd">        provided.</span>
+    <span class="sd">&#39;&#39;&#39;A :class:`Template` which enforces the :attr:`~.Template.key`</span>
+<span class="sd">    attribute.</span>
 
 <span class="sd">    Fore example::</span>
 
@@ -264,23 +279,23 @@
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="n">params</span><span class="p">[</span><span class="s">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
-        <span class="n">params</span><span class="p">[</span><span class="s">&#39;context&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Context</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">html</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Context</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">context</span><span class="p">:</span>
-            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">html</span>
 
 </div>
 <div class="viewcode-block" id="ColumnTemplate"><a class="viewcode-back" href="../../../api/index.html#lux.core.templates.ColumnTemplate">[docs]</a><span class="k">class</span> <span class="nc">ColumnTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A template to place inside a :class:`.RowTemplate`.</span>
 
-<span class="sd">    :param span: fraction indicating how much this template extend across</span>
+<span class="sd">    :param span=1: fraction indicating how much this template extend across</span>
 <span class="sd">        its row container. For example ``0.5`` is half span. Must be between</span>
 <span class="sd">        0 and 1.</span>
 
+<span class="sd">    :param device=&#39;md&#39;: The device which render the column with the correct</span>
+<span class="sd">        ``span``. Valid options are</span>
+
+<span class="sd">        * ``xs`` extra small (phones)</span>
+<span class="sd">        * ``sm`` small (tablets)</span>
+<span class="sd">        * ``md`` medium (desktops)</span>
+<span class="sd">        * ``lg`` large (desktops)</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;div&#39;</span>
 
@@ -313,7 +328,7 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;columns&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-        <span class="c">#self.classes = &#39;grid%s row&#39; % self.columns</span>
+        <span class="c"># self.classes = &#39;grid%s row&#39; % self.columns</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">RowTemplate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">child_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
@@ -334,6 +349,7 @@
 
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;div&#39;</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;fixed&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
@@ -377,7 +393,8 @@
             <span class="n">site_contents</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">ids</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;content_ids&#39;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">ids</span><span class="p">:</span>
-                <span class="n">contents</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">request</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+                <span class="n">contents</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">request</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
                 <span class="k">for</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
                     <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">ids</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="p">()):</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">apply_content</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>

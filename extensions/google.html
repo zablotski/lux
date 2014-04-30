@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Javascript &mdash; lux 0.1.0-beta.1 documentation</title>
+    <title>Google integration &mdash; lux 0.1.0-beta.1 documentation</title>
     
     <link rel="stylesheet" href="../static/pulsar.css" type="text/css" />
     <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
@@ -25,8 +25,9 @@
     <script type="text/javascript" src="../static/doctools.js"></script>
     <link rel="shortcut icon" href="../static/favicon.ico"/>
     <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../index.html" />
-    <link rel="next" title="Overview" href="overview.html" />
-    <link rel="prev" title="Google integration" href="../extensions/google.html" /> 
+    <link rel="up" title="Extensions" href="index.html" />
+    <link rel="next" title="Javascript" href="../scripts/index.html" />
+    <link rel="prev" title="Static site builder" href="static.html" /> 
   </head>
   <body>
 
@@ -40,12 +41,13 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="overview.html" title="Overview"
+          <a href="../scripts/index.html" title="Javascript"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../extensions/google.html" title="Google integration"
+          <a href="static.html" title="Static site builder"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Extensions</a> &raquo;</li> 
       </ul>
     </div>
 <div class="deck">
@@ -65,26 +67,27 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="javascript">
-<span id="scripts"></span><h1>Javascript<a class="headerlink" href="#javascript" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extensions.html">Web Extensions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="datatable.html">Data table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="datatable.html#accessing-columns">Accessing Columns</a></li>
-<li class="toctree-l1"><a class="reference internal" href="datatable.html#extend-override">Extend - Override</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dragdrop.html">Drag &amp; Drop</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dialog.html">Dialog</a></li>
-</ul>
+  <div class="section" id="module-lux.extensions.google">
+<span id="google-integration"></span><span id="extension-google"></span><h1>Google integration<a class="headerlink" href="#module-lux.extensions.google" title="Permalink to this headline">¶</a></h1>
+<p>Facilitate google integration</p>
+<div class="section" id="google-api-key">
+<h2>Google API Key<a class="headerlink" href="#google-api-key" title="Permalink to this headline">¶</a></h2>
+<p>If the <tt class="xref std std-setting docutils literal"><span class="pre">GOOGLE_API_KEY</span></tt> parameter is set to a valid
+<a class="reference external" href="http://goo.gl/21m8Vl">google api key</a>, this extension allows to interact with several
+google services.</p>
+<div class="section" id="google-maps">
+<h3>Google maps<a class="headerlink" href="#google-maps" title="Permalink to this headline">¶</a></h3>
+<p>To use <a class="reference external" href="goo.gl/21m8Vl">google maps</a> api, you can require it via the
+<tt class="xref py py-meth docutils literal"><span class="pre">require()</span></tt> method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">scripts</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="s">&#39;google-maps&#39;</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="documented-code">
-<h2>Documented code<a class="headerlink" href="#documented-code" title="Permalink to this headline">¶</a></h2>
-<ul>
-    <li><a href='../docco/lux.html'>lux.js</a></li>
-    <li><a href='../docco/lux-web.html'>lux-web.js</a></li>
-    <li><a href='../docco/cms.html'>cms.js</a></li>
-</ul></div>
+</div>
+</div>
+<div class="section" id="google-analytics">
+<h2>Google Analytics<a class="headerlink" href="#google-analytics" title="Permalink to this headline">¶</a></h2>
+<p>Set the <tt class="xref std std-setting docutils literal"><span class="pre">GOOGLE_ANALYTICS_ID</span></tt> parameter to a valid analytic ID.</p>
+</div>
 </div>
 
 
@@ -99,21 +102,25 @@
 </p>
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Javascript</a><ul>
-<li><a class="reference internal" href="#documented-code">Documented code</a></li>
+<li><a class="reference internal" href="#">Google integration</a><ul>
+<li><a class="reference internal" href="#google-api-key">Google API Key</a><ul>
+<li><a class="reference internal" href="#google-maps">Google maps</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#google-analytics">Google Analytics</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../extensions/google.html"
-                        title="previous chapter">Google integration</a></p>
+  <p class="topless"><a href="static.html"
+                        title="previous chapter">Static site builder</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="overview.html"
-                        title="next chapter">Overview</a></p>
+  <p class="topless"><a href="../scripts/index.html"
+                        title="next chapter">Javascript</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../sources/scripts/index.txt"
+    <li><a href="../sources/extensions/google.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">

@@ -67,8 +67,194 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="users-and-sessions">
-<span id="sessions"></span><h1>Users and Sessions<a class="headerlink" href="#users-and-sessions" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-lux.extensions.sessions">
+<span id="users-and-sessions"></span><span id="sessions"></span><h1>Users and Sessions<a class="headerlink" href="#module-lux.extensions.sessions" title="Permalink to this headline">¶</a></h1>
+<p>A <a class="reference internal" href="index.html#extensions"><em>lux extension</em></a> for managing user, sessions
+and permissions. The extension
+is added simply by inserting <tt class="docutils literal"><span class="pre">lux.extensions.sessions</span></tt> into the
+list of <tt class="docutils literal"><span class="pre">EXTENSIONS</span></tt> of your application.</p>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="authentication-backends">
+<span id="std:setting-AUTHENTICATION_BACKENDS"></span><h3>AUTHENTICATION_BACKENDS<a class="headerlink" href="#authentication-backends" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;['lux.extensions.sessions.permissions.AuthBackend']&quot;</span></tt></p>
+<p>A list of python dotted path to a class used to provide a backend for authentication. There can be several of them.</p>
+</div>
+<div class="section" id="auth-salt-size">
+<span id="std:setting-AUTH_SALT_SIZE"></span><h3>AUTH_SALT_SIZE<a class="headerlink" href="#auth-salt-size" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'8'</span></tt></p>
+<p>Salt size for encription algorithm</p>
+</div>
+<div class="section" id="check-username">
+<span id="std:setting-CHECK_USERNAME"></span><h3>CHECK_USERNAME<a class="headerlink" href="#check-username" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'&lt;function</span> <span class="pre">Extension.&lt;lambda&gt;</span> <span class="pre">at</span> <span class="pre">0x11434b9e0&gt;'</span></tt></p>
+<p>Check if the username is valid</p>
+</div>
+<div class="section" id="crypt-algorithm">
+<span id="std:setting-CRYPT_ALGORITHM"></span><h3>CRYPT_ALGORITHM<a class="headerlink" href="#crypt-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'lux.extensions.sessions.crypt.arc4'</span></tt></p>
+<p>Python dotted path to module which provides the <tt class="docutils literal"><span class="pre">encrypt</span></tt> and <tt class="docutils literal"><span class="pre">descript</span></tt> method for password and sensitive data encryption/decription</p>
+</div>
+<div class="section" id="csrf-key-length">
+<span id="std:setting-CSRF_KEY_LENGTH"></span><h3>CSRF_KEY_LENGTH<a class="headerlink" href="#csrf-key-length" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'32'</span></tt></p>
+<p>Cross Site Request Forgery KEY LENGTH. If 0, no CSRF protection is used.</p>
+</div>
+<div class="section" id="default-permission-level">
+<span id="std:setting-DEFAULT_PERMISSION_LEVEL"></span><h3>DEFAULT_PERMISSION_LEVEL<a class="headerlink" href="#default-permission-level" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'read'</span></tt></p>
+<p>When no roles has tested positive for permissions, this parameter is used to check if a model has permission for an action</p>
+</div>
+<div class="section" id="permission-levels">
+<span id="std:setting-PERMISSION_LEVELS"></span><h3>PERMISSION_LEVELS<a class="headerlink" href="#permission-levels" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;{'update':</span> <span class="pre">30,</span> <span class="pre">'create':</span> <span class="pre">20,</span> <span class="pre">'read':</span> <span class="pre">10,</span> <span class="pre">'delete':</span> <span class="pre">40}&quot;</span></tt></p>
+<p>When a model</p>
+</div>
+<div class="section" id="secret-key">
+<span id="std:setting-SECRET_KEY"></span><h3>SECRET_KEY<a class="headerlink" href="#secret-key" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'secret-key'</span></tt></p>
+<p>A string or bytes used for encripting data. Must be unique to the application and long and random enough</p>
+</div>
+<div class="section" id="session-cookie-name">
+<span id="std:setting-SESSION_COOKIE_NAME"></span><h3>SESSION_COOKIE_NAME<a class="headerlink" href="#session-cookie-name" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'LUX'</span></tt></p>
+<p>Name of the cookie which stores session id</p>
+</div>
+<div class="section" id="session-expiry">
+<span id="std:setting-SESSION_EXPIRY"></span><h3>SESSION_EXPIRY<a class="headerlink" href="#session-expiry" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'604800'</span></tt></p>
+<p>Expiry for a session in seconds.</p>
+</div>
+</div>
+<div class="section" id="module-lux.extensions.sessions.models">
+<span id="permissions"></span><h2>Permissions<a class="headerlink" href="#module-lux.extensions.sessions.models" title="Permalink to this headline">¶</a></h2>
+<p>Models for Role-based access control (RBAC).
+It is an approach for managing users permissions on
+your application which could be a web-site, an organisation and so forth.</p>
+<div class="section" id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<p>There are five different elements to get familiar with this RBAC
+implementation:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#lux.extensions.sessions.models.Role" title="lux.extensions.sessions.models.Role"><tt class="xref py py-class docutils literal"><span class="pre">Role</span></tt></a>: within a site, a roles is created for various <tt class="docutils literal"><span class="pre">operations</span></tt>.</li>
+<li><tt class="xref py py-class docutils literal"><span class="pre">Permissions</span></tt>: they represents the power to perform certain
+<tt class="docutils literal"><span class="pre">operations</span></tt> on a resource and are assigned to specific <a class="reference internal" href="#lux.extensions.sessions.models.Role" title="lux.extensions.sessions.models.Role"><tt class="xref py py-class docutils literal"><span class="pre">Role</span></tt></a>.</li>
+<li><tt class="docutils literal"><span class="pre">Operations</span></tt>: what can a <a class="reference internal" href="#lux.extensions.sessions.models.User" title="lux.extensions.sessions.models.User"><tt class="xref py py-class docutils literal"><span class="pre">User</span></tt></a> do with that permission, usually,
+<tt class="docutils literal"><span class="pre">create</span></tt>, <tt class="docutils literal"><span class="pre">read</span></tt> <tt class="docutils literal"><span class="pre">update</span></tt>, <tt class="docutils literal"><span class="pre">delete</span></tt> (CRUD).</li>
+<li><strong>Subjects</strong>: these are the system users which are assigned particular
+<strong>roles</strong>.
+Permissions are not assigned directly to <strong>subjects</strong>, instead they are
+acquired through their roles.</li>
+</ul>
+<p>The <tt class="xref py py-class docutils literal"><span class="pre">Permission</span></tt> to perform certain certain <strong>operations</strong> are assigned
+to specific <strong>roles</strong>.</p>
+<p>This example is manages Users, Groups and Permissions.</p>
+</div>
+<div class="section" id="roles">
+<h3>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h3>
+<p>In this implementation a role is uniquely identified by a <tt class="docutils literal"><span class="pre">name</span></tt> and
+a <tt class="docutils literal"><span class="pre">owner</span></tt>.</p>
+<dl class="class">
+<dt id="lux.extensions.sessions.models.Role">
+<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.models.</tt><tt class="descname">Role</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/models.html#Role"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.Role" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#lux.extensions.sessions.models.Role" title="lux.extensions.sessions.models.Role"><tt class="xref py py-class docutils literal"><span class="pre">Role</span></tt></a> is uniquely identified by its <a class="reference internal" href="#lux.extensions.sessions.models.Role.name" title="lux.extensions.sessions.models.Role.name"><tt class="xref py py-attr docutils literal"><span class="pre">name</span></tt></a> and
+<a class="reference internal" href="#lux.extensions.sessions.models.Role.owner" title="lux.extensions.sessions.models.Role.owner"><tt class="xref py py-attr docutils literal"><span class="pre">owner</span></tt></a>.</p>
+<dl class="attribute">
+<dt id="lux.extensions.sessions.models.Role.name">
+<tt class="descname">name</tt><em class="property"> = None</em><a class="headerlink" href="#lux.extensions.sessions.models.Role.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of this role.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.sessions.models.Role.owner">
+<tt class="descname">owner</tt><a class="headerlink" href="#lux.extensions.sessions.models.Role.owner" title="Permalink to this definition">¶</a></dt>
+<dd><p>The owner of this role.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.sessions.models.Role.permissions">
+<tt class="descname">permissions</tt><em class="property"> = None</em><a class="headerlink" href="#lux.extensions.sessions.models.Role.permissions" title="Permalink to this definition">¶</a></dt>
+<dd><p>the set of all <tt class="xref py py-class docutils literal"><span class="pre">Permission</span></tt> assigned to this <a class="reference internal" href="#lux.extensions.sessions.models.Role" title="lux.extensions.sessions.models.Role"><tt class="xref py py-class docutils literal"><span class="pre">Role</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.models.Role.add_permission">
+<tt class="descname">add_permission</tt><big>(</big><em>resource</em>, <em>operation</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/models.html#Role.add_permission"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.Role.add_permission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new <tt class="xref py py-class docutils literal"><span class="pre">Permission</span></tt> for <tt class="docutils literal"><span class="pre">resource</span></tt> to perform an
+<tt class="docutils literal"><span class="pre">operation</span></tt>. The resource can be either an object or a model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.models.Role.assignto">
+<tt class="descname">assignto</tt><big>(</big><em>subject</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/models.html#Role.assignto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.Role.assignto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign this <a class="reference internal" href="#lux.extensions.sessions.models.Role" title="lux.extensions.sessions.models.Role"><tt class="xref py py-class docutils literal"><span class="pre">Role</span></tt></a> to <tt class="docutils literal"><span class="pre">subject</span></tt>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="subjects">
+<h3>Subjects<a class="headerlink" href="#subjects" title="Permalink to this headline">¶</a></h3>
+<p>The subject in this implementation is given by the <a class="reference internal" href="#lux.extensions.sessions.models.Group" title="lux.extensions.sessions.models.Group"><tt class="xref py py-class docutils literal"><span class="pre">Group</span></tt></a>.
+Therefore <em class="xref std std-ref">roles</em> are assigned to <a class="reference internal" href="#lux.extensions.sessions.models.Group" title="lux.extensions.sessions.models.Group"><tt class="xref py py-class docutils literal"><span class="pre">Group</span></tt></a>. Since roles
+are implemented via the <a class="reference internal" href="#lux.extensions.sessions.models.Role" title="lux.extensions.sessions.models.Role"><tt class="xref py py-class docutils literal"><span class="pre">Role</span></tt></a> model, the relationship between
+<a class="reference internal" href="#lux.extensions.sessions.models.Group" title="lux.extensions.sessions.models.Group"><tt class="xref py py-class docutils literal"><span class="pre">Group</span></tt></a> and <a class="reference internal" href="#lux.extensions.sessions.models.Role" title="lux.extensions.sessions.models.Role"><tt class="xref py py-class docutils literal"><span class="pre">Role</span></tt></a> is obtained via a
+<tt class="xref py py-class docutils literal"><span class="pre">stdnet.odm.ManyToManyField</span></tt>.</p>
+<dl class="class">
+<dt id="lux.extensions.sessions.models.Group">
+<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.models.</tt><tt class="descname">Group</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/models.html#Group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.Group" title="Permalink to this definition">¶</a></dt>
+<dd><p>A group of users.</p>
+</dd></dl>
+
+<p>The system user is implemented via the <a class="reference internal" href="#lux.extensions.sessions.models.User" title="lux.extensions.sessions.models.User"><tt class="xref py py-class docutils literal"><span class="pre">User</span></tt></a>. Since roles are always
+assigned to <a class="reference internal" href="#lux.extensions.sessions.models.Group" title="lux.extensions.sessions.models.Group"><tt class="xref py py-class docutils literal"><span class="pre">Group</span></tt></a>, a <a class="reference internal" href="#lux.extensions.sessions.models.User" title="lux.extensions.sessions.models.User"><tt class="xref py py-class docutils literal"><span class="pre">User</span></tt></a> obtains permissions via the#
+groups he belongs to.</p>
+<dl class="class">
+<dt id="lux.extensions.sessions.models.User">
+<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.models.</tt><tt class="descname">User</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/models.html#User"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.models.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user of a system.</p>
+<p>The only field required is the <tt class="xref py py-attr docutils literal"><span class="pre">username</span></tt>.
+which is also unique across all users.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s consider a model called <tt class="docutils literal"><span class="pre">Photo</span></tt>.
+We want all <tt class="docutils literal"><span class="pre">authenticated</span></tt> users to be able to <cite>read</cite> instances
+of <tt class="docutils literal"><span class="pre">Book</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">role</span> <span class="o">=</span> <span class="n">Role</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;can read Book&#39;</span><span class="p">,</span>
+            <span class="n">owner</span><span class="o">=</span><span class="n">website</span><span class="p">)</span>
+
+<span class="n">role</span><span class="o">.</span><span class="n">add_permission</span><span class="p">(</span><span class="n">Book</span><span class="p">,</span> <span class="s">&#39;read&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the Photos of a user:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">lsbardel</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;lsbardel&#39;</span><span class="p">)</span>
+<span class="n">role</span> <span class="o">=</span> <span class="n">Role</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;can read lsbardel books&#39;</span><span class="p">,</span>
+            <span class="n">owner</span><span class="o">=</span><span class="n">lsbardel</span><span class="p">)</span>
+<span class="n">role</span><span class="o">.</span><span class="n">add_permission</span><span class="p">(</span><span class="n">Book</span><span class="p">,</span> <span class="s">&#39;read&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We want all <tt class="docutils literal"><span class="pre">admin</span></tt> users to be able to <cite>update</cite> instances from
+model <tt class="docutils literal"><span class="pre">MyModel</span></tt> but not delete them:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">role</span> <span class="o">=</span> <span class="n">Role</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;can create/update my model&#39;</span><span class="p">,</span>
+            <span class="n">permission_level</span><span class="o">=</span><span class="n">update</span><span class="p">,</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">MyModel</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="n">role</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">admin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When we create a new instance of <tt class="docutils literal"><span class="pre">MyModel</span></tt> we need to give the required role</p>
+<blockquote>
+<div><p>instance = MyModel(....., user=user).save()</p>
+<p>role.add(instance)</p>
+</div></blockquote>
+<p>Lets assume we have a <tt class="docutils literal"><span class="pre">query</span></tt> on <tt class="docutils literal"><span class="pre">MyModel</span></tt> and we need all the instances
+for <tt class="docutils literal"><span class="pre">user</span></tt> with permission <tt class="docutils literal"><span class="pre">level</span></tt>:</p>
+<blockquote>
+<div>authenticated_query(query, user, level)</div></blockquote>
+</div>
+</div>
 </div>
 
 
@@ -81,6 +267,33 @@
   <img class="logo" width="200" src="../static/lux.svg" alt="lux" title="lux"/>
 </a>
 </p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Users and Sessions</a><ul>
+<li><a class="reference internal" href="#parameters">Parameters</a><ul>
+<li><a class="reference internal" href="#authentication-backends">AUTHENTICATION_BACKENDS</a></li>
+<li><a class="reference internal" href="#auth-salt-size">AUTH_SALT_SIZE</a></li>
+<li><a class="reference internal" href="#check-username">CHECK_USERNAME</a></li>
+<li><a class="reference internal" href="#crypt-algorithm">CRYPT_ALGORITHM</a></li>
+<li><a class="reference internal" href="#csrf-key-length">CSRF_KEY_LENGTH</a></li>
+<li><a class="reference internal" href="#default-permission-level">DEFAULT_PERMISSION_LEVEL</a></li>
+<li><a class="reference internal" href="#permission-levels">PERMISSION_LEVELS</a></li>
+<li><a class="reference internal" href="#secret-key">SECRET_KEY</a></li>
+<li><a class="reference internal" href="#session-cookie-name">SESSION_COOKIE_NAME</a></li>
+<li><a class="reference internal" href="#session-expiry">SESSION_EXPIRY</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-lux.extensions.sessions.models">Permissions</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#roles">Roles</a></li>
+<li><a class="reference internal" href="#subjects">Subjects</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="api.html"
                         title="previous chapter">RESTful web API</a></p>
