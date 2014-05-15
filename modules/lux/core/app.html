@@ -106,7 +106,7 @@
               <span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">execute_from_config</span><span class="p">(</span><span class="n">config_file</span><span class="p">):</span>
+<div class="viewcode-block" id="execute_from_config"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.execute_from_config">[docs]</a><span class="k">def</span> <span class="nf">execute_from_config</span><span class="p">(</span><span class="n">config_file</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Create and run an :class:`App` from a ``config_file``.</span>
 
 <span class="sd">This is the function to use when creating the script which runs your</span>
@@ -123,13 +123,13 @@
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">execute_app</span><span class="p">(</span><span class="n">App</span><span class="p">(</span><span class="n">config_file</span><span class="p">))</span>
 
-
+</div>
 <span class="k">def</span> <span class="nf">execute_from_command_line</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Execute a command line command&#39;&#39;&#39;</span>
     <span class="n">execute_app</span><span class="p">(</span><span class="n">App</span><span class="p">(</span><span class="s">&#39;lux.core.app&#39;</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="App"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App">[docs]</a><span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="n">ConsoleParser</span><span class="p">,</span> <span class="n">LocalMixin</span><span class="p">,</span> <span class="n">Extension</span><span class="p">):</span>
+<div class="viewcode-block" id="App"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App">[docs]</a><span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="n">ConsoleParser</span><span class="p">,</span> <span class="n">LocalMixin</span><span class="p">,</span> <span class="n">Extension</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;This is the main class for driving lux applications.</span>
 
 <span class="sd">    It is a specialised :class:`~.Extension` which collects</span>
@@ -211,7 +211,7 @@
         <span class="k">return</span> <span class="n">handler</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="App.config_module"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.config_module">[docs]</a>    <span class="k">def</span> <span class="nf">config_module</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="App.config_module"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.config_module">[docs]</a>    <span class="k">def</span> <span class="nf">config_module</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The :ref:`configuration file` used by this :class:`App`.&#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">module_name</span><span class="p">())</span>
 </div>
@@ -220,7 +220,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">logger</span>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="App.extensions"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.extensions">[docs]</a>    <span class="k">def</span> <span class="nf">extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="App.extensions"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.extensions">[docs]</a>    <span class="k">def</span> <span class="nf">extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Ordered dictionary of :class:`.Extension` available.</span>
 
 <span class="sd">        The order is the same as in the</span>
@@ -229,7 +229,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;EXTENSION_HANDLERS&#39;</span><span class="p">]</span>
 </div>
     <span class="nd">@local_property</span>
-<div class="viewcode-block" id="App.permissions"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.permissions">[docs]</a>    <span class="k">def</span> <span class="nf">permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="App.permissions"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.permissions">[docs]</a>    <span class="k">def</span> <span class="nf">permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The :class:`PermissionHandler` for this :class:`App`.&#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="n">PermissionHandler</span><span class="p">()</span>
 </div>
@@ -238,7 +238,7 @@
         <span class="k">return</span> <span class="p">{}</span>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="App.models"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.models">[docs]</a>    <span class="k">def</span> <span class="nf">models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="App.models"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.models">[docs]</a>    <span class="k">def</span> <span class="nf">models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Registered models for this applications.</span>
 
 <span class="sd">        Models are registered via the :mod:`lux.extensions.api` extension.</span>
@@ -246,7 +246,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">models</span>
 </div>
     <span class="nd">@local_property</span>
-<div class="viewcode-block" id="App.handler"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.handler">[docs]</a>    <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="App.handler"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.handler">[docs]</a>    <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The WSGI application handler for this :class:`App`.</span>
 
 <span class="sd">        It is lazily loaded the first time it is accessed so that</span>
@@ -270,12 +270,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">fire</span><span class="p">(</span><span class="s">&#39;on_loaded&#39;</span><span class="p">,</span> <span class="n">handler</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">handler</span>
 </div>
-<div class="viewcode-block" id="App.get_version"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.get_version">[docs]</a>    <span class="k">def</span> <span class="nf">get_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="App.get_version"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.get_version">[docs]</a>    <span class="k">def</span> <span class="nf">get_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Get version of this :class:`App`. Required by</span>
 <span class="sd">        :class:`.ConsoleParser`.&#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">version</span>
 </div>
-<div class="viewcode-block" id="App.wsgi_request"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.wsgi_request">[docs]</a>    <span class="k">def</span> <span class="nf">wsgi_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">environ</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+<div class="viewcode-block" id="App.wsgi_request"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.wsgi_request">[docs]</a>    <span class="k">def</span> <span class="nf">wsgi_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">environ</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Create a :class:`WsgiRequest` from a wsgi ``environ`` and set the</span>
 <span class="sd">        ``app`` attribute in the cache.</span>
 <span class="sd">        Additional keyed-valued parameters can be inserted.</span>
@@ -290,7 +290,7 @@
         <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">request</span>
 </div>
-<div class="viewcode-block" id="App.html_document"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.html_document">[docs]</a>    <span class="k">def</span> <span class="nf">html_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+<div class="viewcode-block" id="App.html_document"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.html_document">[docs]</a>    <span class="k">def</span> <span class="nf">html_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Build the HTML document.</span>
 
 <span class="sd">        Usually there is no need to call directly this method.</span>
@@ -329,7 +329,7 @@
         <span class="k">return</span> <span class="n">doc</span>
 </div>
     <span class="nd">@local_property</span>
-<div class="viewcode-block" id="App.commands"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.commands">[docs]</a>    <span class="k">def</span> <span class="nf">commands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="App.commands"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.commands">[docs]</a>    <span class="k">def</span> <span class="nf">commands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Load all commands from installed applications&#39;&#39;&#39;</span>
         <span class="c"># we need to make sure the middleware is loaded</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">handler</span>
@@ -353,7 +353,7 @@
         <span class="k">return</span> <span class="n">cmnds</span>
 </div>
     <span class="nd">@local_property</span>
-<div class="viewcode-block" id="App.config"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.config">[docs]</a>    <span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="App.config"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.config">[docs]</a>    <span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The :ref:`configuration &lt;configuration&gt;` dictionary for this</span>
 <span class="sd">        :class:`App`.</span>
 
@@ -388,7 +388,7 @@
                                               <span class="n">options</span><span class="o">.</span><span class="n">loglevel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">config</span>
 </div>
-<div class="viewcode-block" id="App.get_command"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.get_command">[docs]</a>    <span class="k">def</span> <span class="nf">get_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="App.get_command"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.get_command">[docs]</a>    <span class="k">def</span> <span class="nf">get_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Construct and return a :class:`Command` for this application.&#39;&#39;&#39;</span>
         <span class="n">commands</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">e</span><span class="p">,</span> <span class="n">cmnds</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -400,7 +400,7 @@
         <span class="n">mod</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">.commands.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">modname</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">mod</span><span class="o">.</span><span class="n">Command</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="App.get_usage"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.get_usage">[docs]</a>    <span class="k">def</span> <span class="nf">get_usage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="App.get_usage"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.get_usage">[docs]</a>    <span class="k">def</span> <span class="nf">get_usage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Returns the script&#39;s main help text, as a string.&#39;&#39;&#39;</span>
         <span class="n">description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;DESCRIPTION&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s">&#39;Lux web-framework&#39;</span>
         <span class="n">usage</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
@@ -414,7 +414,7 @@
         <span class="n">text</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">usage</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">text</span>
 </div>
-<div class="viewcode-block" id="App.get_parser"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.get_parser">[docs]</a>    <span class="k">def</span> <span class="nf">get_parser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">with_commands</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s">&#39;?&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+<div class="viewcode-block" id="App.get_parser"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.get_parser">[docs]</a>    <span class="k">def</span> <span class="nf">get_parser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">with_commands</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s">&#39;?&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Return a python :class:`argparse.ArgumentParser` for parsing</span>
 <span class="sd">        the command line.</span>
 
@@ -435,7 +435,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">render_trace</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">trace</span><span class="p">)</span>
 
-<div class="viewcode-block" id="App.load_extension"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.load_extension">[docs]</a>    <span class="k">def</span> <span class="nf">load_extension</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dotted_path</span><span class="p">):</span>
+<div class="viewcode-block" id="App.load_extension"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.load_extension">[docs]</a>    <span class="k">def</span> <span class="nf">load_extension</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dotted_path</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Load an :class:`.Extension` class into this :class:`App`.</span>
 
 <span class="sd">        :param dotted_path: python dotted path to the extension.</span>
@@ -469,7 +469,7 @@
                                <span class="s">&#39;config module must be within a valid python &#39;</span>
                                <span class="s">&#39;module.&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="App.fire"><a class="viewcode-back" href="../../../api/index.html#lux.core.app.App.fire">[docs]</a>    <span class="k">def</span> <span class="nf">fire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<div class="viewcode-block" id="App.fire"><a class="viewcode-back" href="../../../extensions/app.html#lux.core.app.App.fire">[docs]</a>    <span class="k">def</span> <span class="nf">fire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Fire an ``event``.&#39;&#39;&#39;</span>
         <span class="n">handlers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">handlers</span><span class="p">:</span>

@@ -70,7 +70,7 @@
   <span class="target" id="module-lux.core"><span id="writing-extensions"></span></span><div class="section" id="id1">
 <h1>Writing Extensions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>When writing a new extensions, one starts by subclassing the
-<a class="reference internal" href="../extensions/api.html#lux.extensions.api.Extension" title="lux.extensions.api.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> class:</p>
+<a class="reference internal" href="../api/index.html#lux.core.extension.Extension" title="lux.core.extension.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> class:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">lux</span>
 
 <span class="k">class</span> <span class="nc">MyExtension</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Extension</span><span class="p">):</span>
@@ -83,14 +83,14 @@
 </div>
 <p>Probably, the <a class="reference internal" href="../extensions/api.html#lux.extensions.api.Extension.middleware" title="lux.extensions.api.Extension.middleware"><tt class="xref py py-meth docutils literal"><span class="pre">Extension.middleware()</span></tt></a> is the
 most important method an extensions can override. It is called once only
-by the <a class="reference internal" href="../api/index.html#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> serving the web site, and it must return an iterable over
+by the <a class="reference internal" href="../extensions/app.html#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> serving the web site, and it must return an iterable over
 <a class="reference external" href="http://www.python.org/dev/peps/pep-3333/">WSGI</a> middleware or <tt class="docutils literal"><span class="pre">None</span></tt>. It is also a chance to perform
 custom initialisation of the extensions.</p>
 <div class="section" id="events">
 <h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
 <p>An extension can register several handlers which are invoked at different
 points during the application live-span. These handlers receive as
-first positional argument, the <a class="reference internal" href="../api/index.html#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> instance running the web site
+first positional argument, the <a class="reference internal" href="../extensions/app.html#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> instance running the web site
 and are implemented by adding some of the following methods to your
 extension class:</p>
 <div class="section" id="on-config">
@@ -101,9 +101,9 @@ extension class:</p>
 <dd></dd></dl>
 
 <p>This is the first event to be fired. It is executd once only after the
-<a class="reference internal" href="../api/index.html#lux.core.app.App.config" title="lux.core.app.App.config"><tt class="xref py py-attr docutils literal"><span class="pre">App.config</span></tt></a> dictionary has been loaded from
+<a class="reference internal" href="../extensions/app.html#lux.core.app.App.config" title="lux.core.app.App.config"><tt class="xref py py-attr docutils literal"><span class="pre">App.config</span></tt></a> dictionary has been loaded from
 the setting file. This is a chance to perform post processing on
-parameters before the wsgi <a class="reference internal" href="../api/index.html#lux.core.app.App.handler" title="lux.core.app.App.handler"><tt class="xref py py-attr docutils literal"><span class="pre">App.handler</span></tt></a> is loaded.</p>
+parameters before the wsgi <a class="reference internal" href="../extensions/app.html#lux.core.app.App.handler" title="lux.core.app.App.handler"><tt class="xref py py-attr docutils literal"><span class="pre">App.handler</span></tt></a> is loaded.</p>
 </div>
 <div class="section" id="on-loaded">
 <span id="event-on-loaded"></span><h3>on_loaded<a class="headerlink" href="#on-loaded" title="Permalink to this headline">¶</a></h3>
@@ -112,7 +112,7 @@ parameters before the wsgi <a class="reference internal" href="../api/index.html
 <tt class="descclassname">Extension.</tt><tt class="descname">on_loaded</tt><big>(</big><em>self</em>, <em>app</em>, <em>handler</em><big>)</big><a class="headerlink" href="#lux.core.Extension.on_loaded" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>Called once only when all <a class="reference internal" href="../extensions/api.html#lux.extensions.api.Extension" title="lux.extensions.api.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> have loaded their
+<p>Called once only when all <a class="reference internal" href="../api/index.html#lux.core.extension.Extension" title="lux.core.extension.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> have loaded their
 <a class="reference internal" href="../extensions/api.html#lux.extensions.api.Extension.middleware" title="lux.extensions.api.Extension.middleware"><tt class="xref py py-meth docutils literal"><span class="pre">middleware()</span></tt></a> into
 the WSGI <tt class="docutils literal"><span class="pre">handler</span></tt>. A chance to add additional middleware or perform
 any sort of post-processing on the wsgi application <tt class="docutils literal"><span class="pre">handler</span></tt>.</p>
