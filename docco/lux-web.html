@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>lux-web.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="cms.html">
+                cms.js
+              </a>
+            
+              
+              <a class="source" href="datagrid.html">
+                datagrid.js
+              </a>
+            
+              
+              <a class="source" href="lorem.html">
+                lorem.js
+              </a>
+            
+              
+              <a class="source" href="lux-web.html">
+                lux-web.js
+              </a>
+            
+              
+              <a class="source" href="lux.html">
+                lux.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>lux-web.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>define([<span class="hljs-string">'jquery'</span>, <span class="hljs-string">'lux'</span>, <span class="hljs-string">'bootstrap'</span>], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($, lux)</span> {</span>
+<span class="hljs-pi">    "use strict"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Lux web site manager</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> web = lux.web,
+        slice = <span class="hljs-built_in">Array</span>.prototype.slice,
+        logger = <span class="hljs-keyword">new</span> lux.getLogger();
+
+
+
+    web.extension(<span class="hljs-string">'markdown'</span>, {
+        selector: <span class="hljs-string">'.markdown'</span>,
+        defaultElement: <span class="hljs-string">'div'</span>,
+        options: {
+            extensions: [<span class="hljs-string">'prettify'</span>]
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        decorate: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">var</span> element = <span class="hljs-keyword">this</span>.element().addClass(<span class="hljs-string">'markdown'</span>),
+                extensions = <span class="hljs-keyword">this</span>.options.extensions,
+                validextensions = [],
+                raw = element.html(),
+                requires = [<span class="hljs-string">'showdown'</span>],
+                extension;
+            element.html(<span class="hljs-string">''</span>);
+            <span class="hljs-keyword">if</span> (extensions.indexOf(<span class="hljs-string">'prettify'</span>) &gt; -<span class="hljs-number">1</span>) requires.push(<span class="hljs-string">'prettify'</span>);
+            <span class="hljs-built_in">require</span>(requires, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Add extensions</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                _(extensions).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name)</span> {</span>
+                    extension = lux.showdown[name];
+                    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(extension) === <span class="hljs-string">'function'</span>) {
+                        Showdown.extensions[name] = extension;
+                        validextensions.push(name);
+                    }
+                });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">var</span> converter = <span class="hljs-keyword">new</span> Showdown.converter({<span class="hljs-string">'extensions'</span>: validextensions}),
+                    html = converter.makeHtml(raw);
+                element.html(html);
+                <span class="hljs-keyword">if</span> (window.prettyPrint) {
+                    window.prettyPrint(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+                        web.refresh(element);
+                    }, element[<span class="hljs-number">0</span>]);
+                }
+                <span class="hljs-keyword">else</span> {
+                    web.refresh(element);
+                }
+            });
+        }
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h2 id="-ajax-links-buttons"> Ajax Links &amp; buttons</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    web.extension(<span class="hljs-string">'ajax'</span>, {
+        selector: <span class="hljs-string">'a.ajax, button.ajax'</span>,
+        options: {
+            dataType: <span class="hljs-string">'json'</span>,
+            success: <span class="hljs-literal">null</span>,
+            error: <span class="hljs-literal">null</span>
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        decorate: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">var</span> elem = <span class="hljs-keyword">this</span>.element(),
+                url = elem.is(<span class="hljs-string">'a'</span>) ? elem.attr(<span class="hljs-string">'href'</span>) : elem.data(<span class="hljs-string">'href'</span>),
+                action = elem.data(<span class="hljs-string">'action'</span>) || <span class="hljs-string">'get'</span>,
+                options = <span class="hljs-keyword">this</span>.options,
+                success = options.success,
+                error = options.error,
+                self = <span class="hljs-keyword">this</span>;
+            options.type = action;
+            options.success = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(o, s, xhr)</span> {</span>
+                self.on_success(o, s, xhr);
+                <span class="hljs-keyword">if</span> (success) {
+                    success(o, s, xhr);
+                }
+            };
+            elem.click(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                e.preventDefault();
+                $.ajax(url, options);
+            });
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        on_success: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(o, s, xhr)</span> {</span>
+            <span class="hljs-keyword">if</span> (o.redirect) {
+                window.location = o.redirect;
+            }
+        }
+    });
+
+    web.BUTTON_SIZES = [<span class="hljs-string">'large'</span>, <span class="hljs-string">'normal'</span>, <span class="hljs-string">'small'</span>, <span class="hljs-string">'mini'</span>];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h2 id="-create-a-button"> Create a button</h2>
+<p> Create a <code>&lt;a class=&#39;btn&#39;&gt;</code> element with the following <code>options</code>:</p>
+<ul>
+<li><code>size</code>: the size of the button, one of <code>large</code>, <code>normal</code> (default),
+<code>small</code> or <code>mini</code>.</li>
+<li><code>skin</code>: optional skin to use. One of <code>default</code> (default), <code>primary</code>,
+<code>success</code>, <code>error</code> or <code>inverse</code>.</li>
+<li><code>text</code> the text to display.</li>
+<li><code>title</code> set the title attribute.</li>
+<li><code>classes</code> set additional Html classes.</li>
+<li><code>icon</code> icon name to include.</li>
+<li><code>block</code> if <code>true</code> add the <code>btn-block</code> class for block level buttons,
+those that span the full width of a parent.</li>
+<li><code>tag</code> to specify a different tag from <code>a</code>.</li>
+<li><code>type</code> add the type attribute (only when the tag is <code>button</code> or <code>input</code>).</li>
+<li><code>data</code> optional object to attach to the data holder.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    lux.web.create_button = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> {</span>
+        options = options ? options : {};
+        <span class="hljs-keyword">var</span> tag = (options.tag || <span class="hljs-string">'a'</span>).toLowerCase(),
+            btn = $(document.createElement(tag)),
+            skin = options.skin || <span class="hljs-string">'default'</span>;
+        btn.addClass(<span class="hljs-string">'btn'</span>);
+        btn.attr(<span class="hljs-string">'type'</span>, options.type);
+        btn.attr(<span class="hljs-string">'title'</span>, options.title);
+        btn.addClass(options.classes).addClass(<span class="hljs-string">'btn-'</span> + skin);
+        btn.attr(<span class="hljs-string">'href'</span>, options.href);
+        <span class="hljs-keyword">if</span> (options.size) {
+            btn.addClass(<span class="hljs-string">'btn-'</span> + options.size);
+        }
+        <span class="hljs-keyword">if</span> (options.icon) {
+            web.icon(btn, options);
+        }
+        <span class="hljs-keyword">if</span> (options.text) {
+            btn.append(<span class="hljs-string">' '</span> + options.text);
+        }
+        <span class="hljs-keyword">if</span> (options.block) {
+            btn.addClass(<span class="hljs-string">'btn-block'</span>);
+        }
+        <span class="hljs-keyword">if</span> (options.data) {
+            btn.data(options.data);
+        }
+        <span class="hljs-keyword">return</span> lux.web.refresh(btn);
+    };
+
+    lux.web.button_group = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> {</span>
+        options || (options = {});
+        <span class="hljs-keyword">var</span> elem = $(document.createElement(<span class="hljs-string">'div'</span>));
+        <span class="hljs-keyword">if</span> (options.vertical) elem.addClass(<span class="hljs-string">'btn-group-vertical'</span>);
+        <span class="hljs-keyword">else</span> elem.addClass(<span class="hljs-string">'btn-group'</span>);
+        <span class="hljs-keyword">if</span> (options.radio) {
+            elem.data(<span class="hljs-string">'toggle'</span>, <span class="hljs-string">'buttons-radio'</span>);
+        }
+        <span class="hljs-keyword">return</span> elem;
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Alerts</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    web.extension(<span class="hljs-string">'alert'</span>, {
+        selector: <span class="hljs-string">'div.alert'</span>,
+        defaultElement: <span class="hljs-string">'div'</span>,
+        options: {
+            message: <span class="hljs-literal">null</span>,
+            type: <span class="hljs-literal">null</span>,
+            skin: <span class="hljs-literal">null</span>,
+            closable: <span class="hljs-literal">true</span>
+        },
+        decorate: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">var</span> elem = <span class="hljs-keyword">this</span>.element().addClass(<span class="hljs-string">'alert'</span>).addClass(<span class="hljs-keyword">this</span>.options.skin),
+                options = <span class="hljs-keyword">this</span>.options,
+                self = <span class="hljs-keyword">this</span>;
+            <span class="hljs-keyword">if</span> (options.message) {
+                elem.html(options.message);
+            }
+            options.skin = <span class="hljs-keyword">this</span>.get_skin();
+            <span class="hljs-keyword">if</span> (options.closable) {
+                <span class="hljs-keyword">var</span> close = web.create_button({
+                    icon: <span class="hljs-string">'remove'</span>,
+                    skin: options.skin,
+                    size: <span class="hljs-string">'mini'</span>}).addClass(<span class="hljs-string">'right'</span>);
+                elem.append(close);
+                close.click(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+                    self.fadeOut(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+                        self.destroy();
+                    });
+                });
+            }
+        }
+    });
+    
+    web.extension(<span class="hljs-string">'tooltip'</span>, {
+        selector: <span class="hljs-string">'.tooltip'</span>,
+        decorate: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">this</span>.element().tooltip(<span class="hljs-keyword">this</span>.options);
+        }
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h2 id="-dragdrop"> DragDrop</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>A class for managing HTML5 drag and drop functionality for several
+configurations.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    web.DragDrop = lux.Class.extend({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Default options, overwritten during initialisation.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        defaults: {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>The css opacity of the dragged element.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            opacity: <span class="hljs-number">0.6</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            over_class: <span class="hljs-string">'over'</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>This is the <code>drop zone</code>, where dragged elements can be dropped.
+It can be a <code>selector</code> string, and <code>HTML Element</code>
+or a <code>jQuery</code> element. If not supplied, the whole document is
+considered a drop-zone. The dropzone listen for <code>dragenter</code>,
+<code>dragover</code>, <code>drop</code> and <code>dragleave</code> events.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            dropzone: <span class="hljs-literal">null</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>When supplied, the placeholder is added to the DOM when the
+drag-enter event is triggered on a dropzone element.
+It can be set to true, an Html element or a jQuery element.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            placeholder: <span class="hljs-literal">null</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>When true a dummy element is added to the dropzone if no
+other elements are available.
+It can also be a function which return the element to add.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            dummy: <span class="hljs-string">'droppable-dummy'</span>,
+            dummy_heigh: <span class="hljs-number">30</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Called on the element being dragged</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            onStart: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e, dd)</span> {</span>},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Called on the element being dragged</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            onDrag: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e, dd)</span> {</span>},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Called on the target element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            onDrop: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(elem, e, offset, dd)</span> {</span>}
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>The constructor, <code>options</code> is an optional object which overwrites
+the <code>defaults</code> parameters.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        init: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> {</span>
+            <span class="hljs-keyword">this</span>.options = options = _.extend({}, <span class="hljs-keyword">this</span>.defaults, options);
+            <span class="hljs-keyword">this</span>.candrag = <span class="hljs-literal">false</span>;
+            <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>,
+                dropzone = options.dropzone,
+                dummy = options.dummy;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">this</span>.placeholder(<span class="hljs-keyword">this</span>.options.placeholder);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">var</span> element = $(document),
+                zone = options.dropzone;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>A Html element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(zone) !== <span class="hljs-string">'string'</span>) {
+                element = $(options.dropzone);
+                zone = <span class="hljs-literal">null</span>;
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dummy) {
+                zone += <span class="hljs-string">', .'</span> + dummy;
+                <span class="hljs-keyword">this</span>.dummy = $(document.createElement(<span class="hljs-string">'div'</span>))
+                                .addClass(dummy).css(<span class="hljs-string">'height'</span>, options.dummy_heigh);
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Drop-zone events</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            element.on(<span class="hljs-string">'dragenter'</span>, zone, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                self.e_dragenter(<span class="hljs-keyword">this</span>, e);
+            }).on(<span class="hljs-string">'dragover'</span>, zone, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                e.preventDefault(); <span class="hljs-comment">// Necessary. Allows us to drop.</span>
+                self.e_dragover(<span class="hljs-keyword">this</span>, e);
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            }).on(<span class="hljs-string">'dragleave'</span>, zone, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                self.e_dragleave(<span class="hljs-keyword">this</span>, e);
+            }).on(<span class="hljs-string">'drop'</span>, zone, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                self.e_drop(<span class="hljs-keyword">this</span>, e);
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            });
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>set or remove the placeholder</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        placeholder: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> {</span>
+            <span class="hljs-keyword">if</span> (value) {
+                <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">true</span>) {
+                    <span class="hljs-keyword">this</span>._placeholder = $(document.createElement(<span class="hljs-string">'div'</span>));
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-keyword">this</span>._placeholder = $(value);
+                }
+                <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+                <span class="hljs-keyword">this</span>._placeholder.addClass(<span class="hljs-string">'draggable-placeholder'</span>).unbind(<span class="hljs-string">'dragover'</span>).unbind(<span class="hljs-string">'drop'</span>)
+                                 .bind(<span class="hljs-string">'dragover'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                                     e.preventDefault();
+                                     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                                 }).bind(<span class="hljs-string">'drop'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                                     self.e_drop(<span class="hljs-keyword">this</span>, e);
+                                     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                                 });
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">this</span>._placeholder = <span class="hljs-literal">null</span>;
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Enable <code>elem</code> to be dragged and dropped.
+<code>handler</code> is an optional handler for dragging.
+Both <code>elem</code> and <code>handler</code> can be <code>selector</code> string, in which
+case selector-based events are added.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        add: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(elem, handle)</span> {</span>
+            <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>,
+                element = $(document),
+                selector = elem,
+                handle_selector = handle,
+                dynamic = <span class="hljs-literal">true</span>;
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(elem) !== <span class="hljs-string">'string'</span>) {
+                element = $(elem).attr(<span class="hljs-string">'draggable'</span>, <span class="hljs-literal">true</span>);
+                handle = handle ? $(handle) : element;
+                selector = handle_selector = <span class="hljs-literal">null</span>;
+                dynamic = <span class="hljs-literal">false</span>;
+            } <span class="hljs-keyword">else</span> {
+                handle = element;
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            handle.on(<span class="hljs-string">'mouseenter'</span>, handle_selector, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                $(<span class="hljs-keyword">this</span>).addClass(<span class="hljs-string">'draggable'</span>);
+            }).on(<span class="hljs-string">'mouseleave'</span>, handle_selector, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                $(<span class="hljs-keyword">this</span>).removeClass(<span class="hljs-string">'draggable'</span>);
+            }).on(<span class="hljs-string">'mousedown'</span>, handle_selector, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                self.candrag = <span class="hljs-literal">true</span>;
+                <span class="hljs-keyword">if</span> (dynamic) elem = $(<span class="hljs-keyword">this</span>).closest(selector).attr(<span class="hljs-string">'draggable'</span>, <span class="hljs-literal">true</span>);
+                <span class="hljs-keyword">else</span> elem = element;
+                <span class="hljs-keyword">if</span> (!elem.attr(<span class="hljs-string">'id'</span>)) {
+                    elem.attr(<span class="hljs-string">'id'</span>, lux.s4());
+                }
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            element.on(<span class="hljs-string">'dragstart'</span>, selector, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> {</span>
+                <span class="hljs-keyword">if</span> (self.candrag) {
+                    <span class="hljs-keyword">if</span> (self.options.onStart.call(<span class="hljs-keyword">this</span>, e, self) !== <span class="hljs-literal">false</span>) {
+                        logger.debug(<span class="hljs-string">'Start dragging '</span> + <span class="hljs-keyword">this</span>.id);
+                        <span class="hljs-keyword">return</span> self.e_dragstart(<span class="hljs-keyword">this</span>, e);
+                    }
+                }
+                e.preventDefault();
+            }).on(<span class="hljs-string">'dragend'</span>, selector, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                logger.debug(<span class="hljs-string">'Ended dragging '</span> + <span class="hljs-keyword">this</span>.id);
+                self.candrag = <span class="hljs-literal">false</span>;
+                <span class="hljs-keyword">return</span> self.e_dragend(<span class="hljs-keyword">this</span>, e);
+            }).on(<span class="hljs-string">'drag'</span>, selector, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                self.options.onDrag.call(<span class="hljs-keyword">this</span>, e, self);
+            });
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        reposition: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(elem, e, offset)</span> {</span>
+            <span class="hljs-keyword">var</span> x = e.originalEvent.clientX - offset.left,
+                y = e.originalEvent.clientY - offset.top;
+            elem.css({<span class="hljs-string">'top'</span>: y, <span class="hljs-string">'left'</span>: x});
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>Utility function for moving an element where another target element is.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        moveElement: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(elem, target)</span> {</span>
+            elem = $(elem);
+            target = $(target);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>the element is the same, bail out</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (elem[<span class="hljs-number">0</span>] === target[<span class="hljs-number">0</span>]) <span class="hljs-keyword">return</span>;
+            <span class="hljs-keyword">var</span> parent = elem.parent(),
+                target_parent = target.parent();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>If a placeholder is used, simple replace the placeholder with the element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._placeholder) {
+                <span class="hljs-keyword">this</span>._placeholder.after(elem).detach();
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">this</span>.move(elem, target, parent, target_parent);
+            }
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.dummy &amp;&amp; parent[<span class="hljs-number">0</span>] !== target_parent[<span class="hljs-number">0</span>]) {
+                <span class="hljs-keyword">if</span> (!parent.children().length) {
+                    parent.append(<span class="hljs-keyword">this</span>.dummy);
+                }
+                <span class="hljs-keyword">if</span> (target_parent.children(<span class="hljs-string">'.'</span> + <span class="hljs-keyword">this</span>.options.dummy).length) {
+                    <span class="hljs-keyword">this</span>.dummy.detach();
+                }
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>Move element to target. If a placeholder is given, the placeholder is moved instead</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        move: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(elem, target, parent, target_parent, placeholder)</span> {</span>
+            <span class="hljs-keyword">if</span> (!placeholder) placeholder = elem;
+            <span class="hljs-keyword">if</span> (target.prev().length) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>the target has a previous element
+check if the parent are the same</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">if</span> (parent[<span class="hljs-number">0</span>] === target_parent[<span class="hljs-number">0</span>]) {
+                    <span class="hljs-keyword">var</span> all = target.nextAll();
+                    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i&lt;all.length;i++) {
+                        <span class="hljs-keyword">if</span> (all[i] === elem[<span class="hljs-number">0</span>]) {
+                            target.before(placeholder);
+                            <span class="hljs-keyword">return</span>;
+                        }
+                    }
+                }
+                target.after(placeholder);
+            } <span class="hljs-keyword">else</span> {
+                target.before(placeholder);
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        swapElements: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(elem1, elem2)</span> {</span>
+            elem1 = $(elem1);
+            elem2 = $(elem2);
+            <span class="hljs-keyword">if</span> (elem1[<span class="hljs-number">0</span>] === elem2[<span class="hljs-number">0</span>]) <span class="hljs-keyword">return</span>;
+            <span class="hljs-keyword">var</span> next1 = elem1.next(),
+                parent1 = elem1.parent(),
+                next2 = elem2.next(),
+                parent2 = elem2.parent(),
+                swap = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(elem, next, parent)</span> {</span>
+                    <span class="hljs-keyword">if</span> (next.length) {
+                        next.before(elem);
+                    } <span class="hljs-keyword">else</span> {
+                        parent.append(elem);
+                    }
+                };
+            swap(elem2, next1, parent1);
+            swap(elem1, next2, parent2);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>Start dragging a draggable element
+Store the offset between the mouse position and the top,left cornet
+of the dragged item.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        e_dragstart: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(dragged, e)</span> {</span>
+            dragged = $(dragged);
+            <span class="hljs-keyword">var</span> dataTransfer = e.originalEvent.dataTransfer,
+                position = dragged.position(),
+                x = e.originalEvent.clientX - position.left,
+                y = e.originalEvent.clientY - position.top;
+            dataTransfer.effectAllowed = <span class="hljs-string">'move'</span>;
+            dataTransfer.setData(<span class="hljs-string">'text/plain'</span>, dragged[<span class="hljs-number">0</span>].id + <span class="hljs-string">','</span> + x + <span class="hljs-string">','</span> + y);
+            dragged.fadeTo(<span class="hljs-number">10</span>, <span class="hljs-keyword">this</span>.options.opacity);
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._placeholder) {
+                <span class="hljs-keyword">var</span> height = <span class="hljs-built_in">Math</span>.min(dragged.height(), <span class="hljs-number">400</span>);
+                <span class="hljs-keyword">this</span>._placeholder.height(height);
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>End dragging a draggable element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        e_dragend: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(dragged, e)</span> {</span>
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._placeholder) {
+                <span class="hljs-keyword">this</span>._placeholder.detach();
+            }
+            $(dragged).fadeTo(<span class="hljs-number">10</span>, <span class="hljs-number">1</span>);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p>Enter drop zone</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        e_dragenter: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(target, e)</span> {</span>
+            <span class="hljs-keyword">var</span> dataTransfer = e.originalEvent.dataTransfer,
+                options = <span class="hljs-keyword">this</span>.options,
+                id = dataTransfer.getData(<span class="hljs-string">'text/plain'</span>).split(<span class="hljs-string">','</span>)[<span class="hljs-number">0</span>];
+            target = $(target).addClass(options.over_class);
+            <span class="hljs-keyword">if</span> (target[<span class="hljs-number">0</span>].id !== id) {
+                logger.debug(<span class="hljs-string">'Draggable '</span> + id + <span class="hljs-string">' entering dropzone'</span>);
+                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._placeholder) {
+                    <span class="hljs-keyword">var</span> elem = $(<span class="hljs-string">'#'</span> + id);
+                    <span class="hljs-keyword">this</span>.move(elem, target, elem.parent(), target.parent(), <span class="hljs-keyword">this</span>._placeholder);
+                }
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._placeholder) {
+                <span class="hljs-keyword">this</span>._placeholder.detach();
+            }
+        },
+        e_dragover: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(target, e)</span> {</span>},
+        e_dragleave: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(target, e)</span> {</span>
+            $(target).removeClass(<span class="hljs-keyword">this</span>.options.over_class);
+        },
+        e_drop: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(target, e)</span> {</span>
+            e.preventDefault();
+            $(target).removeClass(<span class="hljs-keyword">this</span>.options.over_class);
+            <span class="hljs-keyword">var</span> dataTransfer = e.originalEvent.dataTransfer,
+                idxy = dataTransfer.getData(<span class="hljs-string">'text/plain'</span>).split(<span class="hljs-string">','</span>),
+                elem = $(<span class="hljs-string">'#'</span>+idxy[<span class="hljs-number">0</span>]),
+                xy = {
+                    left: <span class="hljs-built_in">parseInt</span>(idxy[<span class="hljs-number">1</span>], <span class="hljs-number">10</span>),
+                    top: <span class="hljs-built_in">parseInt</span>(idxy[<span class="hljs-number">2</span>], <span class="hljs-number">10</span>)
+                };
+            <span class="hljs-keyword">if</span> (elem.length) {
+                logger.info(<span class="hljs-string">'Dropping '</span> + elem.attr(<span class="hljs-string">'id'</span>));
+                <span class="hljs-keyword">this</span>.options.onDrop.call(target, elem, e, xy, <span class="hljs-keyword">this</span>);
+            }
+        }
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <h2 id="select-extension">Select Extension</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-43">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-43">&#182;</a>
+              </div>
+              <p>An extension to decorate <code>select</code> elements with the
+<a href="http://ivaynberg.github.io/select2/">select2</a> jquery plugin.
+For <code>options</code> check the select2
+<a href="http://ivaynberg.github.io/select2/#documentation">documentation</a>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    web.extension(<span class="hljs-string">'select'</span>, {
+        selector: <span class="hljs-string">'select'</span>,
+        defaultElement: <span class="hljs-string">'select'</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-44">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-44">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        decorate: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">var</span> select = <span class="hljs-keyword">this</span>,
+                options = select.options,
+                element = select.element();
+            element.select(options);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-45">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-45">&#182;</a>
+              </div>
+              <p>Retrieve the select2 instance form the element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        select2: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.element().data(<span class="hljs-string">'select2'</span>);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <p>Retrieve the select2 container</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        container: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.select2().container;
+        }
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p>Create and return a <code>select</code> jQuery element with given <code>options</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    web.create_select = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> {</span>
+        <span class="hljs-keyword">var</span> elem = $(document.createElement(<span class="hljs-string">'select'</span>));
+        elem.append($(<span class="hljs-string">"&lt;option&gt;&lt;/option&gt;"</span>));
+        _(options).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(o)</span> {</span>
+            <span class="hljs-keyword">if</span> (_.isString(o)) o = {value: o};
+            elem.append($(<span class="hljs-string">"&lt;option&gt;&lt;/option&gt;"</span>).val(o.value).text(o.text || o.value));
+        });
+        <span class="hljs-keyword">return</span> elem;
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <p>Web Broweser Local Storage backend</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> Storage = lux.Backend.extend({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        init: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url, options, type)</span> {</span>
+            <span class="hljs-keyword">this</span>._super(url, options, type);
+            <span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">this</span>.url.search(<span class="hljs-string">'://'</span>);
+            <span class="hljs-keyword">this</span>.namespace = <span class="hljs-keyword">this</span>.url.substr(idx+<span class="hljs-number">3</span>);
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.type === <span class="hljs-string">'local'</span>) {
+                <span class="hljs-keyword">this</span>.storage = localStorage;
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.type === <span class="hljs-string">'session'</span>) {
+                <span class="hljs-keyword">this</span>.storage = sessionStorage;
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> lux.NotImplementedError(<span class="hljs-string">'unknown storage '</span> + <span class="hljs-keyword">this</span>.type);
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <p>this.send({resource: ‘status’, success: function (){…}});</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        execute: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> {</span>
+            <span class="hljs-keyword">if</span> (options.beforeSend &amp;&amp; options.beforeSend.call(options, <span class="hljs-keyword">this</span>) === <span class="hljs-literal">false</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
+              </div>
+              <p>Don’t send anything, simply return</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">return</span>;
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-52">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-52">&#182;</a>
+              </div>
+              <p>This is an execution for a single item</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (options.item) {
+                options.data = [options.item];
+            }
+            <span class="hljs-keyword">var</span> action = options.crud,
+                storage = <span class="hljs-keyword">this</span>.storage,
+                prefix = <span class="hljs-keyword">this</span>.namespace;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-53">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (action === Crud.create) {
+                _(options.data).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(obj)</span> {</span>
+                    storage.setItem(prefix + obj.cid, <span class="hljs-built_in">JSON</span>.stringify(obj.fields));
+                });
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (action === Crud.update) {
+                _(options.data).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(obj)</span> {</span>
+                    <span class="hljs-keyword">var</span> fields = storage.getItem(prefix + obj.cid);
+                    <span class="hljs-keyword">if</span> (fields) {
+                        fields = _.extend(SON.parse(fields), obj.fields);
+                        storage.setItem(prefix + obj.cid, <span class="hljs-built_in">JSON</span>.stringify(fields));
+                    }
+                });
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (action === Crud.delete) {
+                _(options.data).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(obj)</span> {</span>
+                    storage.removeItem(prefix + obj.cid);
+                });
+            }
+        }
+    });
+
+    lux.register_store(<span class="hljs-string">'local'</span>, Storage);
+    lux.register_store(<span class="hljs-string">'session'</span>, Storage);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-54">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-54">&#182;</a>
+              </div>
+              <p>Create a new backend for lux web</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    web.extension(<span class="hljs-string">'backend'</span>, {
+        defaultElement: <span class="hljs-string">'div'</span>,
+        defaults: {
+            store: <span class="hljs-literal">null</span>,
+            hartbeat: <span class="hljs-number">0</span>
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-55">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-55">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        decorate: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>,
+                options = self.options,
+                slice = <span class="hljs-built_in">Array</span>.prototype.slice,
+                url = options.host,
+                socket_options = {
+                    resource: options.resource
+                };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-56">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-56">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (options.hartbeat) {
+                socket_options.onopen = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-57">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-57">&#182;</a>
+              </div>
+              <p>Add the backend element to the status bar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    self.check_status();
+                };
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-58">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-58">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            self.element().addClass(<span class="hljs-string">'socket-control'</span>).css({float: <span class="hljs-string">'left'</span>});
+            self.socket = lux.create_store(options.store);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-59">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        check_status: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+            <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+            self.socket.send({
+                type: <span class="hljs-string">'status'</span>,
+                success: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+                    self.status.apply(self, <span class="hljs-built_in">arguments</span>);
+                },
+                error: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(data)</span> {</span>
+                    self.status.apply(self, <span class="hljs-built_in">arguments</span>);
+                }
+            });
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-60">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-60">&#182;</a>
+              </div>
+              <p>Implement the status message for the “status” channel.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        status: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(data, b, obj)</span> {</span>
+            <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
+            <span class="hljs-keyword">if</span> (obj.error) {
+                self.element().html(data);
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (data.uptime !== <span class="hljs-literal">undefined</span>) {
+                self.element().html(lux.utils.prettyTime(data.uptime));
+            }
+            lux.eventloop.call_later(self.options.hartbeat, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+                self.check_status();
+            });
+        }
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-61">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-61">&#182;</a>
+              </div>
+              <h2 id="-tabs"> Tabs</h2>
+<p> Uses bootstrap <code>tab</code> component</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> TabView = lux.TabView = lux.View.extend({
+        data_key: <span class="hljs-string">'tabview'</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-62">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-62">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        initialise: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> {</span>
+            <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-63">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-63">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">this</span>.tabs = <span class="hljs-keyword">this</span>.elem.children(<span class="hljs-string">'ul'</span>);
+            <span class="hljs-keyword">this</span>.content = <span class="hljs-keyword">this</span>.elem.children(<span class="hljs-string">'div'</span>);
+            <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.tabs.length) {
+                <span class="hljs-keyword">this</span>.tabs = $(document.createElement(<span class="hljs-string">'ul'</span>));
+            }
+            <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.content.length) {
+                <span class="hljs-keyword">this</span>.content = $(document.createElement(<span class="hljs-string">'div'</span>));
+            }
+            <span class="hljs-keyword">if</span> (options.pills) {
+                <span class="hljs-keyword">this</span>.tabs.addClass(<span class="hljs-string">'nav-pills'</span>);
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">this</span>.tabs.addClass(<span class="hljs-string">'nav-tabs'</span>);
+            }
+            <span class="hljs-keyword">this</span>.elem.prepend(<span class="hljs-keyword">this</span>.tabs.addClass(<span class="hljs-string">'nav'</span>).addClass(options.skin));
+            <span class="hljs-keyword">this</span>.elem.append(<span class="hljs-keyword">this</span>.content.addClass(<span class="hljs-string">'tab-content'</span>));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-64">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-64">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            _(options.tabs).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(tab)</span> {</span>
+                self.add_tab(tab);
+            });
+
+            <span class="hljs-built_in">require</span>([<span class="hljs-string">'bootstrap'</span>], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+                self.tabs.on(<span class="hljs-string">'click'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> {</span>
+                    e.preventDefault();
+                    $(<span class="hljs-keyword">this</span>).tab(<span class="hljs-string">'show'</span>);
+                });
+                self.activate_tab();
+            });
+        },
+
+        add_tab: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(tab)</span> {</span>
+            <span class="hljs-keyword">if</span> (_.isString(tab)) {
+                tab = {name: tab};
+            }
+            <span class="hljs-keyword">if</span> (!tab.link) {
+                tab.link = <span class="hljs-string">'#'</span> + <span class="hljs-keyword">this</span>.cid + <span class="hljs-string">'-'</span> + tab.name;
+            }
+            <span class="hljs-keyword">var</span>
+            a = $(document.createElement(<span class="hljs-string">'a'</span>)).attr({
+                <span class="hljs-string">'href'</span>: tab.link,
+                <span class="hljs-string">'id'</span>: <span class="hljs-keyword">this</span>.cid + <span class="hljs-string">'-name-'</span> + tab.name
+            }).html(tab.name),
+            pane = $(document.createElement(<span class="hljs-string">'div'</span>)).addClass(<span class="hljs-string">'tab-pane'</span>).html(tab.content);
+            <span class="hljs-keyword">if</span> (tab.link.substr(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>) === <span class="hljs-string">'#'</span>)
+                pane.attr(<span class="hljs-string">'id'</span>, tab.link.substr(<span class="hljs-number">1</span>));
+            <span class="hljs-keyword">this</span>.tabs.append($(document.createElement(<span class="hljs-string">'li'</span>)).append(a));
+            <span class="hljs-keyword">this</span>.content.append(pane);
+        },
+
+        activate_tab: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(tab)</span> {</span>
+            <span class="hljs-keyword">var</span> tabs = <span class="hljs-keyword">this</span>.tabs.find(<span class="hljs-string">'a'</span>);
+            tab = tab ? tabs.find(<span class="hljs-string">'#'</span> + <span class="hljs-keyword">this</span>.cid + <span class="hljs-string">'-name-'</span> + tab) : tabs.first();
+            tab.trigger(<span class="hljs-string">'click'</span>);
+        }
+    });
+
+    $.fn.tabs = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> {</span>
+        <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">this</span>.data(<span class="hljs-string">'tabview'</span>);
+        <span class="hljs-keyword">if</span> (!view) {
+            options.elem = <span class="hljs-keyword">this</span>;
+            view = <span class="hljs-keyword">new</span> TabView(options);
+        }
+        <span class="hljs-keyword">return</span> view.elem;
+    };
+
+
+	<span class="hljs-keyword">return</span> lux.web;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-65">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-65">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

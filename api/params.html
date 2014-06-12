@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Parameters &mdash; lux 0.1.0-beta.1 documentation</title>
+    
+    <link rel="stylesheet" href="../static/pulsar.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0-beta.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <link rel="shortcut icon" href="../static/favicon.ico"/>
+    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../index.html" /> 
+  </head>
+  <body>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="deck">
+<div class="header">
+    
+        <p class="developmentversion">
+        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
+        <a href="http://pythonhosted.org/lux/">release docs here</a>.
+        </p>
+    
+</div>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="parameters">
+<span id="id1"></span><h1>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="core">
+<h2>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="css">
+<span id="std:setting-CSS"></span><h3>CSS<a class="headerlink" href="#css" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'{}'</span></tt></p>
+<p>Dictionary of css locations.</p>
+</div>
+<div class="section" id="date-format">
+<span id="std:setting-DATE_FORMAT"></span><h3>DATE_FORMAT<a class="headerlink" href="#date-format" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'%Y</span> <span class="pre">%b</span> <span class="pre">%d</span> <span class="pre">%H:%M:%S'</span></tt></p>
+<p>Default formatting for dates</p>
+</div>
+<div class="section" id="default-template-engine">
+<span id="std:setting-DEFAULT_TEMPLATE_ENGINE"></span><h3>DEFAULT_TEMPLATE_ENGINE<a class="headerlink" href="#default-template-engine" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'python'</span></tt></p>
+<p>Default template engine</p>
+</div>
+<div class="section" id="description">
+<span id="std:setting-DESCRIPTION"></span><h3>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>A description to display before the argument help on the command line when running commands</p>
+</div>
+<div class="section" id="encoding">
+<span id="std:setting-ENCODING"></span><h3>ENCODING<a class="headerlink" href="#encoding" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'utf-8'</span></tt></p>
+<p>Default encoding for text.</p>
+</div>
+<div class="section" id="error-handler">
+<span id="std:setting-ERROR_HANDLER"></span><h3>ERROR_HANDLER<a class="headerlink" href="#error-handler" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Handler of Http exceptions</p>
+</div>
+<div class="section" id="extensions">
+<span id="std:setting-EXTENSIONS"></span><h3>EXTENSIONS<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'[]'</span></tt></p>
+<p>List of extension names to use in your application. The order matter since the wsgi middleware of extension is processed in the order given by this setting.</p>
+</div>
+<div class="section" id="html-head-title">
+<span id="std:setting-HTML_HEAD_TITLE"></span><h3>HTML_HEAD_TITLE<a class="headerlink" href="#html-head-title" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'Lux'</span></tt></p>
+<p>Default HTML Title</p>
+</div>
+<div class="section" id="html-meta">
+<span id="std:setting-HTML_META"></span><h3>HTML_META<a class="headerlink" href="#html-meta" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;[{'http-equiv':</span> <span class="pre">'X-UA-Compatible',</span> <span class="pre">'content':</span> <span class="pre">'IE=edge'},</span> <span class="pre">{'content':</span> <span class="pre">'width=device-width,</span> <span class="pre">initial-scale=1',</span> <span class="pre">'name':</span> <span class="pre">'viewport'}]&quot;</span></tt></p>
+<p>List of default <tt class="docutils literal"><span class="pre">meta</span></tt> elements to add to the html headelement</p>
+</div>
+<div class="section" id="jsrequired">
+<span id="std:setting-JSREQUIRED"></span><h3>JSREQUIRED<a class="headerlink" href="#jsrequired" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;('jquery',</span> <span class="pre">'lodash',</span> <span class="pre">'json',</span> <span class="pre">'lux')&quot;</span></tt></p>
+<p>Default Required javascript. Loaded via requirejs.</p>
+</div>
+<div class="section" id="jsrequire-callback">
+<span id="std:setting-JSREQUIRE_CALLBACK"></span><h3>JSREQUIRE_CALLBACK<a class="headerlink" href="#jsrequire-callback" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'lux.initWeb'</span></tt></p>
+<p>Callback used by requirejs.</p>
+</div>
+<div class="section" id="links">
+<span id="std:setting-LINKS"></span><h3>LINKS<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;{'lux':</span> <span class="pre">'https://github.com/quantmind/lux',</span> <span class="pre">'python':</span> <span class="pre">'https://www.python.org/',</span> <span class="pre">'pulsar':</span> <span class="pre">'http://pythonhosted.org/pulsar'}&quot;</span></tt></p>
+<p>Links used throught the web site</p>
+</div>
+<div class="section" id="logging-config">
+<span id="std:setting-LOGGING_CONFIG"></span><h3>LOGGING_CONFIG<a class="headerlink" href="#logging-config" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Dictionary for configuring logging</p>
+</div>
+<div class="section" id="media-url">
+<span id="std:setting-MEDIA_URL"></span><h3>MEDIA_URL<a class="headerlink" href="#media-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'media'</span></tt></p>
+<p>the base url for static files</p>
+</div>
+<div class="section" id="minified-media">
+<span id="std:setting-MINIFIED_MEDIA"></span><h3>MINIFIED_MEDIA<a class="headerlink" href="#minified-media" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'True'</span></tt></p>
+<p>Use minified media files. All media files will replace their extensions with .min.ext. For example, javascript links <a href="#id2"><span class="problematic" id="id3">*</span></a>.js become <a href="#id4"><span class="problematic" id="id5">*</span></a>.min.js</p>
+</div>
+<div class="section" id="site-url">
+<span id="std:setting-SITE_URL"></span><h3>SITE_URL<a class="headerlink" href="#site-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Web site url</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+<a href="../index.html">
+  <img class="logo" width="200" src="../static/lux.svg" alt="lux" title="lux"/>
+</a>
+</p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Parameters</a><ul>
+<li><a class="reference internal" href="#core">Core</a><ul>
+<li><a class="reference internal" href="#css">CSS</a></li>
+<li><a class="reference internal" href="#date-format">DATE_FORMAT</a></li>
+<li><a class="reference internal" href="#default-template-engine">DEFAULT_TEMPLATE_ENGINE</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#encoding">ENCODING</a></li>
+<li><a class="reference internal" href="#error-handler">ERROR_HANDLER</a></li>
+<li><a class="reference internal" href="#extensions">EXTENSIONS</a></li>
+<li><a class="reference internal" href="#html-head-title">HTML_HEAD_TITLE</a></li>
+<li><a class="reference internal" href="#html-meta">HTML_META</a></li>
+<li><a class="reference internal" href="#jsrequired">JSREQUIRED</a></li>
+<li><a class="reference internal" href="#jsrequire-callback">JSREQUIRE_CALLBACK</a></li>
+<li><a class="reference internal" href="#links">LINKS</a></li>
+<li><a class="reference internal" href="#logging-config">LOGGING_CONFIG</a></li>
+<li><a class="reference internal" href="#media-url">MEDIA_URL</a></li>
+<li><a class="reference internal" href="#minified-media">MINIFIED_MEDIA</a></li>
+<li><a class="reference internal" href="#site-url">SITE_URL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../sources/api/params.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011-2013, Luca Sbardella.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  
+  _gaq.push(['_setAccount', 'UA-3900561-8']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../static/doctools.js"></script>
     <link rel="shortcut icon" href="../static/favicon.ico"/>
     <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../index.html" />
-    <link rel="next" title="Extensions" href="../extensions/index.html" />
+    <link rel="next" title="Parameters" href="params.html" />
     <link rel="prev" title="Writing Extensions" href="../tutorials/extensions.html" /> 
   </head>
   <body>
@@ -40,7 +40,7 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="../extensions/index.html" title="Extensions"
+          <a href="params.html" title="Parameters"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="../tutorials/extensions.html" title="Writing Extensions"
@@ -137,6 +137,12 @@ An <a class="reference internal" href="../extensions/app.html#lux.core.app.App" 
 </dd></dl>
 
 <dl class="attribute">
+<dt id="lux.core.app.App.auth_backend">
+<tt class="descname">auth_backend</tt><a class="headerlink" href="#lux.core.app.App.auth_backend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used by the sessions extension</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="lux.core.app.App.config_module">
 <tt class="descname">config_module</tt><a class="reference internal" href="../modules/lux/core/app.html#App.config_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.App.config_module" title="Permalink to this definition">¶</a></dt>
 <dd><p>The <em class="xref std std-ref">configuration file</em> used by this <a class="reference internal" href="../extensions/app.html#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a>.</p>
@@ -148,12 +154,6 @@ An <a class="reference internal" href="../extensions/app.html#lux.core.app.App" 
 <dd><p>Ordered dictionary of <a class="reference internal" href="../extensions/api.html#lux.extensions.api.Extension" title="lux.extensions.api.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> available.</p>
 <p>The order is the same as in the
 <em class="xref std std-ref">EXTENSIONS config</em> parameter.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lux.core.app.App.permissions">
-<tt class="descname">permissions</tt><a class="reference internal" href="../modules/lux/core/app.html#App.permissions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.App.permissions" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <tt class="xref py py-class docutils literal"><span class="pre">PermissionHandler</span></tt> for this <a class="reference internal" href="../extensions/app.html#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a>.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -413,7 +413,7 @@ file.</li>
 <dl class="class">
 <dt id="lux.core.wrappers.Router">
 <em class="property">class </em><tt class="descclassname">lux.core.wrappers.</tt><tt class="descname">Router</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/core/wrappers.html#Router"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.wrappers.Router" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extend pulsar <tt class="xref py py-class docutils literal"><span class="pre">Router</span></tt> with content
+<dd><p>Extend pulsar <a class="reference external" href="http://pythonhosted.org/pulsar/apps/wsgi/routing.html#pulsar.apps.wsgi.routers.Router" title="(in pulsar v0.8.2)"><tt class="xref py py-class docutils literal"><span class="pre">Router</span></tt></a> with content
 management.</p>
 <dl class="attribute">
 <dt id="lux.core.wrappers.Router.content_manager">
@@ -1557,12 +1557,11 @@ of initialisation.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="lux.core.templates.Template.get">
-<tt class="descname">get</tt><big>(</big><em>key</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates.html#Template.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.Template.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieve a children <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> with <a class="reference internal" href="#lux.core.templates.Template.key" title="lux.core.templates.Template.key"><tt class="xref py py-attr docutils literal"><span class="pre">Template.key</span></tt></a>
-equal to <tt class="docutils literal"><span class="pre">key</span></tt>.</p>
-<p>The search is done recursively and the first match is
-returned. If not available return <tt class="docutils literal"><span class="pre">None</span></tt>.</p>
+<dt id="lux.core.templates.Template.init_parameters">
+<tt class="descname">init_parameters</tt><big>(</big><em>tag=None</em>, <em>**parameters</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates.html#Template.init_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.Template.init_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called at the and of initialisation.</p>
+<p>It fills the <a class="reference internal" href="#lux.core.templates.Template.parameters" title="lux.core.templates.Template.parameters"><tt class="xref py py-attr docutils literal"><span class="pre">parameters</span></tt></a> attribute.
+It can be overwritten to customise behaviour.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1593,17 +1592,18 @@ This method shouldn&#8217;t be accessed directly.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="lux.core.templates.Template.init_parameters">
-<tt class="descname">init_parameters</tt><big>(</big><em>tag=None</em>, <em>**parameters</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates.html#Template.init_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.Template.init_parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Called at the and of initialisation.</p>
-<p>It fills the <a class="reference internal" href="#lux.core.templates.Template.parameters" title="lux.core.templates.Template.parameters"><tt class="xref py py-attr docutils literal"><span class="pre">parameters</span></tt></a> attribute.
-It can be overwritten to customise behaviour.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="lux.core.templates.Template.keys">
 <tt class="descname">keys</tt><big>(</big><big>)</big><a class="reference internal" href="../modules/lux/core/templates.html#Template.keys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.Template.keys" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generator of keys in this <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.templates.Template.get">
+<tt class="descname">get</tt><big>(</big><em>key</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates.html#Template.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.Template.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a children <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> with <a class="reference internal" href="#lux.core.templates.Template.key" title="lux.core.templates.Template.key"><tt class="xref py py-attr docutils literal"><span class="pre">Template.key</span></tt></a>
+equal to <tt class="docutils literal"><span class="pre">key</span></tt>.</p>
+<p>The search is done recursively and the first match is
+returned. If not available return <tt class="docutils literal"><span class="pre">None</span></tt>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1807,8 +1807,8 @@ its row container. For example <tt class="docutils literal"><span class="pre">0.
   <p class="topless"><a href="../tutorials/extensions.html"
                         title="previous chapter">Writing Extensions</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../extensions/index.html"
-                        title="next chapter">Extensions</a></p>
+  <p class="topless"><a href="params.html"
+                        title="next chapter">Parameters</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../sources/api/index.txt"
