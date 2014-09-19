@@ -1,76 +1,50 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Writing Extensions &mdash; lux 0.1.0-beta.1 documentation</title>
-    
-    <link rel="stylesheet" href="../static/pulsar.css" type="text/css" />
-    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.1.0-beta.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="../static/jquery.js"></script>
-    <script type="text/javascript" src="../static/underscore.js"></script>
-    <script type="text/javascript" src="../static/doctools.js"></script>
-    <link rel="shortcut icon" href="../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../index.html" />
-    <link rel="up" title="Tutorials" href="index.html" />
-    <link rel="next" title="API" href="../api/index.html" />
-    <link rel="prev" title="Lux Application" href="application.html" /> 
-  </head>
-  <body>
-
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../api/index.html" title="API"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="application.html" title="Lux Application"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">Tutorials</a> &raquo;</li> 
-      </ul>
+<!DOCTYPE html>
+<html data-debug='false' data-icon='fontawesome' data-ng-controller='page' data-ng-model='page' lang='en'>
+<head>
+<title>Lux - web toolkit for python and angularJS</title>
+<meta charset='utf-8'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<link href='/media/luxsite/favicon.ico' rel='icon' type='image/x-icon'>
+<link href='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<link href='http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+<link href='/media/luxsite/lux-114.png' rel='apple-touch-icon' sizes='57x57' type='text/css'>
+<link href='/media/luxsite/lux-114.png' rel='apple-touch-icon' sizes='114x114' type='text/css'>
+<link href='/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='72x72' type='text/css'>
+<link href='/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144' type='text/css'>
+<link href='/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+var context={"apiUrls": {}, "site_url": "", "site_name": "Lux", "site_media": "/media", "site_year": 2014, "site_python_version": "3.4.1", "site_lux_version": "0.1.0", "navbarCollapseWidth": 768, "site_date": "2014 Sep 19"};</script>
+<script type="text/javascript">
+var require = {"deps": ["lux"], "paths": {"require": "http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min", "aws": "http://sdk.amazonaws.com/js/aws-sdk-2.0.0-rc13.min", "restangular": "http://cdnjs.cloudflare.com/ajax/libs/restangular/1.4.0/restangular.min", "ng-grid": "http://ui-grid.info/release/ui-grid-unstable.min", "jquery": "http://code.jquery.com/jquery-1.11.1.min", "sockjs": "http://cdnjs.cloudflare.com/ajax/libs/sockjs-client/0.3.4/sockjs.min", "angular": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min", "lux": "/media/lux/lux", "gridster": "http://cdnjs.cloudflare.com/ajax/libs/jquery.gridster/0.2.1/jquery.gridster.min", "mustache": "http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min", "bootstrap": "http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min", "bootstrap_css": "http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min", "d3": "http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min", "socket.io": "http://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min", "angular-route": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-route.min", "json": "http://cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min", "nvd3": "http://cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min", "kineticjs": "http://cdnjs.cloudflare.com/ajax/libs/kineticjs/4.6.0/kinetic.min", "lorem": "/media/lux/lorem.min", "codemirror": "http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min", "lodash": "http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min", "jquery-cookie": "http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.3.1/jquery.cookie.min", "topojson": "http://cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min", "moment": "http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min", "showdown": "http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min", "angular-mocks": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-mocks.min", "angular-animate": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-animate.min", "jquery-form": "http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.min", "select": "http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min", "nvd3_css": "http://cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min", "fontawesome": "http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min", "angular-sanitize": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-sanitize.min", "holder": "http://cdnjs.cloudflare.com/ajax/libs/holder/2.3.1/holder.min", "typeahead": "http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.9.2/typeahead.min", "mathjax": "http://cdn.mathjax.org/mathjax/latest/MathJax.js.min?config=TeX-AMS-MML_HTMLorMML", "prettify": "http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min"}, "shim": {"restangular": {"deps": ["angular", "lodash"]}, "jquery-cookies": {"deps": ["jquery"]}, "ng-grid": {"deps": ["angular"]}, "angular-sanitize": {"deps": ["angular"]}, "angular-animate": {"deps": ["angular"]}, "jquery-form": {"deps": ["jquery"]}, "bootstrap": {"deps": ["jquery"]}, "select": {"deps": ["jquery"]}, "parsley": {"deps": ["jquery"]}, "angular-mocks": {"deps": ["angular"]}, "angular-route": {"deps": ["angular"]}, "nvd3": {"deps": ["d3"]}, "qunit": {"exports": "QUnit", "deps": ["jquery"]}}, "waitSeconds": 200},
+    media_path = "/media/";
+</script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
+</head>
+<body>
+<section id="page-header" class="page-header-outer $slug-header">
+    <div class="layer">
+        <div class="page-header">
+            <div class="container fullpage">
+                <div class="row fullpage">
+                    <div class="col-sm-12 text-center">
+                        $breadcrumbs
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-<div class="deck">
-<div class="header">
-    
-        <p class="developmentversion">
-        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
-        <a href="http://pythonhosted.org/lux/">release docs here</a>.
-        </p>
-    
-</div>
-</div>
-  
+</section>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <span class="target" id="module-lux.core"><span id="writing-extensions"></span></span><div class="section" id="id1">
+<div id="page-main">
+    <div class="container">
+        <div class="row">
+            <div class="$slug-main col-md-12">
+                <div class="center-block" style="max-width: 900px">
+                    <span class="target" id="module-lux.core"><span id="writing-extensions"></span></span><div class="section" id="id1">
 <h1>Writing Extensions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>When writing a new extensions, one starts by subclassing the
-<a class="reference internal" href="../api/index.html#lux.core.extension.Extension" title="lux.core.extension.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> class:</p>
+<a class="reference internal" href="../../api/#lux.core.extension.Extension" title="lux.core.extension.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> class:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">lux</span>
 
 <span class="k">class</span> <span class="nc">MyExtension</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Extension</span><span class="p">):</span>
@@ -81,16 +55,16 @@
         <span class="o">...</span>
 </pre></div>
 </div>
-<p>Probably, the <a class="reference internal" href="../extensions/api.html#lux.extensions.api.Extension.middleware" title="lux.extensions.api.Extension.middleware"><tt class="xref py py-meth docutils literal"><span class="pre">Extension.middleware()</span></tt></a> is the
+<p>Probably, the <a class="reference internal" href="../../api/#lux.core.extension.Extension.middleware" title="lux.core.extension.Extension.middleware"><tt class="xref py py-meth docutils literal"><span class="pre">Extension.middleware()</span></tt></a> is the
 most important method an extensions can override. It is called once only
-by the <a class="reference internal" href="../extensions/app.html#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> serving the web site, and it must return an iterable over
+by the <a class="reference internal" href="../../extensions/app/#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> serving the web site, and it must return an iterable over
 <a class="reference external" href="http://www.python.org/dev/peps/pep-3333/">WSGI</a> middleware or <tt class="docutils literal"><span class="pre">None</span></tt>. It is also a chance to perform
 custom initialisation of the extensions.</p>
 <div class="section" id="events">
 <h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
 <p>An extension can register several handlers which are invoked at different
 points during the application live-span. These handlers receive as
-first positional argument, the <a class="reference internal" href="../extensions/app.html#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> instance running the web site
+first positional argument, the <a class="reference internal" href="../../extensions/app/#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> instance running the web site
 and are implemented by adding some of the following methods to your
 extension class:</p>
 <div class="section" id="on-config">
@@ -101,9 +75,9 @@ extension class:</p>
 <dd></dd></dl>
 
 <p>This is the first event to be fired. It is executd once only after the
-<a class="reference internal" href="../extensions/app.html#lux.core.app.App.config" title="lux.core.app.App.config"><tt class="xref py py-attr docutils literal"><span class="pre">App.config</span></tt></a> dictionary has been loaded from
+<tt class="xref py py-attr docutils literal"><span class="pre">App.config</span></tt> dictionary has been loaded from
 the setting file. This is a chance to perform post processing on
-parameters before the wsgi <a class="reference internal" href="../extensions/app.html#lux.core.app.App.handler" title="lux.core.app.App.handler"><tt class="xref py py-attr docutils literal"><span class="pre">App.handler</span></tt></a> is loaded.</p>
+parameters before the wsgi <tt class="xref py py-attr docutils literal"><span class="pre">App.handler</span></tt> is loaded.</p>
 </div>
 <div class="section" id="on-loaded">
 <span id="event-on-loaded"></span><h3>on_loaded<a class="headerlink" href="#on-loaded" title="Permalink to this headline">¶</a></h3>
@@ -112,8 +86,8 @@ parameters before the wsgi <a class="reference internal" href="../extensions/app
 <tt class="descclassname">Extension.</tt><tt class="descname">on_loaded</tt><big>(</big><em>self</em>, <em>app</em>, <em>handler</em><big>)</big><a class="headerlink" href="#lux.core.Extension.on_loaded" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>Called once only when all <a class="reference internal" href="../api/index.html#lux.core.extension.Extension" title="lux.core.extension.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> have loaded their
-<a class="reference internal" href="../extensions/api.html#lux.extensions.api.Extension.middleware" title="lux.extensions.api.Extension.middleware"><tt class="xref py py-meth docutils literal"><span class="pre">middleware()</span></tt></a> into
+<p>Called once only when all <a class="reference internal" href="../../api/#lux.core.extension.Extension" title="lux.core.extension.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> have loaded their
+<a class="reference internal" href="../../api/#lux.core.extension.Extension.middleware" title="lux.core.extension.Extension.middleware"><tt class="xref py py-meth docutils literal"><span class="pre">middleware()</span></tt></a> into
 the WSGI <tt class="docutils literal"><span class="pre">handler</span></tt>. A chance to add additional middleware or perform
 any sort of post-processing on the wsgi application <tt class="docutils literal"><span class="pre">handler</span></tt>.</p>
 </div>
@@ -172,81 +146,101 @@ which is being rendered in the body part of the Html page.</p>
 </div>
 </div>
 
-
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper"><p class="logo">
-<a href="../index.html">
-  <img class="logo" width="200" src="../static/lux.svg" alt="lux" title="lux"/>
-</a>
-</p>
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Writing Extensions</a><ul>
-<li><a class="reference internal" href="#events">Events</a><ul>
-<li><a class="reference internal" href="#on-config">on_config</a></li>
-<li><a class="reference internal" href="#on-loaded">on_loaded</a></li>
-<li><a class="reference internal" href="#on-start">on_start</a></li>
-<li><a class="reference internal" href="#on-request">on_request</a></li>
-<li><a class="reference internal" href="#on-html-document">on_html_document</a></li>
-<li><a class="reference internal" href="#on-form">on_form</a></li>
-<li><a class="reference internal" href="#on-html-response">on_html_response</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="application.html"
-                        title="previous chapter">Lux Application</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="../api/index.html"
-                        title="next chapter">API</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../sources/tutorials/extensions.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<header id='top' class="navbar-static-top navbar-inverse navbar-fixed-top lux-nav" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#site-navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="brand" target="_self">
+                <img src="/media/luxsite/lux-banner.png" alt="Lux">
+            </a>
         </div>
-      </div>
-      <div class="clearer"></div>
+        <nav id="site-navigation" class="collapse navbar-collapse navbar-right" role="navigation" ng-cloak>
+            <ul class="nav navbar-nav">
+                <li ng-class="{active:activeLink('/documentation')}">
+                    <a href="/documentation" title="Documentation">Docs</a>
+                </li>
+                <li ng-class="{active:activeLink('/tutorials/')}">
+                    <a href="/tutorials/" title="Tutorials">Tutorials</a>
+                </li>
+                <li ng-class="{active:activeLink('/extensions/')}">
+                    <a href="/extensions/" title="Extensions">Extensions</a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left navbar-input-group" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search" ng-model="search_text">
+                </div>
+                <button class="btn btn-default" type="button" ng-click="search()">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+        </nav>
     </div>
-
-    <div class="footer">
-        &copy; Copyright 2011-2013, Luca Sbardella.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+</header>
+<div class='small hidden-print text-muted' id='page-footer'>
+    <div class='container'>
+        <div class='row'>
+            <div class='block col-sm-5'>
+                <div class='hidden-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+</ul>
+                </div>
+                <div class='text-center visible-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+</ul>
+                </div>
+            </div>
+            <div class='block col-sm-2 text-center'>
+                <div class='hidden-xs'>
+                    <p><a href='#top' data-ng-click="scrollToHash($event)" title="Quantmind" class="hover-opacity">
+    <img height=50 title='Lux' src='/media/luxsite/lux.png' alt='quantmind'>
+</a></p>
+                </div>
+                <div class='visible-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+            </div>
+            <div class='block col-sm-5'>
+                <div class='text-right hidden-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+                <div class='text-center visible-xs'>
+                    <p><a href='#top' data-ng-click="scrollToHash($event)" title="Quantmind" class="hover-opacity">
+    <img height=50 title='Lux' src='/media/luxsite/lux.png' alt='quantmind'>
+</a></p>
+                </div>
+            </div>
+        </div>
     </div>
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  
-  _gaq.push(['_setAccount', 'UA-3900561-8']);
-  
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-
-  </body>
+</div></body>
 </html>

@@ -1,212 +1,176 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Static site builder &mdash; lux 0.1.0-beta.1 documentation</title>
-    
-    <link rel="stylesheet" href="../static/pulsar.css" type="text/css" />
-    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.1.0-beta.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="../static/jquery.js"></script>
-    <script type="text/javascript" src="../static/underscore.js"></script>
-    <script type="text/javascript" src="../static/doctools.js"></script>
-    <link rel="shortcut icon" href="../static/favicon.ico"/>
-    <link rel="top" title="lux 0.1.0-beta.1 documentation" href="../index.html" />
-    <link rel="up" title="Extensions" href="index.html" />
-    <link rel="next" title="Google integration" href="google.html" />
-    <link rel="prev" title="Services" href="services.html" /> 
-  </head>
-  <body>
-
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="google.html" title="Google integration"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="services.html" title="Services"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">lux 0.1.0-beta.1 documentation</a> &raquo;</li>
-          <li><a href="index.html" accesskey="U">Extensions</a> &raquo;</li> 
-      </ul>
+<!DOCTYPE html>
+<html data-debug='false' data-icon='fontawesome' data-ng-controller='page' data-ng-model='page' lang='en'>
+<head>
+<title>Lux - web toolkit for python and angularJS</title>
+<meta charset='utf-8'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<link href='/media/luxsite/favicon.ico' rel='icon' type='image/x-icon'>
+<link href='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<link href='http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+<link href='/media/luxsite/lux-114.png' rel='apple-touch-icon' sizes='57x57' type='text/css'>
+<link href='/media/luxsite/lux-114.png' rel='apple-touch-icon' sizes='114x114' type='text/css'>
+<link href='/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='72x72' type='text/css'>
+<link href='/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144' type='text/css'>
+<link href='/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+var context={"apiUrls": {}, "site_url": "", "site_name": "Lux", "site_media": "/media", "site_year": 2014, "site_python_version": "3.4.1", "site_lux_version": "0.1.0", "navbarCollapseWidth": 768, "site_date": "2014 Sep 19"};</script>
+<script type="text/javascript">
+var require = {"deps": ["lux"], "paths": {"require": "http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min", "aws": "http://sdk.amazonaws.com/js/aws-sdk-2.0.0-rc13.min", "restangular": "http://cdnjs.cloudflare.com/ajax/libs/restangular/1.4.0/restangular.min", "ng-grid": "http://ui-grid.info/release/ui-grid-unstable.min", "jquery": "http://code.jquery.com/jquery-1.11.1.min", "sockjs": "http://cdnjs.cloudflare.com/ajax/libs/sockjs-client/0.3.4/sockjs.min", "angular": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min", "lux": "/media/lux/lux", "gridster": "http://cdnjs.cloudflare.com/ajax/libs/jquery.gridster/0.2.1/jquery.gridster.min", "mustache": "http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min", "bootstrap": "http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min", "bootstrap_css": "http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min", "d3": "http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min", "socket.io": "http://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min", "angular-route": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-route.min", "json": "http://cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min", "nvd3": "http://cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min", "kineticjs": "http://cdnjs.cloudflare.com/ajax/libs/kineticjs/4.6.0/kinetic.min", "lorem": "/media/lux/lorem.min", "codemirror": "http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min", "lodash": "http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min", "jquery-cookie": "http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.3.1/jquery.cookie.min", "topojson": "http://cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min", "moment": "http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min", "showdown": "http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min", "angular-mocks": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-mocks.min", "angular-animate": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-animate.min", "jquery-form": "http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.min", "select": "http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min", "nvd3_css": "http://cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min", "fontawesome": "http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min", "angular-sanitize": "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-sanitize.min", "holder": "http://cdnjs.cloudflare.com/ajax/libs/holder/2.3.1/holder.min", "typeahead": "http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.9.2/typeahead.min", "mathjax": "http://cdn.mathjax.org/mathjax/latest/MathJax.js.min?config=TeX-AMS-MML_HTMLorMML", "prettify": "http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min"}, "shim": {"restangular": {"deps": ["angular", "lodash"]}, "jquery-cookies": {"deps": ["jquery"]}, "ng-grid": {"deps": ["angular"]}, "angular-sanitize": {"deps": ["angular"]}, "angular-animate": {"deps": ["angular"]}, "jquery-form": {"deps": ["jquery"]}, "bootstrap": {"deps": ["jquery"]}, "select": {"deps": ["jquery"]}, "parsley": {"deps": ["jquery"]}, "angular-mocks": {"deps": ["angular"]}, "angular-route": {"deps": ["angular"]}, "nvd3": {"deps": ["d3"]}, "qunit": {"exports": "QUnit", "deps": ["jquery"]}}, "waitSeconds": 200},
+    media_path = "/media/";
+</script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
+</head>
+<body>
+<section id="page-header" class="page-header-outer $slug-header">
+    <div class="layer">
+        <div class="page-header">
+            <div class="container fullpage">
+                <div class="row fullpage">
+                    <div class="col-sm-12 text-center">
+                        $breadcrumbs
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-<div class="deck">
-<div class="header">
-    
-        <p class="developmentversion">
-        Documentation for lux's <strong>DEVELOPMENT</strong> version. Get the
-        <a href="http://pythonhosted.org/lux/">release docs here</a>.
-        </p>
-    
-</div>
-</div>
-  
+</section>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <div class="section" id="module-lux.extensions.static">
+<div id="page-main">
+    <div class="container">
+        <div class="row">
+            <div class="$slug-main col-md-12">
+                <div class="center-block" style="max-width: 900px">
+                    <div class="section" id="module-lux.extensions.static">
 <span id="static-site-builder"></span><span id="extension-static"></span><h1>Static site builder<a class="headerlink" href="#module-lux.extensions.static" title="Permalink to this headline">¶</a></h1>
 <p>Static site generator</p>
-<p><strong>Requirements</strong>: <a class="reference internal" href="base.html#module-lux.extensions.base" title="lux.extensions.base"><tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.base</span></tt></a></p>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>Put the <tt class="docutils literal"><span class="pre">lux.extensions.static</span></tt> extension into your <a class="reference internal" href="app.html#std:setting-EXTENSIONS"><tt class="xref std std-setting docutils literal"><span class="pre">EXTENSIONS</span></tt></a>
+<p>Put the <a class="reference internal" href="#module-lux.extensions.static" title="lux.extensions.static"><tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.static</span></tt></a> extension into your <a href="#id1"><span class="problematic" id="id2">:settings:`EXTENSIONS`</span></a>
 list and build the static web site via the <tt class="docutils literal"><span class="pre">build_static</span></tt> option in the
 command line:</p>
-<div class="highlight-python"><pre>python managet.py build_static</pre>
+<div class="highlight-python"><div class="highlight"><pre>python managet.py build_static
+</pre></div>
 </div>
+<p>There are several <a class="reference internal" href="../../api/params/#parameters-static"><em>parameters</em></a> which can be modified
+in order to customise the site.</p>
+<p>The first step is to create a new project via the <strong class="command">create_project</strong></p>
+<p>When creating the middleware for the static site one can pass the following
+key-valued parameters during initialisation of a <tt class="xref py py-class docutils literal"><span class="pre">HtmlContent</span></tt>,
+a <tt class="xref py py-class docutils literal"><span class="pre">Blog</span></tt> and other routers:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">dir</span></tt> the directory where the source files are located, if not provided,
+it is assumed it is the same as the route parameter</li>
+<li><tt class="xref py py-attr docutils literal"><span class="pre">html_body_template</span></tt> to specify the
+location of the template which render the html body tag of the Html5
+document. If not provided, the parent router value is used unless no parent
+is available and the <a href="#id3"><span class="problematic" id="id4">:settings:`STATIC_TEMPLATE`</span></a> is used instead.</li>
+<li>:attr:<a href="#id5"><span class="problematic" id="id6">`</span></a></li>
+</ul>
 </div>
-<div class="section" id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="extra-files">
-<span id="std:setting-EXTRA_FILES"></span><h3>EXTRA_FILES<a class="headerlink" href="#extra-files" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'()'</span></tt></p>
-<p>List/tuple of additional files to copy to the <a class="reference internal" href="#std:setting-STATIC_LOCATION"><tt class="xref std std-setting docutils literal"><span class="pre">STATIC_LOCATION</span></tt></a></p>
-</div>
-<div class="section" id="md-extensions">
-<span id="std:setting-MD_EXTENSIONS"></span><h3>MD_EXTENSIONS<a class="headerlink" href="#md-extensions" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">&quot;['extra',</span> <span class="pre">'meta']&quot;</span></tt></p>
-<p>List/tuple of makrdown extensions</p>
-</div>
-<div class="section" id="metadata-processors">
-<span id="std:setting-METADATA_PROCESSORS"></span><h3>METADATA_PROCESSORS<a class="headerlink" href="#metadata-processors" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'[]'</span></tt></p>
-<p>A list of functions to perocess metadata</p>
-</div>
-<div class="section" id="relative-urls">
-<span id="std:setting-RELATIVE_URLS"></span><h3>RELATIVE_URLS<a class="headerlink" href="#relative-urls" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'False'</span></tt></p>
-<p>Display urls as relative paths (useful during development)</p>
-</div>
-<div class="section" id="snippets-location">
-<span id="std:setting-SNIPPETS_LOCATION"></span><h3>SNIPPETS_LOCATION<a class="headerlink" href="#snippets-location" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'snippets'</span></tt></p>
-<p>Directory where to find snippets used as content</p>
-</div>
-<div class="section" id="source-suffix">
-<span id="std:setting-SOURCE_SUFFIX"></span><h3>SOURCE_SUFFIX<a class="headerlink" href="#source-suffix" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'md'</span></tt></p>
-<p>The default suffix of source filenames</p>
-</div>
-<div class="section" id="static-location">
-<span id="std:setting-STATIC_LOCATION"></span><h3>STATIC_LOCATION<a class="headerlink" href="#static-location" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'build'</span></tt></p>
-<p>Directory where the static site is created</p>
-</div>
-<div class="section" id="static-sitemap">
-<span id="std:setting-STATIC_SITEMAP"></span><h3>STATIC_SITEMAP<a class="headerlink" href="#static-sitemap" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'{}'</span></tt></p>
-<p>Dictionary of contents for the site</p>
-</div>
-<div class="section" id="static-template">
-<span id="std:setting-STATIC_TEMPLATE"></span><h3>STATIC_TEMPLATE<a class="headerlink" href="#static-template" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'PageTemplate(div)'</span></tt></p>
-<p>Default static template</p>
-</div>
+<div class="section" id="templates">
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h2>
+<p>Each <tt class="xref py py-attr docutils literal"><span class="pre">html_body_template</span></tt> is rendered
+using a <tt class="docutils literal"><span class="pre">context</span></tt> dictionary which is an instance of the
+<tt class="xref py py-class docutils literal"><span class="pre">ContextBuilder</span></tt> class.</p>
 </div>
 </div>
 
-
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper"><p class="logo">
-<a href="../index.html">
-  <img class="logo" width="200" src="../static/lux.svg" alt="lux" title="lux"/>
-</a>
-</p>
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Static site builder</a><ul>
-<li><a class="reference internal" href="#usage">Usage</a></li>
-<li><a class="reference internal" href="#parameters">Parameters</a><ul>
-<li><a class="reference internal" href="#extra-files">EXTRA_FILES</a></li>
-<li><a class="reference internal" href="#md-extensions">MD_EXTENSIONS</a></li>
-<li><a class="reference internal" href="#metadata-processors">METADATA_PROCESSORS</a></li>
-<li><a class="reference internal" href="#relative-urls">RELATIVE_URLS</a></li>
-<li><a class="reference internal" href="#snippets-location">SNIPPETS_LOCATION</a></li>
-<li><a class="reference internal" href="#source-suffix">SOURCE_SUFFIX</a></li>
-<li><a class="reference internal" href="#static-location">STATIC_LOCATION</a></li>
-<li><a class="reference internal" href="#static-sitemap">STATIC_SITEMAP</a></li>
-<li><a class="reference internal" href="#static-template">STATIC_TEMPLATE</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="services.html"
-                        title="previous chapter">Services</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="google.html"
-                        title="next chapter">Google integration</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../sources/extensions/static.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<header id='top' class="navbar-static-top navbar-inverse navbar-fixed-top lux-nav" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#site-navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="brand" target="_self">
+                <img src="/media/luxsite/lux-banner.png" alt="Lux">
+            </a>
         </div>
-      </div>
-      <div class="clearer"></div>
+        <nav id="site-navigation" class="collapse navbar-collapse navbar-right" role="navigation" ng-cloak>
+            <ul class="nav navbar-nav">
+                <li ng-class="{active:activeLink('/documentation')}">
+                    <a href="/documentation" title="Documentation">Docs</a>
+                </li>
+                <li ng-class="{active:activeLink('/tutorials/')}">
+                    <a href="/tutorials/" title="Tutorials">Tutorials</a>
+                </li>
+                <li ng-class="{active:activeLink('/extensions/')}">
+                    <a href="/extensions/" title="Extensions">Extensions</a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left navbar-input-group" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search" ng-model="search_text">
+                </div>
+                <button class="btn btn-default" type="button" ng-click="search()">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+        </nav>
     </div>
-
-    <div class="footer">
-        &copy; Copyright 2011-2013, Luca Sbardella.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+</header>
+<div class='small hidden-print text-muted' id='page-footer'>
+    <div class='container'>
+        <div class='row'>
+            <div class='block col-sm-5'>
+                <div class='hidden-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+</ul>
+                </div>
+                <div class='text-center visible-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+</ul>
+                </div>
+            </div>
+            <div class='block col-sm-2 text-center'>
+                <div class='hidden-xs'>
+                    <p><a href='#top' data-ng-click="scrollToHash($event)" title="Quantmind" class="hover-opacity">
+    <img height=50 title='Lux' src='/media/luxsite/lux.png' alt='quantmind'>
+</a></p>
+                </div>
+                <div class='visible-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+            </div>
+            <div class='block col-sm-5'>
+                <div class='text-right hidden-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+                <div class='text-center visible-xs'>
+                    <p><a href='#top' data-ng-click="scrollToHash($event)" title="Quantmind" class="hover-opacity">
+    <img height=50 title='Lux' src='/media/luxsite/lux.png' alt='quantmind'>
+</a></p>
+                </div>
+            </div>
+        </div>
     </div>
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  
-  _gaq.push(['_setAccount', 'UA-3900561-8']);
-  
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-
-  </body>
+</div></body>
 </html>
