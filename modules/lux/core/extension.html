@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html data-debug='false' data-icon='fontawesome' data-ng-controller='page' data-ng-model='page' lang='en'>
+<head>
+<title>Lux - web toolkit for python and angularJS</title>
+<meta charset='utf-8'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico' rel='icon' type='image/x-icon'>
+<link href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png' rel='apple-touch-icon' sizes='57x57' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png' rel='apple-touch-icon' sizes='114x114' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='72x72' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+var context={"site_date": "2014 Sep 20", "apiUrls": {}, "site_year": 2014, "site_lux_version": "0.1.0-alpha.1", "site_python_version": "3.4.1", "site_url": "http://quantmind.github.io/lux", "site_name": "Lux", "navbarCollapseWidth": 768, "site_media": "/media"};</script>
+<script type="text/javascript">
+var require = {"deps": ["lux"], "paths": {"gridster": "//cdnjs.cloudflare.com/ajax/libs/jquery.gridster/0.2.1/jquery.gridster.min", "mathjax": "//cdn.mathjax.org/mathjax/latest/MathJax.js.min?config=TeX-AMS-MML_HTMLorMML", "select": "//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.min", "moment": "//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min", "fontawesome": "//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min", "bootstrap": "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min", "jquery": "//code.jquery.com/jquery-1.11.1.min", "jquery-form": "//cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.min", "socket.io": "//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min", "lodash": "//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min", "nvd3": "//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min", "topojson": "//cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min", "angular-route": "//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-route.min", "angular-sanitize": "//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-sanitize.min", "ng-grid": "http://ui-grid.info/release/ui-grid-unstable.min", "jquery-cookie": "//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.3.1/jquery.cookie.min", "prettify": "//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min", "kineticjs": "//cdnjs.cloudflare.com/ajax/libs/kineticjs/4.6.0/kinetic.min", "d3": "//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min", "mustache": "//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min", "showdown": "//cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min", "angular": "//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min", "bootstrap_css": "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min", "angular-mocks": "//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-mocks.min", "typeahead": "//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.9.2/typeahead.min", "nvd3_css": "//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min", "require": "//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min", "holder": "//cdnjs.cloudflare.com/ajax/libs/holder/2.3.1/holder.min", "angular-animate": "//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-animate.min", "json": "//cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min", "sockjs": "//cdnjs.cloudflare.com/ajax/libs/sockjs-client/0.3.4/sockjs.min", "restangular": "//cdnjs.cloudflare.com/ajax/libs/restangular/1.4.0/restangular.min", "lorem": "http://quantmind.github.io/lux/media/lux/lorem.min", "codemirror": "//cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min", "aws": "//sdk.amazonaws.com/js/aws-sdk-2.0.0-rc13.min", "lux": "http://quantmind.github.io/lux/media/lux/lux"}, "shim": {"qunit": {"exports": "QUnit", "deps": ["jquery"]}, "select": {"deps": ["jquery"]}, "restangular": {"deps": ["angular", "lodash"]}, "angular-animate": {"deps": ["angular"]}, "parsley": {"deps": ["jquery"]}, "jquery-form": {"deps": ["jquery"]}, "bootstrap": {"deps": ["jquery"]}, "nvd3": {"deps": ["d3"]}, "angular-route": {"deps": ["angular"]}, "angular-sanitize": {"deps": ["angular"]}, "angular-mocks": {"deps": ["angular"]}, "ng-grid": {"deps": ["angular"]}, "jquery-cookies": {"deps": ["jquery"]}}, "waitSeconds": 200},
+    media_path = "http://quantmind.github.io/lux/media/";
+</script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
+</head>
+<body>
+<section id="page-header" class="page-header-outer $slug-header">
+    <div class="layer">
+        <div class="page-header">
+            <div class="container fullpage">
+                <div class="row fullpage">
+                    <div class="col-sm-12 text-center">
+                        $breadcrumbs
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="page-main">
+    <div class="container">
+        <div class="row">
+            <div class="$slug-main col-md-12">
+                <div class="center-block" style="max-width: 900px">
+                    <h1>Source code for lux.core.extension</h1><div class="highlight"><pre>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">Extension</span>
+<span class="sd">=====================</span>
+
+<span class="sd">.. autoclass:: Extension</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Extension Meta</span>
+<span class="sd">=====================</span>
+
+<span class="sd">.. autoclass:: ExtensionMeta</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Parameter</span>
+<span class="sd">=====================</span>
+
+<span class="sd">.. autoclass:: Parameter</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">getfile</span>
+
+<span class="kn">from</span> <span class="nn">pulsar.utils.path</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.pep</span> <span class="kn">import</span> <span class="n">native_str</span>
+
+<span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">__version__</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Extension&#39;</span><span class="p">,</span> <span class="s">&#39;Parameter&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Parameter"><a class="viewcode-back" href="../../../../api/#lux.core.extension.Parameter">[docs]</a><span class="k">class</span> <span class="nc">Parameter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Class for defining a lux :ref:`parameter &lt;parameter&gt;` within</span>
+<span class="sd">    a lux :class:`.Extension`.</span>
+
+<span class="sd">    Parameters are specified when creating an :class:`.Extension` in a</span>
+<span class="sd">    declarative style (as class attributes of the extension). For example::</span>
+
+<span class="sd">        from lux import Extension, Parameter</span>
+
+<span class="sd">        class MyExtension(Extension):</span>
+<span class="sd">            title = Parameter(&#39;Hello&#39;, &#39;The title to use in the home page&#39;)</span>
+
+<span class="sd">    :parameter default: the default value of the parameter. This is the value</span>
+<span class="sd">        used by the framework when the parameter is not found in the config</span>
+<span class="sd">        file.</span>
+<span class="sd">    :parameter doc: a documentation string for the parameter.</span>
+
+<span class="sd">    Parameters are case insensitive.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">doc</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="n">default</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">doc</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extension</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+    <span class="n">__str__</span> <span class="o">=</span> <span class="n">__repr__</span>
+
+</div>
+<div class="viewcode-block" id="ExtensionMeta"><a class="viewcode-back" href="../../../../api/#lux.core.extension.ExtensionMeta">[docs]</a><span class="k">class</span> <span class="nc">ExtensionMeta</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Contains metadata for an :class:`Extension`.</span>
+
+<span class="sd">    .. attribute:: config</span>
+
+<span class="sd">        Dictionary of configuration :class:`.Parameter` for the extension.</span>
+
+<span class="sd">    .. attribute:: script</span>
+
+<span class="sd">        Set at runtime by :func:`execute`, it is the script</span>
+<span class="sd">        name which runs the application.</span>
+
+<span class="sd">    .. attribute:: version</span>
+
+<span class="sd">        Extension version number (specified via the :class:`.Extension`</span>
+<span class="sd">        ``version`` class attribute).</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">argv</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">file</span><span class="o">.</span><span class="n">isdir</span><span class="p">():</span>
+            <span class="n">appdir</span> <span class="o">=</span> <span class="nb">file</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">appdir</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">realpath</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">appdir</span><span class="o">.</span><span class="n">realpath</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span> <span class="ow">or</span> <span class="n">__version__</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_module</span><span class="p">:</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># otherwise it is the name of the file</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">cfg</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">config</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">setting</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+                <span class="n">setting</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">setting</span><span class="p">)</span>
+                <span class="n">setting</span><span class="o">.</span><span class="n">extension</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+                <span class="n">cfg</span><span class="p">[</span><span class="n">setting</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">setting</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">add_to_pypath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_module</span><span class="p">:</span>
+            <span class="n">base</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">base</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">base</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_module</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">ispymodule</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="ExtensionMeta.media_dir"><a class="viewcode-back" href="../../../../api/#lux.core.extension.ExtensionMeta.media_dir">[docs]</a>    <span class="k">def</span> <span class="nf">media_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Directory containing media files (if available)&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_module</span><span class="p">:</span>
+            <span class="nb">dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;media&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="nb">dir</span><span class="p">):</span>
+                <span class="k">return</span> <span class="nb">dir</span>
+</div>
+    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="p">):</span>
+        <span class="n">meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">meta</span><span class="o">.</span><span class="n">script</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">script</span>
+        <span class="n">meta</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">meta</span>
+
+    <span class="k">def</span> <span class="nf">update_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">setting</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">setting</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">setting</span><span class="p">)</span>
+
+</div>
+<span class="k">class</span> <span class="nc">ExtensionType</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Little magic to setup the extension&#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;_config&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;version&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">abstract</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;abstract&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+        <span class="n">klass</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">ExtensionType</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">abstract</span><span class="p">:</span>
+            <span class="n">meta</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="s">&#39;meta&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="n">ExtensionMeta</span><span class="p">):</span>
+                <span class="n">cfg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+                <span class="k">if</span> <span class="n">config</span><span class="p">:</span>
+                    <span class="n">cfg</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+                <span class="n">meta</span> <span class="o">=</span> <span class="n">ExtensionMeta</span><span class="p">(</span><span class="n">getfile</span><span class="p">(</span><span class="n">klass</span><span class="p">),</span> <span class="n">version</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">meta</span> <span class="o">=</span> <span class="n">ExtensionMeta</span><span class="p">(</span><span class="n">getfile</span><span class="p">(</span><span class="n">klass</span><span class="p">),</span> <span class="n">version</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+            <span class="n">klass</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="n">meta</span>
+        <span class="k">return</span> <span class="n">klass</span>
+
+
+<div class="viewcode-block" id="Extension"><a class="viewcode-back" href="../../../../api/#lux.core.extension.Extension">[docs]</a><span class="k">class</span> <span class="nc">Extension</span><span class="p">(</span><span class="n">ExtensionType</span><span class="p">(</span><span class="s">&#39;ExtBase&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">object</span><span class="p">,),</span> <span class="p">{</span><span class="s">&#39;abstract&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">})):</span>
+    <span class="sd">&#39;&#39;&#39;Base class for :ref:`lux extensions &lt;extensions&gt;`</span>
+<span class="sd">    including :class:`.App`.</span>
+
+<span class="sd">    .. attribute:: meta</span>
+
+<span class="sd">        The :class:`ExtensionMeta` data created by the :class:`Extension`</span>
+<span class="sd">        metaclass.</span>
+
+<span class="sd">    .. attribute:: logger</span>
+
+<span class="sd">        The logger instance for this :class:`Extension`.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">abstract</span> <span class="o">=</span> <span class="bp">True</span>
+
+<div class="viewcode-block" id="Extension.middleware"><a class="viewcode-back" href="../../../../api/#lux.core.extension.Extension.middleware">[docs]</a>    <span class="k">def</span> <span class="nf">middleware</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Called by application ``app`` when creating the middleware.</span>
+
+<span class="sd">        This method is invoked the first time :attr:`.App.handler` attribute</span>
+<span class="sd">        is accessed. It must return a list of WSGI middleware or ``None``.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Extension.response_middleware"><a class="viewcode-back" href="../../../../api/#lux.core.extension.Extension.response_middleware">[docs]</a>    <span class="k">def</span> <span class="nf">response_middleware</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Called by application ``app`` when creating the response</span>
+<span class="sd">        middleware&#39;&#39;&#39;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Extension.setup_logger"><a class="viewcode-back" href="../../../../api/#lux.core.extension.Extension.setup_logger">[docs]</a>    <span class="k">def</span> <span class="nf">setup_logger</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">opts</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Called by :meth:`setup` method to setup the :attr:`logger`.&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;lux.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Extension.setup"><a class="viewcode-back" href="../../../../api/#lux.core.extension.Extension.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Internal method which prepare the extension for usage.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">setting</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">setting</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">setting</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">setting</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">setting</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+            <span class="n">config</span><span class="p">[</span><span class="n">setting</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup_logger</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">config</span>
+</div>
+<div class="viewcode-block" id="Extension.extra_form_data"><a class="viewcode-back" href="../../../../api/#lux.core.extension.Extension.extra_form_data">[docs]</a>    <span class="k">def</span> <span class="nf">extra_form_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Must return an iterable over key-value pair of data to add to a</span>
+<span class="sd">        :class:`.Form`.</span>
+
+<span class="sd">        By default it returns an empty tuple.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Extension.write"><a class="viewcode-back" href="../../../../api/#lux.core.extension.Extension.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Write ``msg`` into ``stream`` or ``sys.stdout``</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">stream</span> <span class="ow">or</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
+        <span class="k">if</span> <span class="n">msg</span><span class="p">:</span>
+            <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">native_str</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Extension.write_err"><a class="viewcode-back" href="../../../../api/#lux.core.extension.Extension.write_err">[docs]</a>    <span class="k">def</span> <span class="nf">write_err</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Write ``msg`` into ``stream`` or ``sys.stderr``</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">stream</span> <span class="ow">or</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
+        <span class="k">if</span> <span class="n">msg</span><span class="p">:</span>
+            <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">native_str</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">__repr__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__repr__</span><span class="p">()</span></div>
+</pre></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<header id='top' class="navbar-static-top navbar-inverse navbar-fixed-top lux-nav" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#site-navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://quantmind.github.io/lux" class="brand" target="_self">
+                <img src="http://quantmind.github.io/lux/media/luxsite/lux-banner.png" alt="Lux">
+            </a>
+        </div>
+        <nav id="site-navigation" class="collapse navbar-collapse navbar-right" role="navigation" ng-cloak>
+            <ul class="nav navbar-nav">
+                <li ng-class="{active:activeLink('http://quantmind.github.io/lux/documentation')}">
+                    <a href="http://quantmind.github.io/lux/documentation" title="Documentation">Docs</a>
+                </li>
+                <li ng-class="{active:activeLink('http://quantmind.github.io/lux/tutorials/')}">
+                    <a href="http://quantmind.github.io/lux/tutorials/" title="Tutorials">Tutorials</a>
+                </li>
+                <li ng-class="{active:activeLink('http://quantmind.github.io/lux/extensions/')}">
+                    <a href="http://quantmind.github.io/lux/extensions/" title="Extensions">Extensions</a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left navbar-input-group" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search" ng-model="search_text">
+                </div>
+                <button class="btn btn-default" type="button" ng-click="search()">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+        </nav>
+    </div>
+</header>
+<div class='small hidden-print text-muted' id='page-footer'>
+    <div class='container'>
+        <div class='row'>
+            <div class='block col-sm-5'>
+                <div class='hidden-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+</ul>
+                </div>
+                <div class='text-center visible-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+</ul>
+                </div>
+            </div>
+            <div class='block col-sm-2 text-center'>
+                <div class='hidden-xs'>
+                    <p><a href='#top' data-ng-click="scrollToHash($event)" title="Quantmind" class="hover-opacity">
+    <img height=50 title='Lux' src='/media/luxsite/lux.png' alt='quantmind'>
+</a></p>
+                </div>
+                <div class='visible-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+            </div>
+            <div class='block col-sm-5'>
+                <div class='text-right hidden-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+                <div class='text-center visible-xs'>
+                    <p><a href='#top' data-ng-click="scrollToHash($event)" title="Quantmind" class="hover-opacity">
+    <img height=50 title='Lux' src='/media/luxsite/lux.png' alt='quantmind'>
+</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></body>
+</html>
