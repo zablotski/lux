@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html data-debug='false' lang='en'>
+<head>
+<title>Lux - Crafting super web applications with Python and AngularJS</title>
+<meta charset='utf-8'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='2014-10-13T13:42:19' name='og:modified_time'>
+<link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico.min.css' rel='icon' type='image/x-icon'>
+<link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png.min.css' rel='apple-touch-icon' sizes='57x57' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png.min.css' rel='apple-touch-icon' sizes='114x114' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='72x72' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='144x144' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/luxsite.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+var luxContext = {"year": 2014, "url": "http://quantmind.github.io/lux", "media": "/media", "date": "2014-10-13T13-42-13", "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "dateFormat": "d MMM y", "page": {"modified": "2014-10-13T13:42:19", "content_type": "text/html", "slug": "modules/lux/core/templates", "name": "modules_lux_core_templates"}, "html5mode": true, "lux_version": "0.1.0-alpha.1", "ngModules": [], "name": "Lux", "apiUrls": {}};</script>
+<script type="text/javascript">
+var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "minify": true, "waitSeconds": 200, "paths": {}};
+</script>
+<script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
+</head>
+<body data-ng-controller='Page' data-ng-model='page' data-page=''>
+<div id="page" class="fullpage" data-hash-scroll data-highlight ng-cloak>
+    <section id="page-header" class="page-header-outer modules_lux_core_templates-header">
+    <div class="layer">
+        <div class="page-header">
+            <div class="container fullpage">
+                <div class="row fullpage">
+                    <div class="col-sm-12 text-center">
+                        <breadcrumbs></breadcrumbs>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="page-main">
+    <div class="container">
+        <div class="row">
+            <div class="modules_lux_core_templates-main col-md-12">
+                <div class="center-block" style="max-width: 900px">
+                    <h1>Source code for lux.core.templates</h1><div class="highlight"><pre>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">The :class:`.Template` defines a family of classes which can be used to</span>
+<span class="sd">build HTML elements in a pythonic fashion. No template specific language is</span>
+<span class="sd">required, instead a template for an html element is created by adding children</span>
+<span class="sd">:class:`.Template` to a parent one.</span>
+
+
+<span class="sd">Template</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: Template</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+
+<span class="sd">Context</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: Context</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+
+<span class="sd">Page Template</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: PageTemplate</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+
+<span class="sd">Grid Template</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: GridTemplate</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+
+<span class="sd">Row Template</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: RowTemplate</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">Column Template</span>
+<span class="sd">~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: ColumnTemplate</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+
+<span class="kn">from</span> <span class="nn">pulsar</span> <span class="kn">import</span> <span class="n">coroutine_return</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.structures</span> <span class="kn">import</span> <span class="n">AttributeDictionary</span>
+
+<span class="kn">from</span> <span class="nn">.wrappers</span> <span class="kn">import</span> <span class="n">Html</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Template&#39;</span><span class="p">,</span> <span class="s">&#39;Context&#39;</span><span class="p">,</span> <span class="s">&#39;ColumnTemplate&#39;</span><span class="p">,</span> <span class="s">&#39;RowTemplate&#39;</span><span class="p">,</span>
+           <span class="s">&#39;GridTemplate&#39;</span><span class="p">,</span> <span class="s">&#39;PageTemplate&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Template"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.Template">[docs]</a><span class="k">class</span> <span class="nc">Template</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A factory of :class:`.Html` objects.</span>
+
+<span class="sd">    ::</span>
+
+<span class="sd">        &gt;&gt;&gt; simple = Template(Context(&#39;foo&#39;, tag=&#39;span&#39;), tag=&#39;div&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; html = simple(cn=&#39;test&#39;, context={&#39;foo&#39;: &#39;bla&#39;})</span>
+<span class="sd">        &gt;&gt;&gt; html.render()</span>
+<span class="sd">        &lt;div class=&#39;test&#39;&gt;&lt;span data-context=&#39;foo&#39;&gt;bla&lt;/span&gt;&lt;/div&gt;</span>
+
+<span class="sd">    .. attribute:: tag</span>
+
+<span class="sd">        An optional HTML tag_ for the outer element of this template.</span>
+<span class="sd">        If not specified, this template is a container of other templates</span>
+<span class="sd">        and no outer element is rendered.</span>
+
+<span class="sd">    .. attribute:: key</span>
+
+<span class="sd">        An optional string which identify this :class:`Template` within</span>
+<span class="sd">        other templates. It is also used for extracting content from the</span>
+<span class="sd">        ``context`` dictionary passed to the template callable method.</span>
+
+<span class="sd">    .. attribute:: children</span>
+
+<span class="sd">        List of :class:`Template` objects which are rendered as children</span>
+<span class="sd">        of this :class:`Template`</span>
+
+<span class="sd">    .. attribute:: parameters</span>
+
+<span class="sd">        An attribute dictionary containing all key-valued parameters passed</span>
+<span class="sd">        during initialisation. These parameters are used when building an</span>
+<span class="sd">        :class:`.Html` element via the callable method.</span>
+
+<span class="sd">        it is initialised by the :meth:`init_parameters` method at the end</span>
+<span class="sd">        of initialisation.</span>
+
+<span class="sd">    .. _tag: http://www.w3schools.com/tags/</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">defaults</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s">&#39;key&#39;</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;key&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">children</span><span class="p">:</span>
+            <span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">child_template</span><span class="p">()]</span>
+        <span class="n">new_children</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
+            <span class="n">child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">child_template</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">child</span><span class="p">:</span>
+                <span class="n">new_children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="n">new_children</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">(</span><span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">(</span><span class="si">%s</span><span class="s">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="ow">or</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__repr__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">child_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">child</span>
+
+<div class="viewcode-block" id="Template.init_parameters"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.Template.init_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">init_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Called at the and of initialisation.</span>
+
+<span class="sd">        It fills the :attr:`parameters` attribute.</span>
+<span class="sd">        It can be overwritten to customise behaviour.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">classes</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">AttributeDictionary</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">defaults</span> <span class="ow">or</span> <span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create an Html element from this template.&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="s">&#39;__call__&#39;</span><span class="p">):</span>
+            <span class="n">classes</span> <span class="o">=</span> <span class="n">classes</span><span class="p">()</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">addClass</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">maker</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="c">#</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">child</span> <span class="o">=</span> <span class="n">child</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+            <span class="n">child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post_process_child</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">children</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post_process_child</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span>
+                                                    <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="c">#</span>
+        <span class="k">if</span> <span class="n">context</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">))</span>
+        <span class="c">#</span>
+        <span class="k">return</span> <span class="n">html</span>
+
+<div class="viewcode-block" id="Template.keys"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.Template.keys">[docs]</a>    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Generator of keys in this :class:`.Template`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">child</span><span class="o">.</span><span class="n">key</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">child</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">yield</span> <span class="n">key</span>
+</div>
+<div class="viewcode-block" id="Template.get"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.Template.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Retrieve a children :class:`Template` with :attr:`Template.key`</span>
+<span class="sd">        equal to ``key``.</span>
+
+<span class="sd">        The search is done recursively and the first match is</span>
+<span class="sd">        returned. If not available return ``None``.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">child</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="n">elem</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">elem</span>
+</div>
+<div class="viewcode-block" id="Template.post_process_child"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.Template.post_process_child">[docs]</a>    <span class="k">def</span> <span class="nf">post_process_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Called just before adding ``child`` to ``html``</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">child</span>
+
+</div></div>
+<div class="viewcode-block" id="Context"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.Context">[docs]</a><span class="k">class</span> <span class="nc">Context</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A :class:`Template` which enforces the :attr:`~.Template.key`</span>
+<span class="sd">    attribute.</span>
+
+<span class="sd">    Fore example::</span>
+
+<span class="sd">        &gt;&gt;&gt; from lux import Context</span>
+<span class="sd">        &gt;&gt;&gt; template = Context(&#39;foo&#39;, tag=&#39;div&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; template.key</span>
+<span class="sd">        &#39;foo&#39;</span>
+<span class="sd">        &gt;&gt;&gt; html = template(context={&#39;foo&#39;: &#39;pippo&#39;})</span>
+<span class="sd">        &gt;&gt;&gt; html.render()</span>
+<span class="sd">        &lt;div&gt;pippo&lt;/div&gt;</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">params</span><span class="p">[</span><span class="s">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Context</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="ColumnTemplate"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.ColumnTemplate">[docs]</a><span class="k">class</span> <span class="nc">ColumnTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A template to place inside a :class:`.RowTemplate`.</span>
+
+<span class="sd">    :param span=1: fraction indicating how much this template extend across</span>
+<span class="sd">        its row container. For example ``0.5`` is half span. Must be between</span>
+<span class="sd">        0 and 1.</span>
+
+<span class="sd">    :param device=&#39;md&#39;: The device which render the column with the correct</span>
+<span class="sd">        ``span``. Valid options are</span>
+
+<span class="sd">        * ``xs`` extra small (phones)</span>
+<span class="sd">        * ``sm`` small (tablets)</span>
+<span class="sd">        * ``md`` medium (desktops)</span>
+<span class="sd">        * ``lg`` large (desktops)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;div&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">span</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;span&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;device&#39;</span><span class="p">,</span> <span class="s">&#39;md&#39;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ColumnTemplate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">span</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Column span &quot;</span><span class="si">%s</span><span class="s">&quot; greater than one!&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">span</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="RowTemplate"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.RowTemplate">[docs]</a><span class="k">class</span> <span class="nc">RowTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A :class:`.RowTemplate` is a container of :class:`.ColumnTemplate`</span>
+<span class="sd">    elements. It should be placed inside a :class:`.GridTemplate` for</span>
+<span class="sd">    better rendering.</span>
+
+<span class="sd">    :param column: Optional parameter which set the :attr:`column` attribute.</span>
+
+<span class="sd">    .. attribute:: column</span>
+
+<span class="sd">        It can be either 12 or 24 and it indicates the number of column</span>
+<span class="sd">        spans available.</span>
+
+<span class="sd">        Default: 12</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">grid_child</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;div&#39;</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="s">&#39;row&#39;</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="mi">12</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;columns&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="c"># self.classes = &#39;grid%s row&#39; % self.columns</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RowTemplate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">child_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">ColumnTemplate</span><span class="p">):</span>
+            <span class="n">child</span> <span class="o">=</span> <span class="n">ColumnTemplate</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="n">span</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">span</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="n">child</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="s">&#39;col-</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">span</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">child</span>
+
+</div>
+<div class="viewcode-block" id="GridTemplate"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.GridTemplate">[docs]</a><span class="k">class</span> <span class="nc">GridTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A container of :class:`.RowTemplate` or other templates.</span>
+
+<span class="sd">    :parameter fixed: optional boolean flag to indicate if the grid is</span>
+<span class="sd">        fixed (html class ``grid fixed``) or fluid (html class ``grid fluid``).</span>
+<span class="sd">        If not specified the grid is considered fluid (it changes width when</span>
+<span class="sd">        the browser window changes width).</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;div&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;fixed&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="s">&#39;container&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span> <span class="k">else</span> <span class="s">&#39;container-fluid&#39;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">child_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="s">&#39;grid_child&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span>
+            <span class="n">child</span> <span class="o">=</span> <span class="n">RowTemplate</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">child</span>
+
+</div>
+<div class="viewcode-block" id="PageTemplate"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.PageTemplate">[docs]</a><span class="k">class</span> <span class="nc">PageTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A :class:`.Template` to render the inner part of the HTML ``body`` tag.</span>
+
+<span class="sd">    A page template is created by including the page components during</span>
+<span class="sd">    initialisation, for example::</span>
+
+<span class="sd">        from lux.extensions.cms.grid import PageTemplate</span>
+
+<span class="sd">        head_body_foot = PageTemplate(</span>
+<span class="sd">            Template(...),</span>
+<span class="sd">            GridTemplate(...),</span>
+<span class="sd">            ...)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;div&#39;</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="s">&#39;cms-page&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">params</span><span class="p">[</span><span class="s">&#39;role&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;page&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PageTemplate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">PageTemplate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span>
+                                              <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="p">:</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;content_ids&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ids</span><span class="p">:</span>
+                <span class="n">contents</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">request</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">ids</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="p">()):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">apply_content</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">html</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">coroutine_return</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">apply_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+        <span class="n">elem</span><span class="o">.</span><span class="n">data</span><span class="p">({</span><span class="s">&#39;id&#39;</span><span class="p">:</span> <span class="n">content</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s">&#39;content_type&#39;</span><span class="p">:</span> <span class="n">content</span><span class="o">.</span><span class="n">content_type</span><span class="p">})</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(((</span><span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="n">content</span><span class="o">.</span><span class="n">title</span><span class="p">),</span>
+                                  <span class="p">(</span><span class="s">&#39;keywords&#39;</span><span class="p">,</span> <span class="n">content</span><span class="o">.</span><span class="n">keywords</span><span class="p">)),</span>
+                                 <span class="n">content</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">elem</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Html</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">name</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">elem</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+</pre></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='small hidden-print text-muted' id='page-footer'>
+    <div class='container'>
+        <div class='row'>
+            <div class='block col-sm-5'>
+                <div class='hidden-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+                <div class='text-center visible-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+            </div>
+            <div class='block col-sm-2 text-center'>
+                <div class='hidden-xs'>
+                    <p><a href='#page' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+                <div class='visible-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+            </div>
+            <div class='block col-sm-5'>
+                <div class='text-right hidden-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+                <div class='text-center visible-xs'>
+                    <p><a href='#page' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <navbar></navbar>
+</div></body>
+</html>

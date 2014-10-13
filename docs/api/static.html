@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html data-debug='false' lang='en'>
+<head>
+<title>Lux - Crafting super web applications with Python and AngularJS</title>
+<meta charset='utf-8'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='2014-03-27T17:02:36' name='og:modified_time'>
+<link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico.min.css' rel='icon' type='image/x-icon'>
+<link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png.min.css' rel='apple-touch-icon' sizes='57x57' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png.min.css' rel='apple-touch-icon' sizes='114x114' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='72x72' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='144x144' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/luxsite.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+var luxContext = {"year": 2014, "url": "http://quantmind.github.io/lux", "media": "/media", "date": "2014-10-13T13-42-13", "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "dateFormat": "d MMM y", "page": {"modified": "2014-03-27T17:02:36", "content_type": "text/html", "slug": "api/static", "name": "api_static"}, "html5mode": true, "lux_version": "0.1.0-alpha.1", "ngModules": [], "name": "Lux", "apiUrls": {}};</script>
+<script type="text/javascript">
+var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "minify": true, "waitSeconds": 200, "paths": {}};
+</script>
+<script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
+</head>
+<body data-ng-controller='Page' data-ng-model='page' data-page=''>
+<div id="page" class="fullpage" data-hash-scroll data-highlight ng-cloak>
+    <section id="page-header" class="page-header-outer api_static-header">
+    <div class="layer">
+        <div class="page-header">
+            <div class="container fullpage">
+                <div class="row fullpage">
+                    <div class="col-sm-12 text-center">
+                        <breadcrumbs></breadcrumbs>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="page-main">
+    <div class="container">
+        <div class="row">
+            <div class="api_static-main col-md-12">
+                <div class="center-block" style="max-width: 900px">
+                    <div class="section" id="module-lux.extensions.static">
+<span id="static-site-builder"></span><span id="extension-static"></span><h1>Static site builder<a class="headerlink" href="#module-lux.extensions.static" title="Permalink to this headline">¶</a></h1>
+<p>Static site generator</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Put the <a class="reference internal" href="#module-lux.extensions.static" title="lux.extensions.static"><tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.static</span></tt></a> extension into your <tt class="xref std std-setting docutils literal"><span class="pre">EXTENSIONS</span></tt>
+list and build the static web site via the <tt class="docutils literal"><span class="pre">build_static</span></tt> option in the
+command line:</p>
+<div class="highlight-python"><div class="highlight"><pre>python managet.py build_static
+</pre></div>
+</div>
+<p>There are several <a class="reference internal" href="params#parameters-static"><em>parameters</em></a> which can be modified
+in order to customise the site.</p>
+<p>The first step is to create a new project via the <strong class="command">create_project</strong></p>
+<p>When creating the middleware for the static site one can pass the following
+key-valued parameters during initialisation of a <tt class="xref py py-class docutils literal"><span class="pre">HtmlContent</span></tt>,
+a <tt class="xref py py-class docutils literal"><span class="pre">Blog</span></tt> and other routers:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">dir</span></tt> the directory where the source files are located, if not provided,
+it is assumed it is the same as the route parameter</li>
+<li><tt class="xref py py-attr docutils literal"><span class="pre">html_body_template</span></tt> to specify the
+location of the template which render the html body tag of the Html5
+document. If not provided, the parent router value is used unless no parent
+is available and the <a class="reference internal" href="params#std:setting-STATIC_TEMPLATE"><tt class="xref std std-setting docutils literal"><span class="pre">STATIC_TEMPLATE</span></tt></a> is used instead.</li>
+<li>:attr:<a href="#id1"><span class="problematic" id="id2">`</span></a></li>
+</ul>
+</div>
+<div class="section" id="templates">
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h2>
+<p>Each <tt class="xref py py-attr docutils literal"><span class="pre">html_body_template</span></tt> is rendered
+using a <tt class="docutils literal"><span class="pre">context</span></tt> dictionary which is an instance of the
+<tt class="xref py py-class docutils literal"><span class="pre">ContextBuilder</span></tt> class.</p>
+</div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='small hidden-print text-muted' id='page-footer'>
+    <div class='container'>
+        <div class='row'>
+            <div class='block col-sm-5'>
+                <div class='hidden-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+                <div class='text-center visible-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+            </div>
+            <div class='block col-sm-2 text-center'>
+                <div class='hidden-xs'>
+                    <p><a href='#page' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+                <div class='visible-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+            </div>
+            <div class='block col-sm-5'>
+                <div class='text-right hidden-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+                <div class='text-center visible-xs'>
+                    <p><a href='#page' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <navbar></navbar>
+</div></body>
+</html>

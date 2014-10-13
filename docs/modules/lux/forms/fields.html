@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html data-debug='false' lang='en'>
+<head>
+<title>Lux - Crafting super web applications with Python and AngularJS</title>
+<meta charset='utf-8'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='2014-10-13T13:42:19' name='og:modified_time'>
+<link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico.min.css' rel='icon' type='image/x-icon'>
+<link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png.min.css' rel='apple-touch-icon' sizes='57x57' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png.min.css' rel='apple-touch-icon' sizes='114x114' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='72x72' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='144x144' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/luxsite.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+var luxContext = {"year": 2014, "url": "http://quantmind.github.io/lux", "media": "/media", "date": "2014-10-13T13-42-13", "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "dateFormat": "d MMM y", "page": {"modified": "2014-10-13T13:42:19", "content_type": "text/html", "slug": "modules/lux/forms/fields", "name": "modules_lux_forms_fields"}, "html5mode": true, "lux_version": "0.1.0-alpha.1", "ngModules": [], "name": "Lux", "apiUrls": {}};</script>
+<script type="text/javascript">
+var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "minify": true, "waitSeconds": 200, "paths": {}};
+</script>
+<script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
+</head>
+<body data-ng-controller='Page' data-ng-model='page' data-page=''>
+<div id="page" class="fullpage" data-hash-scroll data-highlight ng-cloak>
+    <section id="page-header" class="page-header-outer modules_lux_forms_fields-header">
+    <div class="layer">
+        <div class="page-header">
+            <div class="container fullpage">
+                <div class="row fullpage">
+                    <div class="col-sm-12 text-center">
+                        <breadcrumbs></breadcrumbs>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="page-main">
+    <div class="container">
+        <div class="row">
+            <div class="modules_lux_forms_fields-main col-md-12">
+                <div class="center-block" style="max-width: 900px">
+                    <h1>Source code for lux.forms.fields</h1><div class="highlight"><pre>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Field</span>
+<span class="sd">~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: Field</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">CharField</span>
+<span class="sd">~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: CharField</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">IntegerField</span>
+<span class="sd">~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: IntegerField</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">FloatField</span>
+<span class="sd">~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: FloatField</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">DateField</span>
+<span class="sd">~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: DateField</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">DateTimeField</span>
+<span class="sd">~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: DateTimeField</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">BooleanField</span>
+<span class="sd">~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: BooleanField</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">HiddenField</span>
+<span class="sd">~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: HiddenField</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">ValidationError</span>
+<span class="sd">~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autoclass:: ValidationError</span>
+<span class="sd">   :members:</span>
+<span class="sd">   :member-order: bysource</span>
+
+<span class="sd">field_widget</span>
+<span class="sd">~~~~~~~~~~~~~~~</span>
+
+<span class="sd">.. autofunction:: field_widget</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">isclass</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Mapping</span>
+
+<span class="kn">from</span> <span class="nn">pulsar.utils.html</span> <span class="kn">import</span> <span class="n">NOTHING</span><span class="p">,</span> <span class="n">escape</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.slugify</span> <span class="kn">import</span> <span class="n">slugify</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.pep</span> <span class="kn">import</span> <span class="n">to_string</span>
+
+<span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">Html</span>
+<span class="kn">from</span> <span class="nn">lux.utils.files</span> <span class="kn">import</span> <span class="n">File</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;FormError&#39;</span><span class="p">,</span>
+           <span class="s">&#39;ValidationError&#39;</span><span class="p">,</span>
+           <span class="s">&#39;field_widget&#39;</span><span class="p">,</span>
+           <span class="s">&#39;Field&#39;</span><span class="p">,</span>
+           <span class="s">&#39;CharField&#39;</span><span class="p">,</span>
+           <span class="s">&#39;BooleanField&#39;</span><span class="p">,</span>
+           <span class="s">&#39;DateField&#39;</span><span class="p">,</span>
+           <span class="s">&#39;DateTimeField&#39;</span><span class="p">,</span>
+           <span class="s">&#39;ChoiceField&#39;</span><span class="p">,</span>
+           <span class="s">&#39;IntegerField&#39;</span><span class="p">,</span>
+           <span class="s">&#39;FloatField&#39;</span><span class="p">,</span>
+           <span class="s">&#39;EmailField&#39;</span><span class="p">,</span>
+           <span class="s">&#39;FileField&#39;</span><span class="p">,</span>
+           <span class="s">&#39;HiddenField&#39;</span><span class="p">,</span>
+           <span class="s">&#39;PasswordField&#39;</span><span class="p">,</span>
+           <span class="s">&#39;ChoiceFieldOptions&#39;</span><span class="p">,</span>
+           <span class="s">&#39;ChoiceGroup&#39;</span><span class="p">,</span>
+           <span class="s">&#39;UrlField&#39;</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">FormError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="ValidationError"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.ValidationError">[docs]</a><span class="k">class</span> <span class="nc">ValidationError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Raised when a :class:`djpcms.Form` instance does not validate.</span>
+
+<span class="sd">.. attribute:: field_name</span>
+
+<span class="sd">    Name of the :class:`Field` which this error refers to.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">field_name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ValidationError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">field_name</span> <span class="o">=</span> <span class="n">field_name</span>
+
+</div>
+<span class="n">standard_validation_error</span> <span class="o">=</span> <span class="s">&#39;{0} is required&#39;</span>
+<span class="n">standard_wrong_value_message</span> <span class="o">=</span> \
+    <span class="k">lambda</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> is not a valid value&#39;</span> <span class="o">%</span> <span class="n">value</span>
+
+
+<div class="viewcode-block" id="field_widget"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.field_widget">[docs]</a><span class="k">def</span> <span class="nf">field_widget</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="o">**</span><span class="n">defaults</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Returns an :class:`Html` factory function for ``tag`` and a given</span>
+<span class="sd">dictionary of ``defaults`` parameters. For example::</span>
+
+<span class="sd">    &gt;&gt;&gt; input_factory = field_widget(&#39;input&#39;, type=&#39;text&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; html = input_factory(value=&#39;bla&#39;)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">html_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">defaults</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Html</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">p</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">html_input</span>
+
+</div>
+<span class="k">class</span> <span class="nc">Choice</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">choices</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_choices</span> <span class="o">=</span> <span class="n">choices</span>
+
+    <span class="k">def</span> <span class="nf">choices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">choices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_choices</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_choices</span><span class="p">,</span> <span class="s">&#39;__call__&#39;</span><span class="p">):</span>
+            <span class="n">choices</span> <span class="o">=</span> <span class="n">choices</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">choices</span>
+
+    <span class="k">def</span> <span class="nf">get_initial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+        <span class="n">choices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">choices</span><span class="p">:</span>
+            <span class="n">initial</span> <span class="o">=</span> <span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">ChoiceGroup</span><span class="p">):</span>
+                <span class="n">initial</span> <span class="o">=</span> <span class="n">initial</span><span class="o">.</span><span class="n">get_initial</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="n">initial</span> <span class="o">=</span> <span class="n">initial</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">initial</span>
+
+    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">choices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">choices</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="n">ChoiceGroup</span><span class="p">):</span>
+                <span class="n">choice</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;choice must be a two elements &quot;</span>
+                                              <span class="s">&quot;tuple or list&quot;</span><span class="p">)</span>
+                    <span class="n">opt</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;option&#39;</span><span class="p">,</span> <span class="n">choice</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="n">choice</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">opt</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;option&#39;</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">choice</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">get_form_value</span><span class="p">()</span> <span class="o">==</span> <span class="n">value</span><span class="p">:</span>
+                    <span class="n">opt</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&#39;selected&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="n">choices</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">to_string</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">choices</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s"> is not a valid choice&#39;</span> <span class="o">%</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">values</span>
+
+
+<span class="k">class</span> <span class="nc">ChoiceGroup</span><span class="p">(</span><span class="n">Choice</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">choices</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_choices</span> <span class="o">=</span> <span class="n">choices</span>
+
+    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;optgroup&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ChoiceGroup</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Field"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.Field">[docs]</a><span class="k">class</span> <span class="nc">Field</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Base class for all :class:`Form` fields.</span>
+<span class="sd">Field are specified as attribute of a form, for example::</span>
+
+<span class="sd">    from lux import forms</span>
+
+<span class="sd">    class MyForm(forms.Form):</span>
+<span class="sd">        name = forms.CharField()</span>
+<span class="sd">        age = forms.IntegerField()</span>
+
+
+<span class="sd">:parameter required: set the :attr:`required` attribute.</span>
+<span class="sd">:parameter default: set the :attr:`default` attribute.</span>
+<span class="sd">:parameter initial: set the :attr:`initial` attribute.</span>
+<span class="sd">:parameter widget: Optional callable to override the :attr:`widget` attribute.</span>
+<span class="sd">    If supplied it must accept this field as first parameter.</span>
+<span class="sd">    Check the :func:`field_widget` factory for an example signature.</span>
+<span class="sd">:parameter wrong_value_message: callable which receive the field and the field</span>
+<span class="sd">    value when to produce a message when the ``value`` did not validate.</span>
+
+<span class="sd">.. attribute:: required</span>
+
+<span class="sd">    boolean specifying if the field is required or not.</span>
+<span class="sd">    If a field is required and</span>
+<span class="sd">    it is not available or empty it will fail validation.</span>
+
+<span class="sd">    Default: ``True``.</span>
+
+<span class="sd">.. attribute:: default</span>
+
+<span class="sd">    Default value for this field. It can be a callable accepting</span>
+<span class="sd">    a :class:`BoundField` instance for the field as only parameter.</span>
+
+<span class="sd">    Default: ``None``.</span>
+
+<span class="sd">.. attribute:: initial</span>
+
+<span class="sd">    Initial value for field. If Provided, the field will display</span>
+<span class="sd">    the value when rendering the form without bound data.</span>
+<span class="sd">    It can be a callable which receive a :class:`Form`</span>
+<span class="sd">    instance as argument.</span>
+
+<span class="sd">    Default: ``None``.</span>
+
+<span class="sd">    .. seealso::</span>
+
+<span class="sd">        Inital is used by :class:`Form` and</span>
+<span class="sd">        by :class:`HtmlForm` instances to render</span>
+<span class="sd">        an unbounded form. The :func:`Form.initials`</span>
+<span class="sd">        method return a dictionary of initial values for fields</span>
+<span class="sd">        providing one.</span>
+
+<span class="sd">.. attribute:: widget</span>
+
+<span class="sd">    The :class:`djpcms.html.WidgetMaker` for this field.</span>
+
+<span class="sd">    Default: ``None``.</span>
+
+<span class="sd">.. attribute:: widget_attrs</span>
+
+<span class="sd">    dictionary of widget attributes used for setting the widget</span>
+<span class="sd">    html attributes. For example::</span>
+
+<span class="sd">        widget_attrs = {&#39;title&#39;:&#39;my title&#39;}</span>
+
+<span class="sd">    It can also be a callable which accept a :class:`BoundField` as the</span>
+<span class="sd">    only parameter.</span>
+
+<span class="sd">    Default: ``None``.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+    <span class="n">default</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">required</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">creation_counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">validation_error</span> <span class="o">=</span> <span class="n">standard_validation_error</span>
+    <span class="n">wrong_value_message</span> <span class="o">=</span> <span class="n">standard_wrong_value_message</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">required</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">initial</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">validation_error</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">help_text</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">label</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">widget</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">widget_attrs</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">disabled</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">attrname</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">wrong_value_message</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">attrname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="n">default</span> <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">default</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial</span> <span class="o">=</span> <span class="n">initial</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="n">required</span> <span class="k">if</span> <span class="n">required</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">required</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validation_error</span> <span class="o">=</span> <span class="p">(</span><span class="n">validation_error</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">validation_error</span> <span class="ow">or</span>
+                                 <span class="n">standard_validation_error</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">wrong_value_message</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wrong_value_message</span> <span class="o">=</span> <span class="n">wrong_value_message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">help_text</span> <span class="o">=</span> <span class="n">escape</span><span class="p">(</span><span class="n">help_text</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+        <span class="k">if</span> <span class="n">widget</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">widget_attrs</span> <span class="o">=</span> <span class="n">widget_attrs</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">disabled</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">widget_attrs</span><span class="p">[</span><span class="s">&#39;disabled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;disabled&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">handle_params</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c"># Increase the creation counter, and save our local copy.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">creation_counter</span> <span class="o">=</span> <span class="n">Field</span><span class="o">.</span><span class="n">creation_counter</span>
+        <span class="n">Field</span><span class="o">.</span><span class="n">creation_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">__str__</span> <span class="o">=</span> <span class="n">__repr__</span>
+
+    <span class="k">def</span> <span class="nf">set_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">name</span>
+
+<div class="viewcode-block" id="Field.handle_params"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.Field.handle_params">[docs]</a>    <span class="k">def</span> <span class="nf">handle_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Called during initialization for handling extra key-valued</span>
+<span class="sd">parameters. By default it will raise an error if extra parameters</span>
+<span class="sd">are available. Override for customized behaviour.&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Field.value_from_datadict"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.Field.value_from_datadict">[docs]</a>    <span class="k">def</span> <span class="nf">value_from_datadict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Given a dictionary of data this field name, returns the value</span>
+<span class="sd">of this field. Returns None if it&#39;s not provided.</span>
+
+<span class="sd">:parameter data: multi dictionary of data.</span>
+<span class="sd">:parameter files: multi dictionary of files.</span>
+<span class="sd">:parameter files: key for this field.</span>
+<span class="sd">:return: the value for this field</span>
+<span class="sd">&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="Field.value_from_instance"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.Field.value_from_instance">[docs]</a>    <span class="k">def</span> <span class="nf">value_from_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Extract a value from an *instance*. By default it raises a</span>
+<span class="sd">        ValueError so that the :meth:`Form.value_from_instance` is used.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span>
+</div>
+    <span class="k">def</span> <span class="nf">_raise_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">keys</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Parameter {0} not recognized&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<div class="viewcode-block" id="Field.clean"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.Field.clean">[docs]</a>    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Clean the field value&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">NOTHING</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_default</span><span class="p">(</span><span class="n">bfield</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">required</span> <span class="ow">and</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">NOTHING</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">validation_error</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bfield</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">required</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">_clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+<div class="viewcode-block" id="Field.get_initial"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.Field.get_initial">[docs]</a>    <span class="k">def</span> <span class="nf">get_initial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Get the initial value of field if available.</span>
+
+<span class="sd">        :param form: an instance of the :class:`Form` class</span>
+<span class="sd">            where the field is declared.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">initial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="s">&#39;__call__&#39;</span><span class="p">):</span>
+            <span class="n">initial</span> <span class="o">=</span> <span class="n">initial</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">initial</span>
+</div>
+    <span class="k">def</span> <span class="nf">get_default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="n">default</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="s">&#39;__call__&#39;</span><span class="p">):</span>
+            <span class="n">default</span> <span class="o">=</span> <span class="n">default</span><span class="p">(</span><span class="n">bfield</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">default</span>
+
+    <span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">html_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">name</span>
+
+<div class="viewcode-block" id="Field.html"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.Field.html">[docs]</a>    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bfield</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create the Html element for this :class:`Field`.&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">widget</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Field.get_widget_data"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.Field.get_widget_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_widget_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Returns a dictionary of data to be added to the widget data</span>
+<span class="sd">attribute. By default return ``None``. Override for custom behaviour.</span>
+
+<span class="sd">:parameter bfield: instance of :class:`BoundField` of this field.</span>
+<span class="sd">:rtype: an instance of ``dict`` or ``None``.&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+</div></div>
+<div class="viewcode-block" id="CharField"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.CharField">[docs]</a><span class="k">class</span> <span class="nc">CharField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A text :class:`Field` which introduces three</span>
+<span class="sd">    optional parameter (attribute):</span>
+
+<span class="sd">    .. attribute:: max_length</span>
+
+<span class="sd">        If provided, the text length will be validated accordingly.</span>
+
+<span class="sd">        Default ``None``.</span>
+
+<span class="sd">    .. attribute:: char_transform</span>
+
+<span class="sd">        One of ``None``, ``u`` for upper and ``l`` for lower. If provided</span>
+<span class="sd">        converts text to upper or lower.</span>
+
+<span class="sd">        Default ``None``.</span>
+
+<span class="sd">    .. attribute:: toslug</span>
+
+<span class="sd">        If provided it will be used to create a slug text which can be used</span>
+<span class="sd">        as URI without the need to escape.</span>
+<span class="sd">        For example, if ``toslug`` is set to &quot;_&quot;, than::</span>
+
+<span class="sd">            bla foo; bee</span>
+
+<span class="sd">        becomes::</span>
+
+<span class="sd">            bla_foo_bee</span>
+
+<span class="sd">        Default ``None``</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">default</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;text&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">handle_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                      <span class="n">char_transform</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">toslug</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">max_length</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;max_length must be provided for {0}&#39;</span>
+                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_length</span> <span class="o">=</span> <span class="n">min_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_length</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_length</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;max_length must be positive&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">widget_attrs</span><span class="p">[</span><span class="s">&#39;data-max-length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_length</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_length</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">widget_attrs</span><span class="p">[</span><span class="s">&#39;data-min-length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">char_transform</span> <span class="o">=</span> <span class="n">char_transform</span>
+        <span class="k">if</span> <span class="n">toslug</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">toslug</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">toslug</span> <span class="o">=</span> <span class="s">&#39;-&#39;</span>
+            <span class="n">toslug</span> <span class="o">=</span> <span class="n">slugify</span><span class="p">(</span><span class="n">toslug</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toslug</span> <span class="o">=</span> <span class="n">toslug</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">to_string</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">toslug</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">slugify</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">toslug</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">char_transform</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">char_transform</span> <span class="o">==</span> <span class="s">&#39;u&#39;</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">required</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">validation_error</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bfield</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+</div>
+<div class="viewcode-block" id="IntegerField"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.IntegerField">[docs]</a><span class="k">class</span> <span class="nc">IntegerField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="n">default</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;number&#39;</span><span class="p">)</span>
+    <span class="n">convert_error</span> <span class="o">=</span> <span class="s">&#39;&quot;{0}&quot; is not a valid integer.&#39;</span>
+
+    <span class="k">def</span> <span class="nf">handle_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validator</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validator</span> <span class="o">=</span> <span class="n">validator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">IntegerField</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">clean</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">validator</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">validator</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">value</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">convert_error</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+</div>
+<div class="viewcode-block" id="FloatField"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.FloatField">[docs]</a><span class="k">class</span> <span class="nc">FloatField</span><span class="p">(</span><span class="n">IntegerField</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A field which normalises to a Python float value&#39;&#39;&#39;</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;number&#39;</span><span class="p">)</span>
+    <span class="n">convert_error</span> <span class="o">=</span> <span class="s">&#39;Could not convert {0} to a valid number&#39;</span>
+
+    <span class="k">def</span> <span class="nf">_clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">validator</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">validator</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">value</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">validation_error</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bfield</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+
+</div>
+<div class="viewcode-block" id="DateField"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.DateField">[docs]</a><span class="k">class</span> <span class="nc">DateField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;date&#39;</span><span class="p">)</span>
+    <span class="n">validation_error</span> <span class="o">=</span> <span class="s">&#39;{1} is not a valid date.&#39;</span>
+
+    <span class="k">def</span> <span class="nf">_clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">dateparser</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">validation_error</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bfield</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">todate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">todate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s">&#39;date&#39;</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+</div>
+<div class="viewcode-block" id="DateTimeField"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.DateTimeField">[docs]</a><span class="k">class</span> <span class="nc">DateTimeField</span><span class="p">(</span><span class="n">DateField</span><span class="p">):</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;datetime&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">todate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s">&#39;date&#39;</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+</div>
+<div class="viewcode-block" id="BooleanField"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.BooleanField">[docs]</a><span class="k">class</span> <span class="nc">BooleanField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="n">default</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">required</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;checkbox&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BooleanField.clean"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.BooleanField.clean">[docs]</a>    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Clean the field value&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;False&#39;</span><span class="p">,</span> <span class="s">&#39;0&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+</div></div>
+<span class="k">class</span> <span class="nc">MultipleMixin</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">handle_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span> <span class="o">=</span> <span class="n">multiple</span> <span class="ow">or</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">widget_attrs</span><span class="p">[</span><span class="s">&#39;multiple&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;multiple&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">html_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">name</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span> <span class="k">else</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">[]&#39;</span> <span class="o">%</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">value_from_datadict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_from_datadict</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_value_from_datadict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">&#39;getlist&#39;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">ChoiceFieldOptions</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A class for handling :class:`ChoiceField` options. Each</span>
+<span class="sd">parameters can be overridden at during initialisation. It can handle both</span>
+<span class="sd">queries on models as well as list of two-elements tuples ``(value, label)``.</span>
+
+<span class="sd">.. attribute:: query</span>
+
+<span class="sd">    In most cases, this is the only attribute required. It can be</span>
+<span class="sd">     * an iterable over two elements tuples (but not a generator).</span>
+<span class="sd">     * a query on a model</span>
+<span class="sd">     * ``None``</span>
+<span class="sd">     * a callable returning one of the above. The callable must accept</span>
+<span class="sd">       a :class:`BoundField` instance as only parameter.</span>
+<span class="sd">       It can be a *generator function*.</span>
+
+<span class="sd">.. attribute:: autocomplete</span>
+
+<span class="sd">    An optional boolean indicating if the field is rendered as</span>
+<span class="sd">    an autocomplete widget.</span>
+
+<span class="sd">    Default: ``False``.</span>
+
+<span class="sd">.. attribute:: multiple</span>
+
+<span class="sd">    ``True`` if multiple choices are possible.</span>
+
+<span class="sd">    Default: ``False``.</span>
+
+<span class="sd">.. attribute:: search</span>
+
+<span class="sd">    A flag indicating if the field can be used as a search input in the case</span>
+<span class="sd">    no choices where made.</span>
+
+<span class="sd">    Default: ``False``.</span>
+
+<span class="sd">.. attribute:: empty_label</span>
+
+<span class="sd">    If provided it represents an empty choice</span>
+<span class="sd">&#39;&#39;&#39;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">manager</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">mapper</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">field</span> <span class="o">=</span> <span class="s">&#39;id&#39;</span>
+    <span class="n">search</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">multiple</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">autocomplete</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">empty_label</span> <span class="o">=</span> <span class="s">&#39;-----------&#39;</span>
+    <span class="n">with_empty_label</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">minLength</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">maxRows</span> <span class="o">=</span> <span class="mi">30</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">choices</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="n">choices</span>
+        <span class="n">cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span>
+        <span class="k">for</span> <span class="n">attname</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">attname</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">attname</span><span class="p">):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attname</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">attname</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">add_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bfield</span><span class="p">,</span> <span class="n">html</span><span class="p">):</span>
+        <span class="n">choices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="s">&#39;__call__&#39;</span><span class="p">):</span>
+            <span class="n">choices</span> <span class="o">=</span> <span class="n">choices</span><span class="p">(</span><span class="n">bfield</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">choices</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Html</span><span class="p">(</span><span class="s">&#39;option&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bfield</span><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Generator of all choices. If *html* is ``True`` it adds the</span>
+<span class="sd">:attr:`empty_label`` if required.&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">html</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span> <span class="ow">and</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">with_empty_label</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">bfield</span><span class="o">.</span><span class="n">field</span><span class="o">.</span><span class="n">required</span><span class="p">)):</span>
+            <span class="k">yield</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_label</span><span class="p">)</span>
+        <span class="n">choices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="s">&#39;__call__&#39;</span><span class="p">):</span>
+            <span class="n">choices</span> <span class="o">=</span> <span class="n">choices</span><span class="p">(</span><span class="n">bfield</span><span class="p">)</span>
+        <span class="c"># The choice field is based on a model and therefore a query</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">autocomplete</span><span class="p">:</span>
+                <span class="n">query</span> <span class="o">=</span> <span class="n">query</span> <span class="k">if</span> <span class="n">query</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span><span class="o">.</span><span class="n">query</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">query</span><span class="p">:</span>
+                    <span class="c">#TODO: allow for diferent attribute name for id</span>
+                    <span class="k">yield</span> <span class="n">v</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">v</span>
+        <span class="k">elif</span> <span class="n">query</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">query</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">v</span>
+
+    <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Generator of values in select&#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">bfield</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">Widget</span><span class="p">):</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&#39;value&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">to_string</span><span class="p">(</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">yield</span> <span class="n">v</span>
+
+    <span class="k">def</span> <span class="nf">html_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Convert *val* into a suitable value to be included in the</span>
+<span class="sd">widget HTML.&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">val</span><span class="p">:</span>
+            <span class="n">single_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">html_single_value</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">(</span><span class="n">single_value</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">val</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">single_value</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">val</span>
+
+    <span class="k">def</span> <span class="nf">html_single_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Convert the single *value* into a suitable html value&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s">&#39;id&#39;</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">id</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">get_initial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+        <span class="n">initial</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">initial</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="s">&#39;__call__&#39;</span><span class="p">):</span>
+            <span class="n">initial</span> <span class="o">=</span> <span class="n">initial</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">initial</span>
+
+    <span class="k">def</span> <span class="nf">value_from_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Retrieve a url for search.&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Perform the cleaning of *value* for the :class:`BoundField`</span>
+<span class="sd">instance *bfield*. The :meth:`ChoiceField.clean` uses this method to</span>
+<span class="sd">clean its values.&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_multiple_model_value</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_model_value</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_simple</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">)</span>
+
+    <span class="c">#    INTERNALS</span>
+    <span class="k">def</span> <span class="nf">_clean_simple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Invoked by :meth:`clean` if :attr:`model` is not defined.&#39;&#39;&#39;</span>
+        <span class="n">choices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="s">&#39;__call__&#39;</span><span class="p">):</span>
+            <span class="n">choices</span> <span class="o">=</span> <span class="n">choices</span><span class="p">(</span><span class="n">bfield</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">):</span>
+            <span class="n">choices</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">choices</span><span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">value</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span> <span class="k">else</span> <span class="p">(</span><span class="n">value</span><span class="p">,)</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">to_string</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">choices</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s"> is not a valid choice&#39;</span> <span class="o">%</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">_clean_model_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Invoked by :meth:`clean` if :attr:`model` is defined</span>
+<span class="sd">and :attr:`multiple` is ``False``. It return an instance of :attr:`model`</span>
+<span class="sd">otherwise it raises a validation exception unless :attr:`search`</span>
+<span class="sd">is ``True``, in which case the value is returned.&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">value</span>
+        <span class="n">mapper</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">mapper</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">,</span> <span class="n">mapper</span><span class="o">.</span><span class="n">FieldValueError</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">:</span>
+                <span class="c"># if search is allowed, return the value</span>
+                <span class="k">return</span> <span class="n">value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span>
+                    <span class="s">&#39;{0} is not a valid {1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_clean_multiple_model_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="n">field</span> <span class="o">=</span> <span class="s">&#39;{0}__in&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapper</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">field</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">widget_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">model</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> <span class="k">else</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> <span class="k">else</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">get_widget_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Called by the :meth:`Field.get_widget_data` method of</span>
+<span class="sd">:class:`ChoiceField`.&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">autocomplete</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">bfield</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">ch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">bfield</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="s">&#39;__len__&#39;</span><span class="p">):</span>
+            <span class="n">ch</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;multiple&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span><span class="p">,</span>
+                <span class="s">&#39;minlength&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">minLength</span><span class="p">,</span>
+                <span class="s">&#39;maxrows&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxRows</span><span class="p">,</span>
+                <span class="s">&#39;search_string&#39;</span><span class="p">:</span> <span class="n">bfield</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="s">&#39;url&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="n">bfield</span><span class="o">.</span><span class="n">request</span><span class="p">),</span>
+                <span class="s">&#39;choices&#39;</span><span class="p">:</span> <span class="n">ch</span><span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+                <span class="n">initial</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">:</span>
+                            <span class="n">initial</span> <span class="o">=</span> <span class="p">[(</span><span class="n">value</span><span class="p">,</span> <span class="n">value</span><span class="p">)]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">initial</span> <span class="o">=</span> <span class="p">[(</span><span class="n">value</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">initial</span> <span class="o">=</span> <span class="p">[(</span><span class="n">v</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]</span>
+                <span class="n">data</span><span class="p">[</span><span class="s">&#39;initial_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">initial</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+                <span class="n">chd</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+                <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">separator</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">chd</span><span class="p">:</span>
+                        <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">val</span><span class="p">,</span> <span class="n">chd</span><span class="p">[</span><span class="n">val</span><span class="p">]))</span>
+                <span class="k">if</span> <span class="n">values</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s">&#39;initial_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">&#39;options&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span>
+
+
+<span class="k">class</span> <span class="nc">ChoiceField</span><span class="p">(</span><span class="n">MultipleMixin</span><span class="p">,</span> <span class="n">Field</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A :class:`Field` which validates against a set of ``choices``.</span>
+
+<span class="sd">    It has several additional attributes which can be specified</span>
+<span class="sd">    via the :class:`ChoiceFieldOptions` class.</span>
+
+<span class="sd">    .. attribute:: choices</span>
+
+<span class="sd">        An instance of :class:`ChoiceFieldOptions` or any of the</span>
+<span class="sd">        possible values for the :attr:`ChoiceFieldOptions.query`</span>
+<span class="sd">        attribute.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bfield</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;select&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span><span class="p">:</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&#39;multiple&#39;</span><span class="p">,</span> <span class="s">&#39;multiple&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">bfield</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">html</span>
+
+    <span class="k">def</span> <span class="nf">get_initial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+        <span class="n">initial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="s">&#39;__call__&#39;</span><span class="p">):</span>
+            <span class="n">initial</span> <span class="o">=</span> <span class="n">initial</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">initial</span><span class="p">:</span>
+            <span class="n">initial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">get_initial</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">initial</span>
+
+    <span class="k">def</span> <span class="nf">value_from_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
+        <span class="c"># Delegate to choices</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">value_from_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">handle_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Choices is an iterable or a callable which takes bound field</span>
+<span class="sd">        as only argument&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="n">Choice</span><span class="p">):</span>
+            <span class="n">choices</span> <span class="o">=</span> <span class="n">Choice</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="n">choices</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ChoiceField</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">handle_params</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">bfield</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">value</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span> <span class="k">else</span> <span class="p">(</span><span class="n">value</span><span class="p">,)</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">clean</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">bfield</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">values</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span> <span class="k">else</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+
+<span class="k">class</span> <span class="nc">EmailField</span><span class="p">(</span><span class="n">CharField</span><span class="p">):</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;email&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">PasswordField</span><span class="p">(</span><span class="n">CharField</span><span class="p">):</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">UrlField</span><span class="p">(</span><span class="n">CharField</span><span class="p">):</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;url&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">FileField</span><span class="p">(</span><span class="n">MultipleMixin</span><span class="p">,</span> <span class="n">Field</span><span class="p">):</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;file&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">value_from_datadict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_from_datadict</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">File</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">file</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">content_type</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">res</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">res</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">res</span>
+            <span class="k">return</span> <span class="n">File</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">file</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">content_type</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="HiddenField"><a class="viewcode-back" href="../../../api/forms#lux.forms.fields.HiddenField">[docs]</a><span class="k">class</span> <span class="nc">HiddenField</span><span class="p">(</span><span class="n">CharField</span><span class="p">):</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;hidden&#39;</span><span class="p">)</span></div>
+</pre></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='small hidden-print text-muted' id='page-footer'>
+    <div class='container'>
+        <div class='row'>
+            <div class='block col-sm-5'>
+                <div class='hidden-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+                <div class='text-center visible-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+            </div>
+            <div class='block col-sm-2 text-center'>
+                <div class='hidden-xs'>
+                    <p><a href='#page' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+                <div class='visible-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+            </div>
+            <div class='block col-sm-5'>
+                <div class='text-right hidden-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+                <div class='text-center visible-xs'>
+                    <p><a href='#page' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <navbar></navbar>
+</div></body>
+</html>

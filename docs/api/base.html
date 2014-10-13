@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html data-debug='false' lang='en'>
+<head>
+<title>Lux - Crafting super web applications with Python and AngularJS</title>
+<meta charset='utf-8'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='2014-01-31T20:31:51' name='og:modified_time'>
+<link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico.min.css' rel='icon' type='image/x-icon'>
+<link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png.min.css' rel='apple-touch-icon' sizes='57x57' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png.min.css' rel='apple-touch-icon' sizes='114x114' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='72x72' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='144x144' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/luxsite.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+var luxContext = {"year": 2014, "url": "http://quantmind.github.io/lux", "media": "/media", "date": "2014-10-13T13-42-13", "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "dateFormat": "d MMM y", "page": {"modified": "2014-01-31T20:31:51", "content_type": "text/html", "slug": "api/base", "name": "api_base"}, "html5mode": true, "lux_version": "0.1.0-alpha.1", "ngModules": [], "name": "Lux", "apiUrls": {}};</script>
+<script type="text/javascript">
+var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "minify": true, "waitSeconds": 200, "paths": {}};
+</script>
+<script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
+</head>
+<body data-ng-controller='Page' data-ng-model='page' data-page=''>
+<div id="page" class="fullpage" data-hash-scroll data-highlight ng-cloak>
+    <section id="page-header" class="page-header-outer api_base-header">
+    <div class="layer">
+        <div class="page-header">
+            <div class="container fullpage">
+                <div class="row fullpage">
+                    <div class="col-sm-12 text-center">
+                        <breadcrumbs></breadcrumbs>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="page-main">
+    <div class="container">
+        <div class="row">
+            <div class="api_base-main col-md-12">
+                <div class="center-block" style="max-width: 900px">
+                    <div class="section" id="module-lux.extensions.base">
+<span id="base"></span><span id="middleware-base"></span><h1>Base<a class="headerlink" href="#module-lux.extensions.base" title="Permalink to this headline">¶</a></h1>
+<p>The base <em class="xref std std-ref">lux extension</em> provides several
+middleware utilities. If used, it should be the first extension in your
+<tt class="xref std std-setting docutils literal"><span class="pre">EXTENSIONS</span></tt> list (excluding extensions which
+don&#8217;t provide any wsgi middleware such as <tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.sitemap</span></tt>
+for example).</p>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="clean-url">
+<span id="std:setting-CLEAN_URL"></span><h3>CLEAN_URL<a class="headerlink" href="#clean-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'False'</span></tt></p>
+<p>When <tt class="docutils literal"><span class="pre">True</span></tt>, requests on url with consecutive slashes are converted to valid url and redirected.</p>
+</div>
+<div class="section" id="favicon">
+<span id="std:setting-FAVICON"></span><h3>FAVICON<a class="headerlink" href="#favicon" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Adds wsgi middleware to handle favicon url <tt class="docutils literal"><span class="pre">/favicon.ico``served</span> <span class="pre">from</span> <span class="pre">``MEDIA_URL/FAVICON</span></tt></p>
+</div>
+<div class="section" id="gzip-min-length">
+<span id="std:setting-GZIP_MIN_LENGTH"></span><h3>GZIP_MIN_LENGTH<a class="headerlink" href="#gzip-min-length" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'200'</span></tt></p>
+<p>If a positive integer, a response middleware is added so that it encodes the response via the gzip algorithm.</p>
+</div>
+<div class="section" id="serve-static-files">
+<span id="std:setting-SERVE_STATIC_FILES"></span><h3>SERVE_STATIC_FILES<a class="headerlink" href="#serve-static-files" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'False'</span></tt></p>
+<p>if <tt class="docutils literal"><span class="pre">True</span></tt> add middleware to serve static files.</p>
+</div>
+<div class="section" id="use-etags">
+<span id="std:setting-USE_ETAGS"></span><h3>USE_ETAGS<a class="headerlink" href="#use-etags" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'False'</span></tt></p>
+</div>
+</div>
+<div class="section" id="media-handling">
+<h2>Media Handling<a class="headerlink" href="#media-handling" title="Permalink to this headline">¶</a></h2>
+<p>When the <a class="reference internal" href="params#std:setting-SERVE_STATIC_FILES"><tt class="xref std std-setting docutils literal"><span class="pre">SERVE_STATIC_FILES</span></tt></a> parameter is set to <tt class="docutils literal"><span class="pre">True</span></tt>,
+this extension adds middleware for serving static files from
+<tt class="xref std std-setting docutils literal"><span class="pre">MEDIA_URL</span></tt>.
+In addition, a <a class="reference internal" href="params#std:setting-FAVICON"><tt class="xref std std-setting docutils literal"><span class="pre">FAVICON</span></tt></a> location can also be specified.</p>
+</div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='small hidden-print text-muted' id='page-footer'>
+    <div class='container'>
+        <div class='row'>
+            <div class='block col-sm-5'>
+                <div class='hidden-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+                <div class='text-center visible-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+            </div>
+            <div class='block col-sm-2 text-center'>
+                <div class='hidden-xs'>
+                    <p><a href='#page' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+                <div class='visible-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+            </div>
+            <div class='block col-sm-5'>
+                <div class='text-right hidden-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+                <div class='text-center visible-xs'>
+                    <p><a href='#page' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <navbar></navbar>
+</div></body>
+</html>

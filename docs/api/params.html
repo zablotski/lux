@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html data-debug='false' lang='en'>
+<head>
+<title>Lux - Crafting super web applications with Python and AngularJS</title>
+<meta charset='utf-8'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='2014-08-04T12:34:16' name='og:modified_time'>
+<link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico.min.css' rel='icon' type='image/x-icon'>
+<link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png.min.css' rel='apple-touch-icon' sizes='57x57' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png.min.css' rel='apple-touch-icon' sizes='114x114' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='72x72' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='144x144' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/luxsite.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+var luxContext = {"year": 2014, "url": "http://quantmind.github.io/lux", "media": "/media", "date": "2014-10-13T13-42-13", "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "dateFormat": "d MMM y", "page": {"modified": "2014-08-04T12:34:16", "content_type": "text/html", "slug": "api/params", "name": "api_params"}, "html5mode": true, "lux_version": "0.1.0-alpha.1", "ngModules": [], "name": "Lux", "apiUrls": {}};</script>
+<script type="text/javascript">
+var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "minify": true, "waitSeconds": 200, "paths": {}};
+</script>
+<script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
+</head>
+<body data-ng-controller='Page' data-ng-model='page' data-page=''>
+<div id="page" class="fullpage" data-hash-scroll data-highlight ng-cloak>
+    <section id="page-header" class="page-header-outer api_params-header">
+    <div class="layer">
+        <div class="page-header">
+            <div class="container fullpage">
+                <div class="row fullpage">
+                    <div class="col-sm-12 text-center">
+                        <breadcrumbs></breadcrumbs>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="page-main">
+    <div class="container">
+        <div class="row">
+            <div class="api_params-main col-md-12">
+                <div class="center-block" style="max-width: 900px">
+                    <div class="section" id="parameters">
+<span id="id1"></span><h1>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="core">
+<h2>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="base">
+<h2>Base<a class="headerlink" href="#base" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="clean-url">
+<span id="std:setting-CLEAN_URL"></span><h3>CLEAN_URL<a class="headerlink" href="#clean-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'False'</span></tt></p>
+<p>When <tt class="docutils literal"><span class="pre">True</span></tt>, requests on url with consecutive slashes are converted to valid url and redirected.</p>
+</div>
+<div class="section" id="favicon">
+<span id="std:setting-FAVICON"></span><h3>FAVICON<a class="headerlink" href="#favicon" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Adds wsgi middleware to handle favicon url <tt class="docutils literal"><span class="pre">/favicon.ico``served</span> <span class="pre">from</span> <span class="pre">``MEDIA_URL/FAVICON</span></tt></p>
+</div>
+<div class="section" id="gzip-min-length">
+<span id="std:setting-GZIP_MIN_LENGTH"></span><h3>GZIP_MIN_LENGTH<a class="headerlink" href="#gzip-min-length" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'200'</span></tt></p>
+<p>If a positive integer, a response middleware is added so that it encodes the response via the gzip algorithm.</p>
+</div>
+<div class="section" id="serve-static-files">
+<span id="std:setting-SERVE_STATIC_FILES"></span><h3>SERVE_STATIC_FILES<a class="headerlink" href="#serve-static-files" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'False'</span></tt></p>
+<p>if <tt class="docutils literal"><span class="pre">True</span></tt> add middleware to serve static files.</p>
+</div>
+<div class="section" id="use-etags">
+<span id="std:setting-USE_ETAGS"></span><h3>USE_ETAGS<a class="headerlink" href="#use-etags" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'False'</span></tt></p>
+</div>
+</div>
+<div class="section" id="sessions">
+<h2>Sessions<a class="headerlink" href="#sessions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="account-activation-days">
+<span id="std:setting-ACCOUNT_ACTIVATION_DAYS"></span><h3>ACCOUNT_ACTIVATION_DAYS<a class="headerlink" href="#account-activation-days" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'2'</span></tt></p>
+<p>Number of days the activation code is valid</p>
+</div>
+<div class="section" id="authentication-backend">
+<span id="std:setting-AUTHENTICATION_BACKEND"></span><h3>AUTHENTICATION_BACKEND<a class="headerlink" href="#authentication-backend" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'lux.extensions.sessions.permissions.AuthBackend'</span></tt></p>
+<p>Python dotted path to a class used to provide a backend for authentication.</p>
+</div>
+<div class="section" id="auth-salt-size">
+<span id="std:setting-AUTH_SALT_SIZE"></span><h3>AUTH_SALT_SIZE<a class="headerlink" href="#auth-salt-size" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'8'</span></tt></p>
+<p>Salt size for encription algorithm</p>
+</div>
+<div class="section" id="check-username">
+<span id="std:setting-CHECK_USERNAME"></span><h3>CHECK_USERNAME<a class="headerlink" href="#check-username" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'&lt;function</span> <span class="pre">Extension.&lt;lambda&gt;</span> <span class="pre">at</span> <span class="pre">0x112795268&gt;'</span></tt></p>
+<p>Check if the username is valid</p>
+</div>
+<div class="section" id="crypt-algorithm">
+<span id="std:setting-CRYPT_ALGORITHM"></span><h3>CRYPT_ALGORITHM<a class="headerlink" href="#crypt-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'lux.utils.crypt.arc4'</span></tt></p>
+<p>Python dotted path to module which provides the <tt class="docutils literal"><span class="pre">encrypt</span></tt> and <tt class="docutils literal"><span class="pre">descript</span></tt> method for password and sensitive data encryption/decription</p>
+</div>
+<div class="section" id="csrf-param">
+<span id="std:setting-CSRF_PARAM"></span><h3>CSRF_PARAM<a class="headerlink" href="#csrf-param" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'authenticity_token'</span></tt></p>
+<p>CSRF parameter name in forms</p>
+</div>
+<div class="section" id="default-permission-level">
+<span id="std:setting-DEFAULT_PERMISSION_LEVEL"></span><h3>DEFAULT_PERMISSION_LEVEL<a class="headerlink" href="#default-permission-level" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'read'</span></tt></p>
+<p>When no roles has tested positive for permissions, this parameter is used to check if a model has permission for an action</p>
+</div>
+<div class="section" id="permission-levels">
+<span id="std:setting-PERMISSION_LEVELS"></span><h3>PERMISSION_LEVELS<a class="headerlink" href="#permission-levels" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;{'update':</span> <span class="pre">30,</span> <span class="pre">'delete':</span> <span class="pre">40,</span> <span class="pre">'read':</span> <span class="pre">10,</span> <span class="pre">'create':</span> <span class="pre">20}&quot;</span></tt></p>
+<p>When a model</p>
+</div>
+<div class="section" id="reset-password-url">
+<span id="std:setting-RESET_PASSWORD_URL"></span><h3>RESET_PASSWORD_URL<a class="headerlink" href="#reset-password-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">''</span></tt></p>
+<p>If given, add the router to handle password resets</p>
+</div>
+<div class="section" id="secret-key">
+<span id="std:setting-SECRET_KEY"></span><h3>SECRET_KEY<a class="headerlink" href="#secret-key" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'secret-key'</span></tt></p>
+<p>A string or bytes used for encripting data. Must be unique to the application and long and random enough</p>
+</div>
+<div class="section" id="session-cookie-name">
+<span id="std:setting-SESSION_COOKIE_NAME"></span><h3>SESSION_COOKIE_NAME<a class="headerlink" href="#session-cookie-name" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'LUX'</span></tt></p>
+<p>Name of the cookie which stores session id</p>
+</div>
+<div class="section" id="session-expiry">
+<span id="std:setting-SESSION_EXPIRY"></span><h3>SESSION_EXPIRY<a class="headerlink" href="#session-expiry" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'604800'</span></tt></p>
+<p>Expiry for a session in seconds.</p>
+</div>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="api-docs-url">
+<span id="std:setting-API_DOCS_URL"></span><h3>API_DOCS_URL<a class="headerlink" href="#api-docs-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'api/docs'</span></tt></p>
+</div>
+<div class="section" id="api-limit-auth">
+<span id="std:setting-API_LIMIT_AUTH"></span><h3>API_LIMIT_AUTH<a class="headerlink" href="#api-limit-auth" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'100'</span></tt></p>
+<p>Maximum number of items returned when user is authenticated</p>
+</div>
+<div class="section" id="api-limit-default">
+<span id="std:setting-API_LIMIT_DEFAULT"></span><h3>API_LIMIT_DEFAULT<a class="headerlink" href="#api-limit-default" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'30'</span></tt></p>
+<p>Default number of items returned</p>
+</div>
+<div class="section" id="api-limit-key">
+<span id="std:setting-API_LIMIT_KEY"></span><h3>API_LIMIT_KEY<a class="headerlink" href="#api-limit-key" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'limit'</span></tt></p>
+</div>
+<div class="section" id="api-limit-noauth">
+<span id="std:setting-API_LIMIT_NOAUTH"></span><h3>API_LIMIT_NOAUTH<a class="headerlink" href="#api-limit-noauth" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'30'</span></tt></p>
+<p>Maximum number of items returned when user is not authenticated</p>
+</div>
+<div class="section" id="api-offset-key">
+<span id="std:setting-API_OFFSET_KEY"></span><h3>API_OFFSET_KEY<a class="headerlink" href="#api-offset-key" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'offset'</span></tt></p>
+</div>
+<div class="section" id="api-search-key">
+<span id="std:setting-API_SEARCH_KEY"></span><h3>API_SEARCH_KEY<a class="headerlink" href="#api-search-key" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'q'</span></tt></p>
+<p>The query key for full text search</p>
+</div>
+<div class="section" id="api-url">
+<span id="std:setting-API_URL"></span><h3>API_URL<a class="headerlink" href="#api-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'api'</span></tt></p>
+</div>
+<div class="section" id="datastore">
+<span id="std:setting-DATASTORE"></span><h3>DATASTORE<a class="headerlink" href="#datastore" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Dictionary for mapping models to their back-ends database</p>
+</div>
+<div class="section" id="dumpdb-extensions">
+<span id="std:setting-DUMPDB_EXTENSIONS"></span><h3>DUMPDB_EXTENSIONS<a class="headerlink" href="#dumpdb-extensions" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+</div>
+<div class="section" id="odm">
+<span id="std:setting-ODM"></span><h3>ODM<a class="headerlink" href="#odm" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Optional Object Data Mapper.</p>
+</div>
+<div class="section" id="searchengine">
+<span id="std:setting-SEARCHENGINE"></span><h3>SEARCHENGINE<a class="headerlink" href="#searchengine" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Search engine for models</p>
+</div>
+</div>
+<div class="section" id="web-design">
+<h2>Web design<a class="headerlink" href="#web-design" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bootstrap">
+<span id="std:setting-BOOTSTRAP"></span><h3>BOOTSTRAP<a class="headerlink" href="#bootstrap" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap'</span></tt></p>
+<p>Twitter bootstrap url. Set to none to not use it.</p>
+</div>
+<div class="section" id="exclude-extensions-css">
+<span id="std:setting-EXCLUDE_EXTENSIONS_CSS"></span><h3>EXCLUDE_EXTENSIONS_CSS<a class="headerlink" href="#exclude-extensions-css" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Optional list of extensions to exclude form the css</p>
+</div>
+<div class="section" id="fontawesome">
+<span id="std:setting-FONTAWESOME"></span><h3>FONTAWESOME<a class="headerlink" href="#fontawesome" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome'</span></tt></p>
+<p>FONTAWESOME url. Set to none to not use it.</p>
+</div>
+</div>
+<div class="section" id="static-site">
+<span id="parameters-static"></span><h2>Static Site<a class="headerlink" href="#static-site" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="context-location">
+<span id="std:setting-CONTEXT_LOCATION"></span><h3>CONTEXT_LOCATION<a class="headerlink" href="#context-location" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'context'</span></tt></p>
+<p>Directory where to find files to populate the context dictionary</p>
+</div>
+<div class="section" id="md-extensions">
+<span id="std:setting-MD_EXTENSIONS"></span><h3>MD_EXTENSIONS<a class="headerlink" href="#md-extensions" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;['extra',</span> <span class="pre">'meta',</span> <span class="pre">'toc']&quot;</span></tt></p>
+<p>List/tuple of markdown extensions</p>
+</div>
+<div class="section" id="static-api">
+<span id="std:setting-STATIC_API"></span><h3>STATIC_API<a class="headerlink" href="#static-api" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'api'</span></tt></p>
+<p>Build a JSON api, required when using angular in Html5  navigation mode</p>
+</div>
+<div class="section" id="static-location">
+<span id="std:setting-STATIC_LOCATION"></span><h3>STATIC_LOCATION<a class="headerlink" href="#static-location" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'build'</span></tt></p>
+<p>Directory where the static site is created</p>
+</div>
+<div class="section" id="static-media">
+<span id="std:setting-STATIC_MEDIA"></span><h3>STATIC_MEDIA<a class="headerlink" href="#static-media" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'True'</span></tt></p>
+<p>Add handler for media files</p>
+</div>
+<div class="section" id="static-specials">
+<span id="std:setting-STATIC_SPECIALS"></span><h3>STATIC_SPECIALS<a class="headerlink" href="#static-specials" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;('404',)&quot;</span></tt></p>
+<p>paths included in this list won&#8217;t create the json api</p>
+</div>
+<div class="section" id="static-template">
+<span id="std:setting-STATIC_TEMPLATE"></span><h3>STATIC_TEMPLATE<a class="headerlink" href="#static-template" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'home.html'</span></tt></p>
+<p>Default static template</p>
+</div>
+</div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='small hidden-print text-muted' id='page-footer'>
+    <div class='container'>
+        <div class='row'>
+            <div class='block col-sm-5'>
+                <div class='hidden-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+                <div class='text-center visible-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+            </div>
+            <div class='block col-sm-2 text-center'>
+                <div class='hidden-xs'>
+                    <p><a href='#page' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+                <div class='visible-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+            </div>
+            <div class='block col-sm-5'>
+                <div class='text-right hidden-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+                <div class='text-center visible-xs'>
+                    <p><a href='#page' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <navbar></navbar>
+</div></body>
+</html>

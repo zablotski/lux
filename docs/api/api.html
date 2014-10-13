@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html data-debug='false' lang='en'>
+<head>
+<title>Lux - Crafting super web applications with Python and AngularJS</title>
+<meta charset='utf-8'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='2014-01-31T20:31:51' name='og:modified_time'>
+<link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico.min.css' rel='icon' type='image/x-icon'>
+<link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png.min.css' rel='apple-touch-icon' sizes='57x57' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png.min.css' rel='apple-touch-icon' sizes='114x114' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='72x72' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='144x144' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/luxsite.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+var luxContext = {"year": 2014, "url": "http://quantmind.github.io/lux", "media": "/media", "date": "2014-10-13T13-42-13", "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "dateFormat": "d MMM y", "page": {"modified": "2014-01-31T20:31:51", "content_type": "text/html", "slug": "api/api", "name": "api_api"}, "html5mode": true, "lux_version": "0.1.0-alpha.1", "ngModules": [], "name": "Lux", "apiUrls": {}};</script>
+<script type="text/javascript">
+var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "minify": true, "waitSeconds": 200, "paths": {}};
+</script>
+<script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
+</head>
+<body data-ng-controller='Page' data-ng-model='page' data-page=''>
+<div id="page" class="fullpage" data-hash-scroll data-highlight ng-cloak>
+    <section id="page-header" class="page-header-outer api_api-header">
+    <div class="layer">
+        <div class="page-header">
+            <div class="container fullpage">
+                <div class="row fullpage">
+                    <div class="col-sm-12 text-center">
+                        <breadcrumbs></breadcrumbs>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="page-main">
+    <div class="container">
+        <div class="row">
+            <div class="api_api-main col-md-12">
+                <div class="center-block" style="max-width: 900px">
+                    <div class="section" id="module-lux.extensions.api">
+<span id="restful-web-api"></span><span id="extension-api"></span><h1>RESTful web API<a class="headerlink" href="#module-lux.extensions.api" title="Permalink to this headline">¶</a></h1>
+<p>A <em class="xref std std-ref">lux extension</em> for managing data models and
+RESTful web API.
+To use it, simply add it to the list of <em class="xref std std-ref">EXTENSIONS</em>
+of your application:</p>
+<div class="highlight-python"><div class="highlight"><pre>EXTENSIONS = [...,
+              &#39;lux.extensions.api&#39;,
+              ...]
+</pre></div>
+</div>
+<p><a class="reference internal" href="params#std:setting-DATASTORE"><tt class="xref std std-setting docutils literal"><span class="pre">DATASTORE</span></tt></a> is the most important <a class="reference internal" href="core#lux.core.extension.Parameter" title="lux.core.extension.Parameter"><tt class="xref py py-class docutils literal"><span class="pre">Parameter</span></tt></a> of
+this extension. It defines a dictionary for mapping
+models to backend data-stores.</p>
+<p>If <a class="reference internal" href="params#std:setting-API_URL"><tt class="xref std std-setting docutils literal"><span class="pre">API_URL</span></tt></a> is defined, the extension include a middleware for
+serving the restful api url. The middleware collects <tt class="xref py py-class docutils literal"><span class="pre">Crud</span></tt> routers
+from all extensions which provides the <tt class="docutils literal"><span class="pre">api_sections</span></tt> method.</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>The base url for the web API is defined by the <a class="reference internal" href="params#std:setting-API_URL"><tt class="xref std std-setting docutils literal"><span class="pre">API_URL</span></tt></a> setting.</p>
+<div class="section" id="adding-handlers">
+<h3>Adding Handlers<a class="headerlink" href="#adding-handlers" title="Permalink to this headline">¶</a></h3>
+<p>To add API handlers for a model, or group of models, one starts by creating
+a new <em class="xref std std-ref">lux Extension</em> and implement the <tt class="xref py py-meth docutils literal"><span class="pre">api_sections()</span></tt>
+method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">lux</span>
+<span class="kn">from</span> <span class="nn">lux.extensions.api</span> <span class="kn">import</span> <span class="n">Crud</span>
+
+<span class="k">class</span> <span class="nc">BlogExtension</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Extension</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">api_sections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="s">&#39;Blog&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">Crud</span><span class="p">(</span><span class="s">&#39;blog&#39;</span><span class="p">,</span> <span class="n">Blog</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">api_sections</span></tt> method returns an iterable over two-elements tuples.
+The first element in the tuple is a string representing the name of a Section
+in the <tt class="docutils literal"><span class="pre">Api</span></tt> documentation. The second element is an iterable
+over <tt class="xref py py-class docutils literal"><span class="pre">Crud</span></tt> routers which handles requests.
+The Routers will be appended to the <tt class="xref py py-class docutils literal"><span class="pre">Api</span></tt> Router.</p>
+<p>The example above adds one single <tt class="xref py py-class docutils literal"><span class="pre">Crud</span></tt> router to the <tt class="xref py py-class docutils literal"><span class="pre">Api</span></tt>
+router. The router serves requests at the <tt class="docutils literal"><span class="pre">/api/blog/</span></tt> url.</p>
+</div>
+</div>
+<div class="section" id="object-data-mapper">
+<h2>Object Data Mapper<a class="headerlink" href="#object-data-mapper" title="Permalink to this headline">¶</a></h2>
+<p>The object data mapper must provide the following:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">Mapper</span></tt> class for managing models</li>
+<li><tt class="docutils literal"><span class="pre">search_engine</span></tt> to create a full text search engine handler</li>
+</ul>
+<p>The mapper object must expose the following methods:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">register_applications</span></tt></li>
+</ul>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="api-extension">
+<h3>API Extension<a class="headerlink" href="#api-extension" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.api.Extension">
+<em class="property">class </em><tt class="descclassname">lux.extensions.api.</tt><tt class="descname">Extension</tt><a class="reference internal" href="../modules/lux/extensions/api#Extension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension" title="Permalink to this definition">¶</a></dt>
+<dd><p>A RESTful API <em class="xref std std-ref">lux extension</em>.</p>
+<dl class="attribute">
+<dt id="lux.extensions.api.Extension.html_crud_routers">
+<tt class="descname">html_crud_routers</tt><a class="headerlink" href="#lux.extensions.api.Extension.html_crud_routers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary of Routers serving a models for Html requests</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.api.Extension.api_crud_routers">
+<tt class="descname">api_crud_routers</tt><a class="headerlink" href="#lux.extensions.api.Extension.api_crud_routers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary of Routers serving a model for Api requests</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.api.Extension.middleware">
+<tt class="descname">middleware</tt><big>(</big><em>app</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api#Extension.middleware"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension.middleware" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the API middleware.</p>
+<p>If <a class="reference internal" href="params#std:setting-API_URL"><tt class="xref std std-setting docutils literal"><span class="pre">API_URL</span></tt></a> is defined, it loops through all extensions
+and checks if the <tt class="docutils literal"><span class="pre">api_sections</span></tt> method is available.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.api.Extension.on_config">
+<tt class="descname">on_config</tt><big>(</big><em>app</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/api#Extension.on_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.api.Extension.on_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a pulsar mapper with all models registered.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="api-router">
+<h3>API Router<a class="headerlink" href="#api-router" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-lux.extensions.api.content"><span id="crud-content-manager"></span></span></div>
+<div class="section" id="crud-contentmanager">
+<h3>CRUD ContentManager<a class="headerlink" href="#crud-contentmanager" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-lux.extensions.api.crud"><span id="crud-router"></span></span></div>
+<div class="section" id="id1">
+<h3>CRUD Router<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="module-lux.extensions.api.websocket"><span id="crud-websocket"></span></span></div>
+<div class="section" id="id2">
+<h3>CRUD Websocket<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="crud-message">
+<span id="id3"></span><h3>CRUD message<a class="headerlink" href="#crud-message" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='small hidden-print text-muted' id='page-footer'>
+    <div class='container'>
+        <div class='row'>
+            <div class='block col-sm-5'>
+                <div class='hidden-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+                <div class='text-center visible-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+            </div>
+            <div class='block col-sm-2 text-center'>
+                <div class='hidden-xs'>
+                    <p><a href='#page' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+                <div class='visible-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+            </div>
+            <div class='block col-sm-5'>
+                <div class='text-right hidden-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+                <div class='text-center visible-xs'>
+                    <p><a href='#page' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <navbar></navbar>
+</div></body>
+</html>
