@@ -5,7 +5,7 @@
 <meta charset='utf-8'>
 <meta content='IE=edge' http-equiv='X-UA-Compatible'>
 <meta content='width=device-width, initial-scale=1' name='viewport'>
-<meta content='2014-10-13T13:42:19' name='og:modified_time'>
+<meta content='2014-10-13T14:17:20' name='og:modified_time'>
 <link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico.min.css' rel='icon' type='image/x-icon'>
 <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
 <link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
@@ -15,9 +15,9 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='144x144' type='text/css'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"year": 2014, "url": "http://quantmind.github.io/lux", "media": "/media", "date": "2014-10-13T13-42-13", "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "dateFormat": "d MMM y", "page": {"modified": "2014-10-13T13:42:19", "content_type": "text/html", "slug": "modules/lux/core/templates", "name": "modules_lux_core_templates"}, "html5mode": true, "lux_version": "0.1.0-alpha.1", "ngModules": [], "name": "Lux", "apiUrls": {}};</script>
+var luxContext = {"name": "Lux", "ngModules": [], "dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "media": "/media", "html5mode": true, "date": "2014-10-13T14-17-18", "year": 2014, "apiUrls": {}, "datetimeFormat": "d MMM y, h:mm:ss a", "lux_version": "0.1.0-alpha.1", "python_version": "3.4.1", "page": {"name": "modules_lux_core_templates", "modified": "2014-10-13T14:17:20", "content_type": "text/html", "slug": "modules/lux/core/templates"}};</script>
 <script type="text/javascript">
-var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "minify": true, "waitSeconds": 200, "paths": {}};
+var require = {"waitSeconds": 200, "minify": true, "paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"]};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -109,7 +109,7 @@ var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["lux
            <span class="s">&#39;GridTemplate&#39;</span><span class="p">,</span> <span class="s">&#39;PageTemplate&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="Template"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.Template">[docs]</a><span class="k">class</span> <span class="nc">Template</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Template"><a class="viewcode-back" href="../../../api/core#lux.core.templates.Template">[docs]</a><span class="k">class</span> <span class="nc">Template</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A factory of :class:`.Html` objects.</span>
 
 <span class="sd">    ::</span>
@@ -174,7 +174,7 @@ var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["lux
     <span class="k">def</span> <span class="nf">child_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">child</span>
 
-<div class="viewcode-block" id="Template.init_parameters"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.Template.init_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">init_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
+<div class="viewcode-block" id="Template.init_parameters"><a class="viewcode-back" href="../../../api/core#lux.core.templates.Template.init_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">init_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Called at the and of initialisation.</span>
 
 <span class="sd">        It fills the :attr:`parameters` attribute.</span>
@@ -218,7 +218,7 @@ var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["lux
         <span class="c">#</span>
         <span class="k">return</span> <span class="n">html</span>
 
-<div class="viewcode-block" id="Template.keys"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.Template.keys">[docs]</a>    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Template.keys"><a class="viewcode-back" href="../../../api/core#lux.core.templates.Template.keys">[docs]</a>    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Generator of keys in this :class:`.Template`</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
@@ -227,7 +227,7 @@ var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["lux
             <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">child</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="k">yield</span> <span class="n">key</span>
 </div>
-<div class="viewcode-block" id="Template.get"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.Template.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<div class="viewcode-block" id="Template.get"><a class="viewcode-back" href="../../../api/core#lux.core.templates.Template.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Retrieve a children :class:`Template` with :attr:`Template.key`</span>
 <span class="sd">        equal to ``key``.</span>
 
@@ -242,13 +242,13 @@ var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["lux
             <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">elem</span>
 </div>
-<div class="viewcode-block" id="Template.post_process_child"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.Template.post_process_child">[docs]</a>    <span class="k">def</span> <span class="nf">post_process_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="viewcode-block" id="Template.post_process_child"><a class="viewcode-back" href="../../../api/core#lux.core.templates.Template.post_process_child">[docs]</a>    <span class="k">def</span> <span class="nf">post_process_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Called just before adding ``child`` to ``html``</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="n">child</span>
 
 </div></div>
-<div class="viewcode-block" id="Context"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.Context">[docs]</a><span class="k">class</span> <span class="nc">Context</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+<div class="viewcode-block" id="Context"><a class="viewcode-back" href="../../../api/core#lux.core.templates.Context">[docs]</a><span class="k">class</span> <span class="nc">Context</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A :class:`Template` which enforces the :attr:`~.Template.key`</span>
 <span class="sd">    attribute.</span>
 
@@ -267,7 +267,7 @@ var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["lux
         <span class="nb">super</span><span class="p">(</span><span class="n">Context</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">children</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="ColumnTemplate"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.ColumnTemplate">[docs]</a><span class="k">class</span> <span class="nc">ColumnTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+<div class="viewcode-block" id="ColumnTemplate"><a class="viewcode-back" href="../../../api/core#lux.core.templates.ColumnTemplate">[docs]</a><span class="k">class</span> <span class="nc">ColumnTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A template to place inside a :class:`.RowTemplate`.</span>
 
 <span class="sd">    :param span=1: fraction indicating how much this template extend across</span>
@@ -292,7 +292,7 @@ var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["lux
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Column span &quot;</span><span class="si">%s</span><span class="s">&quot; greater than one!&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">span</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="RowTemplate"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.RowTemplate">[docs]</a><span class="k">class</span> <span class="nc">RowTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+<div class="viewcode-block" id="RowTemplate"><a class="viewcode-back" href="../../../api/core#lux.core.templates.RowTemplate">[docs]</a><span class="k">class</span> <span class="nc">RowTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A :class:`.RowTemplate` is a container of :class:`.ColumnTemplate`</span>
 <span class="sd">    elements. It should be placed inside a :class:`.GridTemplate` for</span>
 <span class="sd">    better rendering.</span>
@@ -324,7 +324,7 @@ var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["lux
         <span class="k">return</span> <span class="n">child</span>
 
 </div>
-<div class="viewcode-block" id="GridTemplate"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.GridTemplate">[docs]</a><span class="k">class</span> <span class="nc">GridTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+<div class="viewcode-block" id="GridTemplate"><a class="viewcode-back" href="../../../api/core#lux.core.templates.GridTemplate">[docs]</a><span class="k">class</span> <span class="nc">GridTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A container of :class:`.RowTemplate` or other templates.</span>
 
 <span class="sd">    :parameter fixed: optional boolean flag to indicate if the grid is</span>
@@ -346,7 +346,7 @@ var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["lux
         <span class="k">return</span> <span class="n">child</span>
 
 </div>
-<div class="viewcode-block" id="PageTemplate"><a class="viewcode-back" href="../../../api/forms#lux.core.templates.PageTemplate">[docs]</a><span class="k">class</span> <span class="nc">PageTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+<div class="viewcode-block" id="PageTemplate"><a class="viewcode-back" href="../../../api/core#lux.core.templates.PageTemplate">[docs]</a><span class="k">class</span> <span class="nc">PageTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A :class:`.Template` to render the inner part of the HTML ``body`` tag.</span>
 
 <span class="sd">    A page template is created by including the page components during</span>

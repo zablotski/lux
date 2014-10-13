@@ -15,9 +15,9 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='144x144' type='text/css'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"year": 2014, "url": "http://quantmind.github.io/lux", "media": "/media", "date": "2014-10-13T13-42-13", "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "dateFormat": "d MMM y", "page": {"modified": "2014-10-13T13:13:30", "content_type": "text/html", "slug": "api/core", "name": "api_core"}, "html5mode": true, "lux_version": "0.1.0-alpha.1", "ngModules": [], "name": "Lux", "apiUrls": {}};</script>
+var luxContext = {"name": "Lux", "ngModules": [], "dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "media": "/media", "html5mode": true, "date": "2014-10-13T14-17-18", "year": 2014, "apiUrls": {}, "datetimeFormat": "d MMM y, h:mm:ss a", "lux_version": "0.1.0-alpha.1", "python_version": "3.4.1", "page": {"name": "api_core", "modified": "2014-10-13T13:13:30", "content_type": "text/html", "slug": "api/core"}};</script>
 <script type="text/javascript">
-var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "minify": true, "waitSeconds": 200, "paths": {}};
+var require = {"waitSeconds": 200, "minify": true, "paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"]};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -415,10 +415,10 @@ created directly, instead, the <tt class="xref py py-meth docutils literal"><spa
 </dd></dl>
 
 </div>
-<span class="target" id="module-lux.core.templates"></span><p>The <a class="reference internal" href="forms#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> defines a family of classes which can be used to
+<span class="target" id="module-lux.core.templates"></span><p>The <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> defines a family of classes which can be used to
 build HTML elements in a pythonic fashion. No template specific language is
 required, instead a template for an html element is created by adding children
-<a class="reference internal" href="forms#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> to a parent one.</p>
+<a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> to a parent one.</p>
 <div class="section" id="template">
 <h2>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
@@ -442,7 +442,7 @@ and no outer element is rendered.</p>
 <dl class="attribute">
 <dt id="lux.core.templates.Template.key">
 <tt class="descname">key</tt><a class="headerlink" href="#lux.core.templates.Template.key" title="Permalink to this definition">¶</a></dt>
-<dd><p>An optional string which identify this <a class="reference internal" href="forms#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> within
+<dd><p>An optional string which identify this <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> within
 other templates. It is also used for extracting content from the
 <tt class="docutils literal"><span class="pre">context</span></tt> dictionary passed to the template callable method.</p>
 </dd></dl>
@@ -450,8 +450,8 @@ other templates. It is also used for extracting content from the
 <dl class="attribute">
 <dt id="lux.core.templates.Template.children">
 <tt class="descname">children</tt><a class="headerlink" href="#lux.core.templates.Template.children" title="Permalink to this definition">¶</a></dt>
-<dd><p>List of <a class="reference internal" href="forms#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> objects which are rendered as children
-of this <a class="reference internal" href="forms#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a></p>
+<dd><p>List of <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> objects which are rendered as children
+of this <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a></p>
 </dd></dl>
 
 <dl class="attribute">
@@ -460,7 +460,7 @@ of this <a class="reference internal" href="forms#lux.core.templates.Template" t
 <dd><p>An attribute dictionary containing all key-valued parameters passed
 during initialisation. These parameters are used when building an
 <tt class="xref py py-class docutils literal"><span class="pre">Html</span></tt> element via the callable method.</p>
-<p>it is initialised by the <a class="reference internal" href="forms#lux.core.templates.Template.init_parameters" title="lux.core.templates.Template.init_parameters"><tt class="xref py py-meth docutils literal"><span class="pre">init_parameters()</span></tt></a> method at the end
+<p>it is initialised by the <a class="reference internal" href="#lux.core.templates.Template.init_parameters" title="lux.core.templates.Template.init_parameters"><tt class="xref py py-meth docutils literal"><span class="pre">init_parameters()</span></tt></a> method at the end
 of initialisation.</p>
 </dd></dl>
 
@@ -468,20 +468,20 @@ of initialisation.</p>
 <dt id="lux.core.templates.Template.init_parameters">
 <tt class="descname">init_parameters</tt><big>(</big><em>tag=None</em>, <em>classes=None</em>, <em>**parameters</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#Template.init_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.Template.init_parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called at the and of initialisation.</p>
-<p>It fills the <a class="reference internal" href="forms#lux.core.templates.Template.parameters" title="lux.core.templates.Template.parameters"><tt class="xref py py-attr docutils literal"><span class="pre">parameters</span></tt></a> attribute.
+<p>It fills the <a class="reference internal" href="#lux.core.templates.Template.parameters" title="lux.core.templates.Template.parameters"><tt class="xref py py-attr docutils literal"><span class="pre">parameters</span></tt></a> attribute.
 It can be overwritten to customise behaviour.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.core.templates.Template.keys">
 <tt class="descname">keys</tt><big>(</big><big>)</big><a class="reference internal" href="../modules/lux/core/templates#Template.keys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.Template.keys" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generator of keys in this <a class="reference internal" href="forms#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a></p>
+<dd><p>Generator of keys in this <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.core.templates.Template.get">
 <tt class="descname">get</tt><big>(</big><em>key</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#Template.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.Template.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieve a children <a class="reference internal" href="forms#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> with <a class="reference internal" href="forms#lux.core.templates.Template.key" title="lux.core.templates.Template.key"><tt class="xref py py-attr docutils literal"><span class="pre">Template.key</span></tt></a>
+<dd><p>Retrieve a children <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> with <a class="reference internal" href="#lux.core.templates.Template.key" title="lux.core.templates.Template.key"><tt class="xref py py-attr docutils literal"><span class="pre">Template.key</span></tt></a>
 equal to <tt class="docutils literal"><span class="pre">key</span></tt>.</p>
 <p>The search is done recursively and the first match is
 returned. If not available return <tt class="docutils literal"><span class="pre">None</span></tt>.</p>
@@ -501,7 +501,7 @@ returned. If not available return <tt class="docutils literal"><span class="pre"
 <dl class="class">
 <dt id="lux.core.templates.Context">
 <em class="property">class </em><tt class="descclassname">lux.core.templates.</tt><tt class="descname">Context</tt><big>(</big><em>key</em>, <em>*children</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#Context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.Context" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="forms#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> which enforces the <a class="reference internal" href="forms#lux.core.templates.Template.key" title="lux.core.templates.Template.key"><tt class="xref py py-attr docutils literal"><span class="pre">key</span></tt></a>
+<dd><p>A <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> which enforces the <a class="reference internal" href="#lux.core.templates.Template.key" title="lux.core.templates.Template.key"><tt class="xref py py-attr docutils literal"><span class="pre">key</span></tt></a>
 attribute.</p>
 <p>Fore example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">Context</span>
@@ -521,7 +521,7 @@ attribute.</p>
 <dl class="class">
 <dt id="lux.core.templates.PageTemplate">
 <em class="property">class </em><tt class="descclassname">lux.core.templates.</tt><tt class="descname">PageTemplate</tt><big>(</big><em>*children</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#PageTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.PageTemplate" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="forms#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> to render the inner part of the HTML <tt class="docutils literal"><span class="pre">body</span></tt> tag.</p>
+<dd><p>A <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> to render the inner part of the HTML <tt class="docutils literal"><span class="pre">body</span></tt> tag.</p>
 <p>A page template is created by including the page components during
 initialisation, for example:</p>
 <div class="highlight-python"><div class="highlight"><pre>from lux.extensions.cms.grid import PageTemplate
@@ -540,7 +540,7 @@ head_body_foot = PageTemplate(
 <dl class="class">
 <dt id="lux.core.templates.GridTemplate">
 <em class="property">class </em><tt class="descclassname">lux.core.templates.</tt><tt class="descname">GridTemplate</tt><big>(</big><em>*children</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#GridTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.GridTemplate" title="Permalink to this definition">¶</a></dt>
-<dd><p>A container of <a class="reference internal" href="forms#lux.core.templates.RowTemplate" title="lux.core.templates.RowTemplate"><tt class="xref py py-class docutils literal"><span class="pre">RowTemplate</span></tt></a> or other templates.</p>
+<dd><p>A container of <a class="reference internal" href="#lux.core.templates.RowTemplate" title="lux.core.templates.RowTemplate"><tt class="xref py py-class docutils literal"><span class="pre">RowTemplate</span></tt></a> or other templates.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -560,14 +560,14 @@ the browser window changes width).</td>
 <dl class="class">
 <dt id="lux.core.templates.RowTemplate">
 <em class="property">class </em><tt class="descclassname">lux.core.templates.</tt><tt class="descname">RowTemplate</tt><big>(</big><em>*children</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#RowTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.RowTemplate" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="forms#lux.core.templates.RowTemplate" title="lux.core.templates.RowTemplate"><tt class="xref py py-class docutils literal"><span class="pre">RowTemplate</span></tt></a> is a container of <a class="reference internal" href="forms#lux.core.templates.ColumnTemplate" title="lux.core.templates.ColumnTemplate"><tt class="xref py py-class docutils literal"><span class="pre">ColumnTemplate</span></tt></a>
-elements. It should be placed inside a <a class="reference internal" href="forms#lux.core.templates.GridTemplate" title="lux.core.templates.GridTemplate"><tt class="xref py py-class docutils literal"><span class="pre">GridTemplate</span></tt></a> for
+<dd><p>A <a class="reference internal" href="#lux.core.templates.RowTemplate" title="lux.core.templates.RowTemplate"><tt class="xref py py-class docutils literal"><span class="pre">RowTemplate</span></tt></a> is a container of <a class="reference internal" href="#lux.core.templates.ColumnTemplate" title="lux.core.templates.ColumnTemplate"><tt class="xref py py-class docutils literal"><span class="pre">ColumnTemplate</span></tt></a>
+elements. It should be placed inside a <a class="reference internal" href="#lux.core.templates.GridTemplate" title="lux.core.templates.GridTemplate"><tt class="xref py py-class docutils literal"><span class="pre">GridTemplate</span></tt></a> for
 better rendering.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>column</strong> &#8211; Optional parameter which set the <a class="reference internal" href="forms#lux.core.templates.RowTemplate.column" title="lux.core.templates.RowTemplate.column"><tt class="xref py py-attr docutils literal"><span class="pre">column</span></tt></a> attribute.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>column</strong> &#8211; Optional parameter which set the <a class="reference internal" href="#lux.core.templates.RowTemplate.column" title="lux.core.templates.RowTemplate.column"><tt class="xref py py-attr docutils literal"><span class="pre">column</span></tt></a> attribute.</td>
 </tr>
 </tbody>
 </table>
@@ -587,7 +587,7 @@ spans available.</p>
 <dl class="class">
 <dt id="lux.core.templates.ColumnTemplate">
 <em class="property">class </em><tt class="descclassname">lux.core.templates.</tt><tt class="descname">ColumnTemplate</tt><big>(</big><em>*children</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#ColumnTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.ColumnTemplate" title="Permalink to this definition">¶</a></dt>
-<dd><p>A template to place inside a <a class="reference internal" href="forms#lux.core.templates.RowTemplate" title="lux.core.templates.RowTemplate"><tt class="xref py py-class docutils literal"><span class="pre">RowTemplate</span></tt></a>.</p>
+<dd><p>A template to place inside a <a class="reference internal" href="#lux.core.templates.RowTemplate" title="lux.core.templates.RowTemplate"><tt class="xref py py-class docutils literal"><span class="pre">RowTemplate</span></tt></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
