@@ -5,7 +5,7 @@
 <meta charset='utf-8'>
 <meta content='IE=edge' http-equiv='X-UA-Compatible'>
 <meta content='width=device-width, initial-scale=1' name='viewport'>
-<meta content='2014-10-13T16:40:22' name='og:modified_time'>
+<meta content='2014-10-13T19:52:51' name='og:modified_time'>
 <link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico.min.css' rel='icon' type='image/x-icon'>
 <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
 <link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
@@ -24,7 +24,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
 </head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='angular-view' data-ui-view=''><section id="page-header" class="page-header-outer api_angular-header">
+    <div class='angular-view' data-ui-view=''><section id="page-header" class="page-header-outer js_nav-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -41,12 +41,40 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
 <div id="page-main">
     <div class="container">
         <div class="row">
-            <div class="api_angular-main col-md-12">
+            <div class="js_nav-main col-md-12">
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
-                    <div class="section" id="angularjs-integration">
-<span id="extension-angular"></span><h1>AngularJS Integration<a class="headerlink" href="#angularjs-integration" title="Permalink to this headline">¶</a></h1>
-<p>This extension is required when using <a class="reference internal" href="../js/#jsapi"><em>lux.js</em></a> javascript module.
-It provides the link between AngularJS and Python.</p>
+                    <div class="section" id="lux-nav">
+<h1>lux.nav<a class="headerlink" href="#lux-nav" title="Permalink to this headline">¶</a></h1>
+<p>Angular module for site navigation.</p>
+<div class="section" id="navbar">
+<h2>navbar<a class="headerlink" href="#navbar" title="Permalink to this headline">¶</a></h2>
+<p>Directive which create a bootstrap navbar:</p>
+<navbar data-options='examples_navbar'></navbar>
+<script>
+    var examples_navbar = {
+        brand: 'Navbar',
+        items: [{href: '#', name: 'Link1'},
+                {href: '#', name: 'Link2'}],
+        itemsRight: [{href: '#', name: 'Link3'},
+                     {href: '#', name: 'Link4'}],
+    };
+</script><div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;navbar</span> <span class="na">data-options=</span><span class="s">&#39;examples_navbar&#39;</span><span class="nt">&gt;&lt;/navbar&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="kd">var</span> <span class="nx">examples_navbar</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">brand</span><span class="o">:</span> <span class="s1">&#39;Navbar&#39;</span><span class="p">,</span>
+        <span class="nx">items</span><span class="o">:</span> <span class="p">[{</span><span class="nx">href</span><span class="o">:</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Link1&#39;</span><span class="p">},</span>
+                <span class="p">{</span><span class="nx">href</span><span class="o">:</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Link2&#39;</span><span class="p">}],</span>
+        <span class="nx">itemsRight</span><span class="o">:</span> <span class="p">[{</span><span class="nx">href</span><span class="o">:</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Link3&#39;</span><span class="p">},</span>
+                     <span class="p">{</span><span class="nx">href</span><span class="o">:</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Link4&#39;</span><span class="p">}],</span>
+    <span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="navbar2">
+<h2>navbar2<a class="headerlink" href="#navbar2" title="Permalink to this headline">¶</a></h2>
+<p>Directive which create a navbar with extra site navigation on the left</p>
+</div>
 </div>
 
                 </div>

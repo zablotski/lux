@@ -5,7 +5,7 @@
 <meta charset='utf-8'>
 <meta content='IE=edge' http-equiv='X-UA-Compatible'>
 <meta content='width=device-width, initial-scale=1' name='viewport'>
-<meta content='2014-10-13T14:17:20' name='og:modified_time'>
+<meta content='2014-10-14T08:04:58' name='og:modified_time'>
 <link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico.min.css' rel='icon' type='image/x-icon'>
 <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
 <link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
@@ -15,16 +15,16 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='144x144' type='text/css'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"name": "Lux", "ngModules": [], "dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "media": "/media", "html5mode": true, "date": "2014-10-13T14-17-18", "year": 2014, "apiUrls": {}, "datetimeFormat": "d MMM y, h:mm:ss a", "lux_version": "0.1.0-alpha.1", "python_version": "3.4.1", "page": {"name": "modules_lux_extensions_ui_lib_mixins", "modified": "2014-10-13T14:17:20", "content_type": "text/html", "slug": "modules/lux/extensions/ui/lib/mixins"}};</script>
+var luxContext = {"html5mode": true, "uiRouter": true, "lux_version": "0.1.0-alpha.1", "hrefs": ["/", "/docs/", "/docs/*slug", "/*slug"], "datetimeFormat": "d MMM y, h:mm:ss a", "date": "2014-10-14T08-04-53", "apiUrls": {}, "page": "/docs/*slug", "ngModules": ["ui.router"], "name": "Lux", "year": 2014, "python_version": "3.4.1", "url": "http://quantmind.github.io/lux", "pages": {"/docs/": {"controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs", "type": "static"}, "parent": "/", "url": "/docs/", "target": null, "name": "docs", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/docs/*slug": {"controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs", "type": "static"}, "parent": "/docs/", "url": "/docs/*slug", "target": null, "name": "docsview", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/*slug": {"controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site", "type": "static"}, "parent": "/", "url": "/*slug", "target": null, "name": "view", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/": {"controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site", "type": "static"}, "parent": null, "url": "/", "target": null, "name": "", "template": "<div class='angular-view' data-dynamic-page=''></div>"}}, "media": "/media", "dateFormat": "d MMM y"};</script>
 <script type="text/javascript">
-var require = {"waitSeconds": 200, "minify": true, "paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"]};
+var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "waitSeconds": 200, "paths": {}};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
 </head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
-<div id="page" class="fullpage" data-hash-scroll data-highlight ng-cloak>
-    <section id="page-header" class="page-header-outer modules_lux_extensions_ui_lib_mixins-header">
+<div id="page" class="fullpage" data-hash-scroll ng-cloak>
+    <div class='angular-view' data-ui-view=''><section id="page-header" class="page-header-outer modules_lux_extensions_ui_lib_mixins-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -42,7 +42,7 @@ var require = {"waitSeconds": 200, "minify": true, "paths": {}, "baseUrl": "http
     <div class="container">
         <div class="row">
             <div class="modules_lux_extensions_ui_lib_mixins-main col-md-12">
-                <div class="center-block" style="max-width: 900px">
+                <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
                     <h1>Source code for lux.extensions.ui.lib.mixins</h1><div class="highlight"><pre>
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Bcd</span>
@@ -1007,7 +1007,7 @@ var require = {"waitSeconds": 200, "minify": true, "paths": {}, "baseUrl": "http
             </div>
             <div class='block col-sm-2 text-center'>
                 <div class='hidden-xs'>
-                    <p><a href='#page' title="Lux" class="hover-opacity">
+                    <p><a href='#top' title="Lux" class="hover-opacity">
     <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
 </a></p>
                 </div>
@@ -1034,14 +1034,14 @@ var require = {"waitSeconds": 200, "minify": true, "paths": {}, "baseUrl": "http
 <i class='fa fa-github fa-2x'></i></a></p>
                 </div>
                 <div class='text-center visible-xs'>
-                    <p><a href='#page' title="Lux" class="hover-opacity">
+                    <p><a href='#top' title="Lux" class="hover-opacity">
     <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
 </a></p>
                 </div>
             </div>
         </div>
     </div>
-</div>
-    <navbar></navbar>
+</div></div>
+    <navbar data-options='lux.context.navbar'></navbar>
 </div></body>
 </html>

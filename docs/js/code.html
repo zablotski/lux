@@ -5,7 +5,7 @@
 <meta charset='utf-8'>
 <meta content='IE=edge' http-equiv='X-UA-Compatible'>
 <meta content='width=device-width, initial-scale=1' name='viewport'>
-<meta content='2014-10-13T16:40:22' name='og:modified_time'>
+<meta content='2014-10-13T21:16:24' name='og:modified_time'>
 <link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico.min.css' rel='icon' type='image/x-icon'>
 <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
 <link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
@@ -24,7 +24,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
 </head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='angular-view' data-ui-view=''><section id="page-header" class="page-header-outer api_angular-header">
+    <div class='angular-view' data-ui-view=''><section id="page-header" class="page-header-outer js_code-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -41,12 +41,33 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
 <div id="page-main">
     <div class="container">
         <div class="row">
-            <div class="api_angular-main col-md-12">
+            <div class="js_code-main col-md-12">
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
-                    <div class="section" id="angularjs-integration">
-<span id="extension-angular"></span><h1>AngularJS Integration<a class="headerlink" href="#angularjs-integration" title="Permalink to this headline">¶</a></h1>
-<p>This extension is required when using <a class="reference internal" href="../js/#jsapi"><em>lux.js</em></a> javascript module.
-It provides the link between AngularJS and Python.</p>
+                    <div class="section" id="highlight">
+<h1>highlight<a class="headerlink" href="#highlight" title="Permalink to this headline">¶</a></h1>
+<p><strong>Requirements</strong>: <a class="reference internal" href="../api/ui#module-lux.extensions.ui" title="lux.extensions.ui"><tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.ui</span></tt></a>, <tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.code</span></tt></p>
+<p>AngularJs module for code highlighting using <a class="reference external" href="https://highlightjs.org/">highlightjs</a>. This angular module
+should be used in conjunction with the <tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.code</span></tt> extentension.
+In your config file add the extension to the list of <tt class="xref std std-setting docutils literal"><span class="pre">EXTENSIONS</span></tt> and
+specify a theme:</p>
+<div class="highlight-python"><div class="highlight"><pre>EXTENSIONS = [
+    ...
+    &#39;lux.extensions.ui&#39;,
+    &#39;lux.extensions.code&#39;,
+    ...
+]
+CODE_HIGHLIGHT_THEME = &#39;github&#39;
+</pre></div>
+</div>
+<p>In Javascript you need to use the <tt class="docutils literal"><span class="pre">highlight</span></tt> directive on the outermost
+element containing code to highlight:</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">data-highlight</span><span class="nt">&gt;</span>
+...
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">highlight</span></tt> module containing the directive is added to lux modules to include in
+the bootstrapping process by the <tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.code</span></tt> extension.</p>
 </div>
 
                 </div>
