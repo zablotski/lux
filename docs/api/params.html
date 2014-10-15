@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html data-debug='false' lang='en'>
+<html data-debug='false' lang='en' prefix='og: http://ogp.me/ns#'>
 <head>
 <title>Lux - Crafting super web applications with Python and AngularJS</title>
 <meta charset='utf-8'>
 <meta content='IE=edge' http-equiv='X-UA-Compatible'>
 <meta content='width=device-width, initial-scale=1' name='viewport'>
-<meta content='2014-08-04T12:34:16' name='og:modified_time'>
+<meta content='website' property='og:type'>
+<meta content='http://quantmind.github.io/lux/lux/docs/api/params' property='og:url'>
+<meta content='Lux - Crafting super web applications with Python and AngularJS' property='og:title'>
 <link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico.min.css' rel='icon' type='image/x-icon'>
 <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
 <link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
@@ -15,13 +17,22 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='144x144' type='text/css'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"lux_version": "0.1.0-alpha.1", "date": "2014-10-14T10-48-59", "page": "/lux/docs/*slug", "ngModules": ["ui.router"], "name": "Lux", "pages": {"/lux/*slug": {"api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "url": "/lux/*slug", "controller": "Html5", "name": "view", "template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "parent": "/lux/"}, "/lux/docs/*slug": {"api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "url": "/lux/docs/*slug", "controller": "Html5", "name": "docsview", "template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "parent": "/lux/docs/"}, "/lux/": {"api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "url": "/lux/", "controller": "Html5", "name": "", "template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "parent": null}, "/lux/docs/": {"api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "url": "/lux/docs/", "controller": "Html5", "name": "docs", "template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "parent": "/lux/"}}, "url": "http://quantmind.github.io/lux", "year": 2014, "dateFormat": "d MMM y", "datetimeFormat": "d MMM y, h:mm:ss a", "uiRouter": true, "apiUrls": {}, "html5mode": true, "python_version": "3.4.1", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "media": "/media"};</script>
+var luxContext = {"ngModules": ["ui.router"], "year": 2014, "page": "/lux/docs/*slug", "python_version": "3.4.1", "uiRouter": true, "dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "pages": {"/lux/docs/*slug": {"name": "docsview", "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/docs/", "target": null, "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "url": "/lux/docs/*slug"}, "/lux/*slug": {"name": "view", "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/", "target": null, "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "url": "/lux/*slug"}, "/lux/": {"name": "", "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": null, "target": null, "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "url": "/lux/"}, "/lux/docs/": {"name": "docs", "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/", "target": null, "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "url": "/lux/docs/"}}, "lux_version": "0.1.1-alpha.1", "name": "Lux", "apiUrls": {}, "oauths": null, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "date": "2014-10-15T08-53-07", "datetimeFormat": "d MMM y, h:mm:ss a", "html5mode": true, "media": "/media"};</script>
 <script type="text/javascript">
-var require = {"paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", "waitSeconds": 200, "deps": ["luxsite/luxsite"], "minify": true};
+var require = {"waitSeconds": 200, "minify": true, "paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"]};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
-</head>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54439804-2', 'quantmind.github.io');
+  ga('send', 'pageview');
+
+</script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
     <div class='angular-view' data-ui-view=''><section id="page-header" class="page-header-outer api_params-header">
@@ -45,20 +56,142 @@ var require = {"paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", 
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
                     <div class="section" id="parameters">
 <span id="id1"></span><h1>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h1>
+<p>A full list of available <a class="reference internal" href="core#lux.core.extension.Parameter" title="lux.core.extension.Parameter"><tt class="xref py py-class docutils literal"><span class="pre">Parameter</span></tt></a> from all <a class="reference internal" href="api#lux.extensions.api.Extension" title="lux.extensions.api.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a>
+available in the standard lux distribution.</p>
 <div class="section" id="core">
 <h2>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="app-name">
+<span id="std:setting-APP_NAME"></span><h3>APP_NAME<a class="headerlink" href="#app-name" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'Lux'</span></tt></p>
+<p>Application site name</p>
+</div>
+<div class="section" id="asset-protocol">
+<span id="std:setting-ASSET_PROTOCOL"></span><h3>ASSET_PROTOCOL<a class="headerlink" href="#asset-protocol" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">''</span></tt></p>
+<p>Default protocol for scripts and links (could be http: or https:)</p>
+</div>
+<div class="section" id="cache-server">
+<span id="std:setting-CACHE_SERVER"></span><h3>CACHE_SERVER<a class="headerlink" href="#cache-server" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Cache server, can be a connection string to a valid datastore which support the cache protocol or an object supporting the cache protocol</p>
+</div>
+<div class="section" id="datetime-format">
+<span id="std:setting-DATETIME_FORMAT"></span><h3>DATETIME_FORMAT<a class="headerlink" href="#datetime-format" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'d</span> <span class="pre">MMM</span> <span class="pre">y,</span> <span class="pre">h:mm:ss</span> <span class="pre">a'</span></tt></p>
+<p>Default formatting for dates in JavaScript</p>
+</div>
+<div class="section" id="date-format">
+<span id="std:setting-DATE_FORMAT"></span><h3>DATE_FORMAT<a class="headerlink" href="#date-format" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'d</span> <span class="pre">MMM</span> <span class="pre">y'</span></tt></p>
+<p>Default formatting for dates in JavaScript</p>
+</div>
+<div class="section" id="default-from-email">
+<span id="std:setting-DEFAULT_FROM_EMAIL"></span><h3>DEFAULT_FROM_EMAIL<a class="headerlink" href="#default-from-email" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">''</span></tt></p>
+<p>Default email address to send email from</p>
+</div>
+<div class="section" id="default-template-engine">
+<span id="std:setting-DEFAULT_TEMPLATE_ENGINE"></span><h3>DEFAULT_TEMPLATE_ENGINE<a class="headerlink" href="#default-template-engine" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'python'</span></tt></p>
+<p>Default template engine</p>
+</div>
+<div class="section" id="description">
+<span id="std:setting-DESCRIPTION"></span><h3>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>A description to display before the argument help on the command line when running commands</p>
+</div>
+<div class="section" id="encoding">
+<span id="std:setting-ENCODING"></span><h3>ENCODING<a class="headerlink" href="#encoding" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'utf-8'</span></tt></p>
+<p>Default encoding for text.</p>
+</div>
+<div class="section" id="error-handler">
+<span id="std:setting-ERROR_HANDLER"></span><h3>ERROR_HANDLER<a class="headerlink" href="#error-handler" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Handler of Http exceptions</p>
+</div>
+<div class="section" id="extensions">
+<span id="std:setting-EXTENSIONS"></span><h3>EXTENSIONS<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'[]'</span></tt></p>
+<p>List of extension names to use in your application. The order matter since the wsgi middleware of extension is processed in the order given by this setting.</p>
+</div>
+<div class="section" id="html-links">
+<span id="std:setting-HTML_LINKS"></span><h3>HTML_LINKS<a class="headerlink" href="#html-links" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'[]'</span></tt></p>
+<p>List of links to include in the html head tag.</p>
+</div>
+<div class="section" id="html-meta">
+<span id="std:setting-HTML_META"></span><h3>HTML_META<a class="headerlink" href="#html-meta" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;[{'content':</span> <span class="pre">'IE=edge',</span> <span class="pre">'http-equiv':</span> <span class="pre">'X-UA-Compatible'},</span> <span class="pre">{'name':</span> <span class="pre">'viewport',</span> <span class="pre">'content':</span> <span class="pre">'width=device-width,</span> <span class="pre">initial-scale=1'}]&quot;</span></tt></p>
+<p>List of default <tt class="docutils literal"><span class="pre">meta</span></tt> elements to add to the html headelement</p>
+</div>
+<div class="section" id="html-title">
+<span id="std:setting-HTML_TITLE"></span><h3>HTML_TITLE<a class="headerlink" href="#html-title" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'Lux'</span></tt></p>
+<p>Default HTML Title</p>
+</div>
+<div class="section" id="links">
+<span id="std:setting-LINKS"></span><h3>LINKS<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;{'pulsar':</span> <span class="pre">'http://pythonhosted.org/pulsar',</span> <span class="pre">'python':</span> <span class="pre">'https://www.python.org/',</span> <span class="pre">'lux':</span> <span class="pre">'https://github.com/quantmind/lux'}&quot;</span></tt></p>
+<p>Links used throughout the web site</p>
+</div>
+<div class="section" id="locale">
+<span id="std:setting-LOCALE"></span><h3>LOCALE<a class="headerlink" href="#locale" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'en_GB'</span></tt></p>
+<p>Default locale</p>
+</div>
+<div class="section" id="logging-config">
+<span id="std:setting-LOGGING_CONFIG"></span><h3>LOGGING_CONFIG<a class="headerlink" href="#logging-config" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Dictionary for configuring logging</p>
+</div>
+<div class="section" id="media-url">
+<span id="std:setting-MEDIA_URL"></span><h3>MEDIA_URL<a class="headerlink" href="#media-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'/media/'</span></tt></p>
+<p>the base url for static files</p>
+</div>
+<div class="section" id="minified-media">
+<span id="std:setting-MINIFIED_MEDIA"></span><h3>MINIFIED_MEDIA<a class="headerlink" href="#minified-media" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'True'</span></tt></p>
+<p>Use minified media files. All media files will replace their extensions with .min.ext. For example, javascript links <a href="#id2"><span class="problematic" id="id3">*</span></a>.js become <a href="#id4"><span class="problematic" id="id5">*</span></a>.min.js</p>
+</div>
+<div class="section" id="requirejs">
+<span id="std:setting-REQUIREJS"></span><h3>REQUIREJS<a class="headerlink" href="#requirejs" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;('require',)&quot;</span></tt></p>
+<p>Default Required javascript. Loaded via requirejs.</p>
+</div>
+<div class="section" id="requirejs-config">
+<span id="std:setting-REQUIREJS_CONFIG"></span><h3>REQUIREJS_CONFIG<a class="headerlink" href="#requirejs-config" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'http://quantmind.github.io/require-config-js/require.config'</span></tt></p>
+<p>Configuration url for Requirejs</p>
+</div>
+<div class="section" id="requirejs-url">
+<span id="std:setting-REQUIREJS_URL"></span><h3>REQUIREJS_URL<a class="headerlink" href="#requirejs-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require'</span></tt></p>
+<p>Default url for requirejs</p>
+</div>
+<div class="section" id="scripts">
+<span id="std:setting-SCRIPTS"></span><h3>SCRIPTS<a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'[]'</span></tt></p>
+<p>List of scripts to load in the head tag</p>
+</div>
+<div class="section" id="site-url">
+<span id="std:setting-SITE_URL"></span><h3>SITE_URL<a class="headerlink" href="#site-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
+<p>Web site url</p>
+</div>
 </div>
 <div class="section" id="base">
 <h2>Base<a class="headerlink" href="#base" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="clean-url">
 <span id="std:setting-CLEAN_URL"></span><h3>CLEAN_URL<a class="headerlink" href="#clean-url" title="Permalink to this headline">¶</a></h3>
 <p>Default: <tt class="docutils literal"><span class="pre">'False'</span></tt></p>
-<p>When <tt class="docutils literal"><span class="pre">True</span></tt>, requests on url with consecutive slashes are converted to valid url and redirected.</p>
+<p>When <tt class="docutils literal"><span class="pre">True</span></tt>, requests on urls with consecutive slashes are converted to valid url and redirected.</p>
 </div>
 <div class="section" id="favicon">
 <span id="std:setting-FAVICON"></span><h3>FAVICON<a class="headerlink" href="#favicon" title="Permalink to this headline">¶</a></h3>
 <p>Default: <tt class="docutils literal"><span class="pre">'None'</span></tt></p>
-<p>Adds wsgi middleware to handle favicon url <tt class="docutils literal"><span class="pre">/favicon.ico``served</span> <span class="pre">from</span> <span class="pre">``MEDIA_URL/FAVICON</span></tt></p>
+<p>Adds tag of type <tt class="docutils literal"><span class="pre">image/x-icon</span></tt> in the head section of the Html document</p>
 </div>
 <div class="section" id="gzip-min-length">
 <span id="std:setting-GZIP_MIN_LENGTH"></span><h3>GZIP_MIN_LENGTH<a class="headerlink" href="#gzip-min-length" title="Permalink to this headline">¶</a></h3>
@@ -94,7 +227,7 @@ var require = {"paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", 
 </div>
 <div class="section" id="check-username">
 <span id="std:setting-CHECK_USERNAME"></span><h3>CHECK_USERNAME<a class="headerlink" href="#check-username" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">'&lt;function</span> <span class="pre">Extension.&lt;lambda&gt;</span> <span class="pre">at</span> <span class="pre">0x10e5fd8c8&gt;'</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">'&lt;function</span> <span class="pre">Extension.&lt;lambda&gt;</span> <span class="pre">at</span> <span class="pre">0x1078dd378&gt;'</span></tt></p>
 <p>Check if the username is valid</p>
 </div>
 <div class="section" id="crypt-algorithm">
@@ -114,7 +247,7 @@ var require = {"paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", 
 </div>
 <div class="section" id="permission-levels">
 <span id="std:setting-PERMISSION_LEVELS"></span><h3>PERMISSION_LEVELS<a class="headerlink" href="#permission-levels" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">&quot;{'create':</span> <span class="pre">20,</span> <span class="pre">'update':</span> <span class="pre">30,</span> <span class="pre">'delete':</span> <span class="pre">40,</span> <span class="pre">'read':</span> <span class="pre">10}&quot;</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;{'read':</span> <span class="pre">10,</span> <span class="pre">'update':</span> <span class="pre">30,</span> <span class="pre">'delete':</span> <span class="pre">40,</span> <span class="pre">'create':</span> <span class="pre">20}&quot;</span></tt></p>
 <p>When a model</p>
 </div>
 <div class="section" id="reset-password-url">

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html data-debug='false' lang='en'>
+<html data-debug='false' lang='en' prefix='og: http://ogp.me/ns#'>
 <head>
 <title>Lux - Crafting super web applications with Python and AngularJS</title>
 <meta charset='utf-8'>
 <meta content='IE=edge' http-equiv='X-UA-Compatible'>
 <meta content='width=device-width, initial-scale=1' name='viewport'>
-<meta content='2014-10-13T13:13:30' name='og:modified_time'>
+<meta content='website' property='og:type'>
+<meta content='http://quantmind.github.io/lux/lux/docs/api/core' property='og:url'>
+<meta content='Lux - Crafting super web applications with Python and AngularJS' property='og:title'>
 <link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico.min.css' rel='icon' type='image/x-icon'>
 <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
 <link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
@@ -15,13 +17,22 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png.min.css' rel='apple-touch-icon' sizes='144x144' type='text/css'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"lux_version": "0.1.0-alpha.1", "date": "2014-10-14T10-48-59", "page": "/lux/docs/*slug", "ngModules": ["ui.router"], "name": "Lux", "pages": {"/lux/*slug": {"api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "url": "/lux/*slug", "controller": "Html5", "name": "view", "template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "parent": "/lux/"}, "/lux/docs/*slug": {"api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "url": "/lux/docs/*slug", "controller": "Html5", "name": "docsview", "template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "parent": "/lux/docs/"}, "/lux/": {"api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "url": "/lux/", "controller": "Html5", "name": "", "template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "parent": null}, "/lux/docs/": {"api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "url": "/lux/docs/", "controller": "Html5", "name": "docs", "template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "parent": "/lux/"}}, "url": "http://quantmind.github.io/lux", "year": 2014, "dateFormat": "d MMM y", "datetimeFormat": "d MMM y, h:mm:ss a", "uiRouter": true, "apiUrls": {}, "html5mode": true, "python_version": "3.4.1", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "media": "/media"};</script>
+var luxContext = {"ngModules": ["ui.router"], "year": 2014, "page": "/lux/docs/*slug", "python_version": "3.4.1", "uiRouter": true, "dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "pages": {"/lux/docs/*slug": {"name": "docsview", "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/docs/", "target": null, "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "url": "/lux/docs/*slug"}, "/lux/*slug": {"name": "view", "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/", "target": null, "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "url": "/lux/*slug"}, "/lux/": {"name": "", "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": null, "target": null, "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "url": "/lux/"}, "/lux/docs/": {"name": "docs", "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/", "target": null, "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "url": "/lux/docs/"}}, "lux_version": "0.1.1-alpha.1", "name": "Lux", "apiUrls": {}, "oauths": null, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "date": "2014-10-15T08-53-07", "datetimeFormat": "d MMM y, h:mm:ss a", "html5mode": true, "media": "/media"};</script>
 <script type="text/javascript">
-var require = {"paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", "waitSeconds": 200, "deps": ["luxsite/luxsite"], "minify": true};
+var require = {"waitSeconds": 200, "minify": true, "paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"]};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
-</head>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54439804-2', 'quantmind.github.io');
+  ga('send', 'pageview');
+
+</script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
     <div class='angular-view' data-ui-view=''><section id="page-header" class="page-header-outer api_core-header">
@@ -48,7 +59,7 @@ var require = {"paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", 
 <dl class="function">
 <dt id="lux.core.app.execute_from_config">
 <tt class="descclassname">lux.core.app.</tt><tt class="descname">execute_from_config</tt><big>(</big><em>config_file</em>, <em>argv=None</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#execute_from_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.execute_from_config" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and run an <a class="reference internal" href="#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> from a <tt class="docutils literal"><span class="pre">config_file</span></tt>.</p>
+<dd><p>Create and run an <tt class="xref py py-class docutils literal"><span class="pre">App</span></tt> from a <tt class="docutils literal"><span class="pre">config_file</span></tt>.</p>
 <p>This is the function to use when creating the script which runs your
 web applications:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">lux</span>
@@ -62,7 +73,7 @@ web applications:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config_file</strong> &#8211; the python dotted path to the config file for setting
-up a new <a class="reference internal" href="#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a>. The config file should be located in the
+up a new <tt class="xref py py-class docutils literal"><span class="pre">App</span></tt>. The config file should be located in the
 python module which implements the <em class="xref std std-ref">main application</em>
 of the web site.</td>
 </tr>
@@ -71,17 +82,193 @@ of the web site.</td>
 </dd></dl>
 
 <dl class="class">
-<dt id="lux.core.app.App">
-<em class="property">class </em><tt class="descclassname">lux.core.app.</tt><tt class="descname">App</tt><big>(</big><em>config_file</em>, <em>script=None</em>, <em>argv=None</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#App"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.App" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="lux.core.app.Application">
+<em class="property">class </em><tt class="descclassname">lux.core.app.</tt><tt class="descname">Application</tt><big>(</big><em>callable</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#lux.core.app.Application" title="lux.core.app.Application"><tt class="xref py py-class docutils literal"><span class="pre">Application</span></tt></a> is the WSGI callable for serving
+lux applications.</p>
+<p>It is a specialised <a class="reference internal" href="api#lux.extensions.api.Extension" title="lux.extensions.api.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> which collects
+all extensions of your application and setup the wsgi middleware used by
+the web server.
+An <tt class="xref py py-class docutils literal"><span class="pre">App</span></tt> is not usually initialised directly, the higher level
+<a class="reference internal" href="#lux.core.app.execute_from_config" title="lux.core.app.execute_from_config"><tt class="xref py py-func docutils literal"><span class="pre">execute_from_config()</span></tt></a> is used instead.</p>
+<dl class="attribute">
+<dt id="lux.core.app.Application.config">
+<tt class="descname">config</tt><a class="headerlink" href="#lux.core.app.Application.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>The configuration dictionary containing all patameters specified in
+the <a class="reference internal" href="#lux.core.app.Application.config_module" title="lux.core.app.Application.config_module"><tt class="xref py py-attr docutils literal"><span class="pre">config_module</span></tt></a>.</p>
+</dd></dl>
 
-<span class="target" id="module-lux.core.extension"></span><div class="section" id="extension">
-<h2>Extension<a class="headerlink" href="#extension" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="attribute">
+<dt id="lux.core.app.Application.debug">
+<tt class="descname">debug</tt><a class="headerlink" href="#lux.core.app.Application.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>debug flag set at runtime via the <tt class="docutils literal"><span class="pre">debug</span></tt> flag:</p>
+<div class="highlight-python"><div class="highlight"><pre>python myappscript.py serve --debug
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.core.app.Application.auth_backend">
+<tt class="descname">auth_backend</tt><a class="headerlink" href="#lux.core.app.Application.auth_backend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used by the sessions extension</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.core.app.Application.config_module">
+<tt class="descname">config_module</tt><a class="reference internal" href="../modules/lux/core/app#Application.config_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.config_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <em class="xref std std-ref">configuration file</em> used by this <tt class="xref py py-class docutils literal"><span class="pre">App</span></tt>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.core.app.Application.extensions">
+<tt class="descname">extensions</tt><a class="reference internal" href="../modules/lux/core/app#Application.extensions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.extensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ordered dictionary of <a class="reference internal" href="api#lux.extensions.api.Extension" title="lux.extensions.api.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> available.</p>
+<p>The order is the same as in the
+<em class="xref std std-ref">EXTENSIONS config</em> parameter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.get_version">
+<tt class="descname">get_version</tt><big>(</big><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.get_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.get_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get version of this <tt class="xref py py-class docutils literal"><span class="pre">App</span></tt>. Required by
+<tt class="xref py py-class docutils literal"><span class="pre">ConsoleParser</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.wsgi_request">
+<tt class="descname">wsgi_request</tt><big>(</big><em>environ=None</em>, <em>loop=None</em>, <em>path=None</em>, <em>app_handler=None</em>, <em>urlargs=None</em>, <em>**kw</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.wsgi_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.wsgi_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <tt class="xref py py-class docutils literal"><span class="pre">WsgiRequest</span></tt> from a wsgi <tt class="docutils literal"><span class="pre">environ</span></tt> and set the
+<tt class="docutils literal"><span class="pre">app</span></tt> attribute in the cache.
+Additional keyed-valued parameters can be inserted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.html_document">
+<tt class="descname">html_document</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.html_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.html_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the HTML document.</p>
+<p>Usually there is no need to call directly this method.
+Instead one can use the <a class="reference internal" href="#lux.core.wrappers.WsgiRequest.html_document" title="lux.core.wrappers.WsgiRequest.html_document"><tt class="xref py py-attr docutils literal"><span class="pre">WsgiRequest.html_document</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.core.app.Application.commands">
+<tt class="descname">commands</tt><a class="reference internal" href="../modules/lux/core/app#Application.commands"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load all commands from installed applications</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.get_command">
+<tt class="descname">get_command</tt><big>(</big><em>name</em>, <em>stdout=None</em>, <em>stderr=None</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.get_command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.get_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct and return a <a class="reference internal" href="#lux.core.commands.Command" title="lux.core.commands.Command"><tt class="xref py py-class docutils literal"><span class="pre">Command</span></tt></a> for this application</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.get_usage">
+<tt class="descname">get_usage</tt><big>(</big><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.get_usage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.get_usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the script&#8217;s main help text, as a string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.get_parser">
+<tt class="descname">get_parser</tt><big>(</big><em>with_commands=True</em>, <em>nargs='?'</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.get_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.get_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a python <a class="reference external" href="http://python.readthedocs.org/en/latest/library/argparse.html#argparse.ArgumentParser" title="(in Python v3.5)"><tt class="xref py py-class docutils literal"><span class="pre">argparse.ArgumentParser</span></tt></a> for parsing
+the command line.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>with_commands</strong> &#8211; Include parsing of all commands (default True).</li>
+<li><strong>params</strong> &#8211; parameters to pass to the
+<a class="reference external" href="http://python.readthedocs.org/en/latest/library/argparse.html#argparse.ArgumentParser" title="(in Python v3.5)"><tt class="xref py py-class docutils literal"><span class="pre">argparse.ArgumentParser</span></tt></a> constructor.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.load_extension">
+<tt class="descname">load_extension</tt><big>(</big><em>dotted_path</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.load_extension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.load_extension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an <a class="reference internal" href="api#lux.extensions.api.Extension" title="lux.extensions.api.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> class into this <tt class="xref py py-class docutils literal"><span class="pre">App</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dotted_path</strong> &#8211; python dotted path to the extension.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an <a class="reference internal" href="api#lux.extensions.api.Extension" title="lux.extensions.api.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> class or <tt class="docutils literal"><span class="pre">None</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>If the module contains an <a class="reference internal" href="api#lux.extensions.api.Extension" title="lux.extensions.api.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> class named
+<tt class="docutils literal"><span class="pre">Extension</span></tt>, it will be added to the <tt class="xref py py-attr docutils literal"><span class="pre">extension</span></tt> dictionary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.fire">
+<tt class="descname">fire</tt><big>(</big><em>event</em>, <em>*args</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.fire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.fire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fire an <tt class="docutils literal"><span class="pre">event</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.template_full_path">
+<tt class="descname">template_full_path</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.template_full_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.template_full_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the template full path or None.</p>
+<p>Loops through all <a class="reference internal" href="#lux.core.app.Application.extensions" title="lux.core.app.Application.extensions"><tt class="xref py py-attr docutils literal"><span class="pre">extensions</span></tt></a> in reversed order and
+check for <tt class="docutils literal"><span class="pre">name</span></tt> within the <tt class="docutils literal"><span class="pre">templates</span></tt> directory</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.template">
+<tt class="descname">template</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a template from the file system</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.context">
+<tt class="descname">context</tt><big>(</big><em>request</em>, <em>context=None</em>, <em>js=None</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the <tt class="docutils literal"><span class="pre">context</span></tt> dictionary for this <tt class="docutils literal"><span class="pre">request</span></tt></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.render_template">
+<tt class="descname">render_template</tt><big>(</big><em>template_name</em>, <em>context=None</em>, <em>engine=None</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.render_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.render_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render a template</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.html_response">
+<tt class="descname">html_response</tt><big>(</big><em>request</em>, <em>template_name</em>, <em>context=None</em>, <em>jscontext=None</em>, <em>title=None</em>, <em>status_code=None</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.html_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.html_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Html response via a template.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request</strong> &#8211; the <a class="reference internal" href="#lux.core.wrappers.WsgiRequest" title="lux.core.wrappers.WsgiRequest"><tt class="xref py py-class docutils literal"><span class="pre">WsgiRequest</span></tt></a></li>
+<li><strong>template_name</strong> &#8211; the template file name to load</li>
+<li><strong>context</strong> &#8211; optional context dictionary</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.core.app.Application.site_url">
+<tt class="descname">site_url</tt><big>(</big><em>path=None</em><big>)</big><a class="reference internal" href="../modules/lux/core/app#Application.site_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.site_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the site url from an optional <tt class="docutils literal"><span class="pre">path</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-lux.core.extension"></span><dl class="class">
 <dt id="lux.core.extension.Extension">
 <em class="property">class </em><tt class="descclassname">lux.core.extension.</tt><tt class="descname">Extension</tt><a class="reference internal" href="../modules/lux/core/extension#Extension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.extension.Extension" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base class for <em class="xref std std-ref">lux extensions</em>
-including <a class="reference internal" href="#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a>.</p>
+<dd><p>Base class for extensions including the <a class="reference internal" href="#lux.core.app.Application" title="lux.core.app.Application"><tt class="xref py py-class docutils literal"><span class="pre">Application</span></tt></a> class.</p>
 <dl class="attribute">
 <dt id="lux.core.extension.Extension.meta">
 <tt class="descname">meta</tt><a class="headerlink" href="#lux.core.extension.Extension.meta" title="Permalink to this definition">¶</a></dt>
@@ -144,9 +331,6 @@ middleware</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="extension-meta">
-<h2>Extension Meta<a class="headerlink" href="#extension-meta" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lux.core.extension.ExtensionMeta">
 <em class="property">class </em><tt class="descclassname">lux.core.extension.</tt><tt class="descname">ExtensionMeta</tt><big>(</big><em>file</em>, <em>version</em>, <em>config=None</em><big>)</big><a class="reference internal" href="../modules/lux/core/extension#ExtensionMeta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.extension.ExtensionMeta" title="Permalink to this definition">¶</a></dt>
@@ -179,20 +363,21 @@ name which runs the application.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="parameter">
-<h2>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lux.core.extension.Parameter">
 <em class="property">class </em><tt class="descclassname">lux.core.extension.</tt><tt class="descname">Parameter</tt><big>(</big><em>name</em>, <em>default</em>, <em>doc</em><big>)</big><a class="reference internal" href="../modules/lux/core/extension#Parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.extension.Parameter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Class for defining a lux <em class="xref std std-ref">parameter</em> within
+<dd><p>Class for defining a lux <a class="reference internal" href="params#parameters"><em>parameter</em></a> within
 a lux <a class="reference internal" href="#lux.core.extension.Extension" title="lux.core.extension.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a>.</p>
-<p>Parameters are specified when creating an <a class="reference internal" href="#lux.core.extension.Extension" title="lux.core.extension.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> in a
-declarative style (as class attributes of the extension). For example:</p>
+<p>Parameters are specified in the <tt class="docutils literal"><span class="pre">_config</span></tt> list of an <a class="reference internal" href="#lux.core.extension.Extension" title="lux.core.extension.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a>.
+For example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">Extension</span><span class="p">,</span> <span class="n">Parameter</span>
 
 <span class="k">class</span> <span class="nc">MyExtension</span><span class="p">(</span><span class="n">Extension</span><span class="p">):</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;Hello&#39;</span><span class="p">,</span> <span class="s">&#39;The title to use in the home page&#39;</span><span class="p">)</span>
+
+    <span class="n">_config</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;MYPARAM&#39;</span><span class="p">,</span> <span class="s">&#39;Hello&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;A parameter for my great extension&#39;</span><span class="p">)</span>
+        <span class="p">]</span>
 </pre></div>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
@@ -200,6 +385,8 @@ declarative style (as class attributes of the extension). For example:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; unique name identifying the parameter which is used
+to retrieve it from the <tt class="xref py py-class docutils literal"><span class="pre">Application.config</span></tt> dictionary.</li>
 <li><strong>default</strong> &#8211; the default value of the parameter. This is the value
 used by the framework when the parameter is not found in the config
 file.</li>
@@ -212,13 +399,12 @@ file.</li>
 <p>Parameters are case insensitive.</p>
 </dd></dl>
 
-</div>
 <span class="target" id="module-lux.core.wrappers"></span><div class="section" id="router">
 <span id="id1"></span><h2>Router<a class="headerlink" href="#router" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lux.core.wrappers.Router">
 <em class="property">class </em><tt class="descclassname">lux.core.wrappers.</tt><tt class="descname">Router</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/core/wrappers#Router"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.wrappers.Router" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extend pulsar <a class="reference external" href="http://pythonhosted.org/pulsar/apps/wsgi/routing.html#pulsar.apps.wsgi.routers.Router" title="(in pulsar v0.9.0)"><tt class="xref py py-class docutils literal"><span class="pre">Router</span></tt></a> with content
+<dd><p>Extend pulsar <tt class="xref py py-class docutils literal"><span class="pre">Router</span></tt> with content
 management.</p>
 <dl class="method">
 <dt id="lux.core.wrappers.Router.template_response">
@@ -268,7 +454,7 @@ methods and attributes.</p>
 <dl class="attribute">
 <dt id="lux.core.wrappers.WsgiRequest.app">
 <tt class="descname">app</tt><a class="reference internal" href="../modules/lux/core/wrappers#WsgiRequest.app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.wrappers.WsgiRequest.app" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference internal" href="#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> running the website.</p>
+<dd><p>The <tt class="xref py py-class docutils literal"><span class="pre">App</span></tt> running the website.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -306,26 +492,13 @@ given <tt class="docutils literal"><span class="pre">action</span></tt></p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-lux.core.commands"></span><p>The <a class="reference internal" href="../tutorials/extensions#module-lux.core" title="lux.core"><tt class="xref py py-mod docutils literal"><span class="pre">lux.core</span></tt></a> module contains all the functionalities to run a
-web site or an rpc server using lux and <a href="#id2"><span class="problematic" id="id3">pulsar_</span></a>.</p>
-<div class="section" id="consoleparser">
-<h2>ConsoleParser<a class="headerlink" href="#consoleparser" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="lux.core.commands.ConsoleParser">
-<em class="property">class </em><tt class="descclassname">lux.core.commands.</tt><tt class="descname">ConsoleParser</tt><a class="reference internal" href="../modules/lux/core/commands#ConsoleParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.commands.ConsoleParser" title="Permalink to this definition">¶</a></dt>
-<dd><p>A class for parsing the console inputs.</p>
-<p>Used as base class for both <a class="reference internal" href="#lux.core.commands.Command" title="lux.core.commands.Command"><tt class="xref py py-class docutils literal"><span class="pre">Command</span></tt></a> and <a class="reference internal" href="#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a></p>
-</dd></dl>
-
-</div>
-<div class="section" id="command">
-<h2>Command<a class="headerlink" href="#command" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<span class="target" id="module-lux.core.commands"></span><dl class="class">
 <dt id="lux.core.commands.Command">
 <em class="property">class </em><tt class="descclassname">lux.core.commands.</tt><tt class="descname">Command</tt><big>(</big><em>name</em>, <em>app</em>, <em>stdout=None</em>, <em>stderr=None</em><big>)</big><a class="reference internal" href="../modules/lux/core/commands#Command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.commands.Command" title="Permalink to this definition">¶</a></dt>
-<dd><p>Signature class for lux commands. A <a class="reference internal" href="#lux.core.commands.Command" title="lux.core.commands.Command"><tt class="xref py py-class docutils literal"><span class="pre">Command</span></tt></a> is never
-created directly, instead, the <tt class="xref py py-meth docutils literal"><span class="pre">App.get_command()</span></tt> method is used.</p>
-<p>A command is executed via its callable method.</p>
+<dd><p>Signature class for lux commands.</p>
+<p>A <a class="reference internal" href="#lux.core.commands.Command" title="lux.core.commands.Command"><tt class="xref py py-class docutils literal"><span class="pre">Command</span></tt></a> is never initialised directly, instead,
+the <a class="reference internal" href="#lux.core.app.Application.get_command" title="lux.core.app.Application.get_command"><tt class="xref py py-meth docutils literal"><span class="pre">Application.get_command()</span></tt></a> method is used to retrieve it and
+executed by its callable method.</p>
 <dl class="attribute">
 <dt id="lux.core.commands.Command.name">
 <tt class="descname">name</tt><a class="headerlink" href="#lux.core.commands.Command.name" title="Permalink to this definition">¶</a></dt>
@@ -335,7 +508,7 @@ created directly, instead, the <tt class="xref py py-meth docutils literal"><spa
 <dl class="attribute">
 <dt id="lux.core.commands.Command.app">
 <tt class="descname">app</tt><a class="headerlink" href="#lux.core.commands.Command.app" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference internal" href="#lux.core.app.App" title="lux.core.app.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> running this <a class="reference internal" href="#lux.core.commands.Command" title="lux.core.commands.Command"><tt class="xref py py-class docutils literal"><span class="pre">Command</span></tt></a>.</p>
+<dd><p>The <a class="reference internal" href="#lux.core.app.Application" title="lux.core.app.Application"><tt class="xref py py-class docutils literal"><span class="pre">Application</span></tt></a> running this <a class="reference internal" href="#lux.core.commands.Command" title="lux.core.commands.Command"><tt class="xref py py-class docutils literal"><span class="pre">Command</span></tt></a>.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -387,17 +560,15 @@ created directly, instead, the <tt class="xref py py-meth docutils literal"><spa
 
 </dd></dl>
 
-</div>
-<span class="target" id="module-lux.core.templates"></span><p>The <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> defines a family of classes which can be used to
-build HTML elements in a pythonic fashion. No template specific language is
-required, instead a template for an html element is created by adding children
-<a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> to a parent one.</p>
-<div class="section" id="template">
-<h2>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<span class="target" id="module-lux.core.templates"></span><dl class="class">
 <dt id="lux.core.templates.Template">
 <em class="property">class </em><tt class="descclassname">lux.core.templates.</tt><tt class="descname">Template</tt><big>(</big><em>*children</em>, <em>**parameters</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#Template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.Template" title="Permalink to this definition">¶</a></dt>
 <dd><p>A factory of <tt class="xref py py-class docutils literal"><span class="pre">Html</span></tt> objects.</p>
+<p>The <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> defines a family of classes which can be used to
+build HTML elements in a pythonic fashion.
+No template specific language is
+required, instead a template for an html element is created
+by adding children <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> to a parent one.:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">simple</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">Context</span><span class="p">(</span><span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="s">&#39;span&#39;</span><span class="p">),</span> <span class="n">tag</span><span class="o">=</span><span class="s">&#39;div&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">html</span> <span class="o">=</span> <span class="n">simple</span><span class="p">(</span><span class="n">cn</span><span class="o">=</span><span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;foo&#39;</span><span class="p">:</span> <span class="s">&#39;bla&#39;</span><span class="p">})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
@@ -468,124 +639,6 @@ returned. If not available return <tt class="docutils literal"><span class="pre"
 
 </dd></dl>
 
-</div>
-<div class="section" id="context">
-<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="lux.core.templates.Context">
-<em class="property">class </em><tt class="descclassname">lux.core.templates.</tt><tt class="descname">Context</tt><big>(</big><em>key</em>, <em>*children</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#Context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.Context" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> which enforces the <a class="reference internal" href="#lux.core.templates.Template.key" title="lux.core.templates.Template.key"><tt class="xref py py-attr docutils literal"><span class="pre">key</span></tt></a>
-attribute.</p>
-<p>Fore example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">Context</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">template</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="s">&#39;div&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">template</span><span class="o">.</span><span class="n">key</span>
-<span class="go">&#39;foo&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span> <span class="o">=</span> <span class="n">template</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;foo&#39;</span><span class="p">:</span> <span class="s">&#39;pippo&#39;</span><span class="p">})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
-<span class="go">&lt;div&gt;pippo&lt;/div&gt;</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-<div class="section" id="page-template">
-<h2>Page Template<a class="headerlink" href="#page-template" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="lux.core.templates.PageTemplate">
-<em class="property">class </em><tt class="descclassname">lux.core.templates.</tt><tt class="descname">PageTemplate</tt><big>(</big><em>*children</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#PageTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.PageTemplate" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="#lux.core.templates.Template" title="lux.core.templates.Template"><tt class="xref py py-class docutils literal"><span class="pre">Template</span></tt></a> to render the inner part of the HTML <tt class="docutils literal"><span class="pre">body</span></tt> tag.</p>
-<p>A page template is created by including the page components during
-initialisation, for example:</p>
-<div class="highlight-python"><div class="highlight"><pre>from lux.extensions.cms.grid import PageTemplate
-
-head_body_foot = PageTemplate(
-    Template(...),
-    GridTemplate(...),
-    ...)
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-<div class="section" id="grid-template">
-<h2>Grid Template<a class="headerlink" href="#grid-template" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="lux.core.templates.GridTemplate">
-<em class="property">class </em><tt class="descclassname">lux.core.templates.</tt><tt class="descname">GridTemplate</tt><big>(</big><em>*children</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#GridTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.GridTemplate" title="Permalink to this definition">¶</a></dt>
-<dd><p>A container of <a class="reference internal" href="#lux.core.templates.RowTemplate" title="lux.core.templates.RowTemplate"><tt class="xref py py-class docutils literal"><span class="pre">RowTemplate</span></tt></a> or other templates.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fixed</strong> &#8211; optional boolean flag to indicate if the grid is
-fixed (html class <tt class="docutils literal"><span class="pre">grid</span> <span class="pre">fixed</span></tt>) or fluid (html class <tt class="docutils literal"><span class="pre">grid</span> <span class="pre">fluid</span></tt>).
-If not specified the grid is considered fluid (it changes width when
-the browser window changes width).</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-<div class="section" id="row-template">
-<h2>Row Template<a class="headerlink" href="#row-template" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="lux.core.templates.RowTemplate">
-<em class="property">class </em><tt class="descclassname">lux.core.templates.</tt><tt class="descname">RowTemplate</tt><big>(</big><em>*children</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#RowTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.RowTemplate" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="#lux.core.templates.RowTemplate" title="lux.core.templates.RowTemplate"><tt class="xref py py-class docutils literal"><span class="pre">RowTemplate</span></tt></a> is a container of <a class="reference internal" href="#lux.core.templates.ColumnTemplate" title="lux.core.templates.ColumnTemplate"><tt class="xref py py-class docutils literal"><span class="pre">ColumnTemplate</span></tt></a>
-elements. It should be placed inside a <a class="reference internal" href="#lux.core.templates.GridTemplate" title="lux.core.templates.GridTemplate"><tt class="xref py py-class docutils literal"><span class="pre">GridTemplate</span></tt></a> for
-better rendering.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>column</strong> &#8211; Optional parameter which set the <a class="reference internal" href="#lux.core.templates.RowTemplate.column" title="lux.core.templates.RowTemplate.column"><tt class="xref py py-attr docutils literal"><span class="pre">column</span></tt></a> attribute.</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="lux.core.templates.RowTemplate.column">
-<tt class="descname">column</tt><a class="headerlink" href="#lux.core.templates.RowTemplate.column" title="Permalink to this definition">¶</a></dt>
-<dd><p>It can be either 12 or 24 and it indicates the number of column
-spans available.</p>
-<p>Default: 12</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="column-template">
-<h2>Column Template<a class="headerlink" href="#column-template" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="lux.core.templates.ColumnTemplate">
-<em class="property">class </em><tt class="descclassname">lux.core.templates.</tt><tt class="descname">ColumnTemplate</tt><big>(</big><em>*children</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/core/templates#ColumnTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.templates.ColumnTemplate" title="Permalink to this definition">¶</a></dt>
-<dd><p>A template to place inside a <a class="reference internal" href="#lux.core.templates.RowTemplate" title="lux.core.templates.RowTemplate"><tt class="xref py py-class docutils literal"><span class="pre">RowTemplate</span></tt></a>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>span=1</strong> &#8211; fraction indicating how much this template extend across
-its row container. For example <tt class="docutils literal"><span class="pre">0.5</span></tt> is half span. Must be between
-0 and 1.</li>
-<li><strong>device=&#8217;md&#8217;</strong> &#8211; <p>The device which render the column with the correct
-<tt class="docutils literal"><span class="pre">span</span></tt>. Valid options are</p>
-<ul>
-<li><tt class="docutils literal"><span class="pre">xs</span></tt> extra small (phones)</li>
-<li><tt class="docutils literal"><span class="pre">sm</span></tt> small (tablets)</li>
-<li><tt class="docutils literal"><span class="pre">md</span></tt> medium (desktops)</li>
-<li><tt class="docutils literal"><span class="pre">lg</span></tt> large (desktops)</li>
-</ul>
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
 </div>
 
                 </div>
