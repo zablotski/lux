@@ -17,9 +17,9 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"date": "2014-10-15T12-38-27", "name": "Lux", "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "dateFormat": "d MMM y", "lux_version": "0.1.1-alpha.1", "uiRouter": true, "apiUrls": {}, "oauths": null, "python_version": "3.4.1", "pages": {"/lux/docs/": {"name": "docs", "url": "/lux/docs/", "target": null, "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/"}, "/lux/": {"name": "", "url": "/lux/", "target": null, "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": null}, "/lux/docs/*slug": {"name": "docsview", "url": "/lux/docs/*slug", "target": null, "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/docs/"}, "/lux/*slug": {"name": "view", "url": "/lux/*slug", "target": null, "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/"}}, "html5mode": true, "page": "/lux/docs/*slug", "year": 2014, "ngModules": ["google", "ui.router"], "url": "http://quantmind.github.io/lux", "datetimeFormat": "d MMM y, h:mm:ss a", "media": "/media", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "navbar": {"collapseWidth": 768}};</script>
+var luxContext = {"page": "/lux/docs/*slug", "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "lux_version": "0.1.1-alpha.1", "apiUrls": {}, "navbar": {"collapseWidth": 768}, "date": "2014-10-15T22-44-36", "uiRouter": true, "media": "/media", "year": 2014, "url": "http://quantmind.github.io/lux", "ngModules": ["google", "ui.router"], "html5mode": true, "name": "Lux", "google": {"analytics": {"ga": "_gaTrack", "id": "UA-54439804-2"}}, "oauths": null, "dateFormat": "d MMM y", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "pages": {"/lux/docs/*slug": {"url": "/lux/docs/*slug", "parent": "/lux/docs/", "target": null, "controller": "Html5", "name": "docsview", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/*slug": {"url": "/lux/*slug", "parent": "/lux/", "target": null, "controller": "Html5", "name": "view", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/docs/": {"url": "/lux/docs/", "parent": "/lux/", "target": null, "controller": "Html5", "name": "docs", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/": {"url": "/lux/", "parent": null, "target": null, "controller": "Html5", "name": "", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}}};</script>
 <script type="text/javascript">
-var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/media/"};
+var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/"};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -35,7 +35,7 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='angular-view' data-ui-view=''><section id="page-header" class="page-header-outer api_ui-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden'><section id="page-header" class="page-header-outer api_ui-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -302,8 +302,6 @@ from several type of inputs.</p>
 </div>
 <div class="section" id="module-lux.extensions.ui.lib.mixins">
 <span id="mixins"></span><h2>Mixins<a class="headerlink" href="#module-lux.extensions.ui.lib.mixins" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="bcd">
-<h3>Bcd<a class="headerlink" href="#bcd" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.Bcd">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Bcd</tt><big>(</big><em>background=None</em>, <em>color=None</em>, <em>text_shadow=None</em>, <em>text_decoration=None</em>, <em>border=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#Bcd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Bcd" title="Permalink to this definition">¶</a></dt>
@@ -328,9 +326,6 @@ specified, the element will have a border definition.</li>
 </table>
 </dd></dl>
 
-</div>
-<div class="section" id="border">
-<h3>Border<a class="headerlink" href="#border" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.Border">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Border</tt><big>(</big><em>style=None</em>, <em>color=None</em>, <em>width=None</em>, <em>top=None</em>, <em>right=None</em>, <em>bottom=None</em>, <em>left=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#Border"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Border" title="Permalink to this definition">¶</a></dt>
@@ -351,9 +346,6 @@ one of: <tt class="docutils literal"><span class="pre">solid</span></tt>, <tt cl
 </table>
 </dd></dl>
 
-</div>
-<div class="section" id="boxsizing">
-<h3>BoxSizing<a class="headerlink" href="#boxsizing" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.BoxSizing">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">BoxSizing</tt><big>(</big><em>value=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#BoxSizing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.BoxSizing" title="Permalink to this definition">¶</a></dt>
@@ -377,9 +369,6 @@ respective sides from the specified &#8216;width&#8217; and &#8216;height&#8217;
 </ul>
 </dd></dl>
 
-</div>
-<div class="section" id="clearfix">
-<h3>Clearfix<a class="headerlink" href="#clearfix" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.Clearfix">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Clearfix</tt><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#Clearfix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Clearfix" title="Permalink to this definition">¶</a></dt>
@@ -389,18 +378,12 @@ It&#8217;s generally used in float layouts where elements are floated to be
 stacked horizontally.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="clickable">
-<h3>Clickable<a class="headerlink" href="#clickable" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.Clickable">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Clickable</tt><big>(</big><em>default=None</em>, <em>hover=None</em>, <em>active=None</em>, <em>cursor='pointer'</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#Clickable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Clickable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the default, hover and active state.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="cssinclude">
-<h3>CssInclude<a class="headerlink" href="#cssinclude" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.CssInclude">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">CssInclude</tt><big>(</big><em>path</em>, <em>location=None</em>, <em>replace=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#CssInclude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.CssInclude" title="Permalink to this definition">¶</a></dt>
@@ -433,17 +416,11 @@ css file.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="fontface">
-<h3>Fontface<a class="headerlink" href="#fontface" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.Fontface">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Fontface</tt><big>(</big><em>base</em>, <em>svg=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#Fontface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Fontface" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-<div class="section" id="gradient">
-<h3>Gradient<a class="headerlink" href="#gradient" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.Gradient">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Gradient</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#Gradient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Gradient" title="Permalink to this definition">¶</a></dt>
@@ -469,9 +446,6 @@ instead.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="opacity">
-<h3>Opacity<a class="headerlink" href="#opacity" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.Opacity">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Opacity</tt><big>(</big><em>o</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#Opacity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Opacity" title="Permalink to this definition">¶</a></dt>
@@ -479,9 +453,6 @@ instead.</p>
 <p>param o: a number between 0 and 1.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="radius">
-<h3>Radius<a class="headerlink" href="#radius" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.Radius">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Radius</tt><big>(</big><em>radius</em>, <em>location=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#Radius"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Radius" title="Permalink to this definition">¶</a></dt>
@@ -490,9 +461,6 @@ location where to apply the radius. For example, &#8216;top&#8217;, &#8216;botto
 &#8216;right&#8217;, &#8216;top-left&#8217;, &#8216;top-right&#8217; and so on.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="shadow">
-<h3>Shadow<a class="headerlink" href="#shadow" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.Shadow">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Shadow</tt><big>(</big><em>hshadow=None</em>, <em>vshadow=None</em>, <em>blur=None</em>, <em>spread=None</em>, <em>color=None</em>, <em>inset=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#Shadow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Shadow" title="Permalink to this definition">¶</a></dt>
@@ -542,18 +510,37 @@ to an inner shadow.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="stack">
-<h3>Stack<a class="headerlink" href="#stack" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.Stack">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Stack</tt><big>(</big><em>*mixins</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#Stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Stack" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stack <tt class="xref py py-class docutils literal"><span class="pre">Stackable</span></tt> mixins.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="transition">
-<h3>Transition<a class="headerlink" href="#transition" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.extensions.ui.lib.mixins.Transform">
+<em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Transform</tt><big>(</big><em>x=None</em>, <em>y=None</em>, <em>scale=None</em>, <em>scalex=None</em>, <em>scaley=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#Transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a 2D transform.</p>
+<p>A transition is controlled via the following parameters:</p>
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Transform.x">
+<tt class="descname">x</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Transform.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Movement along the X-axis</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Transform.y">
+<tt class="descname">y</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Transform.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Movement along the Y-axis</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.ui.lib.mixins.Transform.scale">
+<tt class="descname">scale</tt><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Transform.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Increases or decreases the size</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="class">
 <dt id="lux.extensions.ui.lib.mixins.Transition">
 <em class="property">class </em><tt class="descclassname">lux.extensions.ui.lib.mixins.</tt><tt class="descname">Transition</tt><big>(</big><em>property</em>, <em>duration=None</em>, <em>easing=None</em>, <em>delay=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/ui/lib/mixins#Transition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.ui.lib.mixins.Transition" title="Permalink to this definition">¶</a></dt>
@@ -596,7 +583,6 @@ and the transition actually begins.</p>
 
 </dd></dl>
 
-</div>
 </div>
 </div>
 
@@ -668,7 +654,7 @@ and the transition actually begins.</p>
             </div>
         </div>
     </div>
-</div></div>
+</div></div></div>
     <navbar data-options='lux.context.navbar'></navbar>
 </div></body>
 </html>

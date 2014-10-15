@@ -17,9 +17,9 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"date": "2014-10-15T12-38-27", "name": "Lux", "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "dateFormat": "d MMM y", "lux_version": "0.1.1-alpha.1", "uiRouter": true, "apiUrls": {}, "oauths": null, "python_version": "3.4.1", "pages": {"/lux/docs/": {"name": "docs", "url": "/lux/docs/", "target": null, "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/"}, "/lux/": {"name": "", "url": "/lux/", "target": null, "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": null}, "/lux/docs/*slug": {"name": "docsview", "url": "/lux/docs/*slug", "target": null, "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/docs/"}, "/lux/*slug": {"name": "view", "url": "/lux/*slug", "target": null, "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/"}}, "html5mode": true, "page": "/lux/docs/*slug", "year": 2014, "ngModules": ["google", "ui.router"], "url": "http://quantmind.github.io/lux", "datetimeFormat": "d MMM y, h:mm:ss a", "media": "/media", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "navbar": {"collapseWidth": 768}};</script>
+var luxContext = {"page": "/lux/docs/*slug", "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "lux_version": "0.1.1-alpha.1", "apiUrls": {}, "navbar": {"collapseWidth": 768}, "date": "2014-10-15T22-44-36", "uiRouter": true, "media": "/media", "year": 2014, "url": "http://quantmind.github.io/lux", "ngModules": ["google", "ui.router"], "html5mode": true, "name": "Lux", "google": {"analytics": {"ga": "_gaTrack", "id": "UA-54439804-2"}}, "oauths": null, "dateFormat": "d MMM y", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "pages": {"/lux/docs/*slug": {"url": "/lux/docs/*slug", "parent": "/lux/docs/", "target": null, "controller": "Html5", "name": "docsview", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/*slug": {"url": "/lux/*slug", "parent": "/lux/", "target": null, "controller": "Html5", "name": "view", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/docs/": {"url": "/lux/docs/", "parent": "/lux/", "target": null, "controller": "Html5", "name": "docs", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/": {"url": "/lux/", "parent": null, "target": null, "controller": "Html5", "name": "", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}}};</script>
 <script type="text/javascript">
-var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/media/"};
+var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/"};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -35,7 +35,7 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='angular-view' data-ui-view=''><section id="page-header" class="page-header-outer modules_lux_extensions_ui_lib_mixins-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden'><section id="page-header" class="page-header-outer modules_lux_extensions_ui_lib_mixins-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -56,57 +56,32 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
                     <h1>Source code for lux.extensions.ui.lib.mixins</h1><div class="highlight"><pre>
 <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">Bcd</span>
-<span class="sd">~~~~~</span>
 <span class="sd">.. autoclass:: Bcd</span>
 
-<span class="sd">Border</span>
-<span class="sd">~~~~~~~~~</span>
 <span class="sd">.. autoclass:: Border</span>
 
-<span class="sd">BoxSizing</span>
-<span class="sd">~~~~~~~~~~~~~~~</span>
 <span class="sd">.. autoclass:: BoxSizing</span>
 
-<span class="sd">Clearfix</span>
-<span class="sd">~~~~~~~~~</span>
 <span class="sd">.. autoclass:: Clearfix</span>
 
-<span class="sd">Clickable</span>
-<span class="sd">~~~~~~~~~~~~</span>
 <span class="sd">.. autoclass:: Clickable</span>
 
-<span class="sd">CssInclude</span>
-<span class="sd">~~~~~~~~~~~~~</span>
 <span class="sd">.. autoclass:: CssInclude</span>
 
-<span class="sd">Fontface</span>
-<span class="sd">~~~~~~~~~~~~~~</span>
 <span class="sd">.. autoclass:: Fontface</span>
 
-<span class="sd">Gradient</span>
-<span class="sd">~~~~~~~~~~~~~~~</span>
 <span class="sd">.. autoclass:: Gradient</span>
 
-
-<span class="sd">Opacity</span>
-<span class="sd">~~~~~~~~~</span>
 <span class="sd">.. autoclass:: Opacity</span>
 
-<span class="sd">Radius</span>
-<span class="sd">~~~~~~~~~</span>
 <span class="sd">.. autoclass:: Radius</span>
 
-<span class="sd">Shadow</span>
-<span class="sd">~~~~~~~~</span>
 <span class="sd">.. autoclass:: Shadow</span>
 
-<span class="sd">Stack</span>
-<span class="sd">~~~~~~~</span>
 <span class="sd">.. autoclass:: Stack</span>
 
-<span class="sd">Transition</span>
-<span class="sd">~~~~~~~~~~~~~~~~~</span>
+<span class="sd">.. autoclass:: Transform</span>
+
 <span class="sd">.. autoclass:: Transition</span>
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -114,7 +89,9 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
 <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">.colorvar</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Opacity&#39;</span><span class="p">,</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;CssLibraries&#39;</span><span class="p">,</span>
+           <span class="s">&#39;Animation&#39;</span><span class="p">,</span>
+           <span class="s">&#39;Opacity&#39;</span><span class="p">,</span>
            <span class="s">&#39;Clearfix&#39;</span><span class="p">,</span>
            <span class="s">&#39;InlineBlock&#39;</span><span class="p">,</span>
            <span class="s">&#39;Textoverflow&#39;</span><span class="p">,</span>
@@ -132,6 +109,7 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
            <span class="s">&#39;Bcd&#39;</span><span class="p">,</span>
            <span class="s">&#39;bcd&#39;</span><span class="p">,</span>
            <span class="s">&#39;Clickable&#39;</span><span class="p">,</span>
+           <span class="s">&#39;Transform&#39;</span><span class="p">,</span>
            <span class="s">&#39;Transition&#39;</span><span class="p">,</span>
            <span class="s">&#39;horizontal_navigation&#39;</span><span class="p">,</span>
            <span class="c"># generators</span>
@@ -141,9 +119,37 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
            <span class="s">&#39;FontSmoothing&#39;</span><span class="p">,</span>
            <span class="s">&#39;Stack&#39;</span><span class="p">]</span>
 
+
+<span class="c">############################################################################</span>
+<span class="c">##    USEFUL CSS LIBRARIES</span>
+<span class="c">############################################################################</span>
+<span class="n">CssLibraries</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;bootstrap&#39;</span><span class="p">:</span> <span class="s">&#39;//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap&#39;</span><span class="p">,</span>
+    <span class="s">&#39;fontawesome&#39;</span><span class="p">:</span> <span class="s">&#39;//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome&#39;</span><span class="p">,</span>
+    <span class="s">&#39;animate&#39;</span><span class="p">:</span> <span class="s">&#39;//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate&#39;</span><span class="p">,</span>
+    <span class="s">&#39;weather-icons&#39;</span><span class="p">:</span> <span class="s">&#39;//cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/css/weather-icons&#39;</span>
+<span class="p">}</span>
+
 <span class="c">############################################################################</span>
 <span class="c">##    BATTERY INCLUDED MIXINS</span>
 <span class="c">############################################################################</span>
+
+
+<span class="c">################################################# ANIMATION</span>
+<span class="k">class</span> <span class="nc">Animation</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">duration</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">duration</span><span class="p">)</span>
+        <span class="n">animation</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;-webkit-animation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">animation</span>
+        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;   -moz-animation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">animation</span>
+        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;    -ms-animation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">animation</span>
+        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;        animation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">animation</span>
 
 
 <span class="c">################################################# OPACITY</span>
@@ -382,9 +388,9 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
 <span class="c">################################################# CSS3 RADIUS</span></div>
 <div class="viewcode-block" id="Radius"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Radius">[docs]</a><span class="k">class</span> <span class="nc">Radius</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;css3 border radius. The optional location parameter specifies the</span>
-<span class="sd">location where to apply the radius. For example, &#39;top&#39;, &#39;bottom&#39;, &#39;left&#39;,</span>
-<span class="sd">&#39;right&#39;, &#39;top-left&#39;, &#39;top-right&#39; and so on.</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    location where to apply the radius. For example, &#39;top&#39;, &#39;bottom&#39;, &#39;left&#39;,</span>
+<span class="sd">    &#39;right&#39;, &#39;top-left&#39;, &#39;top-right&#39; and so on.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">Radius</span><span class="p">):</span>
             <span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span><span class="o">.</span><span class="n">radius</span>
@@ -616,6 +622,59 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
             <span class="n">elem</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s">&#39;:hover,.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">classes</span><span class="o">.</span><span class="n">hover</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hover</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
             <span class="n">elem</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s">&#39;:active,.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">classes</span><span class="o">.</span><span class="n">active</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">)</span>
+
+
+<span class="c">################################################# TRANSLATE</span></div>
+<div class="viewcode-block" id="Transform"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Transform">[docs]</a><span class="k">class</span> <span class="nc">Transform</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Defines a 2D transform.</span>
+
+<span class="sd">    A transition is controlled via the following parameters:</span>
+
+<span class="sd">    .. attribute:: x</span>
+
+<span class="sd">        Movement along the X-axis</span>
+
+<span class="sd">    .. attribute:: y</span>
+
+<span class="sd">        Movement along the Y-axis</span>
+
+<span class="sd">    .. attribute:: scale</span>
+
+<span class="sd">        Increases or decreases the size</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scalex</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scaley</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scalex</span> <span class="o">=</span> <span class="n">scalex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scaley</span> <span class="o">=</span> <span class="n">scaley</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">translate</span> <span class="o">=</span> <span class="s">&#39;translateX(</span><span class="si">%s</span><span class="s">)&#39;</span> <span class="o">%</span> <span class="n">x</span>
+            <span class="k">elif</span> <span class="n">x</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">translate</span> <span class="o">=</span> <span class="s">&#39;translateY(</span><span class="si">%s</span><span class="s">)&#39;</span> <span class="o">%</span> <span class="n">y</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">translate</span> <span class="o">=</span> <span class="s">&#39;translate(</span><span class="si">%s</span><span class="s">,</span><span class="si">%s</span><span class="s">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">translate</span><span class="p">)</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+        <span class="n">scalex</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scalex</span><span class="p">)</span>
+        <span class="n">scaley</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scaley</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">scale</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="s">&#39;scale(</span><span class="si">%s</span><span class="s">)&#39;</span> <span class="o">%</span> <span class="n">scale</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">scalex</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="s">&#39;scaleX(</span><span class="si">%s</span><span class="s">)&#39;</span> <span class="o">%</span> <span class="n">scalex</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">scaley</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="s">&#39;scaleY(</span><span class="si">%s</span><span class="s">)&#39;</span> <span class="o">%</span> <span class="n">scaley</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;-webkit-transform&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;    -ms-transform&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;        transform&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
 
 <span class="c">################################################# TRANSITION</span></div>
@@ -858,6 +917,12 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
         <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">CssLibraries</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">CssLibraries</span><span class="p">[</span><span class="n">path</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;.css&#39;</span><span class="p">):</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.css&#39;</span> <span class="o">%</span> <span class="n">path</span>
+            <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;//&#39;</span><span class="p">):</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;http:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">path</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;http&#39;</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
                 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -873,6 +938,8 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
         <span class="n">root</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">root</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">:</span>
             <span class="n">stream</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">correct</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">stream</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;@charset&#39;</span><span class="p">):</span>
+            <span class="n">stream</span> <span class="o">=</span> <span class="s">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span>
         <span class="k">return</span> <span class="n">stream</span>
 
     <span class="k">def</span> <span class="nf">correct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">stream</span><span class="p">):</span>
@@ -1052,7 +1119,7 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
             </div>
         </div>
     </div>
-</div></div>
+</div></div></div>
     <navbar data-options='lux.context.navbar'></navbar>
 </div></body>
 </html>

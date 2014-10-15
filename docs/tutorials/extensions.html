@@ -17,9 +17,9 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"date": "2014-10-15T12-38-27", "name": "Lux", "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "dateFormat": "d MMM y", "lux_version": "0.1.1-alpha.1", "uiRouter": true, "apiUrls": {}, "oauths": null, "python_version": "3.4.1", "pages": {"/lux/docs/": {"name": "docs", "url": "/lux/docs/", "target": null, "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/"}, "/lux/": {"name": "", "url": "/lux/", "target": null, "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": null}, "/lux/docs/*slug": {"name": "docsview", "url": "/lux/docs/*slug", "target": null, "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/docs/"}, "/lux/*slug": {"name": "view", "url": "/lux/*slug", "target": null, "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "controller": "Html5", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/"}}, "html5mode": true, "page": "/lux/docs/*slug", "year": 2014, "ngModules": ["google", "ui.router"], "url": "http://quantmind.github.io/lux", "datetimeFormat": "d MMM y, h:mm:ss a", "media": "/media", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "navbar": {"collapseWidth": 768}};</script>
+var luxContext = {"page": "/lux/docs/*slug", "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "lux_version": "0.1.1-alpha.1", "apiUrls": {}, "navbar": {"collapseWidth": 768}, "date": "2014-10-15T22-44-36", "uiRouter": true, "media": "/media", "year": 2014, "url": "http://quantmind.github.io/lux", "ngModules": ["google", "ui.router"], "html5mode": true, "name": "Lux", "google": {"analytics": {"ga": "_gaTrack", "id": "UA-54439804-2"}}, "oauths": null, "dateFormat": "d MMM y", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "pages": {"/lux/docs/*slug": {"url": "/lux/docs/*slug", "parent": "/lux/docs/", "target": null, "controller": "Html5", "name": "docsview", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/*slug": {"url": "/lux/*slug", "parent": "/lux/", "target": null, "controller": "Html5", "name": "view", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/docs/": {"url": "/lux/docs/", "parent": "/lux/", "target": null, "controller": "Html5", "name": "docs", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/": {"url": "/lux/", "parent": null, "target": null, "controller": "Html5", "name": "", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}}};</script>
 <script type="text/javascript">
-var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/media/"};
+var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/"};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -35,7 +35,7 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='angular-view' data-ui-view=''><section id="page-header" class="page-header-outer tutorials_extensions-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden'><section id="page-header" class="page-header-outer tutorials_extensions-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -56,7 +56,7 @@ var require = {"minify": true, "deps": ["luxsite/luxsite"], "paths": {}, "waitSe
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
                     <span class="target" id="module-lux.core"><span id="writing-extensions"></span></span><div class="section" id="id1">
 <h1>Writing Extensions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>Extension are implemented by subclassing the <a class="reference internal" href="../api/api#lux.extensions.api.Extension" title="lux.extensions.api.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> class:</p>
+<p>Extension are implemented by subclassing the <a class="reference internal" href="../api/core#lux.core.extension.Extension" title="lux.core.extension.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> class:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">lux</span>
 
 <span class="k">class</span> <span class="nc">MyExtension</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Extension</span><span class="p">):</span>
@@ -72,7 +72,7 @@ by the <tt class="xref py py-class docutils literal"><span class="pre">App</span
 <a class="reference external" href="http://www.python.org/dev/peps/pep-3333/">WSGI</a> middleware or <tt class="docutils literal"><span class="pre">None</span></tt>.</p>
 <div class="section" id="events">
 <h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
-<p>An <a class="reference internal" href="../api/api#lux.extensions.api.Extension" title="lux.extensions.api.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> can register several callbacks which are invoked at different
+<p>An <a class="reference internal" href="../api/core#lux.core.extension.Extension" title="lux.core.extension.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> can register several callbacks which are invoked at different
 points during the application live-span. These callbacks receive as
 first positional argument, the <tt class="xref py py-class docutils literal"><span class="pre">App</span></tt> instance running the web site
 and are implemented by adding some of the following methods to your
@@ -96,7 +96,7 @@ parameters before the wsgi <tt class="xref py py-attr docutils literal"><span cl
 <tt class="descclassname">Extension.</tt><tt class="descname">on_loaded</tt><big>(</big><em>self</em>, <em>app</em>, <em>handler</em><big>)</big><a class="headerlink" href="#lux.core.Extension.on_loaded" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>Called once only when all <a class="reference internal" href="../api/api#lux.extensions.api.Extension" title="lux.extensions.api.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> have loaded their
+<p>Called once only when all <a class="reference internal" href="../api/core#lux.core.extension.Extension" title="lux.core.extension.Extension"><tt class="xref py py-class docutils literal"><span class="pre">Extension</span></tt></a> have loaded their
 <a class="reference internal" href="../api/api#lux.extensions.api.Extension.middleware" title="lux.extensions.api.Extension.middleware"><tt class="xref py py-meth docutils literal"><span class="pre">middleware()</span></tt></a> into
 the WSGI <tt class="docutils literal"><span class="pre">handler</span></tt>. A chance to add additional middleware or perform
 any sort of post-processing on the wsgi application <tt class="docutils literal"><span class="pre">handler</span></tt>.</p>
@@ -224,7 +224,7 @@ which is being rendered in the body part of the Html page.</p>
             </div>
         </div>
     </div>
-</div></div>
+</div></div></div>
     <navbar data-options='lux.context.navbar'></navbar>
 </div></body>
 </html>
