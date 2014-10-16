@@ -17,9 +17,9 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"page": "/lux/docs/*slug", "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "lux_version": "0.1.1-alpha.1", "apiUrls": {}, "navbar": {"collapseWidth": 768}, "date": "2014-10-15T22-44-36", "uiRouter": true, "media": "/media", "year": 2014, "url": "http://quantmind.github.io/lux", "ngModules": ["google", "ui.router"], "html5mode": true, "name": "Lux", "google": {"analytics": {"ga": "_gaTrack", "id": "UA-54439804-2"}}, "oauths": null, "dateFormat": "d MMM y", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "pages": {"/lux/docs/*slug": {"url": "/lux/docs/*slug", "parent": "/lux/docs/", "target": null, "controller": "Html5", "name": "docsview", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/*slug": {"url": "/lux/*slug", "parent": "/lux/", "target": null, "controller": "Html5", "name": "view", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/docs/": {"url": "/lux/docs/", "parent": "/lux/", "target": null, "controller": "Html5", "name": "docs", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/": {"url": "/lux/", "parent": null, "target": null, "controller": "Html5", "name": "", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "template": "<div class='angular-view' data-dynamic-page=''></div>"}}};</script>
+var luxContext = {"dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "python_version": "3.4.1", "date": "2014-10-16T10-28-06", "datetimeFormat": "d MMM y, h:mm:ss a", "navbar": {"collapseWidth": 768}, "ngModules": ["ui.router", "lux.google"], "oauths": null, "apiUrls": {}, "google": {"analytics": {"ga": "_gaTrack", "id": "UA-54439804-2"}}, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "html5mode": true, "pages": {"/lux/docs/*slug": {"template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "url": "/lux/docs/*slug", "controller": "Html5", "parent": "/lux/docs/", "name": "docsview", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}}, "/lux/docs/": {"template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "url": "/lux/docs/", "controller": "Html5", "parent": "/lux/", "name": "docs", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}}, "/lux/*slug": {"template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "url": "/lux/*slug", "controller": "Html5", "parent": "/lux/", "name": "view", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}}, "/lux/": {"template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "url": "/lux/", "controller": "Html5", "parent": null, "name": "", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}}}, "lux_version": "0.1.1-alpha.1", "uiRouter": true, "name": "Lux", "page": "/lux/docs/*slug", "year": 2014, "media": "/media"};</script>
 <script type="text/javascript">
-var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/"};
+var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "waitSeconds": 200, "deps": ["luxsite/luxsite"], "paths": {}};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -55,35 +55,6 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
             <div class="modules_lux_extensions_ui_lib_mixins-main col-md-12">
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
                     <h1>Source code for lux.extensions.ui.lib.mixins</h1><div class="highlight"><pre>
-<span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">.. autoclass:: Bcd</span>
-
-<span class="sd">.. autoclass:: Border</span>
-
-<span class="sd">.. autoclass:: BoxSizing</span>
-
-<span class="sd">.. autoclass:: Clearfix</span>
-
-<span class="sd">.. autoclass:: Clickable</span>
-
-<span class="sd">.. autoclass:: CssInclude</span>
-
-<span class="sd">.. autoclass:: Fontface</span>
-
-<span class="sd">.. autoclass:: Gradient</span>
-
-<span class="sd">.. autoclass:: Opacity</span>
-
-<span class="sd">.. autoclass:: Radius</span>
-
-<span class="sd">.. autoclass:: Shadow</span>
-
-<span class="sd">.. autoclass:: Stack</span>
-
-<span class="sd">.. autoclass:: Transform</span>
-
-<span class="sd">.. autoclass:: Transition</span>
-<span class="sd">&#39;&#39;&#39;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="o">*</span>
@@ -111,7 +82,6 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
            <span class="s">&#39;Clickable&#39;</span><span class="p">,</span>
            <span class="s">&#39;Transform&#39;</span><span class="p">,</span>
            <span class="s">&#39;Transition&#39;</span><span class="p">,</span>
-           <span class="s">&#39;horizontal_navigation&#39;</span><span class="p">,</span>
            <span class="c"># generators</span>
            <span class="s">&#39;CssInclude&#39;</span><span class="p">,</span>
            <span class="s">&#39;Image&#39;</span><span class="p">,</span>
@@ -136,8 +106,24 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
 
 
 <span class="c">################################################# ANIMATION</span>
-<span class="k">class</span> <span class="nc">Animation</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
+<div class="viewcode-block" id="Animation"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Animation">[docs]</a><span class="k">class</span> <span class="nc">Animation</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Bind the animation to a selector (element) by specifying at least</span>
+<span class="sd">    these two properties:</span>
 
+<span class="sd">    .. attribute:: name</span>
+
+<span class="sd">        the name of the animation</span>
+
+<span class="sd">    .. attribute:: duration</span>
+
+<span class="sd">        the duration of the animation</span>
+
+
+<span class="sd">    **Usage**::</span>
+
+<span class="sd">        css(&#39;.myelement&#39;,</span>
+<span class="sd">            Animation(&#39;fade&#39;, &#39;1s&#39;))</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">duration</span>
@@ -152,12 +138,19 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
         <span class="n">elem</span><span class="p">[</span><span class="s">&#39;        animation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">animation</span>
 
 
-<span class="c">################################################# OPACITY</span>
+<span class="c">################################################# OPACITY</span></div>
 <div class="viewcode-block" id="Opacity"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Opacity">[docs]</a><span class="k">class</span> <span class="nc">Opacity</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Add opacity to an element.</span>
 
-<span class="sd">param o: a number between 0 and 1.</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    .. attribute:: o</span>
+
+<span class="sd">        a number between 0 and 1</span>
+
+<span class="sd">    **Usage**::</span>
+
+<span class="sd">        css(&#39;.myelem&#39;,</span>
+<span class="sd">            Opacity(0.6))</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">o</span> <span class="o">=</span> <span class="n">o</span>
 
@@ -183,7 +176,7 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
 
 
 <span class="c">################################################# InlineBlock</span></div>
-<span class="k">class</span> <span class="nc">InlineBlock</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
+<div class="viewcode-block" id="InlineBlock"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.InlineBlock">[docs]</a><span class="k">class</span> <span class="nc">InlineBlock</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Cross browser inline block form</span>
 
 <span class="sd">http://foohack.com/2007/11/cross-browser-support-for-inline-block-styling/&#39;&#39;&#39;</span>
@@ -194,7 +187,7 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
         <span class="n">elem</span><span class="p">[</span><span class="s">&#39;*display&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;inline&#39;</span>
 
 
-<span class="c">################################################# TEXT OVERFLOW</span>
+<span class="c">################################################# TEXT OVERFLOW</span></div>
 <span class="k">class</span> <span class="nc">Textoverflow</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
@@ -214,7 +207,7 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
 
 
 <span class="c">################################################# FIXTOP</span>
-<span class="k">class</span> <span class="nc">fixtop</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
+<div class="viewcode-block" id="fixtop"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.fixtop">[docs]</a><span class="k">class</span> <span class="nc">fixtop</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Fix an element at the top of the page.&#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zindex</span><span class="o">=</span><span class="mi">2000</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zindex</span> <span class="o">=</span> <span class="n">zindex</span>
@@ -226,7 +219,7 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
         <span class="n">elem</span><span class="p">[</span><span class="s">&#39;position&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;fixed&#39;</span>
         <span class="n">elem</span><span class="p">[</span><span class="s">&#39;z_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zindex</span><span class="p">)</span>
 
-
+</div>
 <span class="k">class</span> <span class="nc">unfixtop</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
         <span class="n">elem</span><span class="p">[</span><span class="s">&#39;left&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;auto&#39;</span>
@@ -471,14 +464,14 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">()</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">middle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Gradient.middle"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Gradient.middle">[docs]</a>    <span class="k">def</span> <span class="nf">middle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The middle value of the gradient.&#39;&#39;&#39;</span>
         <span class="n">start</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">start</span><span class="p">:</span>
             <span class="n">s</span> <span class="o">=</span> <span class="n">color</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
             <span class="n">e</span> <span class="o">=</span> <span class="n">color</span><span class="p">(</span><span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">RGBA</span><span class="o">.</span><span class="n">mix</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-
+</div>
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
         <span class="n">start</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">start</span><span class="p">:</span>
@@ -628,7 +621,7 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
 <div class="viewcode-block" id="Transform"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Transform">[docs]</a><span class="k">class</span> <span class="nc">Transform</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Defines a 2D transform.</span>
 
-<span class="sd">    A transition is controlled via the following parameters:</span>
+<span class="sd">    A transform is controlled via the following parameters:</span>
 
 <span class="sd">    .. attribute:: x</span>
 
@@ -641,6 +634,24 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
 <span class="sd">    .. attribute:: scale</span>
 
 <span class="sd">        Increases or decreases the size</span>
+
+<span class="sd">    .. attribute:: scalex</span>
+
+<span class="sd">        Increases or decreases the size in the X-axis (not used if</span>
+<span class="sd">        :attr:`scale` is defined)</span>
+
+<span class="sd">    .. attribute:: scaley</span>
+
+<span class="sd">        Increases or decreases the size in the Y-axis (not used if</span>
+<span class="sd">        :attr:`scale` is defined)</span>
+
+<span class="sd">    **Usage**::</span>
+
+<span class="sd">        css(&#39;.myelement&#39;,</span>
+<span class="sd">            Transform(x=pc(100)))</span>
+
+<span class="sd">        css(&#39;.myelement&#39;,</span>
+<span class="sd">            Transform(x=pc(100), scale=1.1))</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scalex</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scaley</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
@@ -746,147 +757,7 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
         <span class="n">elem</span><span class="p">[</span><span class="s">&#39;        transition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transition</span>
 
 
-<span class="c">################################################# HORIZONTAL NAVIGATION</span></div>
-<span class="k">class</span> <span class="nc">horizontal_navigation</span><span class="p">(</span><span class="n">Clickable</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Horizontal navigation with ul and li tags.</span>
-
-<span class="sd">:parameter padding: the padding for the navigation anchors.&#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="nb">float</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">,</span>
-                 <span class="n">margin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                 <span class="n">height</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">padding</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">secondary_default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">secondary_hover</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">secondary_active</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">secondary_padding</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">secondary_width</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">radius</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">box_shadow</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">display_all</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-                 <span class="n">z_index</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">horizontal_navigation</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">float</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="s">&#39;right&#39;</span><span class="p">):</span>
-            <span class="nb">float</span> <span class="o">=</span> <span class="s">&#39;left&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">float</span> <span class="o">=</span> <span class="nb">float</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">margin</span> <span class="o">=</span> <span class="n">margin</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">secondary_default</span> <span class="o">=</span> <span class="n">secondary_default</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">secondary_hover</span> <span class="o">=</span> <span class="n">secondary_hover</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">secondary_active</span> <span class="o">=</span> <span class="n">secondary_active</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">secondary_width</span> <span class="o">=</span> <span class="n">secondary_width</span> <span class="ow">or</span> <span class="n">px</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">Radius</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">box_shadow</span> <span class="o">=</span> <span class="n">Shadow</span><span class="p">(</span><span class="n">box_shadow</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">display_all</span> <span class="o">=</span> <span class="n">display_all</span>
-        <span class="c"># padding</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="n">padding</span> <span class="ow">or</span> <span class="n">secondary_padding</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">secondary_padding</span> <span class="o">=</span> <span class="n">secondary_padding</span> <span class="ow">or</span> <span class="n">px</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="c"># Z index for subnavigations</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">z_index</span> <span class="o">=</span> <span class="n">z_index</span> <span class="ow">or</span> <span class="mi">1000</span>
-
-    <span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">hover</span><span class="p">,</span> <span class="n">active</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">css</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span>
-                   <span class="n">default</span><span class="o">.</span><span class="n">background</span><span class="p">,</span>
-                   <span class="n">css</span><span class="p">(</span><span class="s">&#39;&gt; a&#39;</span><span class="p">,</span>
-                       <span class="n">bcd</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s">&#39;transparent&#39;</span><span class="p">,</span>
-                           <span class="n">color</span><span class="o">=</span><span class="n">default</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
-                           <span class="n">text_decoration</span><span class="o">=</span><span class="n">default</span><span class="o">.</span><span class="n">text_decoration</span><span class="p">,</span>
-                           <span class="n">text_shadow</span><span class="o">=</span><span class="n">default</span><span class="o">.</span><span class="n">text_shadow</span><span class="p">)),</span>
-                   <span class="n">css</span><span class="p">(</span><span class="s">&#39;:hover&#39;</span><span class="p">,</span>
-                       <span class="n">hover</span><span class="o">.</span><span class="n">background</span><span class="p">,</span>
-                       <span class="n">css</span><span class="p">(</span><span class="s">&#39;&gt; a&#39;</span><span class="p">,</span>
-                           <span class="n">bcd</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">hover</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
-                               <span class="n">text_decoration</span><span class="o">=</span><span class="n">hover</span><span class="o">.</span><span class="n">text_decoration</span><span class="p">,</span>
-                               <span class="n">text_shadow</span><span class="o">=</span><span class="n">hover</span><span class="o">.</span><span class="n">text_shadow</span><span class="p">)),</span>
-                       <span class="n">css</span><span class="p">(</span><span class="s">&#39;&gt; ul&#39;</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="s">&#39;block&#39;</span><span class="p">)),</span>
-                   <span class="n">css</span><span class="p">(</span><span class="s">&#39;:active, .</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">classes</span><span class="o">.</span><span class="n">state_active</span><span class="p">,</span>
-                       <span class="n">active</span><span class="o">.</span><span class="n">background</span><span class="p">,</span>
-                       <span class="n">css</span><span class="p">(</span><span class="s">&#39;&gt; a&#39;</span><span class="p">,</span>
-                           <span class="n">bcd</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">active</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
-                               <span class="n">text_decoration</span><span class="o">=</span><span class="n">active</span><span class="o">.</span><span class="n">text_decoration</span><span class="p">,</span>
-                               <span class="n">text_shadow</span><span class="o">=</span><span class="n">active</span><span class="o">.</span><span class="n">text_shadow</span><span class="p">))),</span>
-                   <span class="n">cursor</span><span class="o">=</span><span class="s">&#39;pointer&#39;</span><span class="p">,</span>
-                   <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
-        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;display&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;block&#39;</span>
-        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;float&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">float</span>
-        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;position&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;relative&#39;</span>
-        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;padding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">margin</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">float</span> <span class="o">==</span> <span class="s">&#39;left&#39;</span><span class="p">:</span>
-                <span class="n">elem</span><span class="p">[</span><span class="s">&#39;margin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spacing</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">margin</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">elem</span><span class="p">[</span><span class="s">&#39;margin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spacing</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">margin</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">box_shadow</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
-        <span class="n">padding</span> <span class="o">=</span> <span class="p">(</span><span class="n">spacing</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="k">else</span>
-                   <span class="n">spacing</span><span class="p">(</span><span class="n">px</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">px</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
-        <span class="c">#</span>
-        <span class="n">default</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="ow">or</span> <span class="n">bcd</span><span class="p">()</span>
-        <span class="n">hover</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hover</span> <span class="ow">or</span> <span class="n">bcd</span><span class="p">()</span>
-        <span class="n">active</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="ow">or</span> <span class="n">bcd</span><span class="p">()</span>
-        <span class="c"># li elements in the main navigation ( &gt; li)</span>
-        <span class="n">li</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s">&#39;&gt; li&#39;</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">hover</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
-        <span class="n">li</span><span class="p">[</span><span class="s">&#39;display&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;block&#39;</span>
-        <span class="n">li</span><span class="p">[</span><span class="s">&#39;float&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;left&#39;</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">:</span>
-            <span class="n">line_height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="n">padding</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="n">padding</span><span class="o">.</span><span class="n">bottom</span>
-            <span class="k">if</span> <span class="n">line_height</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Nav has height to low compared to paddings&#39;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">line_height</span> <span class="o">=</span> <span class="bp">None</span>
-
-        <span class="c"># subnavigations</span>
-        <span class="n">default</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">secondary_default</span> <span class="ow">or</span> <span class="n">default</span>
-        <span class="n">hover</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">secondary_hover</span> <span class="ow">or</span> <span class="n">hover</span>
-        <span class="n">active</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">secondary_active</span> <span class="ow">or</span> <span class="n">active</span>
-        <span class="n">ul</span> <span class="o">=</span> <span class="n">css</span><span class="p">(</span><span class="s">&#39;ul&#39;</span><span class="p">,</span>
-                 <span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">,</span>
-                 <span class="n">gradient</span><span class="p">(</span><span class="n">default</span><span class="o">.</span><span class="n">background</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
-                 <span class="n">parent</span><span class="o">=</span><span class="n">elem</span><span class="p">,</span>
-                 <span class="n">cursor</span><span class="o">=</span><span class="s">&#39;default&#39;</span><span class="p">,</span>
-                 <span class="n">position</span><span class="o">=</span><span class="s">&#39;absolute&#39;</span><span class="p">,</span>
-                 <span class="n">margin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                 <span class="n">padding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">secondary_padding</span><span class="p">,</span>
-                 <span class="n">top</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
-                 <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">secondary_width</span><span class="p">,</span>
-                 <span class="n">list_style</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span>
-                 <span class="n">list_style_image</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span>
-                 <span class="n">z_index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z_index</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">display_all</span><span class="p">:</span>
-            <span class="n">ul</span><span class="p">[</span><span class="s">&#39;display&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;none&#39;</span>
-        <span class="c"># The sub lists li</span>
-        <span class="n">li</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="s">&#39;li&#39;</span><span class="p">,</span> <span class="n">ul</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">hover</span><span class="p">,</span> <span class="n">active</span><span class="p">)</span>
-        <span class="n">li</span><span class="p">[</span><span class="s">&#39;padding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">li</span><span class="p">[</span><span class="s">&#39;margin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">li</span><span class="p">[</span><span class="s">&#39;position&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;relative&#39;</span>
-        <span class="n">li</span><span class="p">[</span><span class="s">&#39;border&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;none&#39;</span>
-        <span class="n">li</span><span class="p">[</span><span class="s">&#39;width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;auto&#39;</span>
-        <span class="c"># the sub sub lists</span>
-        <span class="n">ulul</span> <span class="o">=</span> <span class="n">css</span><span class="p">(</span><span class="s">&#39;ul&#39;</span><span class="p">,</span>
-                   <span class="n">gradient</span><span class="p">(</span><span class="n">default</span><span class="o">.</span><span class="n">background</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
-                   <span class="n">parent</span><span class="o">=</span><span class="n">li</span><span class="p">,</span>
-                   <span class="n">top</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                   <span class="n">position</span><span class="o">=</span><span class="s">&#39;absolute&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">float</span> <span class="o">==</span> <span class="s">&#39;right&#39;</span><span class="p">:</span>
-            <span class="n">ul</span><span class="p">[</span><span class="s">&#39;right&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">ulul</span><span class="p">[</span><span class="s">&#39;left&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;auto&#39;</span>
-            <span class="n">ulul</span><span class="p">[</span><span class="s">&#39;right&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">secondary_width</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">ulul</span><span class="p">[</span><span class="s">&#39;left&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">secondary_width</span>
-            <span class="n">ulul</span><span class="p">[</span><span class="s">&#39;right&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;auto&#39;</span>
-        <span class="c"># The anchor</span>
-        <span class="n">css</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span>
-            <span class="n">parent</span><span class="o">=</span><span class="n">elem</span><span class="p">,</span>
-            <span class="n">display</span><span class="o">=</span><span class="s">&#39;inline-block&#39;</span><span class="p">,</span>
-            <span class="nb">float</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span>
-            <span class="n">line_height</span><span class="o">=</span><span class="n">line_height</span><span class="p">,</span>
-            <span class="n">padding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">)</span>
-
-
-<span class="c">################################################# INCLUDE CSS</span>
+<span class="c">################################################# INCLUDE CSS</span></div>
 <div class="viewcode-block" id="CssInclude"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.CssInclude">[docs]</a><span class="k">class</span> <span class="nc">CssInclude</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Include one or more css resources. The correct use of this</span>
 <span class="sd">    :class:`.Mixin` is within the ``body`` tag only::</span>
@@ -1003,7 +874,7 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
 
 
 <span class="c">################################################# FONT-FACE</span>
-<div class="viewcode-block" id="Fontface"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Fontface">[docs]</a><span class="k">class</span> <span class="nc">Fontface</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Fontface</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">svg</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">base</span>
@@ -1020,7 +891,7 @@ var require = {"waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"], "mi
                        <span class="s">&quot;url(&#39;{0}.svg{1}&#39;) format(&#39;svg&#39;)&quot;</span>
                        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">svg</span><span class="p">))</span>
 
-</div>
+
 <span class="k">class</span> <span class="nc">FontSmoothing</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>

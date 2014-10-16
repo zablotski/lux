@@ -6,7 +6,7 @@
 <meta content='IE=edge' http-equiv='X-UA-Compatible'>
 <meta content='width=device-width, initial-scale=1' name='viewport'>
 <meta content='website' property='og:type'>
-<meta content='http://quantmind.github.io/lux/lux/docs/api/static' property='og:url'>
+<meta content='http://quantmind.github.io/lux/lux/docs/api/oauth/' property='og:url'>
 <meta content='Lux - Crafting super web applications with Python and AngularJS' property='og:title'>
 <link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico' rel='icon' type='image/x-icon'>
 <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
@@ -35,7 +35,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden'><section id="page-header" class="page-header-outer api_static-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden'><section id="page-header" class="page-header-outer api_oauth_index-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -52,35 +52,35 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
 <div id="page-main">
     <div class="container">
         <div class="row">
-            <div class="api_static-main col-md-12">
+            <div class="api_oauth_index-main col-md-12">
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
-                    <div class="section" id="module-lux.extensions.static">
-<span id="static-site-builder"></span><span id="extension-static"></span><h1>Static site builder<a class="headerlink" href="#module-lux.extensions.static" title="Permalink to this headline">¶</a></h1>
-<p>Static site generator</p>
-<p><strong>Required extensions</strong>: <a class="reference internal" href="ui#module-lux.extensions.ui" title="lux.extensions.ui"><tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.ui</span></tt></a>, <a class="reference internal" href="angular#module-lux.extensions.angular" title="lux.extensions.angular"><tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.angular</span></tt></a>
-<strong>Optional third-party</strong>: <a href="#id1"><span class="problematic" id="id2">markdown_</span></a>, <a href="#id3"><span class="problematic" id="id4">sphinx_</span></a></p>
+                    <div class="section" id="module-lux.extensions.oauth">
+<span id="social-integration-and-oauth"></span><span id="extension-oauth"></span><h1>Social Integration and OAuth<a class="headerlink" href="#module-lux.extensions.oauth" title="Permalink to this headline">¶</a></h1>
+<p>This extension facilitates login via third party authentication providers
+using either the OAuth1 or <a class="reference external" href="http://oauth.net/2/">OAuth2</a> protocol.
+In addition, it allows the use of the Open Graph Protocol (<a class="reference external" href="http://ogp.me/">OGP</a>) for social
+graphs and twitter cards and  additional APIs a provider may have
+(google analytics, google map for example).</p>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>Put the <a class="reference internal" href="#module-lux.extensions.static" title="lux.extensions.static"><tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.static</span></tt></a> extension into your <a class="reference internal" href="params#std:setting-EXTENSIONS"><tt class="xref std std-setting docutils literal"><span class="pre">EXTENSIONS</span></tt></a>
-list and build the static web site via the <tt class="docutils literal"><span class="pre">build_static</span></tt> option in the
-command line:</p>
-<div class="highlight-python"><div class="highlight"><pre>python managet.py build_static
+<p>Add <a class="reference internal" href="#module-lux.extensions.oauth" title="lux.extensions.oauth"><tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.oauth</span></tt></a> to the <a class="reference internal" href="../params#std:setting-EXTENSIONS"><tt class="xref std std-setting docutils literal"><span class="pre">EXTENSIONS</span></tt></a> list of your
+project and include the <a class="reference internal" href="../params#std:setting-OAUTH_PROVIDERS"><tt class="xref std std-setting docutils literal"><span class="pre">OAUTH_PROVIDERS</span></tt></a> dictionary:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">OAUTH_PROVIDERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;google&#39;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
+    <span class="s">&#39;twitter&#39;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>There are several <a class="reference internal" href="params#parameters-static"><em>parameters</em></a> which can be modified
-in order to customise the site.</p>
-<p>The first step is to create a new project via the <strong class="command">create_project</strong></p>
-<p>When creating the middleware for the static site one can pass the following
-key-valued parameters during initialisation of a <tt class="xref py py-class docutils literal"><span class="pre">HtmlContent</span></tt>,
-a <tt class="xref py py-class docutils literal"><span class="pre">Blog</span></tt> and other routers:</p>
-<ul class="simple">
-<li><tt class="docutils literal"><span class="pre">dir</span></tt> the directory where the source files are located, if not provided,
-it is assumed it is the same as the route parameter</li>
-<li><tt class="xref py py-attr docutils literal"><span class="pre">html_body_template</span></tt> to specify the
-location of the template which render the html body tag of the Html5
-document. If not provided, the parent router value is used unless no parent
-is available and the <a class="reference internal" href="params#std:setting-STATIC_TEMPLATE"><tt class="xref std std-setting docutils literal"><span class="pre">STATIC_TEMPLATE</span></tt></a> is used instead.</li>
+<p>This extension adds open graph meta tags when the <a class="reference internal" href="../params#std:setting-DEFAULT_OG_TYPE"><tt class="xref std std-setting docutils literal"><span class="pre">DEFAULT_OG_TYPE</span></tt></a>
+is not <tt class="docutils literal"><span class="pre">None</span></tt> (it is set to <tt class="docutils literal"><span class="pre">website</span></tt> by default).</p>
+</div>
+<div class="section" id="providers">
+<h2>Providers<a class="headerlink" href="#providers" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="google">Google Integration</a></li>
 </ul>
+</div>
 </div>
 </div>
 
