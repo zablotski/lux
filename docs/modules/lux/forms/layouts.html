@@ -17,9 +17,9 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "python_version": "3.4.1", "date": "2014-10-16T10-28-06", "datetimeFormat": "d MMM y, h:mm:ss a", "navbar": {"collapseWidth": 768}, "ngModules": ["ui.router", "lux.google"], "oauths": null, "apiUrls": {}, "google": {"analytics": {"ga": "_gaTrack", "id": "UA-54439804-2"}}, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "html5mode": true, "pages": {"/lux/docs/*slug": {"template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "url": "/lux/docs/*slug", "controller": "Html5", "parent": "/lux/docs/", "name": "docsview", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}}, "/lux/docs/": {"template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "url": "/lux/docs/", "controller": "Html5", "parent": "/lux/", "name": "docs", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}}, "/lux/*slug": {"template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "url": "/lux/*slug", "controller": "Html5", "parent": "/lux/", "name": "view", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}}, "/lux/": {"template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "url": "/lux/", "controller": "Html5", "parent": null, "name": "", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}}}, "lux_version": "0.1.1-alpha.1", "uiRouter": true, "name": "Lux", "page": "/lux/docs/*slug", "year": 2014, "media": "/media"};</script>
+var luxContext = {"name": "Lux", "dateFormat": "d MMM y", "uiRouter": true, "media": "/media", "date": "2014-10-20T21-41-43", "ngModules": ["ngAnimate", "highlight", "lux.google", "ui.router"], "oauths": null, "lux_version": "0.1.1-alpha.1", "navbar": {"collapseWidth": 768}, "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "html5mode": true, "page": "/lux/docs/*slug", "url": "http://quantmind.github.io/lux", "year": 2014, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "apiUrls": {}, "pages": {"/lux/docs/*slug": {"name": "docsview", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "url": "/lux/docs/*slug", "parent": "/lux/docs/", "target": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "controller": "Html5"}, "/lux/docs/": {"name": "docs", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "url": "/lux/docs/", "parent": "/lux/", "target": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "controller": "Html5"}, "/lux/": {"name": "", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "url": "/lux/", "parent": null, "target": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "controller": "Html5"}, "/lux/*slug": {"name": "view", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "url": "/lux/*slug", "parent": "/lux/", "target": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "controller": "Html5"}}, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"]};</script>
 <script type="text/javascript">
-var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "waitSeconds": 200, "deps": ["luxsite/luxsite"], "paths": {}};
+var require = {"waitSeconds": 200, "deps": ["luxsite/luxsite"], "paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", "minify": true};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -35,7 +35,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden'><section id="page-header" class="page-header-outer modules_lux_forms_layouts-header">
+    <div class='animate-fade angular-view' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_forms_layouts-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -55,31 +55,13 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
             <div class="modules_lux_forms_layouts-main col-md-12">
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
                     <h1>Source code for lux.forms.layouts</h1><div class="highlight"><pre>
-<span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">Layout</span>
-<span class="sd">~~~~~~~~~~~~~~~~~~~</span>
-
-<span class="sd">.. autoclass:: Layout</span>
-<span class="sd">   :members:</span>
-<span class="sd">   :member-order: bysource</span>
-
-<span class="sd">Layout style</span>
-<span class="sd">~~~~~~~~~~~~~~~~~~~</span>
-
-<span class="sd">.. autoclass:: LayoutStyle</span>
-<span class="sd">   :members:</span>
-<span class="sd">   :member-order: bysource</span>
-
-<span class="sd">Registering layouts</span>
-<span class="sd">~~~~~~~~~~~~~~~~~~~~~~~~</span>
-
-<span class="sd">.. autofunction:: register_layout_style</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">isclass</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span><span class="p">,</span> <span class="nb">reduce</span>
 
 <span class="kn">import</span> <span class="nn">lux</span>
 <span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">Html</span><span class="p">,</span> <span class="n">Template</span>
+<span class="kn">from</span> <span class="nn">lux.utils.crypt</span> <span class="kn">import</span> <span class="n">get_random_string</span>
 
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Layout&#39;</span><span class="p">,</span> <span class="s">&#39;Fieldset&#39;</span><span class="p">,</span> <span class="s">&#39;register_layout_style&#39;</span><span class="p">,</span> <span class="s">&#39;LayoutStyle&#39;</span><span class="p">,</span>
@@ -121,7 +103,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
 
-<span class="k">class</span> <span class="nc">Group</span><span class="p">(</span><span class="n">FieldTemplate</span><span class="p">):</span>
+<div class="viewcode-block" id="Group"><a class="viewcode-back" href="../../../api/forms#lux.forms.layouts.Group">[docs]</a><span class="k">class</span> <span class="nc">Group</span><span class="p">(</span><span class="n">FieldTemplate</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A group is a container of a field and its label&#39;&#39;&#39;</span>
     <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;div&#39;</span>
 
@@ -140,7 +122,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
     <span class="k">def</span> <span class="nf">error_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
         <span class="k">return</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> is invalid&#39;</span> <span class="o">%</span> <span class="n">field</span><span class="o">.</span><span class="n">label</span>
 
-    <span class="k">def</span> <span class="nf">post_process_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="viewcode-block" id="Group.post_process_child"><a class="viewcode-back" href="../../../api/forms#lux.forms.layouts.Group.post_process_child">[docs]</a>    <span class="k">def</span> <span class="nf">post_process_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Return an iterable over Html objects or strings.&#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">context</span><span class="p">:</span>
             <span class="n">form</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;form&#39;</span><span class="p">)</span>
@@ -168,7 +150,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
                 <span class="c"># styling</span>
                 <span class="n">layout</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
 
-
+</div></div>
 <span class="k">class</span> <span class="nc">Submit</span><span class="p">(</span><span class="n">FieldTemplate</span><span class="p">):</span>
     <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;button&#39;</span>
     <span class="n">classes</span> <span class="o">=</span> <span class="s">&#39;btn btn-default&#39;</span>
@@ -200,7 +182,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
             <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">div</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">Fieldset</span><span class="p">(</span><span class="n">FieldTemplate</span><span class="p">):</span>
+<div class="viewcode-block" id="Fieldset"><a class="viewcode-back" href="../../../api/forms#lux.forms.layouts.Fieldset">[docs]</a><span class="k">class</span> <span class="nc">Fieldset</span><span class="p">(</span><span class="n">FieldTemplate</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A :class:`BaseFormLayout` class for :class:`FormLayout`</span>
 <span class="sd">    components. An instance of this class render one or several</span>
 <span class="sd">    :class:`Field` of a form.</span>
@@ -211,7 +193,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
         <span class="bp">self</span><span class="o">.</span><span class="n">legend</span> <span class="o">=</span> <span class="n">legend</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Fieldset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">missings</span><span class="p">):</span>
+<div class="viewcode-block" id="Fieldset.setup"><a class="viewcode-back" href="../../../api/forms#lux.forms.layouts.Fieldset.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">missings</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Check if the specified fields are available in the form and</span>
 <span class="sd">        remove available fields from the *missings* set.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -222,22 +204,12 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
         <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">check_fields</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">missings</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">Group</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
 
-
+</div></div>
 <div class="viewcode-block" id="Layout"><a class="viewcode-back" href="../../../api/forms#lux.forms.layouts.Layout">[docs]</a><span class="k">class</span> <span class="nc">Layout</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;A :class:`Layout` renders the form into HTML.</span>
+    <span class="sd">&#39;&#39;&#39;A :class:`Layout` renders the a :class:`.Form` into HTML.</span>
 
-<span class="sd">    :param style: Optional style name.</span>
-<span class="sd">        A style handler must be registered via the</span>
-<span class="sd">        :func:`register_layout_style` function. It sets the :attr:style:</span>
-<span class="sd">        attribute</span>
-
-<span class="sd">    .. attribute:: style</span>
-
-<span class="sd">        The name of the :class:`LayoutStyle` for this :class:`Layout`.</span>
-
-<span class="sd">    .. attribute:: ngmodel</span>
-
-<span class="sd">        If ``True``, render the form so that it can be managed by angular.</span>
+<span class="sd">    Each :class:`.Form` has a default :class:`.Layout`  available at the</span>
+<span class="sd">    :attr:`~.Form.layout` class attribute.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">tag</span> <span class="o">=</span> <span class="s">&#39;form&#39;</span>
     <span class="n">default_element</span> <span class="o">=</span> <span class="n">Fieldset</span>
@@ -251,6 +223,8 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
 
     <span class="nd">@property</span>
 <div class="viewcode-block" id="Layout.style"><a class="viewcode-back" href="../../../api/forms#lux.forms.layouts.Layout.style">[docs]</a>    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;The :class:`LayoutStyle` for this :class:`.Layout`</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="n">LAYOUT_HANDLERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_style</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="Layout.init_parameters"><a class="viewcode-back" href="../../../api/forms#lux.forms.layouts.Layout.init_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">init_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">submits</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
@@ -265,7 +239,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
         <span class="bp">self</span><span class="o">.</span><span class="n">_style</span> <span class="o">=</span> <span class="n">style</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ngmodel</span> <span class="o">=</span> <span class="n">ngmodel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">ngcontroller</span> <span class="ow">or</span> <span class="s">&#39;formController&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">ngcontroller</span> <span class="ow">or</span> <span class="s">&#39;FormCtrl&#39;</span>
         <span class="c">#parameters[&#39;enctype&#39;] = enctype or &#39;multipart/form-data&#39;</span>
         <span class="c">#parameters[&#39;method&#39;] = method or &#39;post&#39;</span>
         <span class="k">if</span> <span class="n">ngmodel</span><span class="p">:</span>
@@ -287,7 +261,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
     <span class="n">__str__</span> <span class="o">=</span> <span class="n">__repr__</span>
 
-    <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">instance_type</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">instance_type</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">form</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span>
         <span class="k">else</span><span class="p">:</span>

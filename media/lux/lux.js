@@ -1,6 +1,6 @@
 //      Lux Library - v0.1.0
 
-//      Compiled 2014-10-16.
+//      Compiled 2014-10-20.
 //      Copyright (c) 2014 - Luca Sbardella
 //      Licensed BSD.
 //      For all details and documentation:
@@ -136,6 +136,17 @@ function(angular, root) {
         return url;
     },
     //
+    getRootAttribute = function (name) {
+        var obj = root,
+            bits= name.split('.');
+
+        for (var i=0; i<bits.length; ++i) {
+            obj = obj[bits[i]];
+            if (!obj) break;
+        }
+        return obj;
+    },
+    //
     //  getOPtions
     //  ===============
     //
@@ -144,18 +155,39 @@ function(angular, root) {
     //  than html data attributes.
     getOptions = function (attrs) {
         if (attrs && typeof attrs.options === 'string') {
-            var obj = root,
-                bits= attrs.options.split('.');
-
-            for (var i=0; i<bits.length; ++i) {
-                obj = obj[bits[i]];
-                if (!obj) break;
-            }
+            var obj = getRootAttribute(attrs.options);
             if (typeof obj === 'function')
                 obj = obj();
+            delete attrs.options;
             attrs = extend(attrs, obj);
         }
-        return attrs;
+        var options = {};
+        forEach(attrs, function (value, name) {
+            if (name.substring(0, 1) !== '$')
+                options[name] = value;
+        });
+        return options;
+    },
+    //
+    // random generated numbers for a uuid
+    s4 = function () {
+        return Math.floor((1 + Math.random()) * 0x10000)
+                   .toString(16)
+                   .substring(1);
+    },
+    //
+    // Extend the initial array with values for other arrays
+    extendArray = lux.extendArray = function () {
+        if (!arguments.length) return;
+        var value = arguments[0],
+            push = function (v) {
+                value.push(v);
+            };
+        if (typeof(value.push) === 'function') {
+            for (var i=1; i<arguments.length; ++i)
+                forEach(arguments[i], push);
+        }
+        return value;
     };
 
     var
@@ -567,9 +599,9 @@ function(angular, root) {
                 var e;
                 if (target || !hash)
                     return;
-                if (hash.currentTarget) {
-                    e = hash;
-                    hash = hash.currentTarget.hash;
+                if (hash.e) {
+                    e = hash.e;
+                    hash = hash.hash;
                 }
                 // set the location.hash to the id of
                 // the element you wish to scroll to.
@@ -580,7 +612,10 @@ function(angular, root) {
                     if (target) {
                         _clearTargets();
                         target = $(target).addClass(targetClass).removeClass(targetClassFinish);
-                        $location.hash(hash);
+                        if (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }
                         log.info('Scrolling to target #' + hash);
                         _scrollTo(offset || luxScroll.offset, delay);
                         return target;
@@ -632,6 +667,7 @@ function(angular, root) {
                     if (more)
                         _nextScroll(y2, delay, stepY, stopY);
                     else {
+                        $location.hash(target.attr('id'));
                         target.addClass(targetClassFinish);
                         target = null;
                     }
@@ -686,8 +722,7 @@ function(angular, root) {
                         while (target && innerTags.indexOf(target.tagName) > -1)
                             target = target.parentElement;
                         if (target && target.hash) {
-                            if (scroll.toHash(target.hash))
-                                e.preventDefault();
+                            scroll.toHash({hash: target.hash, e: e});
                         }
                     });
                 }
@@ -717,201 +752,6 @@ function(angular, root) {
             return url;
         }
     });
-    var FORMKEY = 'm__form';
-    //
-    // Change the form data depending on content type
-    function formData(ct) {
-
-        return function (data, getHeaders ) {
-            angular.extend(data, lux.context.csrf);
-            if (ct === 'application/x-www-form-urlencoded')
-                return $.param(data);
-            else if (ct === 'multipart/form-data') {
-                var fd = new FormData();
-                angular.forEach(data, function (value, key) {
-                    fd.append(key, value);
-                });
-                return fd;
-            } else {
-                return data;
-            }
-        };
-    }
-
-    // A general from controller factory
-    var formController = lux.formController = function ($scope, $lux, model) {
-        model || (model = {});
-
-        var page = $scope.$parent ? $scope.$parent.page : {};
-
-        if (model)
-            $scope.formModel = model.data || model;
-        $scope.formClasses = {};
-        $scope.formErrors = {};
-        $scope.formMessages = {};
-
-        if ($scope.formModel.name) {
-            page.title = 'Update ' + $scope.formModel.name;
-        }
-
-        function formMessages (messages) {
-            angular.forEach(messages, function (messages, field) {
-                $scope.formMessages[field] = messages;
-            });
-        }
-
-        $scope.checkField = function (name) {
-            var checker = $scope['check_' + name];
-            // There may be a custom field checker
-            if (checker)
-                checker.call($scope);
-            else {
-                var field = $scope.form[name];
-                if (field.$valid)
-                    $scope.formClasses[name] = 'has-success';
-                else if (field.$dirty) {
-                    $scope.formErrors[name] = name + ' is not valid';
-                    $scope.formClasses[name] = 'has-error';
-                }
-            }
-        };
-
-        // display field errors
-        $scope.showErrors = function () {
-            var error = $scope.form.$error;
-            angular.forEach(error.required, function (e) {
-                $scope.formClasses[e.$name] = 'has-error';
-            });
-        };
-
-        // process form
-        $scope.processForm = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-            var $element = angular.element($event.target),
-                apiname = $element.attr('data-api'),
-                target = $element.attr('action'),
-                promise,
-                api;
-            //
-            if ($scope.form.$invalid) {
-                return $scope.showErrors();
-            }
-
-            // Get the api information
-            if (!target && apiname) {
-                api = $lux.api(apiname);
-                if (!api)
-                    $lux.log.error('Could not find api url for ' + apiname);
-            }
-
-            $scope.formMessages = {};
-            //
-            if (target) {
-                var enctype = $element.attr('enctype') || '',
-                    ct = enctype.split(';')[0],
-                    options = {
-                        url: target,
-                        method: $element.attr('method') || 'POST',
-                        data: $scope.formModel,
-                        transformRequest: formData(ct),
-                    };
-                // Let the browser choose the content type
-                if (ct === 'application/x-www-form-urlencoded' || ct === 'multipart/form-data') {
-                    options.headers = {
-                        'content-type': undefined
-                    };
-                }
-                promise = $lux.http(options);
-            } else if (api) {
-                promise = api.put($scope.formModel);
-            } else {
-                $lux.log.error('Could not process form. No target or api');
-                return;
-            }
-
-            //
-            promise.success(function(data, status) {
-                if (data.messages) {
-                    angular.forEach(data.messages, function (messages, field) {
-                        $scope.formMessages[field] = messages;
-                    });
-                } else if (api) {
-                    // Created
-                    if (status === 201) {
-                        $scope.formMessages[FORMKEY] = [{message: 'Succesfully created'}];
-                    } else {
-                        $scope.formMessages[FORMKEY] = [{message: 'Succesfully updated'}];
-                    }
-                } else {
-                    window.location.href = data.redirect || '/';
-                }
-            }).error(function(data, status, headers) {
-                var messages, msg;
-                if (data) {
-                    messages = data.messages;
-                    if (!messages) {
-                        msg = data.message;
-                        if (!msg) {
-                            status = status || data.status || 501;
-                            msg = 'Server error (' + data.status + ')';
-                        }
-                        messages = {};
-                        messages[FORMKEY] = [{message: msg, error: true}];
-                    }
-                } else {
-                    status = status || 501;
-                    msg = 'Server error (' + data.status + ')';
-                    messages = {};
-                    messages[FORMKEY] = [{message: msg, error: true}];
-                }
-                formMessages(messages);
-            });
-        };
-    };
-
-        // add the watch change directive
-    angular.module('lux.form', ['lux.services'])
-        .controller('FormCtrl', ['$scope', '$lux', 'data', function ($scope, $lux, data) {
-            // Default form controller
-            formController($scope, $lux, data);
-        }])
-        .directive('watchChange', function() {
-            return {
-                scope: {
-                    onchange: '&watchChange'
-                },
-                //
-                link: function(scope, element, attrs) {
-                    element.on('keyup', function() {
-                        scope.$apply(function () {
-                            scope.onchange();
-                        });
-                    }).on('change', function() {
-                        scope.$apply(function () {
-                            scope.onchange();
-                        });
-                    });
-                }
-            };
-        })
-        .directive('luxInput', function($parse) {
-            return {
-                restrict: "A",
-                compile: function($element, $attrs) {
-                    var initialValue = $attrs.value || $element.val();
-                    if (initialValue) {
-                        return {
-                            pre: function($scope, $element, $attrs) {
-                                $parse($attrs.ngModel).assign($scope, initialValue);
-                                $scope.$apply();
-                            }
-                        };
-                    }
-                }
-            };
-        });
-
 angular.module('templates-page', ['page/breadcrumbs.tpl.html']);
 
 angular.module("page/breadcrumbs.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -1197,6 +1037,619 @@ angular.module("page/breadcrumbs.tpl.html", []).run(["$templateCache", function(
             };
         }]);
 
+    var FORMKEY = 'm__form',
+        formDefaults = {
+            layout: 'default',
+            // for horizontal layout
+            labelSpan: 2,
+            showLabels: true,
+            novalidate: true
+        };
+    //
+    // Change the form data depending on content type
+    function formData(ct) {
+
+        return function (data, getHeaders ) {
+            angular.extend(data, lux.context.csrf);
+            if (ct === 'application/x-www-form-urlencoded')
+                return $.param(data);
+            else if (ct === 'multipart/form-data') {
+                var fd = new FormData();
+                angular.forEach(data, function (value, key) {
+                    fd.append(key, value);
+                });
+                return fd;
+            } else {
+                return data;
+            }
+        };
+    }
+
+    // A general from controller factory
+    var formController = lux.formController = function ($scope, $lux, model) {
+        model || (model = {});
+
+        var page = $scope.$parent ? $scope.$parent.page : {};
+
+        if (model)
+            $scope.formModel = model.data || model;
+        $scope.formClasses = {};
+        $scope.formErrors = {};
+        $scope.formMessages = {};
+
+        if ($scope.formModel.name) {
+            page.title = 'Update ' + $scope.formModel.name;
+        }
+
+        function formMessages (messages) {
+            angular.forEach(messages, function (messages, field) {
+                $scope.formMessages[field] = messages;
+            });
+        }
+
+        // display field errors
+        $scope.showErrors = function () {
+            var error = $scope.form.$error;
+            angular.forEach(error.required, function (e) {
+                $scope.formClasses[e.$name] = 'has-error';
+            });
+        };
+
+        // process form
+        $scope.processForm = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            var $element = angular.element($event.target),
+                apiname = $element.attr('data-api'),
+                target = $element.attr('action'),
+                promise,
+                api;
+            //
+            if ($scope.form.$invalid) {
+                return $scope.showErrors();
+            }
+
+            // Get the api information
+            if (!target && apiname) {
+                api = $lux.api(apiname);
+                if (!api)
+                    $lux.log.error('Could not find api url for ' + apiname);
+            }
+
+            $scope.formMessages = {};
+            //
+            if (target) {
+                var enctype = $element.attr('enctype') || '',
+                    ct = enctype.split(';')[0],
+                    options = {
+                        url: target,
+                        method: $element.attr('method') || 'POST',
+                        data: $scope.formModel,
+                        transformRequest: formData(ct),
+                    };
+                // Let the browser choose the content type
+                if (ct === 'application/x-www-form-urlencoded' || ct === 'multipart/form-data') {
+                    options.headers = {
+                        'content-type': undefined
+                    };
+                }
+                promise = $lux.http(options);
+            } else if (api) {
+                promise = api.put($scope.formModel);
+            } else {
+                $lux.log.error('Could not process form. No target or api');
+                return;
+            }
+            //
+            promise.success(function(data, status) {
+                if (data.messages) {
+                    angular.forEach(data.messages, function (messages, field) {
+                        $scope.formMessages[field] = messages;
+                    });
+                } else if (api) {
+                    // Created
+                    if (status === 201) {
+                        $scope.formMessages[FORMKEY] = [{message: 'Succesfully created'}];
+                    } else {
+                        $scope.formMessages[FORMKEY] = [{message: 'Succesfully updated'}];
+                    }
+                } else {
+                    window.location.href = data.redirect || '/';
+                }
+            }).error(function(data, status, headers) {
+                var messages, msg;
+                if (data) {
+                    messages = data.messages;
+                    if (!messages) {
+                        msg = data.message;
+                        if (!msg) {
+                            status = status || data.status || 501;
+                            msg = 'Server error (' + data.status + ')';
+                        }
+                        messages = {};
+                        messages[FORMKEY] = [{message: msg, error: true}];
+                    }
+                } else {
+                    status = status || 501;
+                    msg = 'Server error (' + data.status + ')';
+                    messages = {};
+                    messages[FORMKEY] = [{message: msg, error: true}];
+                }
+                formMessages(messages);
+            });
+        };
+    };
+
+
+    // Default form module for lux
+    angular.module('lux.form', ['lux.services'])
+        //
+        // The formService is a reusable component for redering form fields
+        .service('standardForm', ['$log', '$http', '$document', '$templateCache',
+                function (log, $http, $document, $templateCache) {
+
+            var supported = {
+                    //  Text-based elements
+                    'text': {element: 'input', type: 'text', editable: true, textBased: true},
+                    'date': {element: 'input', type: 'date', editable: true, textBased: true},
+                    'datetime': {element: 'input', type: 'datetime', editable: true, textBased: true},
+                    'datetime-local': {element: 'input', type: 'datetime-local', editable: true, textBased: true},
+                    'email': {element: 'input', type: 'email', editable: true, textBased: true},
+                    'month': {element: 'input', type: 'month', editable: true, textBased: true},
+                    'number': {element: 'input', type: 'number', editable: true, textBased: true},
+                    'password': {element: 'input', type: 'password', editable: true, textBased: true},
+                    'search': {element: 'input', type: 'search', editable: true, textBased: true},
+                    'tel': {element: 'input', type: 'tel', editable: true, textBased: true},
+                    'textarea': {element: 'textarea', editable: true, textBased: true},
+                    'time': {element: 'input', type: 'time', editable: true, textBased: true},
+                    'url': {element: 'input', type: 'url', editable: true, textBased: true},
+                    'week': {element: 'input', type: 'week', editable: true, textBased: true},
+                    //  Specialized editables
+                    'checkbox': {element: 'input', type: 'checkbox', editable: true, textBased: false},
+                    'color': {element: 'input', type: 'color', editable: true, textBased: false},
+                    'file': {element: 'input', type: 'file', editable: true, textBased: false},
+                    'range': {element: 'input', type: 'range', editable: true, textBased: false},
+                    'select': {element: 'select', editable: true, textBased: false},
+                    //  Pseudo-non-editables (containers)
+                    'checklist': {element: 'div', editable: false, textBased: false},
+                    'fieldset': {element: 'fieldset', editable: false, textBased: false},
+                    'form': {element: 'form', editable: false, textBased: false},
+                    'radio': {element: 'div', editable: false, textBased: false},
+                    //  Non-editables (mostly buttons)
+                    'button': {element: 'button', type: 'button', editable: false, textBased: false},
+                    'hidden': {element: 'input', type: 'hidden', editable: false, textBased: false},
+                    'image': {element: 'input', type: 'image', editable: false, textBased: false},
+                    'legend': {element: 'legend', editable: false, textBased: false},
+                    'reset': {element: 'button', type: 'reset', editable: false, textBased: false},
+                    'submit': {element: 'button', type: 'submit', editable: false, textBased: false}
+                },
+                //
+                baseAttributes = ['id', 'name', 'title', 'style'],
+                inputAttributes = extendArray([], baseAttributes, ['disabled', 'type', 'value', 'placeholder']),
+                buttonAttributes = extendArray([], baseAttributes, ['disabled']),
+                formAttributes = extendArray([], baseAttributes, ['accept-charset', 'action', 'autocomplete',
+                                                                  'enctype', 'method', 'novalidate', 'target']),
+                validationAttributes = ['minlength', 'maxlength', 'min', 'max', 'required'],
+                ngAttributes = ['disabled', 'minlength', 'maxlength', 'required'];
+
+            extend(this, {
+                name: 'default',
+                //
+                className: '',
+                //
+                inputGroupClass: 'form-group',
+                //
+                inputClass: 'form-control',
+                //
+                buttonClass: 'btn btn-default',
+                //
+                template: function (url) {
+                    return $http.get(url, {cache: $templateCache}).then(function (result) {
+                        return result.data;
+                    });
+                },
+                //
+                createElement: function (driver, scope) {
+                    var self = this,
+                        field = scope.field,
+                        info = supported[field.type],
+                        renderer;
+
+                    scope.info = info;
+
+                    if (info)
+                        renderer = this[info.element];
+
+                    if (!renderer)
+                        renderer = this.renderNotSupported;
+
+                    var element = renderer.call(this, scope);
+
+                    forEach(scope.children, function (child) {
+                        field = child.field;
+
+                        if (field) {
+
+                            // extend child.field with options
+                            forEach(formDefaults, function (_, name) {
+                                if (field[name] === undefined)
+                                    field[name] = scope.field[name];
+                            });
+                            //
+                            // Make sure children is defined, otherwise it will be inherited from the parent scope
+                            if (child.children === undefined)
+                                child.children = null;
+                            child = driver.createElement(extend(scope, child));
+
+                            if (isArray(child))
+                                forEach(child, function (c) {
+                                    element.append(c);
+                                });
+                            else if (child)
+                                element.append(child);
+                        } else {
+                            log.error('form child without field');
+                        }
+                    });
+                    extend(scope, field);
+                    return element;
+                },
+                //
+                addAttrs: function (scope, element, attributes) {
+                    var field = scope.field,
+                        value;
+                    forEach(attributes, function (name) {
+                        value = field[name];
+                        if (value !== undefined && value !== false) {
+                            if (ngAttributes.indexOf(name) > -1)
+                                element.attr('ng-' + name, value);
+                            else {
+                                if (value === true) value = '';
+                                element.attr(name, value);
+                            }
+                        }
+                    });
+                    return element;
+                },
+                //
+                renderNotSupported: function (scope) {
+                    return $($document[0].createElement('span')).html(field.label || '');
+                },
+                //
+                fillDefaults: function (scope) {
+                    var field = scope.field;
+                    field.label = field.label || field.name;
+                    scope.formCount++;
+                    if (!field.id)
+                        field.id = field.name + '-' + scope.formid + '-' + scope.formCount;
+                },
+                //
+                form: function (scope) {
+                    var field = scope.field,
+                        info = scope.info,
+                        form = $($document[0].createElement(info.element))
+                                    .attr('role', 'form').addClass(this.className)
+                                    .attr('ng-model', field.model);
+                    return this.addAttrs(scope, form, formAttributes);
+                },
+                //
+                'ng-form': function (scope) {
+                    return this.form(scope);
+                },
+                //
+                // Render a fieldset
+                fieldset: function (scope) {
+                    var field = scope.field,
+                        info = scope.info,
+                        element = $($document[0].createElement(info.element));
+                    if (field.label)
+                        element.append($($document[0].createElement('legend')).html(field.label));
+                    return element;
+                },
+                //
+                radio: function (scope) {
+                    this.fillDefaults(scope);
+
+                    var field = scope.field,
+                        info = scope.info,
+                        input = angular.element($document[0].createElement(info.element)).addClass(this.inputClass),
+                        label = angular.element($document[0].createElement('label')),
+                        element = angular.element($document[0].createElement('div')).addClass(this.element);
+
+                    input.attr('ng-model', scope.formModelName + '.' + field.name);
+
+                    forEach(InputAttributes, function (name) {
+                        if (field[name]) input.attr(name, field[name]);
+                    });
+
+                    return element.append(label.append(input));
+                },
+                //
+                checkbox: function (scope) {
+                    return this.radio(scope);
+                },
+                //
+                input: function (scope) {
+                    this.fillDefaults(scope);
+
+                    var field = scope.field,
+                        info = scope.info,
+                        input = angular.element($document[0].createElement(info.element)).addClass(this.inputClass),
+                        label = angular.element($document[0].createElement('label')).attr('for', field.id).html(field.label),
+                        element;
+
+                    input.attr('ng-model', scope.formModelName + '.' + field.name);
+                    this.addAttrs(scope, input, inputAttributes);
+
+                    if (!field.showLabels)
+                        label.addClass('sr-only');
+
+                    if (field.value !== undefined) {
+                        scope[scope.formModelName][field.name] = field.value;
+                        input.attr('value', field.value);
+                    }
+
+                    if (this.inputGroupClass) {
+                        element = angular.element($document[0].createElement('div')).addClass(this.inputGroupClass);
+                        element.append(label).append(input);
+                    } else {
+                        element = [label, input];
+                    }
+                    return this.inputError(scope, element);
+                },
+                //
+                button: function (scope) {
+                    var field = scope.field,
+                        info = scope.info,
+                        element = $($document[0].createElement(info.element)).addClass(this.buttonClass);
+                    if (!field.name)
+                        field.name = field.label || info.element;
+                    field.label = field.label || field.name;
+                    element.html(field.label);
+                    this.addAttrs(scope, element, buttonAttributes);
+                    return this.onClick(scope, element);
+                },
+                //
+                onClick: function (scope, element) {
+                    if (scope.field.click) {
+                        var name = element.attr('name'),
+                            clickname = name + 'Click';
+                        //
+                        // scope function
+                        scope[clickname] = function (e) {
+                            var callback = getRootAttribute(this.field.click);
+                            if (angular.isFunction(callback)) {
+                                callback.call(this, e);
+                            } else
+                                log.error('Could not locate click function "' + field.click + '" for button');
+                        };
+                        element.attr('ng-click', clickname + '($event)');
+                    }
+                    return element;
+                },
+                //
+                inputError: function (scope, element) {
+                    var field = scope.field,
+                        self = this,
+                        dirty = [scope.formName, field.name, '$dirty'].join('.'),
+                        invalid = [scope.formName, field.name, '$invalid'].join('.'),
+                        error = [scope.formName, field.name, '$error'].join('.') + '.',
+                        input = $(element[0].querySelector(scope.info.element)),
+                        p = $($document[0].createElement('p'))
+                                .attr('ng-show', dirty + ' && ' + invalid)
+                                .addClass('text-danger form-error')
+                                .html('{{formErrors.' + field.name + '}}'),
+                        value,
+                        attrname;
+                    forEach(validationAttributes, function (attr) {
+                        value = field[attr];
+                        attrname = attr;
+                        if (value !== undefined && value !== false && value !== null) {
+                            if (ngAttributes.indexOf(attr) > -1) attrname = 'ng-' + attr;
+                            input.attr(attrname, value);
+                            p.append($($document[0].createElement('span'))
+                                         .attr('ng-show', error + attr)
+                                         .html(self.errorMessage(scope, attr)));
+                        }
+                    });
+                    return element.append(p);
+                },
+                //
+                errorMessage: function (scope, attr) {
+                    var message = attr + 'Message',
+                        field = scope.field,
+                        handler = this[attr+'ErrorMessage'] || this.defaultErrorMesage;
+                    return field[message] || handler.call(this, scope);
+                },
+                //
+                defaultErrorMesage: function (scope) {
+                    return 'Not a valid value';
+                },
+                //
+                minErrorMessage: function (scope) {
+                    return 'Must be greater than ' + scope.field.min;
+                },
+                //
+                maxErrorMessage: function (scope) {
+                    return 'Must be less than ' + scope.field.max;
+                },
+                //
+                requiredErrorMessage: function (scope) {
+                    return "This field is required";
+                }
+            });
+        }])
+        //
+        // Bootstrap Horizontal form renderer
+        .service('horizontalForm', ['$document', 'standardForm', function ($document, standardForm) {
+            //
+            // extend the standardForm service
+            extend(this, standardForm, {
+
+                name: 'horizontal',
+
+                className: 'form-horizontal',
+
+                input: function (scope) {
+                    var element = standardForm.input(scope),
+                        children = element.children(),
+                        labelSpan = scope.field.labelSpan ? +scope.field.labelSpan : 2,
+                        wrapper = $($document[0].createElement('div'));
+                    labelSpan = Math.max(2, Math.min(labelSpan, 10));
+                    $(children[0]).addClass('control-label col-sm-' + labelSpan);
+                    wrapper.addClass('col-sm-' + (12-labelSpan));
+                    for (var i=1; i<children.length; ++i)
+                        wrapper.append($(children[i]));
+                    return element.append(wrapper);
+                },
+
+                button: function (scope) {
+                    var element = standardForm.button(scope),
+                        labelSpan = scope.field.labelSpan ? +scope.field.labelSpan : 2,
+                        outer = $($document[0].createElement('div')).addClass(this.inputGroupClass),
+                        wrapper = $($document[0].createElement('div'));
+                    labelSpan = Math.max(2, Math.min(labelSpan, 10));
+                    wrapper.addClass('col-sm-offset-' + labelSpan)
+                           .addClass('col-sm-' + (12-labelSpan));
+                    outer.append(wrapper.append(element));
+                    return outer;
+                }
+            });
+        }])
+        //
+        .service('inlineForm', ['standardForm', function (standardForm) {
+            extend(this, standardForm, {
+                name: 'inline',
+                inputTemplateUrl: "forms/inlineInput.tpl.html",
+                checkTemplateUrl: "forms/inlineCheck.tpl.html"
+            });
+        }])
+        //
+        .service('formBaseRenderer', ['$log', '$compile', function (log, $compile) {
+            //
+            // Internal function for compiling a scope
+            this.createElement = function (scope) {
+                var field = scope.field;
+
+                if (this[field.layout])
+                    return this[field.layout].createElement(this, scope);
+                else
+                    log.error('Layout "' + field.layout + '" not available, cannot render form');
+            };
+            //
+            this.createForm = function (scope, element, attrs) {
+                var data = getOptions(attrs),
+                    form = data.field;
+                if (form) {
+                    // extend with form defaults
+                    data.field = extend({}, formDefaults, form);
+                    extend(scope, data);
+                    form = scope.field;
+                    if (!form.name)
+                        form.name = 'form';
+                    form.model = form.model ? form.model : form.name;
+                    if (form.model === form.name)
+                        form.model = form.model + 'Model';
+                    scope.formName = form.name;
+                    scope.formModelName = form.model;
+                    //
+                    scope[scope.formModelName] = {};
+                    scope.formClasses = {};
+                    scope.formErrors = {};
+                    scope.formMessages = {};
+                    if (!form.id)
+                        form.id = 'f' + s4();
+                    scope.formid = form.id;
+                    scope.formCount = 0;
+                    form = this.createElement(scope);
+
+                    //  Compile and update DOM
+                    if (form) {
+                        $compile(form)(scope);
+                        element.replaceWith(form);
+                    }
+                } else {
+                    log.error('Form data does not contain field entry');
+                }
+            };
+
+            this.checkField = function (name) {
+                var checker = this['check_' + name];
+                // There may be a custom field checker
+                if (checker)
+                    checker.call(this);
+                else {
+                    var field = this.form[name];
+                    if (field.$valid)
+                        this.formClasses[name] = 'has-success';
+                    else if (field.$dirty) {
+                        this.formErrors[name] = name + ' is not valid';
+                        this.formClasses[name] = 'has-error';
+                    }
+                }
+            };
+
+            this.processForm = function(scope) {
+                //
+                if (scope.form.$invalid) {
+                    return $scope.showErrors();
+                }
+            };
+        }])
+        //
+        // Default form Renderer, roll your own if you like
+        .service('formRenderer', ['formBaseRenderer', 'standardForm', 'horizontalForm', 'inlineForm',
+            function (base, stdForm, horForm, inlForm) {
+                extend(this, base);
+                this[stdForm.name] = stdForm;
+                this[horForm.name] = horForm;
+                this[inlForm.name] = inlForm;
+        }])
+        //
+        // Lux form
+        .directive('luxForm', ['formRenderer', function (renderer) {
+
+            return {
+                restrict: "AE",
+                //
+                scope: {},
+                //
+                link: function (scope, element, attrs) {
+                    // Initialise the scope from the attributes
+                    renderer.createForm(scope, element, attrs);
+                }
+            };
+        }])
+        //
+        // A directive which add keyup and change event callaback
+        .directive('watchChange', function() {
+            return {
+                scope: {
+                    onchange: '&watchChange'
+                },
+                //
+                link: function(scope, element, attrs) {
+                    element.on('keyup', function() {
+                        scope.$apply(function () {
+                            scope.onchange();
+                        });
+                    }).on('change', function() {
+                        scope.$apply(function () {
+                            scope.onchange();
+                        });
+                    });
+                }
+            };
+        });
+
+    angular.module('lux.scope.loader', [])
+        //
+        .value('context', lux.context)
+        //
+        .run(['$rootScope', '$log', 'context', function (scope, log, context) {
+            log.info('Extend root scope with context');
+            extend(scope, context);
+        }]);
     //
     // Bootstrap the document
     lux.bootstrap = function (name, modules) {
@@ -1207,19 +1660,17 @@ angular.module("page/breadcrumbs.tpl.html", []).run(["$templateCache", function(
             // Resolve modules to load
             if (!isArray(modules))
                 modules = [];
-            if (lux.context.uiRouter)
+            if (lux.context.uiRouter) {
                 modules.push('lux.ui.router');
+                // Remove seo view, we don't want to bootstrap it
+                $(document.querySelector('#seo-view')).remove();
+            }
             else
                 modules.push('lux.router');
             // Add all modules from context
             forEach(lux.context.ngModules, function (mod) {
                 modules.push(mod);
             });
-            angular.module('lux.scope.loader', [])
-                .run(['$rootScope', '$log', function (scope, log) {
-                    log.info('Extend root scope with lux context');
-                    extend(scope, lux.context);
-                }]);
             modules.splice(0, 0, 'lux.scope.loader');
             angular.module(name, modules);
             angular.bootstrap(document, [name]);
@@ -1253,12 +1704,10 @@ angular.module("blog/pagination.tpl.html", []).run(["$templateCache", function($
     "<ul class=\"media-list\">\n" +
     "    <li ng-repeat=\"post in items\" class=\"media\" data-ng-controller='BlogEntry'>\n" +
     "        <a href=\"{{post.html_url}}\" class=\"pull-left hidden-xs dir-entry-image\">\n" +
-    "          <img data-ng-if=\"post.image\" src=\"{{post.image}}\" alt=\"{{post.title}}\">\n" +
-    "          <img data-ng-if=\"!post.image\" src=\"holder.js/120x90\">\n" +
+    "          <img ng-src=\"{{post.image}}\" alt=\"{{post.title}}\">\n" +
     "        </a>\n" +
     "        <a href=\"{{post.html_url}}\" class=\"visible-xs\">\n" +
-    "            <img data-ng-if=\"post.image\" src=\"{{post.image}}\" alt=\"{{post.title}}\" class=\"dir-entry-image\">\n" +
-    "            <img data-ng-if=\"!post.image\" src=\"holder.js/120x90\">\n" +
+    "            <img ng-src=\"{{post.image}}\" alt=\"{{post.title}}\" class=\"dir-entry-image\">\n" +
     "        </a>\n" +
     "        <p class=\"visible-xs\"></p>\n" +
     "        <div class=\"media-body\">\n" +
@@ -1344,10 +1793,10 @@ angular.module('templates-nav', ['nav/navbar.tpl.html', 'nav/navbar2.tpl.html'])
 
 angular.module("nav/navbar.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("nav/navbar.tpl.html",
-    "<nav class=\"navbar-{{navbar.themeTop}}\"\n" +
+    "<nav ng-attr-id=\"{{navbar.id}}\" class=\"navbar navbar-{{navbar.themeTop}}\"\n" +
     "ng-class=\"{'navbar-fixed-top':navbar.fixed, 'navbar-static-top':navbar.top}\" role=\"navigation\"\n" +
     "ng-model=\"navbar.collapse\" bs-collapse>\n" +
-    "    <div ng-attr-id='{{navbar.id}}' class=\"{{navbar.container}}\">\n" +
+    "    <div class=\"{{navbar.container}}\">\n" +
     "        <div class=\"navbar-header\">\n" +
     "            <button type=\"button\" class=\"navbar-toggle\" bs-collapse-toggle>\n" +
     "                <span class=\"sr-only\">Toggle navigation</span>\n" +
@@ -1364,13 +1813,13 @@ angular.module("nav/navbar.tpl.html", []).run(["$templateCache", function($templ
     "        </div>\n" +
     "        <div class=\"navbar-collapse\" bs-collapse-target>\n" +
     "            <ul class=\"nav navbar-nav\">\n" +
-    "                <li ng-repeat=\"link in navbar.items\" ng-class=\"{active:link.active}\">\n" +
+    "                <li ng-repeat=\"link in navbar.items\" ng-class=\"{active:activeLink(link)}\">\n" +
     "                    <a href=\"{{link.href}}\" title=\"{{link.title || link.name}}\">\n" +
     "                    <i ng-if=\"link.icon\" class=\"{{link.icon}}\"></i> {{link.name}}</a>\n" +
     "                </li>\n" +
     "            </ul>\n" +
     "            <ul class=\"nav navbar-nav navbar-right\">\n" +
-    "                <li ng-repeat=\"link in navbar.itemsRight\" ng-class=\"{active:link.active}\">\n" +
+    "                <li ng-repeat=\"link in navbar.itemsRight\" ng-class=\"{active:activeLink(link)}\">\n" +
     "                    <a href=\"{{link.href}}\" title=\"{{link.title || link.name}}\">\n" +
     "                    <i ng-if=\"link.icon\" class=\"{{link.icon}}\"></i> {{link.name}}</a>\n" +
     "                </li>\n" +
@@ -1382,50 +1831,53 @@ angular.module("nav/navbar.tpl.html", []).run(["$templateCache", function($templ
 
 angular.module("nav/navbar2.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("nav/navbar2.tpl.html",
-    "<nav class=\"navbar navbar-{{navbar.themeTop}} navbar-fixed-top\" role=\"navigation\" ng-model=\"navbar.collapse\" bs-collapse>\n" +
-    "    <div class=\"navbar-header\">\n" +
-    "        <button type=\"button\" class=\"navbar-toggle\" bs-collapse-toggle>\n" +
-    "            <span class=\"sr-only\">Toggle navigation</span>\n" +
-    "            <span class=\"icon-bar\"></span>\n" +
-    "            <span class=\"icon-bar\"></span>\n" +
-    "            <span class=\"icon-bar\"></span>\n" +
-    "        </button>\n" +
-    "        <a href=\"/\" class=\"navbar-brand\" target=\"_self\">{{navbar.brand}}</a>\n" +
-    "    </div>\n" +
-    "    <ul class=\"nav navbar-top-links navbar-right\">\n" +
-    "        <li ng-repeat=\"item in navbar.items\">\n" +
-    "            <a href=\"{{item.href}}\" target=\"{{item.target}}\" title=\"{{item.title || item.value}}\">\n" +
-    "            <i ng-if=\"item.icon\" class=\"{{item.icon}}\"></i>{{item.value}}</a>\n" +
-    "        </li>\n" +
-    "    </ul>\n" +
-    "    <div class=\"navbar sidebar\" role=\"navigation\">\n" +
-    "        <div class=\"sidebar-collapse\" bs-collapse-target>\n" +
-    "            <ul id=\"side-menu\" class=\"nav nav-side\">\n" +
-    "                <li ng-if=\"navbar.search\" class=\"sidebar-search\">\n" +
-    "                    <div class=\"input-group custom-search-form\">\n" +
-    "                        <input class=\"form-control\" type=\"text\" placeholder=\"Search...\">\n" +
-    "                        <span class=\"input-group-btn\">\n" +
-    "                            <button class=\"btn btn-default\" type=\"button\" ng-click=\"search()\">\n" +
-    "                                <i class=\"fa fa-search\"></i>\n" +
-    "                            </button>\n" +
-    "                        </span>\n" +
-    "                    </div>\n" +
-    "                </li>\n" +
-    "                <li ng-repeat=\"link in navbar.items2\">\n" +
-    "                    <a ng-if=\"!link.links\" href=\"{{link.href}}\">{{link.name || link.href}}</a>\n" +
-    "                    <a ng-if=\"link.links\" href=\"{{link.href}}\" class=\"with-children\">{{link.name}}</a>\n" +
-    "                    <a ng-if=\"link.links\" href=\"#\" class=\"pull-right toggle\" ng-click=\"togglePage($event)\">\n" +
-    "                        <i class=\"fa\" ng-class=\"{'fa-chevron-left': !link.active, 'fa-chevron-down': link.active}\"></i></a>\n" +
-    "                    <ul ng-if=\"link.links\" class=\"nav nav-second-level collapse\" ng-class=\"{in: link.active}\">\n" +
-    "                        <li ng-repeat=\"link in link.links\">\n" +
-    "                            <a ng-if=\"!link.vars\" href=\"{{link.href}}\" ng-click=\"loadPage($event)\">{{link.name}}</a>\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
-    "                </li>\n" +
-    "            </ul>\n" +
+    "<div class=\"navbar2-wrapper navbar-{{navbar.theme}}\">\n" +
+    "    <nav class=\"navbar navbar-{{navbar.themeTop}} navbar-fixed-top navbar-static-top\" role=\"navigation\" ng-model=\"navbar.collapse\" bs-collapse>\n" +
+    "        <div class=\"navbar-header\">\n" +
+    "            <button type=\"button\" class=\"navbar-toggle\" bs-collapse-toggle>\n" +
+    "                <span class=\"sr-only\">Toggle navigation</span>\n" +
+    "                <span class=\"icon-bar\"></span>\n" +
+    "                <span class=\"icon-bar\"></span>\n" +
+    "                <span class=\"icon-bar\"></span>\n" +
+    "            </button>\n" +
+    "            <a href=\"/\" class=\"navbar-brand\" target=\"_self\">{{navbar.brand}}</a>\n" +
     "        </div>\n" +
-    "    </div>\n" +
-    "</nav>");
+    "        <ul class=\"nav navbar-top-links navbar-right\">\n" +
+    "            <li ng-repeat=\"item in navbar.items\">\n" +
+    "                <a href=\"{{item.href}}\" target=\"{{item.target}}\" title=\"{{item.title || item.value}}\">\n" +
+    "                <i ng-if=\"item.icon\" class=\"{{item.icon}}\"></i>{{item.value}}</a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "        <div class=\"navbar sidebar\" role=\"navigation\">\n" +
+    "            <div class=\"sidebar-collapse\" bs-collapse-target>\n" +
+    "                <ul id=\"side-menu\" class=\"nav nav-side\">\n" +
+    "                    <li ng-if=\"navbar.search\" class=\"sidebar-search\">\n" +
+    "                        <div class=\"input-group custom-search-form\">\n" +
+    "                            <input class=\"form-control\" type=\"text\" placeholder=\"Search...\">\n" +
+    "                            <span class=\"input-group-btn\">\n" +
+    "                                <button class=\"btn btn-default\" type=\"button\" ng-click=\"search()\">\n" +
+    "                                    <i class=\"fa fa-search\"></i>\n" +
+    "                                </button>\n" +
+    "                            </span>\n" +
+    "                        </div>\n" +
+    "                    </li>\n" +
+    "                    <li ng-repeat=\"link in navbar.items2\">\n" +
+    "                        <a ng-if=\"!link.links\" href=\"{{link.href}}\">{{link.name || link.href}}</a>\n" +
+    "                        <a ng-if=\"link.links\" href=\"{{link.href}}\" class=\"with-children\">{{link.name}}</a>\n" +
+    "                        <a ng-if=\"link.links\" href=\"#\" class=\"pull-right toggle\" ng-click=\"togglePage($event)\">\n" +
+    "                            <i class=\"fa\" ng-class=\"{'fa-chevron-left': !link.active, 'fa-chevron-down': link.active}\"></i></a>\n" +
+    "                        <ul ng-if=\"link.links\" class=\"nav nav-second-level collapse\" ng-class=\"{in: link.active}\">\n" +
+    "                            <li ng-repeat=\"link in link.links\">\n" +
+    "                                <a ng-if=\"!link.vars\" href=\"{{link.href}}\" ng-click=\"loadPage($event)\">{{link.name}}</a>\n" +
+    "                            </li>\n" +
+    "                        </ul>\n" +
+    "                    </li>\n" +
+    "                </ul>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </nav>\n" +
+    "    <div class=\"navbar2-page\" navbar2-page></div>\n" +
+    "</div>");
 }]);
 
 
@@ -1447,7 +1899,7 @@ angular.module("nav/navbar2.tpl.html", []).run(["$templateCache", function($temp
         theme: 'default',
         search_text: '',
         collapse: '',
-        top: true,
+        top: false,
         search: false,
         url: lux.context.url,
         target: '',
@@ -1456,7 +1908,7 @@ angular.module("nav/navbar2.tpl.html", []).run(["$templateCache", function($temp
 
     angular.module('lux.nav', ['templates-nav', 'lux.services', 'mgcrea.ngStrap.collapse'])
         //
-        .service('navService', function () {
+        .service('navService', ['$location', function ($location) {
 
             this.initScope = function (opts) {
                 var navbar = extend({}, navBarDefaults, getOptions(opts));
@@ -1478,84 +1930,86 @@ angular.module("nav/navbar2.tpl.html", []).run(["$templateCache", function($temp
                     navbar.collapse = '';
                 return c !== navbar.collapse;
             };
-        })
-        //
-        .controller('Navigation', ['$scope', '$lux', function ($scope, $lux) {
-            $lux.log.info('Setting up navigation on page');
-            //
-            var navbar = $scope.navbar = angular.extend({}, navBarDefaults, $scope.navbar),
-                maybeCollapse = function () {
-                    var width = window.innerWidth > 0 ? window.innerWidth : screen.width,
-                        c = navbar.collapse;
-                    if (width < navbar.collapseWidth)
-                        navbar.collapse = 'collapse';
-                    else
-                        navbar.collapse = '';
-                    return c !== navbar.collapse;
-                };
-            // Fix defaults
-            if (!navbar.url)
-                navbar.url = lux.context.url || '/';
-            if (!navbar.themeTop)
-                navbar.themeTop = navbar.theme;
 
-            maybeCollapse();
+            // Check if a url is active
+            this.activeLink = function (url) {
+                var loc;
+                if (url)
+                    url = typeof(url) === 'string' ? url : url.href || url.url;
+                if (isAbsolute.test(url))
+                    loc = $location.absUrl();
+                else
+                    loc = $location.path();
+                var rest = loc.substring(url.length),
+                    base = loc.substring(0, url.length),
+                    folder = url.substring(url.length-1) === '/';
+                return base === url && (folder || (rest === '' || rest.substring(0, 1) === '/'));
+            };
+        }])
+        //
+        //  Directive for the simple navbar
+        //  This directive does not require the Navigation controller
+        .directive('navbar', ['navService', function (navService) {
             //
-            windowResize(function () {
-                if (maybeCollapse())
-                    $scope.$apply();
-            });
-            //
-            // Search
-            $scope.search = function () {
-                if (scope.search_text) {
-                    window.location.href = '/search?' + $.param({q: $scope.search_text});
+            return {
+                templateUrl: "nav/navbar.tpl.html",
+                restrict: 'AE',
+                // Create an isolated scope
+                scope: {},
+                // Link function
+                link: function (scope, element, attrs) {
+                    scope.navbar = navService.initScope(attrs);
+                    scope.activeLink = navService.activeLink;
+                    //
+                    windowResize(function () {
+                        if (navService.maybeCollapse(scope.navbar))
+                            scope.$apply();
+                    });
                 }
             };
-
         }])
-    //
-    //  Directive for the navbar
-    .directive('navbar', ['navService', function (navService) {
         //
-        return {
-            templateUrl: "nav/navbar.tpl.html",
-            restrict: 'AE',
-            // Create an isolated scope
-            scope: {},
-            // Link function
-            link: function (scope, element, attrs) {
-                scope.navbar = navService.initScope(attrs);
-                //
-                windowResize(function () {
-                    if (navService.maybeCollapse(scope.navbar))
-                        scope.$apply();
-                });
-            }
-        };
-    }])
-    //
-    //  Directive for the navbar with sidebar (nivebar2 template)
-    .directive('navbar2', function () {
-        return {
-            templateUrl: "nav/navbar2.tpl.html",
-            restrict: 'AE'
-        };
-    })
-    //
-    // Directive for the main page in the sidebar2 template
-    .directive('navbar2Page', function () {
-        return {
-            compile: function () {
-                return {
-                    pre: function (scope, element, attrs) {
-                        element.addClass('navbar2-page');
-                        attrs.$set('style', 'min-height: ' + windowHeight() + 'px');
-                    }
-                };
-            }
-        };
-    });
+        //  Directive for the navbar with sidebar (nivebar2 template)
+        .directive('navbar2', ['navService', '$compile', function (navService, $compile) {
+            return {
+                restrict: 'AE',
+                // Link function
+                link: function (scope, element, attrs) {
+                    scope.navbar2Content = element.children();
+                    scope.navbar = navService.initScope(attrs);
+                    scope.activeLink = navService.activeLink;
+                    var inner = $compile('<nav-side-bar></nav-side-bar>')(scope);
+                    element.append(inner);
+                    //
+                    windowResize(function () {
+                        if (navService.maybeCollapse(scope.navbar))
+                            scope.$apply();
+                    });
+                }
+            };
+        }])
+        //
+        //  Directive for the navbar with sidebar (nivebar2 template)
+        .directive('navSideBar', function () {
+            return {
+                templateUrl: "nav/navbar2.tpl.html",
+                restrict: 'E'
+            };
+        })
+        //
+        // Directive for the main page in the sidebar2 template
+        .directive('navbar2Page', function () {
+            return {
+                compile: function () {
+                    return {
+                        pre: function (scope, element, attrs) {
+                            element.append(scope.navbar2Content);
+                            attrs.$set('style', 'min-height: ' + windowHeight() + 'px');
+                        }
+                    };
+                }
+            };
+        });
 
     // Controller for User
     angular.module('users', ['lux.services'])
@@ -1801,6 +2255,7 @@ angular.module("nav/navbar2.tpl.html", []).run(["$templateCache", function($temp
     //
     //  Module for interacting with google API and services
     angular.module('lux.google', [])
+        //
         .run(['$rootScope', '$log', '$location', function (scope, log, location) {
             var analytics = scope.google ? scope.google.analytics : null;
 
@@ -1826,6 +2281,7 @@ angular.module("nav/navbar2.tpl.html", []).run(["$templateCache", function($temp
                 });
             }
         }])
+        //
         .directive('googleMap', function () {
             return {
                 //
@@ -1912,6 +2368,8 @@ angular.module("nav/navbar2.tpl.html", []).run(["$templateCache", function($temp
         name = name || 'd3viz';
         var app = angular.module(name, ['lux.services']);
 
+        // Loop through d3 extensions and create directives
+        // for each Visualization class
         angular.forEach(d3.ext, function (VizClass, name) {
 
             if (d3.ext.isviz(VizClass)) {
@@ -1924,10 +2382,14 @@ angular.module("nav/navbar2.tpl.html", []).run(["$templateCache", function($temp
                             restrict: 'AE',
                             //
                             link: function (scope, element, attrs) {
-                                var options = getOptions(d3, attrs);
-                                var viz = new VizClass(element[0], options);
-                                viz.loadData = loadData($lux);
-                                viz.build();
+                                var viz = element.data(dname);
+                                if (!viz) {
+                                    var options = getOptions(d3, attrs);
+                                    viz = new VizClass(element[0], options);
+                                    element.data(viz);
+                                    viz.loadData = loadData($lux);
+                                    viz.build();
+                                }
                             }
                         };
                 }]);

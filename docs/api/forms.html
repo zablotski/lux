@@ -17,9 +17,9 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "python_version": "3.4.1", "date": "2014-10-16T10-28-06", "datetimeFormat": "d MMM y, h:mm:ss a", "navbar": {"collapseWidth": 768}, "ngModules": ["ui.router", "lux.google"], "oauths": null, "apiUrls": {}, "google": {"analytics": {"ga": "_gaTrack", "id": "UA-54439804-2"}}, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "html5mode": true, "pages": {"/lux/docs/*slug": {"template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "url": "/lux/docs/*slug", "controller": "Html5", "parent": "/lux/docs/", "name": "docsview", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}}, "/lux/docs/": {"template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "url": "/lux/docs/", "controller": "Html5", "parent": "/lux/", "name": "docs", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}}, "/lux/*slug": {"template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "url": "/lux/*slug", "controller": "Html5", "parent": "/lux/", "name": "view", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}}, "/lux/": {"template": "<div class='angular-view' data-dynamic-page=''></div>", "target": null, "url": "/lux/", "controller": "Html5", "parent": null, "name": "", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}}}, "lux_version": "0.1.1-alpha.1", "uiRouter": true, "name": "Lux", "page": "/lux/docs/*slug", "year": 2014, "media": "/media"};</script>
+var luxContext = {"name": "Lux", "dateFormat": "d MMM y", "uiRouter": true, "media": "/media", "date": "2014-10-20T21-41-43", "ngModules": ["ngAnimate", "highlight", "lux.google", "ui.router"], "oauths": null, "lux_version": "0.1.1-alpha.1", "navbar": {"collapseWidth": 768}, "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "html5mode": true, "page": "/lux/docs/*slug", "url": "http://quantmind.github.io/lux", "year": 2014, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "apiUrls": {}, "pages": {"/lux/docs/*slug": {"name": "docsview", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "url": "/lux/docs/*slug", "parent": "/lux/docs/", "target": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "controller": "Html5"}, "/lux/docs/": {"name": "docs", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "url": "/lux/docs/", "parent": "/lux/", "target": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "controller": "Html5"}, "/lux/": {"name": "", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "url": "/lux/", "parent": null, "target": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "controller": "Html5"}, "/lux/*slug": {"name": "view", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "url": "/lux/*slug", "parent": "/lux/", "target": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "controller": "Html5"}}, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"]};</script>
 <script type="text/javascript">
-var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "waitSeconds": 200, "deps": ["luxsite/luxsite"], "paths": {}};
+var require = {"waitSeconds": 200, "deps": ["luxsite/luxsite"], "paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", "minify": true};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -35,7 +35,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden'><section id="page-header" class="page-header-outer api_forms-header">
+    <div class='animate-fade angular-view' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer api_forms-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -83,6 +83,32 @@ defaults are used.</p>
 <div class="section" id="form">
 <span id="id1"></span><h2>Form<a class="headerlink" href="#form" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-lux.forms.form"></span><dl class="class">
+<dt id="lux.forms.form.FieldList">
+<em class="property">class </em><tt class="descclassname">lux.forms.form.</tt><tt class="descname">FieldList</tt><big>(</big><em>data=None</em>, <em>withprefix=True</em><big>)</big><a class="reference internal" href="../modules/lux/forms/form#FieldList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.form.FieldList" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>A list of <tt class="xref py py-class docutils literal"><span class="pre">Field</span></tt> and <a class="reference internal" href="#lux.forms.form.FieldList" title="lux.forms.form.FieldList"><tt class="xref py py-class docutils literal"><span class="pre">FieldList</span></tt></a>.</dt>
+<dd><p class="first">It can be used to specify fields using a declarative list in a
+<a class="reference internal" href="#lux.forms.form.Form" title="lux.forms.form.Form"><tt class="xref py py-class docutils literal"><span class="pre">Form</span></tt></a> class.
+For example:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">djpcms</span> <span class="kn">import</span> <span class="n">forms</span>
+
+<span class="k">class</span> <span class="nc">MyForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">some_fields</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FieldList</span><span class="p">((</span><span class="s">&#39;name&#39;</span><span class="p">,</span><span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">()),</span>
+                                  <span class="p">(</span><span class="s">&#39;description&#39;</span><span class="p">,</span><span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">()))</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="lux.forms.form.FieldList.withprefix">
+<tt class="descname">withprefix</tt><a class="headerlink" href="#lux.forms.form.FieldList.withprefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>if <tt class="docutils literal"><span class="pre">True</span></tt> the <tt class="xref py py-class docutils literal"><span class="pre">Fieldlist</span></tt> attribute name in the form is
+prefixed to the field names.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="lux.forms.form.Form">
 <em class="property">class </em><tt class="descclassname">lux.forms.form.</tt><tt class="descname">Form</tt><big>(</big><em>request=None</em>, <em>data=None</em>, <em>files=None</em>, <em>initial=None</em>, <em>prefix=None</em>, <em>manager=None</em>, <em>instance=None</em><big>)</big><a class="reference internal" href="../modules/lux/forms/form#Form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.form.Form" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base class for forms.</p>
@@ -213,15 +239,15 @@ process and returns errors if they occur.</p>
 <dl class="attribute">
 <dt id="lux.forms.form.Form.fields">
 <tt class="descname">fields</tt><a class="reference internal" href="../modules/lux/forms/form#Form.fields"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.form.Form.fields" title="Permalink to this definition">¶</a></dt>
-<dd><p>List of <tt class="xref py py-class docutils literal"><span class="pre">BoundField</span></tt> instances after
-validation, if the form is bound, otherwise a list of <tt class="xref py py-class docutils literal"><span class="pre">BoundField</span></tt>
+<dd><p>List of <a class="reference internal" href="#lux.forms.form.BoundField" title="lux.forms.form.BoundField"><tt class="xref py py-class docutils literal"><span class="pre">BoundField</span></tt></a> instances after
+validation, if the form is bound, otherwise a list of <a class="reference internal" href="#lux.forms.form.BoundField" title="lux.forms.form.BoundField"><tt class="xref py py-class docutils literal"><span class="pre">BoundField</span></tt></a>
 instances with initial values.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lux.forms.form.Form.dfields">
 <tt class="descname">dfields</tt><a class="reference internal" href="../modules/lux/forms/form#Form.dfields"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.form.Form.dfields" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dictionary of <tt class="xref py py-class docutils literal"><span class="pre">BoundField</span></tt> instances after validation.</p>
+<dd><p>Dictionary of <a class="reference internal" href="#lux.forms.form.BoundField" title="lux.forms.form.BoundField"><tt class="xref py py-class docutils literal"><span class="pre">BoundField</span></tt></a> instances after validation.</p>
 </dd></dl>
 
 <dl class="method">
@@ -300,14 +326,103 @@ applications.</p>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="lux.forms.form.BoundField">
+<em class="property">class </em><tt class="descclassname">lux.forms.form.</tt><tt class="descname">BoundField</tt><big>(</big><em>form</em>, <em>field</em>, <em>name</em>, <em>prefix</em><big>)</big><a class="reference internal" href="../modules/lux/forms/form#BoundField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.form.BoundField" title="Permalink to this definition">¶</a></dt>
+<dd><p>A bound filed contains a <a class="reference internal" href="#lux.forms.form.Form" title="lux.forms.form.Form"><tt class="xref py py-class docutils literal"><span class="pre">Form</span></tt></a> instance,
+a <tt class="xref py py-class docutils literal"><span class="pre">Field</span></tt> instance which belongs to the form,
+and field bound data.
+Instances of <a class="reference internal" href="#lux.forms.form.BoundField" title="lux.forms.form.BoundField"><tt class="xref py py-class docutils literal"><span class="pre">BoundField</span></tt></a> are created during form validation
+and shouldn&#8217;t be used otherwise.</p>
+<dl class="attribute">
+<dt id="lux.forms.form.BoundField.form">
+<tt class="descname">form</tt><a class="headerlink" href="#lux.forms.form.BoundField.form" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of <a class="reference internal" href="#lux.forms.form.Form" title="lux.forms.form.Form"><tt class="xref py py-class docutils literal"><span class="pre">Form</span></tt></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.forms.form.BoundField.field">
+<tt class="descname">field</tt><a class="headerlink" href="#lux.forms.form.BoundField.field" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of <tt class="xref py py-class docutils literal"><span class="pre">Field</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.forms.form.BoundField.request">
+<tt class="descname">request</tt><a class="headerlink" href="#lux.forms.form.BoundField.request" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of <tt class="xref py py-class docutils literal"><span class="pre">djpcms.core.Request</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.forms.form.BoundField.name">
+<tt class="descname">name</tt><a class="headerlink" href="#lux.forms.form.BoundField.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#lux.forms.form.BoundField.field" title="lux.forms.form.BoundField.field"><tt class="xref py py-attr docutils literal"><span class="pre">field</span></tt></a> name (the key in the forms&#8217;s fields dictionary).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.forms.form.BoundField.html_name">
+<tt class="descname">html_name</tt><a class="headerlink" href="#lux.forms.form.BoundField.html_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#lux.forms.form.BoundField.field" title="lux.forms.form.BoundField.field"><tt class="xref py py-attr docutils literal"><span class="pre">field</span></tt></a> name to be used in HTML.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.forms.form.BoundField.clean">
+<tt class="descname">clean</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="../modules/lux/forms/form#BoundField.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.form.BoundField.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a cleaned value for <tt class="docutils literal"><span class="pre">value</span></tt> by running the validation
+algorithm on <a class="reference internal" href="#lux.forms.form.BoundField.field" title="lux.forms.form.BoundField.field"><tt class="xref py py-attr docutils literal"><span class="pre">field</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.forms.form.BoundField.widget">
+<tt class="descname">widget</tt><big>(</big><big>)</big><a class="reference internal" href="../modules/lux/forms/form#BoundField.widget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.form.BoundField.widget" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <tt class="xref py py-class docutils literal"><span class="pre">djpcms.html.Widget</span></tt> instance for the field
+with bound data and attributes. This is obtained from the <tt class="xref py py-class docutils literal"><span class="pre">Field.widget</span></tt>
+factory.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.forms.form.BoundField.data">
+<tt class="descname">data</tt><a class="headerlink" href="#lux.forms.form.BoundField.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data for this BoundField,
+or None if it wasn&#8217;t given.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lux.forms.form.MakeForm">
+<tt class="descclassname">lux.forms.form.</tt><tt class="descname">MakeForm</tt><big>(</big><em>name</em>, <em>fields</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/forms/form#MakeForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.form.MakeForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a form class from a list of fields</p>
+</dd></dl>
+
 </div>
 <div class="section" id="module-lux.forms.fields">
 <span id="fields"></span><h2>Fields<a class="headerlink" href="#module-lux.forms.fields" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="field">
-<h3>Field<a class="headerlink" href="#field" title="Permalink to this headline">¶</a></h3>
+<dl class="exception">
+<dt id="lux.forms.fields.ValidationError">
+<em class="property">exception </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">ValidationError</tt><big>(</big><em>msg=''</em>, <em>field_name=None</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ValidationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ValidationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when a <tt class="xref py py-class docutils literal"><span class="pre">djpcms.Form</span></tt> instance does not validate.</p>
+<dl class="attribute">
+<dt id="lux.forms.fields.ValidationError.field_name">
+<tt class="descname">field_name</tt><a class="headerlink" href="#lux.forms.fields.ValidationError.field_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the <a class="reference internal" href="#lux.forms.fields.Field" title="lux.forms.fields.Field"><tt class="xref py py-class docutils literal"><span class="pre">Field</span></tt></a> which this error refers to.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lux.forms.fields.field_widget">
+<tt class="descclassname">lux.forms.fields.</tt><tt class="descname">field_widget</tt><big>(</big><em>tag</em>, <em>**defaults</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#field_widget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.field_widget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an <tt class="xref py py-class docutils literal"><span class="pre">Html</span></tt> factory function for <tt class="docutils literal"><span class="pre">tag</span></tt> and a given
+dictionary of <tt class="docutils literal"><span class="pre">defaults</span></tt> parameters. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">input_factory</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;text&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span> <span class="o">=</span> <span class="n">input_factory</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#39;bla&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="class">
 <dt id="lux.forms.fields.Field">
-<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">Field</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>disabled=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#Field"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.Field" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">Field</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#Field"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.Field" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base class for all <tt class="xref py py-class docutils literal"><span class="pre">Form</span></tt> fields.
 Field are specified as attribute of a form, for example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">forms</span>
@@ -322,14 +437,14 @@ Field are specified as attribute of a form, for example:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>required</strong> &#8211; set the <a class="reference internal" href="#lux.forms.fields.Field.required" title="lux.forms.fields.Field.required"><tt class="xref py py-attr docutils literal"><span class="pre">required</span></tt></a> attribute.</li>
 <li><strong>default</strong> &#8211; set the <a class="reference internal" href="#lux.forms.fields.Field.default" title="lux.forms.fields.Field.default"><tt class="xref py py-attr docutils literal"><span class="pre">default</span></tt></a> attribute.</li>
 <li><strong>initial</strong> &#8211; set the <a class="reference internal" href="#lux.forms.fields.Field.initial" title="lux.forms.fields.Field.initial"><tt class="xref py py-attr docutils literal"><span class="pre">initial</span></tt></a> attribute.</li>
-<li><strong>widget</strong> &#8211; Optional callable to override the <a class="reference internal" href="#lux.forms.fields.Field.widget" title="lux.forms.fields.Field.widget"><tt class="xref py py-attr docutils literal"><span class="pre">widget</span></tt></a> attribute.
-If supplied it must accept this field as first parameter.
+<li><strong>widget</strong> &#8211; Optional callable to override the <a class="reference internal" href="#lux.forms.fields.Field.widget" title="lux.forms.fields.Field.widget"><tt class="xref py py-attr docutils literal"><span class="pre">widget</span></tt></a>
+attribute. If supplied it must accept this field as first parameter.
 Check the <a class="reference internal" href="#lux.forms.fields.field_widget" title="lux.forms.fields.field_widget"><tt class="xref py py-func docutils literal"><span class="pre">field_widget()</span></tt></a> factory for an example signature.</li>
-<li><strong>wrong_value_message</strong> &#8211; callable which receive the field and the field
-value when to produce a message when the <tt class="docutils literal"><span class="pre">value</span></tt> did not validate.</li>
+<li><strong>wrong_value_message</strong> &#8211; callable which receive the field and
+the field value when to produce a message when the <tt class="docutils literal"><span class="pre">value</span></tt>
+did not validate.</li>
 </ul>
 </td>
 </tr>
@@ -394,8 +509,7 @@ only parameter.</p>
 <dt id="lux.forms.fields.Field.handle_params">
 <tt class="descname">handle_params</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#Field.handle_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.Field.handle_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called during initialization for handling extra key-valued
-parameters. By default it will raise an error if extra parameters
-are available. Override for customized behaviour.</p>
+parameters.</p>
 </dd></dl>
 
 <dl class="method">
@@ -474,12 +588,9 @@ attribute. By default return <tt class="docutils literal"><span class="pre">None
 
 </dd></dl>
 
-</div>
-<div class="section" id="charfield">
-<h3>CharField<a class="headerlink" href="#charfield" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.forms.fields.CharField">
-<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">CharField</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>disabled=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#CharField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.CharField" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">CharField</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#CharField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.CharField" title="Permalink to this definition">¶</a></dt>
 <dd><p>A text <a class="reference internal" href="#lux.forms.fields.Field" title="lux.forms.fields.Field"><tt class="xref py py-class docutils literal"><span class="pre">Field</span></tt></a> which introduces three
 optional parameter (attribute):</p>
 <dl class="attribute">
@@ -515,127 +626,182 @@ For example, if <tt class="docutils literal"><span class="pre">toslug</span></tt
 
 </dd></dl>
 
-</div>
-<div class="section" id="integerfield">
-<h3>IntegerField<a class="headerlink" href="#integerfield" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="lux.forms.fields.IntegerField">
-<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">IntegerField</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>disabled=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#IntegerField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.IntegerField" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="floatfield">
-<h3>FloatField<a class="headerlink" href="#floatfield" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="lux.forms.fields.FloatField">
-<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">FloatField</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>disabled=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#FloatField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.FloatField" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">FloatField</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#FloatField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.FloatField" title="Permalink to this definition">¶</a></dt>
 <dd><p>A field which normalises to a Python float value</p>
 </dd></dl>
 
-</div>
-<div class="section" id="datefield">
-<h3>DateField<a class="headerlink" href="#datefield" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
-<dt id="lux.forms.fields.DateField">
-<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">DateField</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>disabled=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#DateField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.DateField" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="datetimefield">
-<h3>DateTimeField<a class="headerlink" href="#datetimefield" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="lux.forms.fields.DateTimeField">
-<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">DateTimeField</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>disabled=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#DateTimeField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.DateTimeField" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="booleanfield">
-<h3>BooleanField<a class="headerlink" href="#booleanfield" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="lux.forms.fields.BooleanField">
-<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">BooleanField</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>disabled=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#BooleanField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.BooleanField" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="lux.forms.fields.BooleanField.clean">
-<tt class="descname">clean</tt><big>(</big><em>value</em>, <em>bfield</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#BooleanField.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.BooleanField.clean" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clean the field value</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="hiddenfield">
-<h3>HiddenField<a class="headerlink" href="#hiddenfield" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="lux.forms.fields.HiddenField">
-<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">HiddenField</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>disabled=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#HiddenField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.HiddenField" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="validationerror">
-<h3>ValidationError<a class="headerlink" href="#validationerror" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="lux.forms.fields.ValidationError">
-<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">ValidationError</tt><big>(</big><em>msg=''</em>, <em>field_name=None</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ValidationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ValidationError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Raised when a <tt class="xref py py-class docutils literal"><span class="pre">djpcms.Form</span></tt> instance does not validate.</p>
+<dt id="lux.forms.fields.ChoiceFieldOptions">
+<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">ChoiceFieldOptions</tt><big>(</big><em>choices</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for handling <a class="reference internal" href="#lux.forms.fields.ChoiceField" title="lux.forms.fields.ChoiceField"><tt class="xref py py-class docutils literal"><span class="pre">ChoiceField</span></tt></a> options. Each
+parameters can be overridden at during initialisation. It can handle both
+queries on models as well as list of two-elements tuples <tt class="docutils literal"><span class="pre">(value,</span> <span class="pre">label)</span></tt>.</p>
 <dl class="attribute">
-<dt id="lux.forms.fields.ValidationError.field_name">
-<tt class="descname">field_name</tt><a class="headerlink" href="#lux.forms.fields.ValidationError.field_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Name of the <a class="reference internal" href="#lux.forms.fields.Field" title="lux.forms.fields.Field"><tt class="xref py py-class docutils literal"><span class="pre">Field</span></tt></a> which this error refers to.</p>
+<dt id="lux.forms.fields.ChoiceFieldOptions.query">
+<tt class="descname">query</tt><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.query" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>In most cases, this is the only attribute required. It can be</dt>
+<dd><ul class="first last simple">
+<li>an iterable over two elements tuples (but not a generator).</li>
+<li>a query on a model</li>
+<li><tt class="docutils literal"><span class="pre">None</span></tt></li>
+<li>a callable returning one of the above. The callable must accept
+a <tt class="xref py py-class docutils literal"><span class="pre">BoundField</span></tt> instance as only parameter.
+It can be a <em>generator function</em>.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.forms.fields.ChoiceFieldOptions.autocomplete">
+<tt class="descname">autocomplete</tt><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.autocomplete" title="Permalink to this definition">¶</a></dt>
+<dd><p>An optional boolean indicating if the field is rendered as
+an autocomplete widget.</p>
+<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.forms.fields.ChoiceFieldOptions.multiple">
+<tt class="descname">multiple</tt><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.multiple" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">True</span></tt> if multiple choices are possible.</p>
+<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.forms.fields.ChoiceFieldOptions.search">
+<tt class="descname">search</tt><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>A flag indicating if the field can be used as a search input in the case
+no choices where made.</p>
+<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.forms.fields.ChoiceFieldOptions.empty_label">
+<tt class="descname">empty_label</tt><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.empty_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>If provided it represents an empty choice</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.forms.fields.ChoiceFieldOptions.all">
+<tt class="descname">all</tt><big>(</big><em>bfield</em>, <em>html=False</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generator of all choices. If <em>html</em> is <tt class="docutils literal"><span class="pre">True</span></tt> it adds the
+<tt class="xref py py-attr docutils literal"><span class="pre">empty_label`</span></tt> if required.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.forms.fields.ChoiceFieldOptions.values">
+<tt class="descname">values</tt><big>(</big><em>bfield</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generator of values in select</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.forms.fields.ChoiceFieldOptions.html_value">
+<tt class="descname">html_value</tt><big>(</big><em>val</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.html_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.html_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert <em>val</em> into a suitable value to be included in the
+widget HTML.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.forms.fields.ChoiceFieldOptions.html_single_value">
+<tt class="descname">html_single_value</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.html_single_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.html_single_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the single <em>value</em> into a suitable html value</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.forms.fields.ChoiceFieldOptions.url">
+<tt class="descname">url</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a url for search.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.forms.fields.ChoiceFieldOptions.clean">
+<tt class="descname">clean</tt><big>(</big><em>value</em>, <em>bfield</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform the cleaning of <em>value</em> for the <tt class="xref py py-class docutils literal"><span class="pre">BoundField</span></tt>
+instance <em>bfield</em>. The <tt class="xref py py-meth docutils literal"><span class="pre">ChoiceField.clean()</span></tt> uses this method to
+clean its values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.forms.fields.ChoiceFieldOptions.get_widget_data">
+<tt class="descname">get_widget_data</tt><big>(</big><em>bfield</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.get_widget_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.get_widget_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the <a class="reference internal" href="#lux.forms.fields.Field.get_widget_data" title="lux.forms.fields.Field.get_widget_data"><tt class="xref py py-meth docutils literal"><span class="pre">Field.get_widget_data()</span></tt></a> method of
+<a class="reference internal" href="#lux.forms.fields.ChoiceField" title="lux.forms.fields.ChoiceField"><tt class="xref py py-class docutils literal"><span class="pre">ChoiceField</span></tt></a>.</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="field-widget">
-<h3>field_widget<a class="headerlink" href="#field-widget" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="lux.forms.fields.field_widget">
-<tt class="descclassname">lux.forms.fields.</tt><tt class="descname">field_widget</tt><big>(</big><em>tag</em>, <em>**defaults</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#field_widget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.field_widget" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an <tt class="xref py py-class docutils literal"><span class="pre">Html</span></tt> factory function for <tt class="docutils literal"><span class="pre">tag</span></tt> and a given
-dictionary of <tt class="docutils literal"><span class="pre">defaults</span></tt> parameters. For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">input_factory</span> <span class="o">=</span> <span class="n">field_widget</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;text&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span> <span class="o">=</span> <span class="n">input_factory</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#39;bla&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
+<dl class="class">
+<dt id="lux.forms.fields.ChoiceField">
+<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">ChoiceField</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceField" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#lux.forms.fields.Field" title="lux.forms.fields.Field"><tt class="xref py py-class docutils literal"><span class="pre">Field</span></tt></a> which validates against a set of <tt class="docutils literal"><span class="pre">choices</span></tt>.</p>
+<p>It has several additional attributes which can be specified
+via the <a class="reference internal" href="#lux.forms.fields.ChoiceFieldOptions" title="lux.forms.fields.ChoiceFieldOptions"><tt class="xref py py-class docutils literal"><span class="pre">ChoiceFieldOptions</span></tt></a> class.</p>
+<dl class="attribute">
+<dt id="lux.forms.fields.ChoiceField.choices">
+<tt class="descname">choices</tt><a class="headerlink" href="#lux.forms.fields.ChoiceField.choices" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of <a class="reference internal" href="#lux.forms.fields.ChoiceFieldOptions" title="lux.forms.fields.ChoiceFieldOptions"><tt class="xref py py-class docutils literal"><span class="pre">ChoiceFieldOptions</span></tt></a> or any of the
+possible values for the <a class="reference internal" href="#lux.forms.fields.ChoiceFieldOptions.query" title="lux.forms.fields.ChoiceFieldOptions.query"><tt class="xref py py-attr docutils literal"><span class="pre">ChoiceFieldOptions.query</span></tt></a>
+attribute.</p>
 </dd></dl>
 
-</div>
+<dl class="method">
+<dt id="lux.forms.fields.ChoiceField.handle_params">
+<tt class="descname">handle_params</tt><big>(</big><em>choices=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceField.handle_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceField.handle_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Choices is an iterable or a callable which takes bound field
+as only argument</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-lux.forms.layouts">
 <span id="layout"></span><h2>Layout<a class="headerlink" href="#module-lux.forms.layouts" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3>Layout<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="lux.forms.layouts.Group">
+<em class="property">class </em><tt class="descclassname">lux.forms.layouts.</tt><tt class="descname">Group</tt><big>(</big><em>*children</em>, <em>**parameters</em><big>)</big><a class="reference internal" href="../modules/lux/forms/layouts#Group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.layouts.Group" title="Permalink to this definition">¶</a></dt>
+<dd><p>A group is a container of a field and its label</p>
+<dl class="method">
+<dt id="lux.forms.layouts.Group.post_process_child">
+<tt class="descname">post_process_child</tt><big>(</big><em>html</em>, <em>child</em>, <em>request</em>, <em>context</em><big>)</big><a class="reference internal" href="../modules/lux/forms/layouts#Group.post_process_child"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.layouts.Group.post_process_child" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterable over Html objects or strings.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lux.forms.layouts.Fieldset">
+<em class="property">class </em><tt class="descclassname">lux.forms.layouts.</tt><tt class="descname">Fieldset</tt><big>(</big><em>*children</em>, <em>**parameters</em><big>)</big><a class="reference internal" href="../modules/lux/forms/layouts#Fieldset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.layouts.Fieldset" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <tt class="xref py py-class docutils literal"><span class="pre">BaseFormLayout</span></tt> class for <tt class="xref py py-class docutils literal"><span class="pre">FormLayout</span></tt>
+components. An instance of this class render one or several
+<tt class="xref py py-class docutils literal"><span class="pre">Field</span></tt> of a form.</p>
+<dl class="method">
+<dt id="lux.forms.layouts.Fieldset.setup">
+<tt class="descname">setup</tt><big>(</big><em>missings</em><big>)</big><a class="reference internal" href="../modules/lux/forms/layouts#Fieldset.setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.layouts.Fieldset.setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the specified fields are available in the form and
+remove available fields from the <em>missings</em> set.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="class">
 <dt id="lux.forms.layouts.Layout">
 <em class="property">class </em><tt class="descclassname">lux.forms.layouts.</tt><tt class="descname">Layout</tt><big>(</big><em>*children</em>, <em>**parameters</em><big>)</big><a class="reference internal" href="../modules/lux/forms/layouts#Layout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.layouts.Layout" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="#lux.forms.layouts.Layout" title="lux.forms.layouts.Layout"><tt class="xref py py-class docutils literal"><span class="pre">Layout</span></tt></a> renders the form into HTML.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>style</strong> &#8211; Optional style name.
-A style handler must be registered via the
-<a class="reference internal" href="#lux.forms.layouts.register_layout_style" title="lux.forms.layouts.register_layout_style"><tt class="xref py py-func docutils literal"><span class="pre">register_layout_style()</span></tt></a> function. It sets the :attr:style:
-attribute</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="lux.forms.layouts.Layout.style">
-<tt class="descname">style</tt><a class="reference internal" href="../modules/lux/forms/layouts#Layout.style"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.layouts.Layout.style" title="Permalink to this definition">¶</a></dt>
-<dd><p>The name of the <a class="reference internal" href="#lux.forms.layouts.LayoutStyle" title="lux.forms.layouts.LayoutStyle"><tt class="xref py py-class docutils literal"><span class="pre">LayoutStyle</span></tt></a> for this <a class="reference internal" href="#lux.forms.layouts.Layout" title="lux.forms.layouts.Layout"><tt class="xref py py-class docutils literal"><span class="pre">Layout</span></tt></a>.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lux.forms.layouts.Layout.ngmodel">
-<tt class="descname">ngmodel</tt><a class="headerlink" href="#lux.forms.layouts.Layout.ngmodel" title="Permalink to this definition">¶</a></dt>
-<dd><p>If <tt class="docutils literal"><span class="pre">True</span></tt>, render the form so that it can be managed by angular.</p>
-</dd></dl>
-
+<dd><p>A <a class="reference internal" href="#lux.forms.layouts.Layout" title="lux.forms.layouts.Layout"><tt class="xref py py-class docutils literal"><span class="pre">Layout</span></tt></a> renders the a <a class="reference internal" href="#lux.forms.form.Form" title="lux.forms.form.Form"><tt class="xref py py-class docutils literal"><span class="pre">Form</span></tt></a> into HTML.</p>
+<p>Each <a class="reference internal" href="#lux.forms.form.Form" title="lux.forms.form.Form"><tt class="xref py py-class docutils literal"><span class="pre">Form</span></tt></a> has a default <a class="reference internal" href="#lux.forms.layouts.Layout" title="lux.forms.layouts.Layout"><tt class="xref py py-class docutils literal"><span class="pre">Layout</span></tt></a>  available at the
+<a class="reference internal" href="#lux.forms.form.Form.layout" title="lux.forms.form.Form.layout"><tt class="xref py py-attr docutils literal"><span class="pre">layout</span></tt></a> class attribute.</p>
 <dl class="attribute">
 <dt id="lux.forms.layouts.Layout.default_element">
 <tt class="descname">default_element</tt><a class="headerlink" href="#lux.forms.layouts.Layout.default_element" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Fieldset</span></tt></p>
+<dd><p>alias of <a class="reference internal" href="#lux.forms.layouts.Fieldset" title="lux.forms.layouts.Fieldset"><tt class="xref py py-class docutils literal"><span class="pre">Fieldset</span></tt></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.forms.layouts.Layout.style">
+<tt class="descname">style</tt><a class="reference internal" href="../modules/lux/forms/layouts#Layout.style"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.layouts.Layout.style" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#lux.forms.layouts.LayoutStyle" title="lux.forms.layouts.LayoutStyle"><tt class="xref py py-class docutils literal"><span class="pre">LayoutStyle</span></tt></a> for this <a class="reference internal" href="#lux.forms.layouts.Layout" title="lux.forms.layouts.Layout"><tt class="xref py py-class docutils literal"><span class="pre">Layout</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
@@ -648,9 +814,12 @@ It can be overwritten to customise behaviour.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="layout-style">
-<h3>Layout style<a class="headerlink" href="#layout-style" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="lux.forms.layouts.register_layout_style">
+<tt class="descclassname">lux.forms.layouts.</tt><tt class="descname">register_layout_style</tt><big>(</big><em>name</em>, <em>handler</em><big>)</big><a class="reference internal" href="../modules/lux/forms/layouts#register_layout_style"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.layouts.register_layout_style" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a new <a class="reference internal" href="#lux.forms.layouts.LayoutStyle" title="lux.forms.layouts.LayoutStyle"><tt class="xref py py-class docutils literal"><span class="pre">LayoutStyle</span></tt></a> for rendring forms.</p>
+</dd></dl>
+
 <dl class="class">
 <dt id="lux.forms.layouts.LayoutStyle">
 <em class="property">class </em><tt class="descclassname">lux.forms.layouts.</tt><tt class="descname">LayoutStyle</tt><a class="reference internal" href="../modules/lux/forms/layouts#LayoutStyle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.layouts.LayoutStyle" title="Permalink to this definition">¶</a></dt>
@@ -666,16 +835,6 @@ layout has a form class <tt class="docutils literal"><span class="pre">form-hori
 
 </dd></dl>
 
-</div>
-<div class="section" id="registering-layouts">
-<h3>Registering layouts<a class="headerlink" href="#registering-layouts" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="lux.forms.layouts.register_layout_style">
-<tt class="descclassname">lux.forms.layouts.</tt><tt class="descname">register_layout_style</tt><big>(</big><em>name</em>, <em>handler</em><big>)</big><a class="reference internal" href="../modules/lux/forms/layouts#register_layout_style"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.layouts.register_layout_style" title="Permalink to this definition">¶</a></dt>
-<dd><p>Register a new <a class="reference internal" href="#lux.forms.layouts.LayoutStyle" title="lux.forms.layouts.LayoutStyle"><tt class="xref py py-class docutils literal"><span class="pre">LayoutStyle</span></tt></a> for rendring forms.</p>
-</dd></dl>
-
-</div>
 </div>
 </div>
 
