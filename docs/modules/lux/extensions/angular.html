@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html data-debug='false' lang='en' prefix='og: http://ogp.me/ns#'>
+<head>
+<title>Lux - Crafting super web applications with Python and AngularJS</title>
+<meta charset='utf-8'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='website' property='og:type'>
+<meta content='http://quantmind.github.io/lux/lux/docs/modules/lux/extensions/angular' property='og:url'>
+<meta content='Lux - Crafting super web applications with Python and AngularJS' property='og:title'>
+<link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico' rel='icon' type='image/x-icon'>
+<link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png' rel='apple-touch-icon' sizes='57x57'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-114.png' rel='apple-touch-icon' sizes='114x114'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='72x72'>
+<link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
+<link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+var luxContext = {"date": "2014-10-22T12-24-38", "navbar": {"collapseWidth": 768}, "oauths": null, "ngModules": ["lux.google", "ngAnimate", "highlight", "ui.router"], "year": 2014, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "dateFormat": "d MMM y", "name": "Lux", "lux_version": "0.1.1-alpha.1", "page": "/lux/docs/*slug", "html5mode": true, "url": "http://quantmind.github.io/lux", "pages": {"/lux/": {"url": "/lux/", "controller": "Html5", "api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site"}, "parent": null, "name": "", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/docs/": {"url": "/lux/docs/", "controller": "Html5", "api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs"}, "parent": "/lux/", "name": "docs", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/*slug": {"url": "/lux/*slug", "controller": "Html5", "api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site"}, "parent": "/lux/", "name": "view", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/docs/*slug": {"url": "/lux/docs/*slug", "controller": "Html5", "api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs"}, "parent": "/lux/docs/", "name": "docsview", "template": "<div class='angular-view' data-dynamic-page=''></div>"}}, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "python_version": "3.4.1", "datetimeFormat": "d MMM y, h:mm:ss a", "media": "/media", "uiRouter": true, "apiUrls": {}};</script>
+<script type="text/javascript">
+var require = {"paths": {}, "deps": ["luxsite/luxsite"], "minify": true, "waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/media/"};
+</script>
+<script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','_gaTrack');
+
+  _gaTrack('create', 'UA-54439804-2', 'auto');
+  _gaTrack('send', 'pageview');
+
+</script></head>
+<body data-ng-controller='Page' data-ng-model='page' data-page=''>
+<div id="page" class="fullpage" data-hash-scroll ng-cloak>
+    <div class='animate-fade angular-view' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_extensions_angular-header">
+    <div class="layer">
+        <div class="page-header">
+            <div class="container fullpage">
+                <div class="row fullpage">
+                    <div class="col-sm-12 text-center">
+                        <breadcrumbs></breadcrumbs>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="page-main">
+    <div class="container">
+        <div class="row">
+            <div class="modules_lux_extensions_angular-main col-md-12">
+                <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
+                    <h1>Source code for lux.extensions.angular</h1><div class="highlight"><pre>
+<span class="sd">&#39;&#39;&#39;\</span>
+<span class="sd">THis extension does not provide any middleware but it is required</span>
+<span class="sd">when using :ref:`lux.js &lt;jsapi&gt;` javascript module and</span>
+<span class="sd">provides the link between AngularJS_ and Python.</span>
+
+<span class="sd">**Required extensions**: :mod:`lux.extensions.ui`</span>
+
+<span class="sd">Usage</span>
+<span class="sd">=========</span>
+
+<span class="sd">Include ``lux.extensions.angular`` into the :setting:`EXTENSIONS` list in your</span>
+<span class="sd">:ref:`config file &lt;parameters&gt;`::</span>
+
+<span class="sd">    EXTENSIONS = [</span>
+<span class="sd">        ...</span>
+<span class="sd">        &#39;lux.extensions.ui&#39;,</span>
+<span class="sd">        &#39;lux.extensions.angular&#39;</span>
+<span class="sd">        ...</span>
+<span class="sd">        ]</span>
+
+<span class="sd">     ANGULAR_UI_ROUTER = True</span>
+
+<span class="sd">There are two different ways to serve html. The default way is to serve without</span>
+<span class="sd">the use of angular `ui-router`_, in which case urls load the whole html5</span>
+<span class="sd">document each time they are accessed.</span>
+
+<span class="sd">.. _spa-router:</span>
+
+<span class="sd">UI-Router</span>
+<span class="sd">=============</span>
+
+<span class="sd">When switching :setting:`ANGULAR_UI_ROUTER` to ``True``, each page served by</span>
+<span class="sd">an angular :class:`.Router` is managed, in javascript, by the `ui-router`_ as</span>
+<span class="sd">a single page application.</span>
+
+
+<span class="sd">.. _AngularJS: https://angularjs.org/</span>
+<span class="sd">.. _`ui-router`: https://github.com/angular-ui/ui-router</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">lux</span>
+<span class="kn">from</span> <span class="nn">lux</span> <span class="kn">import</span> <span class="n">Parameter</span>
+
+<span class="kn">from</span> <span class="nn">pulsar.apps.wsgi</span> <span class="kn">import</span> <span class="n">MediaMixin</span><span class="p">,</span> <span class="n">Html</span><span class="p">,</span> <span class="n">route</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.httpurl</span> <span class="kn">import</span> <span class="n">urlparse</span>
+
+<span class="kn">from</span> <span class="nn">.ui</span> <span class="kn">import</span> <span class="n">add_css</span>
+
+
+<span class="k">class</span> <span class="nc">Extension</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Extension</span><span class="p">):</span>
+
+    <span class="n">_config</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;HTML5_NAVIGATION&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&#39;Enable Html5 navigation&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;ANGULAR_UI_ROUTER&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&#39;Enable Angular ui-router&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;ANGULAR_VIEW_ANIMATE&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span>
+                  <span class="s">&#39;Enable Animation of ui-router views.&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;NAVBAR_COLLAPSE_WIDTH&#39;</span><span class="p">,</span> <span class="mi">768</span><span class="p">,</span>
+                  <span class="s">&#39;Width when to collapse the navbar&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;NGMODULES&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="s">&#39;Angular module to load&#39;</span><span class="p">)</span>
+    <span class="p">]</span>
+
+
+<div class="viewcode-block" id="Router"><a class="viewcode-back" href="../../../api/angular#lux.extensions.angular.Router">[docs]</a><span class="k">class</span> <span class="nc">Router</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Router</span><span class="p">,</span> <span class="n">MediaMixin</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A :class:`.Router` for Angular navigation.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">in_nav</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">has_content</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">angular_view_class</span> <span class="o">=</span> <span class="s">&#39;angular-view&#39;</span>
+    <span class="n">html_body_template</span> <span class="o">=</span> <span class="s">&#39;home.html&#39;</span>
+    <span class="sd">&#39;&#39;&#39;The template for the body part of the Html5 document. In most cases it</span>
+<span class="sd">    is as simple as::</span>
+
+<span class="sd">        $html_main</span>
+
+<span class="sd">    where the ``$html_main`` is replaced by the string created by the</span>
+<span class="sd">    :meth:`build_main` method.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">ngmodules</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="sd">&#39;&#39;&#39;Optional list of angular modules to include</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">uirouter</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="sd">&#39;&#39;&#39;Override the :setting:`ANGULAR_UI_ROUTER` setting for this</span>
+<span class="sd">    :class:`.Router`. If set to ``False`` the `ui-router`_ won&#39;t be used</span>
+<span class="sd">    and the whole html5 document is loaded when accessed.&#39;&#39;&#39;</span>
+    <span class="n">_sitemap</span> <span class="o">=</span> <span class="bp">None</span>
+
+<div class="viewcode-block" id="Router.get"><a class="viewcode-back" href="../../../api/angular#lux.extensions.angular.Router.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;This is the only http method implemented.</span>
+
+<span class="sd">        If this :class:`.Router` is operating in :ref:`ui mode &lt;spa-router&gt;`,</span>
+<span class="sd">        this method performs the following tasks:</span>
+
+<span class="sd">        * Collets children routers operating in :ref:`ui mode &lt;spa-router&gt;`</span>
+<span class="sd">          and build the sitemap used by angular `ui-router`_.</span>
+<span class="sd">        * The ``$html_main`` content, rendered by the :meth:`build_main` method is</span>
+<span class="sd">          wrapped by a ``div`` element::</span>
+
+<span class="sd">            &lt;div id=&quot;seo-view&quot; data-ui-main=&quot;main&quot; class=&quot;hidden&quot;&gt;</span>
+<span class="sd">                $html_main</span>
+<span class="sd">            &lt;/div&gt;</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span>
+        <span class="n">uirouter</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;ANGULAR_UI_ROUTER&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">uirouter</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">html_document</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">data</span><span class="p">({</span><span class="s">&#39;ng-model&#39;</span><span class="p">:</span> <span class="s">&#39;page&#39;</span><span class="p">,</span>
+                       <span class="s">&#39;ng-controller&#39;</span><span class="p">:</span> <span class="s">&#39;Page&#39;</span><span class="p">,</span>
+                       <span class="s">&#39;page&#39;</span><span class="p">:</span> <span class="s">&#39;&#39;</span><span class="p">})</span>
+        <span class="c">#</span>
+        <span class="c"># Add info to jscontext</span>
+        <span class="n">jscontext</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">jscontext</span>
+        <span class="n">jscontext</span><span class="p">[</span><span class="s">&#39;html5mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;HTML5_NAVIGATION&#39;</span><span class="p">]</span>
+        <span class="n">navbar</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">jscontext</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;navbar&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="n">navbar</span><span class="p">[</span><span class="s">&#39;collapseWidth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;NAVBAR_COLLAPSE_WIDTH&#39;</span><span class="p">]</span>
+        <span class="n">jscontext</span><span class="p">[</span><span class="s">&#39;navbar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">navbar</span>
+        <span class="c">#</span>
+        <span class="c"># Build the ui-view main</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_main</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="c">#</span>
+        <span class="n">ngmodules</span> <span class="o">=</span> <span class="n">jscontext</span><span class="p">[</span><span class="s">&#39;ngModules&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">jscontext</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;ngModules&#39;</span><span class="p">,</span> <span class="p">()))</span>
+        <span class="n">ngmodules</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;NGMODULES&#39;</span><span class="p">])</span>
+        <span class="c">#</span>
+        <span class="c"># Using Angular Ui-Router</span>
+        <span class="k">if</span> <span class="n">uirouter</span><span class="p">:</span>
+            <span class="n">jscontext</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sitemap</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">ngmodules</span><span class="p">))</span>
+            <span class="n">jscontext</span><span class="p">[</span><span class="s">&#39;page&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">router_href</span><span class="p">(</span><span class="n">app</span><span class="p">,</span>
+                                            <span class="n">request</span><span class="o">.</span><span class="n">app_handler</span><span class="o">.</span><span class="n">full_route</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ngmodules</span><span class="p">:</span>
+            <span class="n">ngmodules</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ngmodules</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">uirouter</span><span class="p">:</span>
+            <span class="n">main</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uiview</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">main</span><span class="p">,</span> <span class="n">jscontext</span><span class="p">)</span>
+
+        <span class="n">jscontext</span><span class="p">[</span><span class="s">&#39;ngModules&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">jscontext</span><span class="p">[</span><span class="s">&#39;ngModules&#39;</span><span class="p">])</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;html_main&#39;</span><span class="p">:</span> <span class="n">main</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">html_response</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">html_body_template</span><span class="p">,</span>
+                                 <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Router.build_main"><a class="viewcode-back" href="../../../api/angular#lux.extensions.angular.Router.build_main">[docs]</a>    <span class="k">def</span> <span class="nf">build_main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Build the main view for this router</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="s">&#39;&#39;</span>
+</div>
+<div class="viewcode-block" id="Router.uiview"><a class="viewcode-back" href="../../../api/angular#lux.extensions.angular.Router.uiview">[docs]</a>    <span class="k">def</span> <span class="nf">uiview</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">main</span><span class="p">,</span> <span class="n">jscontext</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Wrap the ``main`` html with a ``ui-view`` container.</span>
+<span class="sd">        Add animation class if specified in :setting:`ANGULAR_VIEW_ANIMATE`.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">main</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">main</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="s">&#39;hidden&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s">&quot;seo-view&quot;</span><span class="p">)</span>
+        <span class="n">div</span> <span class="o">=</span> <span class="n">Html</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">main</span><span class="p">,</span> <span class="n">cn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">angular_view_class</span><span class="p">)</span>
+        <span class="n">animate</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;ANGULAR_VIEW_ANIMATE&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">animate</span><span class="p">:</span>
+            <span class="n">jscontext</span><span class="p">[</span><span class="s">&#39;ngModules&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;ngAnimate&#39;</span><span class="p">)</span>
+            <span class="n">div</span><span class="o">.</span><span class="n">addClass</span><span class="p">(</span><span class="n">animate</span><span class="p">)</span>
+        <span class="n">div</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s">&#39;ui-view&#39;</span><span class="p">,</span> <span class="s">&#39;main&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">div</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Router.state_template"><a class="viewcode-back" href="../../../api/angular#lux.extensions.angular.Router.state_template">[docs]</a>    <span class="k">def</span> <span class="nf">state_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Template for ui-router state associated with this router.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">pass</span>
+</div>
+    <span class="k">def</span> <span class="nf">get_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;Html5&#39;</span>
+
+<div class="viewcode-block" id="Router.angular_page"><a class="viewcode-back" href="../../../api/angular#lux.extensions.angular.Router.angular_page">[docs]</a>    <span class="k">def</span> <span class="nf">angular_page</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">page</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Callback for adding additional data to angular page object</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Router.sitemap"><a class="viewcode-back" href="../../../api/angular#lux.extensions.angular.Router.sitemap">[docs]</a>    <span class="k">def</span> <span class="nf">sitemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">ngmodules</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Build the sitemap used by angular `ui-router`_</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span>
+        <span class="k">if</span> <span class="n">root</span><span class="o">.</span><span class="n">_sitemap</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">ngmodules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;ui.router&#39;</span><span class="p">)</span>
+            <span class="n">sitemap</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;hrefs&#39;</span><span class="p">:</span> <span class="p">[],</span>
+                       <span class="s">&#39;pages&#39;</span><span class="p">:</span> <span class="p">{},</span>
+                       <span class="s">&#39;uiRouter&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+                       <span class="s">&#39;ngModules&#39;</span><span class="p">:</span> <span class="n">ngmodules</span><span class="p">}</span>
+            <span class="n">add_to_sitemap</span><span class="p">(</span><span class="n">sitemap</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>
+            <span class="n">root</span><span class="o">.</span><span class="n">_sitemap</span> <span class="o">=</span> <span class="n">sitemap</span>
+        <span class="k">return</span> <span class="n">root</span><span class="o">.</span><span class="n">_sitemap</span>
+</div>
+    <span class="k">def</span> <span class="nf">childname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;</span><span class="si">%s%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">else</span> <span class="n">prefix</span>
+
+<div class="viewcode-block" id="Router.instance_url"><a class="viewcode-back" href="../../../api/angular#lux.extensions.angular.Router.instance_url">[docs]</a>    <span class="k">def</span> <span class="nf">instance_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Return the url for editing the ``instance``</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">pass</span>
+</div>
+    <span class="k">def</span> <span class="nf">make_router</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cls</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">cls</span> <span class="o">=</span> <span class="n">cls</span> <span class="ow">or</span> <span class="n">Router</span>
+        <span class="k">if</span> <span class="n">cls</span> <span class="ow">is</span> <span class="n">Router</span> <span class="ow">and</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;get&#39;</span><span class="p">:</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="s">&#39;build_main&#39;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Router</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">make_router</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="n">handler</span><span class="p">,</span> <span class="n">cls</span><span class="o">=</span><span class="n">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+</div>
+<span class="k">def</span> <span class="nf">router_href</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">route</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_angular_route</span><span class="p">(</span><span class="n">route</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">url</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;/</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">url</span> <span class="k">if</span> <span class="n">route</span><span class="o">.</span><span class="n">is_leaf</span> <span class="k">else</span> <span class="s">&#39;/</span><span class="si">%s</span><span class="s">/&#39;</span> <span class="o">%</span> <span class="n">url</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;/&#39;</span>
+    <span class="n">site_url</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;SITE_URL&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">site_url</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">site_url</span> <span class="o">+</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">path</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">url</span>
+
+
+<span class="k">def</span> <span class="nf">_angular_route</span><span class="p">(</span><span class="n">route</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">is_dynamic</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">route</span><span class="o">.</span><span class="n">breadcrumbs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_dynamic</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">route</span><span class="o">.</span><span class="n">_converters</span><span class="p">[</span><span class="n">val</span><span class="p">]</span>
+            <span class="k">yield</span> <span class="s">&#39;*</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">val</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">regex</span> <span class="o">==</span> <span class="s">&#39;.*&#39;</span> <span class="k">else</span> <span class="s">&#39;:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">val</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">val</span>
+
+
+<span class="k">def</span> <span class="nf">add_to_sitemap</span><span class="p">(</span><span class="n">sitemap</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">router</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="c"># Router variables</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">router</span><span class="p">,</span> <span class="n">Router</span><span class="p">):</span>
+        <span class="k">return</span>
+    <span class="n">uirouter</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;ANGULAR_UI_ROUTER&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">router</span><span class="o">.</span><span class="n">uirouter</span>
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">uirouter</span> <span class="ow">or</span> 
+            <span class="p">(</span><span class="n">router</span><span class="o">.</span><span class="n">parent</span> <span class="ow">and</span>
+             <span class="n">router</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">html_body_template</span> <span class="o">!=</span> <span class="n">router</span><span class="o">.</span><span class="n">html_body_template</span><span class="p">)):</span>
+        <span class="k">return</span>
+    
+    <span class="n">href</span> <span class="o">=</span> <span class="n">router_href</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">router</span><span class="o">.</span><span class="n">full_route</span><span class="p">)</span>
+    <span class="c">#</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;url&#39;</span><span class="p">:</span> <span class="n">href</span><span class="p">,</span>
+            <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="n">router</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="n">router</span><span class="o">.</span><span class="n">state_template</span><span class="p">(</span><span class="n">app</span><span class="p">),</span>
+            <span class="s">&#39;api&#39;</span><span class="p">:</span> <span class="n">router</span><span class="o">.</span><span class="n">get_api_info</span><span class="p">(</span><span class="n">app</span><span class="p">),</span>
+            <span class="s">&#39;controller&#39;</span><span class="p">:</span> <span class="n">router</span><span class="o">.</span><span class="n">get_controller</span><span class="p">(</span><span class="n">app</span><span class="p">),</span>
+            <span class="s">&#39;parent&#39;</span><span class="p">:</span> <span class="n">parent</span><span class="p">}</span>
+    <span class="n">router</span><span class="o">.</span><span class="n">angular_page</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
+    <span class="n">sitemap</span><span class="p">[</span><span class="s">&#39;hrefs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">href</span><span class="p">)</span>
+    <span class="n">sitemap</span><span class="p">[</span><span class="s">&#39;pages&#39;</span><span class="p">][</span><span class="n">href</span><span class="p">]</span> <span class="o">=</span> <span class="n">page</span>
+    <span class="k">if</span> <span class="n">router</span><span class="o">.</span><span class="n">ngmodules</span><span class="p">:</span>
+        <span class="n">sitemap</span><span class="p">[</span><span class="s">&#39;ngModules&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">router</span><span class="o">.</span><span class="n">ngmodules</span><span class="p">)</span>
+    <span class="c">#</span>
+    <span class="c"># Loop over children routes</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">router</span><span class="o">.</span><span class="n">routes</span><span class="p">:</span>
+        <span class="c">#</span>
+        <span class="c"># This is the first child</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">parent</span><span class="p">:</span>
+            <span class="n">getmany</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">apiname</span> <span class="o">=</span> <span class="n">router</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">add_to_sitemap</span><span class="p">(</span><span class="n">sitemap</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">href</span><span class="p">)</span>
+</pre></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='small hidden-print text-muted' id='page-footer'>
+    <div class='container'>
+        <div class='row'>
+            <div class='block col-sm-5'>
+                <div class='hidden-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+                <div class='text-center visible-xs'>
+                    <ul class="fa-ul text-left">
+    <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
+    <li>Site build with Lux on python 3.4.1</li>
+    <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
+    <li><a href="http://quantmind.github.io/lux/docs/EXTENSIONS/">Extensions</a></li>
+    <li><a href="http://quantmind.github.io/lux/images">Images</a></li>
+</ul>
+                </div>
+            </div>
+            <div class='block col-sm-2 text-center'>
+                <div class='hidden-xs'>
+                    <p><a href='#top' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+                <div class='visible-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+            </div>
+            <div class='block col-sm-5'>
+                <div class='text-right hidden-xs'>
+                    <p><a href='https://twitter.com/quantmind' title='Follow quantmind on twitter'>
+<i class='fa fa-twitter fa-2x'></i></a>
+<a href='https://plus.google.com/+QuantmindPlus' title='Follow quantmind on google+'>
+<i class='fa fa-google-plus-square fa-2x'></i></a>
+<a href='https://www.facebook.com/quantmind' title='Follow quantmind on facebook'>
+<i class='fa fa-facebook-square fa-2x'></i></a>
+<a href='https://github.com/quantmind/lux' title='Lux on github'>
+<i class='fa fa-github fa-2x'></i></a></p>
+                </div>
+                <div class='text-center visible-xs'>
+                    <p><a href='#top' title="Lux" class="hover-opacity">
+    <img height=50 title='Lux' src='http://quantmind.github.io/lux/media/luxsite/lux.png' alt='Lux'>
+</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div></div>
+    <navbar data-options='lux.context.navbar'></navbar>
+</div></body>
+</html>

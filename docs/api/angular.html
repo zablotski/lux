@@ -17,9 +17,9 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"name": "Lux", "dateFormat": "d MMM y", "uiRouter": true, "media": "/media", "date": "2014-10-20T21-41-43", "ngModules": ["ngAnimate", "highlight", "lux.google", "ui.router"], "oauths": null, "lux_version": "0.1.1-alpha.1", "navbar": {"collapseWidth": 768}, "datetimeFormat": "d MMM y, h:mm:ss a", "python_version": "3.4.1", "html5mode": true, "page": "/lux/docs/*slug", "url": "http://quantmind.github.io/lux", "year": 2014, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "apiUrls": {}, "pages": {"/lux/docs/*slug": {"name": "docsview", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "url": "/lux/docs/*slug", "parent": "/lux/docs/", "target": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "controller": "Html5"}, "/lux/docs/": {"name": "docs", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "url": "/lux/docs/", "parent": "/lux/", "target": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "controller": "Html5"}, "/lux/": {"name": "", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "url": "/lux/", "parent": null, "target": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "controller": "Html5"}, "/lux/*slug": {"name": "view", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "url": "/lux/*slug", "parent": "/lux/", "target": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "controller": "Html5"}}, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"]};</script>
+var luxContext = {"date": "2014-10-22T12-24-38", "navbar": {"collapseWidth": 768}, "oauths": null, "ngModules": ["lux.google", "ngAnimate", "highlight", "ui.router"], "year": 2014, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/*slug"], "dateFormat": "d MMM y", "name": "Lux", "lux_version": "0.1.1-alpha.1", "page": "/lux/docs/*slug", "html5mode": true, "url": "http://quantmind.github.io/lux", "pages": {"/lux/": {"url": "/lux/", "controller": "Html5", "api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site"}, "parent": null, "name": "", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/docs/": {"url": "/lux/docs/", "controller": "Html5", "api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs"}, "parent": "/lux/", "name": "docs", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/*slug": {"url": "/lux/*slug", "controller": "Html5", "api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site"}, "parent": "/lux/", "name": "view", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/docs/*slug": {"url": "/lux/docs/*slug", "controller": "Html5", "api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs"}, "parent": "/lux/docs/", "name": "docsview", "template": "<div class='angular-view' data-dynamic-page=''></div>"}}, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "python_version": "3.4.1", "datetimeFormat": "d MMM y, h:mm:ss a", "media": "/media", "uiRouter": true, "apiUrls": {}};</script>
 <script type="text/javascript">
-var require = {"waitSeconds": 200, "deps": ["luxsite/luxsite"], "paths": {}, "baseUrl": "http://quantmind.github.io/lux/media/", "minify": true};
+var require = {"paths": {}, "deps": ["luxsite/luxsite"], "minify": true, "waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/media/"};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -56,9 +56,124 @@ var require = {"waitSeconds": 200, "deps": ["luxsite/luxsite"], "paths": {}, "ba
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
                     <div class="section" id="module-lux.extensions.angular">
 <span id="angularjs-integration"></span><span id="extension-angular"></span><h1>AngularJS Integration<a class="headerlink" href="#module-lux.extensions.angular" title="Permalink to this headline">¶</a></h1>
-<p>This extension is required when using <a class="reference internal" href="../js/#jsapi"><em>lux.js</em></a> javascript module.
-It provides the link between AngularJS and Python.</p>
+<p>THis extension does not provide any middleware but it is required
+when using <a class="reference internal" href="../js/#jsapi"><em>lux.js</em></a> javascript module and
+provides the link between <a class="reference external" href="https://angularjs.org/">AngularJS</a> and Python.</p>
 <p><strong>Required extensions</strong>: <a class="reference internal" href="ui#module-lux.extensions.ui" title="lux.extensions.ui"><tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.ui</span></tt></a></p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Include <tt class="docutils literal"><span class="pre">lux.extensions.angular</span></tt> into the <a class="reference internal" href="params#std:setting-EXTENSIONS"><tt class="xref std std-setting docutils literal"><span class="pre">EXTENSIONS</span></tt></a> list in your
+<a class="reference internal" href="params#parameters"><em>config file</em></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>EXTENSIONS = [
+    ...
+    &#39;lux.extensions.ui&#39;,
+    &#39;lux.extensions.angular&#39;
+    ...
+    ]
+
+ ANGULAR_UI_ROUTER = True
+</pre></div>
+</div>
+<p>There are two different ways to serve html. The default way is to serve without
+the use of angular <a class="reference external" href="https://github.com/angular-ui/ui-router">ui-router</a>, in which case urls load the whole html5
+document each time they are accessed.</p>
+</div>
+<div class="section" id="ui-router">
+<span id="spa-router"></span><h2>UI-Router<a class="headerlink" href="#ui-router" title="Permalink to this headline">¶</a></h2>
+<p>When switching <a class="reference internal" href="params#std:setting-ANGULAR_UI_ROUTER"><tt class="xref std std-setting docutils literal"><span class="pre">ANGULAR_UI_ROUTER</span></tt></a> to <tt class="docutils literal"><span class="pre">True</span></tt>, each page served by
+an angular <a class="reference internal" href="#lux.extensions.angular.Router" title="lux.extensions.angular.Router"><tt class="xref py py-class docutils literal"><span class="pre">Router</span></tt></a> is managed, in javascript, by the <a class="reference external" href="https://github.com/angular-ui/ui-router">ui-router</a> as
+a single page application.</p>
+<dl class="class">
+<dt id="lux.extensions.angular.Router">
+<em class="property">class </em><tt class="descclassname">lux.extensions.angular.</tt><tt class="descname">Router</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/angular#Router"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.angular.Router" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#lux.extensions.angular.Router" title="lux.extensions.angular.Router"><tt class="xref py py-class docutils literal"><span class="pre">Router</span></tt></a> for Angular navigation.</p>
+<dl class="attribute">
+<dt id="lux.extensions.angular.Router.html_body_template">
+<tt class="descname">html_body_template</tt><em class="property"> = 'home.html'</em><a class="headerlink" href="#lux.extensions.angular.Router.html_body_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>The template for the body part of the Html5 document. In most cases it
+is as simple as:</p>
+<div class="highlight-python"><div class="highlight"><pre>$html_main
+</pre></div>
+</div>
+<p>where the <tt class="docutils literal"><span class="pre">$html_main</span></tt> is replaced by the string created by the
+<a class="reference internal" href="#lux.extensions.angular.Router.build_main" title="lux.extensions.angular.Router.build_main"><tt class="xref py py-meth docutils literal"><span class="pre">build_main()</span></tt></a> method.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.angular.Router.ngmodules">
+<tt class="descname">ngmodules</tt><em class="property"> = None</em><a class="headerlink" href="#lux.extensions.angular.Router.ngmodules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional list of angular modules to include</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.extensions.angular.Router.uirouter">
+<tt class="descname">uirouter</tt><em class="property"> = True</em><a class="headerlink" href="#lux.extensions.angular.Router.uirouter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override the <a class="reference internal" href="params#std:setting-ANGULAR_UI_ROUTER"><tt class="xref std std-setting docutils literal"><span class="pre">ANGULAR_UI_ROUTER</span></tt></a> setting for this
+<a class="reference internal" href="#lux.extensions.angular.Router" title="lux.extensions.angular.Router"><tt class="xref py py-class docutils literal"><span class="pre">Router</span></tt></a>. If set to <tt class="docutils literal"><span class="pre">False</span></tt> the <a class="reference external" href="https://github.com/angular-ui/ui-router">ui-router</a> won&#8217;t be used
+and the whole html5 document is loaded when accessed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.angular.Router.get">
+<tt class="descname">get</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/angular#Router.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.angular.Router.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the only http method implemented.</p>
+<p>If this <a class="reference internal" href="#lux.extensions.angular.Router" title="lux.extensions.angular.Router"><tt class="xref py py-class docutils literal"><span class="pre">Router</span></tt></a> is operating in <a class="reference internal" href="#spa-router"><em>ui mode</em></a>,
+this method performs the following tasks:</p>
+<ul>
+<li><p class="first">Collets children routers operating in <a class="reference internal" href="#spa-router"><em>ui mode</em></a>
+and build the sitemap used by angular <a class="reference external" href="https://github.com/angular-ui/ui-router">ui-router</a>.</p>
+</li>
+<li><p class="first">The <tt class="docutils literal"><span class="pre">$html_main</span></tt> content, rendered by the <a class="reference internal" href="#lux.extensions.angular.Router.build_main" title="lux.extensions.angular.Router.build_main"><tt class="xref py py-meth docutils literal"><span class="pre">build_main()</span></tt></a> method is
+wrapped by a <tt class="docutils literal"><span class="pre">div</span></tt> element:</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;div id=&quot;seo-view&quot; data-ui-main=&quot;main&quot; class=&quot;hidden&quot;&gt;
+    $html_main
+&lt;/div&gt;
+</pre></div>
+</div>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.angular.Router.build_main">
+<tt class="descname">build_main</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/angular#Router.build_main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.angular.Router.build_main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the main view for this router</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.angular.Router.uiview">
+<tt class="descname">uiview</tt><big>(</big><em>app</em>, <em>main</em>, <em>jscontext</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/angular#Router.uiview"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.angular.Router.uiview" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap the <tt class="docutils literal"><span class="pre">main</span></tt> html with a <tt class="docutils literal"><span class="pre">ui-view</span></tt> container.
+Add animation class if specified in <a class="reference internal" href="params#std:setting-ANGULAR_VIEW_ANIMATE"><tt class="xref std std-setting docutils literal"><span class="pre">ANGULAR_VIEW_ANIMATE</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.angular.Router.state_template">
+<tt class="descname">state_template</tt><big>(</big><em>app</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/angular#Router.state_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.angular.Router.state_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Template for ui-router state associated with this router.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.angular.Router.angular_page">
+<tt class="descname">angular_page</tt><big>(</big><em>app</em>, <em>page</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/angular#Router.angular_page"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.angular.Router.angular_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback for adding additional data to angular page object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.angular.Router.sitemap">
+<tt class="descname">sitemap</tt><big>(</big><em>app</em>, <em>ngmodules</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/angular#Router.sitemap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.angular.Router.sitemap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the sitemap used by angular <a class="reference external" href="https://github.com/angular-ui/ui-router">ui-router</a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.angular.Router.instance_url">
+<tt class="descname">instance_url</tt><big>(</big><em>request</em>, <em>instance</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/angular#Router.instance_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.angular.Router.instance_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the url for editing the <tt class="docutils literal"><span class="pre">instance</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 
                 </div>
