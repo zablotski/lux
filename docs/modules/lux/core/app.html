@@ -17,9 +17,11 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"python_version": "3.4.1", "date": "2014-10-22T13-18-21", "media": "/media", "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "html5mode": true, "apiUrls": {}, "name": "Lux", "ngModules": ["lux.google", "highlight", "ngAnimate", "ui.router"], "oauths": null, "url": "http://quantmind.github.io/lux", "dateFormat": "d MMM y", "uiRouter": true, "lux_version": "0.1.1-alpha.1", "pages": {"/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux/docs/*slug": {"controller": "Html5", "parent": "/lux/docs/", "name": "docsview", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "url": "/lux/docs/*slug", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/": {"controller": "Html5", "parent": null, "name": "", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "url": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/docs/": {"controller": "Html5", "parent": "/lux/", "name": "docs", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "url": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}, "/lux/*slug": {"controller": "Html5", "parent": "/lux/", "name": "view", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "url": "/lux/*slug", "template": "<div class='angular-view' data-dynamic-page=''></div>"}}, "navbar": {"collapseWidth": 768}, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "year": 2014, "datetimeFormat": "d MMM y, h:mm:ss a", "page": "/lux/docs/*slug"};</script>
+var lux = {context: {"ngModules": ["ngAnimate", "lux.google", "highlight", "ui.router"], "lux_version": "0.1.1-alpha.1", "url": "http://quantmind.github.io/lux", "date": "2014-11-03T14-56-29", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "brand": "Lux", "name": "Lux", "datetimeFormat": "d MMM y, h:mm:ss a", "apiUrls": {}, "google": {"analytics": {"ga": "_gaTrack", "id": "UA-54439804-2"}}, "pages": {"/lux/docs/*slug": {"api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs"}, "url": "/lux/docs/*slug", "controller": "Html5", "parent": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "name": "docsview"}, "/lux/docs/": {"api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs"}, "url": "/lux/docs/", "controller": "Html5", "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "name": "docs"}, "/lux/docs": {"redirectTo": "/lux/docs/", "url": "/lux/docs"}, "/lux/": {"api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site"}, "url": "/lux/", "controller": "Html5", "parent": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "name": ""}, "/lux": {"redirectTo": "/lux/", "url": "/lux"}, "/lux/*slug": {"api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site"}, "url": "/lux/*slug", "controller": "Html5", "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "name": "view"}}, "uiRouter": true, "media": "/media", "python_version": "3.4.1", "dateFormat": "d MMM y", "page": "/lux/docs/*slug", "year": 2014, "navbar": {"collapseWidth": 768}, "oauths": null, "html5mode": true}};</script>
+<script type='text/javascript'>
+lux.require=function(a,b){if(lux.angular||!lux.context.uiRouter){var c={callback:b};lux.requireQueue.push(c),require(rcfg.min(a),function(){c.arguments=Array.prototype.slice.call(arguments,0)})}},lux.requireQueue=[],lux.loadRequire=function(a){if(!this.loadingRequire){var b=this.requireQueue,c=[];this.loadingRequire=!0,this.requireQueue=c;for(var d=0;d<b.length;++d)void 0===b[d].arguments?c.push(b[d]):b[d].callback.apply(this.root,b[d].arguments);this.loadingRequire=!1,c.length?setTimeout(function(){lux.loadRequire(a)}):a&&a()}};</script>
 <script type="text/javascript">
-var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/media/", "minify": true, "deps": ["luxsite/luxsite"], "paths": {}};
+var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"]};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -35,7 +37,7 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='animate-fade angular-view' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_core_app-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_core_app-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -73,7 +75,7 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
 <span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">import_module</span>
 
 <span class="kn">import</span> <span class="nn">pulsar</span>
-<span class="kn">from</span> <span class="nn">pulsar</span> <span class="kn">import</span> <span class="n">ImproperlyConfigured</span>
+<span class="kn">from</span> <span class="nn">pulsar</span> <span class="kn">import</span> <span class="n">HttpException</span><span class="p">,</span> <span class="n">ImproperlyConfigured</span>
 <span class="kn">from</span> <span class="nn">pulsar.utils.httpurl</span> <span class="kn">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">remove_double_slash</span>
 <span class="kn">from</span> <span class="nn">pulsar.apps.wsgi</span> <span class="kn">import</span> <span class="p">(</span><span class="n">WsgiHandler</span><span class="p">,</span> <span class="n">HtmlDocument</span><span class="p">,</span> <span class="n">test_wsgi_environ</span><span class="p">,</span>
                               <span class="n">LazyWsgi</span><span class="p">)</span>
@@ -344,16 +346,12 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
 <span class="sd">        Usually there is no need to call directly this method.</span>
 <span class="sd">        Instead one can use the :attr:`.WsgiRequest.html_document`.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="n">handler</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app_handler</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="k">if</span> <span class="n">handler</span><span class="p">:</span>
-            <span class="n">title</span> <span class="o">=</span> <span class="n">handler</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;title&#39;</span><span class="p">)</span>
         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
         <span class="n">site_url</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;SITE_URL&#39;</span><span class="p">]</span>
         <span class="n">media_path</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;MEDIA_URL&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">site_url</span><span class="p">:</span>
             <span class="n">media_path</span> <span class="o">=</span> <span class="n">site_url</span> <span class="o">+</span> <span class="n">media_path</span>
-        <span class="n">doc</span> <span class="o">=</span> <span class="n">HtmlDocument</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span> <span class="ow">or</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;HTML_TITLE&#39;</span><span class="p">],</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">HtmlDocument</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s">&#39;HTML_TITLE&#39;</span><span class="p">],</span>
                            <span class="n">media_path</span><span class="o">=</span><span class="n">media_path</span><span class="p">,</span>
                            <span class="n">minified</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s">&#39;MINIFIED_MEDIA&#39;</span><span class="p">],</span>
                            <span class="n">data_debug</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span>
@@ -361,7 +359,9 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
                            <span class="n">asset_protocol</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s">&#39;ASSET_PROTOCOL&#39;</span><span class="p">])</span>
         <span class="n">doc</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="n">HeadMeta</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">head</span><span class="p">)</span>
         <span class="n">doc</span><span class="o">.</span><span class="n">jscontext</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;dateFormat&#39;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;DATE_FORMAT&#39;</span><span class="p">],</span>
-                         <span class="s">&#39;datetimeFormat&#39;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;DATETIME_FORMAT&#39;</span><span class="p">]}</span>
+                         <span class="s">&#39;datetimeFormat&#39;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;DATETIME_FORMAT&#39;</span><span class="p">],</span>
+                         <span class="s">&#39;media&#39;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;MEDIA_URL&#39;</span><span class="p">],</span>
+                         <span class="s">&#39;brand&#39;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;APP_NAME&#39;</span><span class="p">]}</span>
         <span class="c"># Locale</span>
         <span class="n">lang</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;LOCALE&#39;</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span>
         <span class="n">doc</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&#39;lang&#39;</span><span class="p">,</span> <span class="n">lang</span><span class="p">)</span>
@@ -483,6 +483,8 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
             <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">handlers</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">HttpException</span><span class="p">:</span>
+                    <span class="k">raise</span>
                 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span>
                         <span class="s">&#39;Unhandled exception while firing event </span><span class="si">%s</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span>
@@ -514,6 +516,7 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
     <span class="k">def</span> <span class="nf">format_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dte</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">dte</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;DATETIME_FORMAT&#39;</span><span class="p">])</span>
 
+    <span class="c"># Template redering</span>
 <div class="viewcode-block" id="Application.template_full_path"><a class="viewcode-back" href="../../../api/core#lux.core.app.Application.template_full_path">[docs]</a>    <span class="k">def</span> <span class="nf">template_full_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Return the template full path or None.</span>
 
@@ -524,9 +527,17 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
             <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ext</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;templates&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&#39;Template </span><span class="si">%s</span><span class="s"> not found&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="Application.template"><a class="viewcode-back" href="../../../api/core#lux.core.app.Application.template">[docs]</a>    <span class="k">def</span> <span class="nf">template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Load a template from the file system</span>
+        <span class="sd">&#39;&#39;&#39;Load a template from the file system.</span>
+
+<span class="sd">        The template is must be located in a ``templates`` directory</span>
+<span class="sd">        of at least one of the extensions included in the :setting:EXTENSIONS`</span>
+<span class="sd">        list. The location of the template file is obtained via</span>
+<span class="sd">        the :meth:`template_full_path` method.</span>
+
+<span class="sd">        If the file is not found an empty string is returned.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">template_full_path</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
@@ -535,7 +546,14 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
         <span class="k">return</span> <span class="s">&#39;&#39;</span>
 </div>
 <div class="viewcode-block" id="Application.context"><a class="viewcode-back" href="../../../api/core#lux.core.app.Application.context">[docs]</a>    <span class="k">def</span> <span class="nf">context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Load the ``context`` dictionary for this ``request``</span>
+        <span class="sd">&#39;&#39;&#39;Load the ``context`` dictionary for a ``request``.</span>
+
+<span class="sd">        This function is called every time a template is rendered via the</span>
+<span class="sd">        :meth:`render_template` method is used and a the wsgi ``request``</span>
+<span class="sd">        is passed as key-valued parameter.</span>
+
+<span class="sd">        The initial ``context`` is updated with contribution from</span>
+<span class="sd">        all :setting:`EXTENSIONS` which expose the ``context`` method.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">context</span> <span class="o">=</span> <span class="n">context</span> <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">extensions</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
@@ -543,9 +561,12 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
                 <span class="n">context</span> <span class="o">=</span> <span class="n">ext</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span> <span class="ow">or</span> <span class="n">context</span>
         <span class="k">return</span> <span class="n">context</span>
 </div>
-<div class="viewcode-block" id="Application.render_template"><a class="viewcode-back" href="../../../api/core#lux.core.app.Application.render_template">[docs]</a>    <span class="k">def</span> <span class="nf">render_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">template_name</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Render a template&#39;&#39;&#39;</span>
-        <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="p">(</span><span class="n">template_name</span><span class="p">)</span>
+<div class="viewcode-block" id="Application.render_template"><a class="viewcode-back" href="../../../api/core#lux.core.app.Application.render_template">[docs]</a>    <span class="k">def</span> <span class="nf">render_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Render a template file ``name`` with ``context``</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">request</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="n">rnd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">template_engine</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">rnd</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 </div>
@@ -575,7 +596,8 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
             <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
             <span class="k">if</span> <span class="n">doc</span><span class="o">.</span><span class="n">jscontext</span><span class="p">:</span>
                 <span class="n">jscontext</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">jscontext</span><span class="p">)</span>
-                <span class="n">doc</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">embedded_js</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;var luxContext = </span><span class="si">%s</span><span class="s">;&#39;</span> <span class="o">%</span> <span class="n">jscontext</span><span class="p">)</span>
+                <span class="n">doc</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">embedded_js</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+                    <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;var lux = {context: </span><span class="si">%s</span><span class="s">};&#39;</span> <span class="o">%</span> <span class="n">jscontext</span><span class="p">)</span>
             <span class="n">body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_template</span><span class="p">(</span><span class="n">template_name</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
             <span class="n">doc</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">doc</span><span class="o">.</span><span class="n">http_response</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -589,7 +611,7 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
             <span class="k">return</span> <span class="n">base</span> <span class="k">if</span> <span class="n">path</span> <span class="o">==</span> <span class="s">&#39;/&#39;</span> <span class="k">else</span> <span class="s">&#39;</span><span class="si">%s%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">path</span>
-        </div>
+</div>
 <div class="viewcode-block" id="Application.media_url"><a class="viewcode-back" href="../../../api/core#lux.core.app.Application.media_url">[docs]</a>    <span class="k">def</span> <span class="nf">media_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Build the media url from an optional ``path``</span>
 <span class="sd">        &#39;&#39;&#39;</span>

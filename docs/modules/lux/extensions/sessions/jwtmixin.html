@@ -6,7 +6,7 @@
 <meta content='IE=edge' http-equiv='X-UA-Compatible'>
 <meta content='width=device-width, initial-scale=1' name='viewport'>
 <meta content='website' property='og:type'>
-<meta content='http://quantmind.github.io/lux/lux/docs/' property='og:url'>
+<meta content='http://quantmind.github.io/lux/lux/docs/modules/lux/extensions/sessions/jwtmixin' property='og:url'>
 <meta content='Lux - Crafting super web applications with Python and AngularJS' property='og:title'>
 <link href='http://quantmind.github.io/lux/media/luxsite/favicon.ico' rel='icon' type='image/x-icon'>
 <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
@@ -37,7 +37,7 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer index-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_extensions_sessions_jwtmixin-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -54,57 +54,48 @@ var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/
 <div id="page-main">
     <div class="container">
         <div class="row">
-            <div class="index-main col-md-12">
+            <div class="modules_lux_extensions_sessions_jwtmixin-main col-md-12">
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
-                    <div class="section" id="contents">
-<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="overview">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview#python-requirements">Python Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview#developing-with-lux-js">Developing with lux.js</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/">Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/layout">Project Layout</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/extensions">Writing Extensions</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/">Python API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/core">Core API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/forms">Forms API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/params">Configuration Parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/base">Base Extension</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/ui">Cascading Style Sheets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/angular">AngularJS Integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/static">Static site builder</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/sessions">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/oauth/">Social Integration and OAuth</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/code">Highlight Code</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="js/">Javascript API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="js/nav">lux.nav</a></li>
-<li class="toctree-l2"><a class="reference internal" href="js/scroll">lux.scroll</a></li>
-<li class="toctree-l2"><a class="reference internal" href="js/code">highlight</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="changelog">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="changelog#ver-0-1-0-2014-oct-14">Ver. 0.1.0 - 2014-Oct-14</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference internal" href="genindex"><em>Index</em></a></li>
-<li><a class="reference internal" href="py-modindex"><em>Module Index</em></a></li>
-<li><a class="reference internal" href="search"><em>Search Page</em></a></li>
-</ul>
-</div>
-</div>
+                    <h1>Source code for lux.extensions.sessions.jwtmixin</h1><div class="highlight"><pre>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">jwt</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">jwt</span> <span class="o">=</span> <span class="bp">None</span>
 
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;JWTMixin&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="JWTMixin"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.jwtmixin.JWTMixin">[docs]</a><span class="k">class</span> <span class="nc">JWTMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Mixin for :class:`.AuthBackend` based on JWT_</span>
+
+<span class="sd">    Requires pyjwt_ package.</span>
+
+<span class="sd">    .. _pyjwt: https://pypi.python.org/pypi/PyJWT</span>
+<span class="sd">    .. _JWT: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">app</span>
+        <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;SECRET_KEY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">auth</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;HTTP_AUTHORIZATION&#39;</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">auth</span><span class="p">:</span>
+            <span class="n">auth_type</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="n">auth</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">auth_type</span> <span class="o">=</span> <span class="n">auth_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">auth_type</span> <span class="o">==</span> <span class="s">&#39;bearer&#39;</span> <span class="ow">and</span> <span class="n">jwt</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">secret_key</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">jwt</span><span class="o">.</span><span class="n">ExpiredSignature</span><span class="p">:</span>
+                    <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;JWT token has expired&#39;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">&#39;Could not load user&#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span>
+                    <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">anonymous</span><span class="p">()</span></div>
+</pre></div>
                 </div>
             </div>
         </div>

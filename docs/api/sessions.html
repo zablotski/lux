@@ -17,9 +17,11 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"python_version": "3.4.1", "date": "2014-10-22T13-18-21", "media": "/media", "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "html5mode": true, "apiUrls": {}, "name": "Lux", "ngModules": ["lux.google", "highlight", "ngAnimate", "ui.router"], "oauths": null, "url": "http://quantmind.github.io/lux", "dateFormat": "d MMM y", "uiRouter": true, "lux_version": "0.1.1-alpha.1", "pages": {"/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux/docs/*slug": {"controller": "Html5", "parent": "/lux/docs/", "name": "docsview", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "url": "/lux/docs/*slug", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/": {"controller": "Html5", "parent": null, "name": "", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "url": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/docs/": {"controller": "Html5", "parent": "/lux/", "name": "docs", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "url": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}, "/lux/*slug": {"controller": "Html5", "parent": "/lux/", "name": "view", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "url": "/lux/*slug", "template": "<div class='angular-view' data-dynamic-page=''></div>"}}, "navbar": {"collapseWidth": 768}, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "year": 2014, "datetimeFormat": "d MMM y, h:mm:ss a", "page": "/lux/docs/*slug"};</script>
+var lux = {context: {"hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "navbar": {"collapseWidth": 768}, "datetimeFormat": "d MMM y, h:mm:ss a", "dateFormat": "d MMM y", "year": 2014, "apiUrls": {}, "lux_version": "0.1.1-alpha.1", "media": "/media", "oauths": null, "brand": "Lux", "date": "2014-11-03T14-55-31", "name": "Lux", "html5mode": true, "page": "/lux/docs/*slug", "url": "http://quantmind.github.io/lux", "python_version": "3.4.1", "google": {"analytics": {"ga": "_gaTrack", "id": "UA-54439804-2"}}, "pages": {"/lux/docs/": {"name": "docs", "controller": "Html5", "url": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs", "type": "static"}}, "/lux/": {"name": "", "controller": "Html5", "url": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": null, "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site", "type": "static"}}, "/lux/docs/*slug": {"name": "docsview", "controller": "Html5", "url": "/lux/docs/*slug", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/docs/", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs", "type": "static"}}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux/*slug": {"name": "view", "controller": "Html5", "url": "/lux/*slug", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site", "type": "static"}}}, "ngModules": ["highlight", "ui.router", "lux.google", "ngAnimate"], "uiRouter": true}};</script>
+<script type='text/javascript'>
+lux.require=function(a,b){if(lux.angular||!lux.context.uiRouter){var c={callback:b};lux.requireQueue.push(c),require(rcfg.min(a),function(){c.arguments=Array.prototype.slice.call(arguments,0)})}},lux.requireQueue=[],lux.loadRequire=function(a){if(!this.loadingRequire){var b=this.requireQueue,c=[];this.loadingRequire=!0,this.requireQueue=c;for(var d=0;d<b.length;++d)void 0===b[d].arguments?c.push(b[d]):b[d].callback.apply(this.root,b[d].arguments);this.loadingRequire=!1,c.length?setTimeout(function(){lux.loadRequire(a)}):a&&a()}};</script>
 <script type="text/javascript">
-var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/media/", "minify": true, "deps": ["luxsite/luxsite"], "paths": {}};
+var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "paths": {}, "waitSeconds": 200, "minify": true};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -54,19 +56,289 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
         <div class="row">
             <div class="api_sessions-main col-md-12">
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
-                    <div class="section" id="users-and-sessions">
-<span id="sessions"></span><h1>Users and Sessions<a class="headerlink" href="#users-and-sessions" title="Permalink to this headline">¶</a></h1>
+                    <div class="section" id="authentication">
+<span id="id1"></span><h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-lux.extensions.sessions"></span><p>A <em class="xref std std-ref">lux extension</em> for managing users, sessions
+and permissions. The extension is added by inserting
+<tt class="docutils literal"><span class="pre">lux.extensions.sessions</span></tt> into the
+list of <a class="reference internal" href="params#std:setting-EXTENSIONS"><tt class="xref std std-setting docutils literal"><span class="pre">EXTENSIONS</span></tt></a> of your application.</p>
+<p>There are several <a class="reference internal" href="params#parameters-auth"><em>parameters</em></a> which can be used
+to customise authorisation.</p>
 <div class="section" id="module-lux.extensions.sessions.backend">
-<span id="api"></span><h2>API<a class="headerlink" href="#module-lux.extensions.sessions.backend" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="authentication-backend">
-<h3>Authentication backend<a class="headerlink" href="#authentication-backend" title="Permalink to this headline">¶</a></h3>
+<span id="authentication-backend"></span><h2>Authentication Backend<a class="headerlink" href="#module-lux.extensions.sessions.backend" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lux.extensions.sessions.backend.MessageMixin">
+<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.backend.</tt><tt class="descname">MessageMixin</tt><a class="reference internal" href="../modules/lux/extensions/sessions/backend#MessageMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.MessageMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mixin for a messages</p>
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.MessageMixin.success">
+<tt class="descname">success</tt><big>(</big><em>message</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#MessageMixin.success"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.MessageMixin.success" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store a <tt class="docutils literal"><span class="pre">success</span></tt> message to show to the web user</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.MessageMixin.info">
+<tt class="descname">info</tt><big>(</big><em>message</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#MessageMixin.info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.MessageMixin.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store an <tt class="docutils literal"><span class="pre">info</span></tt> message to show to the web user</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.MessageMixin.warning">
+<tt class="descname">warning</tt><big>(</big><em>message</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#MessageMixin.warning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.MessageMixin.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store a <tt class="docutils literal"><span class="pre">warning</span></tt> message to show to the web user</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.MessageMixin.error">
+<tt class="descname">error</tt><big>(</big><em>message</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#MessageMixin.error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.MessageMixin.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store an <tt class="docutils literal"><span class="pre">error</span></tt> message to show to the web user</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.MessageMixin.message">
+<tt class="descname">message</tt><big>(</big><em>level</em>, <em>message</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#MessageMixin.message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.MessageMixin.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store a <tt class="docutils literal"><span class="pre">message</span></tt> of <tt class="docutils literal"><span class="pre">level</span></tt> to show to the web user.</p>
+<p>Must be implemented by session classes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.MessageMixin.remove_message">
+<tt class="descname">remove_message</tt><big>(</big><em>data</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#MessageMixin.remove_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.MessageMixin.remove_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a message from the list of messages</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lux.extensions.sessions.backend.UserMixin">
+<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.backend.</tt><tt class="descname">UserMixin</tt><a class="reference internal" href="../modules/lux/extensions/sessions/backend#UserMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.UserMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mixin for a User model</p>
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.UserMixin.is_authenticated">
+<tt class="descname">is_authenticated</tt><big>(</big><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#UserMixin.is_authenticated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.UserMixin.is_authenticated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <tt class="docutils literal"><span class="pre">True</span></tt> if the user is is_authenticated</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.UserMixin.get_oauths">
+<tt class="descname">get_oauths</tt><big>(</big><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#UserMixin.get_oauths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.UserMixin.get_oauths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary of oauths account</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.UserMixin.remove_oauth">
+<tt class="descname">remove_oauth</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#UserMixin.remove_oauth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.UserMixin.remove_oauth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a connected oauth account.
+Return <tt class="docutils literal"><span class="pre">True</span></tt> if successfully removed</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.UserMixin.email_user">
+<tt class="descname">email_user</tt><big>(</big><em>subject</em>, <em>message</em>, <em>from_email</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#UserMixin.email_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.UserMixin.email_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends an email to this User</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.UserMixin.todict">
+<tt class="descname">todict</tt><big>(</big><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#UserMixin.todict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.UserMixin.todict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary with information about the user</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="lux.extensions.sessions.backend.UserMixin.get_by_username">
+<em class="property">classmethod </em><tt class="descname">get_by_username</tt><big>(</big><em>username</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#UserMixin.get_by_username"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.UserMixin.get_by_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a user from username</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="lux.extensions.sessions.backend.UserMixin.get_by_oauth">
+<em class="property">classmethod </em><tt class="descname">get_by_oauth</tt><big>(</big><em>name</em>, <em>identifier</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#UserMixin.get_by_oauth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.UserMixin.get_by_oauth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a user from OAuth <tt class="docutils literal"><span class="pre">name</span></tt> with <tt class="docutils literal"><span class="pre">identifier</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lux.extensions.sessions.backend.AuthBackend">
+<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.backend.</tt><tt class="descname">AuthBackend</tt><big>(</big><em>app</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface for authentication backends.</p>
+<p>An authentication backend manage authentication, login, logout and
+several other activities which are required for managing users of
+a web site.</p>
+<p>During a client <tt class="docutils literal"><span class="pre">request</span></tt>, the instance of the authentication backend
+can be accessed from the <tt class="docutils literal"><span class="pre">request</span></tt> cache dictionary:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">backend</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">auth_backend</span>
+</pre></div>
 </div>
-<div class="section" id="session-mixin">
-<h3>Session Mixin<a class="headerlink" href="#session-mixin" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="user-mixin">
-<h3>User Mixin<a class="headerlink" href="#user-mixin" title="Permalink to this headline">¶</a></h3>
-</div>
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.request">
+<tt class="descname">request</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle an incoming request and should be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.response">
+<tt class="descname">response</tt><big>(</big><em>request</em>, <em>response</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle an outgoing <tt class="docutils literal"><span class="pre">response</span></tt> from a <tt class="docutils literal"><span class="pre">request</span></tt>.
+By default it does nothing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.get_user">
+<tt class="descname">get_user</tt><big>(</big><em>request</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.get_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.get_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a user.
+Return <tt class="docutils literal"><span class="pre">None</span></tt> if the user could not be found</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.csrf_token">
+<tt class="descname">csrf_token</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.csrf_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.csrf_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a CSRF token for a given request.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.validate_csrf_token">
+<tt class="descname">validate_csrf_token</tt><big>(</big><em>request</em>, <em>token</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.validate_csrf_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.validate_csrf_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate CSRF</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.anonymous">
+<tt class="descname">anonymous</tt><big>(</big><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.anonymous"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.anonymous" title="Permalink to this definition">¶</a></dt>
+<dd><p>An anonymous user</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.create_user">
+<tt class="descname">create_user</tt><big>(</big><em>request</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.create_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.create_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a standard user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.create_superuser">
+<tt class="descname">create_superuser</tt><big>(</big><em>request</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.create_superuser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.create_superuser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a user with <em>superuser</em> permissions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.has_permission">
+<tt class="descname">has_permission</tt><big>(</big><em>request</em>, <em>level</em>, <em>model</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.has_permission"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.has_permission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for permission on a model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.set_password">
+<tt class="descname">set_password</tt><big>(</big><em>user</em>, <em>password</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.set_password"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.set_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the password for <tt class="docutils literal"><span class="pre">user</span></tt>.
+This method should commit changes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.normalise_email">
+<tt class="descname">normalise_email</tt><big>(</big><em>email</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.normalise_email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.normalise_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalise the address by lowercasing the domain part of the email
+address.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.authenticate">
+<tt class="descname">authenticate</tt><big>(</big><em>request</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.authenticate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate user</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.backend.AuthBackend.logout">
+<tt class="descname">logout</tt><big>(</big><em>request</em>, <em>user=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/backend#AuthBackend.logout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.backend.AuthBackend.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8216;Logout a user</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-lux.extensions.sessions.sessionmixin"></span><dl class="class">
+<dt id="lux.extensions.sessions.sessionmixin.SessionMixin">
+<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.sessionmixin.</tt><tt class="descname">SessionMixin</tt><big>(</big><em>app</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/sessionmixin#SessionMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.sessionmixin.SessionMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mixin for <a class="reference internal" href="#lux.extensions.sessions.backend.AuthBackend" title="lux.extensions.sessions.backend.AuthBackend"><tt class="xref py py-class docutils literal"><span class="pre">AuthBackend</span></tt></a> via sessions.</p>
+<dl class="method">
+<dt id="lux.extensions.sessions.sessionmixin.SessionMixin.get_session">
+<tt class="descname">get_session</tt><big>(</big><em>key</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/sessionmixin#SessionMixin.get_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.sessionmixin.SessionMixin.get_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a session from its key</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.sessionmixin.SessionMixin.session_key">
+<tt class="descname">session_key</tt><big>(</big><em>session</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/sessionmixin#SessionMixin.session_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.sessionmixin.SessionMixin.session_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Session key from session object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.sessionmixin.SessionMixin.create_registration">
+<tt class="descname">create_registration</tt><big>(</big><em>request</em>, <em>user</em>, <em>expiry</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/sessionmixin#SessionMixin.create_registration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.sessionmixin.SessionMixin.create_registration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a registration entry for a user.
+This method should return the registration/activation key.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.sessionmixin.SessionMixin.confirm_registration">
+<tt class="descname">confirm_registration</tt><big>(</big><em>request</em>, <em>**params</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/sessionmixin#SessionMixin.confirm_registration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.sessionmixin.SessionMixin.confirm_registration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Confirm registration</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.sessionmixin.SessionMixin.create_session">
+<tt class="descname">create_session</tt><big>(</big><em>request</em>, <em>user=None</em>, <em>expiry=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/sessionmixin#SessionMixin.create_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.sessionmixin.SessionMixin.create_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new session</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.sessionmixin.SessionMixin.auth_key_used">
+<tt class="descname">auth_key_used</tt><big>(</big><em>key</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/sessionmixin#SessionMixin.auth_key_used"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.sessionmixin.SessionMixin.auth_key_used" title="Permalink to this definition">¶</a></dt>
+<dd><p>The authentication <tt class="docutils literal"><span class="pre">key</span></tt> has been used and this method is
+for setting/updating the backend model accordingly.
+Used during password retrieval and user registration</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.sessionmixin.SessionMixin.login">
+<tt class="descname">login</tt><big>(</big><em>request</em>, <em>user=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/sessionmixin#SessionMixin.login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.sessionmixin.SessionMixin.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Login a user from a model or from post data</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.sessionmixin.SessionMixin.inactive_user_login">
+<tt class="descname">inactive_user_login</tt><big>(</big><em>request</em>, <em>user</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/sessionmixin#SessionMixin.inactive_user_login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.sessionmixin.SessionMixin.inactive_user_login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle a user not yet active</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.sessionmixin.SessionMixin.logout">
+<tt class="descname">logout</tt><big>(</big><em>request</em>, <em>user=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/sessionmixin#SessionMixin.logout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.sessionmixin.SessionMixin.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logout a <tt class="docutils literal"><span class="pre">user</span></tt></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.sessionmixin.SessionMixin.get_or_create_registration">
+<tt class="descname">get_or_create_registration</tt><big>(</big><em>request</em>, <em>user</em>, <em>**kw</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/sessionmixin#SessionMixin.get_or_create_registration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.sessionmixin.SessionMixin.get_or_create_registration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a registration profile for <tt class="docutils literal"><span class="pre">user</span></tt>.</p>
+<p>This method send an email to the user so that the email
+is verified once the user follows the link in the email.</p>
+<p>Usually called after user registration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lux.extensions.sessions.sessionmixin.SessionMixin.send_email_confirmation">
+<tt class="descname">send_email_confirmation</tt><big>(</big><em>request</em>, <em>user</em>, <em>auth_key</em>, <em>email_subject=None</em>, <em>email_message=None</em>, <em>message=None</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/sessionmixin#SessionMixin.send_email_confirmation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.sessionmixin.SessionMixin.send_email_confirmation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send an email to user to confirm his/her email address</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-lux.extensions.sessions.jwtmixin"></span><dl class="class">
+<dt id="lux.extensions.sessions.jwtmixin.JWTMixin">
+<em class="property">class </em><tt class="descclassname">lux.extensions.sessions.jwtmixin.</tt><tt class="descname">JWTMixin</tt><big>(</big><em>app</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/sessions/jwtmixin#JWTMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.sessions.jwtmixin.JWTMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mixin for <a class="reference internal" href="#lux.extensions.sessions.backend.AuthBackend" title="lux.extensions.sessions.backend.AuthBackend"><tt class="xref py py-class docutils literal"><span class="pre">AuthBackend</span></tt></a> based on <a class="reference external" href="http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html">JWT</a></p>
+<p>Requires <a class="reference external" href="https://pypi.python.org/pypi/PyJWT">pyjwt</a> package.</p>
+</dd></dl>
+
 </div>
 </div>
 

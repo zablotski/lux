@@ -17,9 +17,11 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"python_version": "3.4.1", "date": "2014-10-22T13-18-21", "media": "/media", "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "html5mode": true, "apiUrls": {}, "name": "Lux", "ngModules": ["lux.google", "highlight", "ngAnimate", "ui.router"], "oauths": null, "url": "http://quantmind.github.io/lux", "dateFormat": "d MMM y", "uiRouter": true, "lux_version": "0.1.1-alpha.1", "pages": {"/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux/docs/*slug": {"controller": "Html5", "parent": "/lux/docs/", "name": "docsview", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "url": "/lux/docs/*slug", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/": {"controller": "Html5", "parent": null, "name": "", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "url": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux/docs/": {"controller": "Html5", "parent": "/lux/", "name": "docs", "api": {"name": "docs", "url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static"}, "url": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}, "/lux/*slug": {"controller": "Html5", "parent": "/lux/", "name": "view", "api": {"name": "site", "url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static"}, "url": "/lux/*slug", "template": "<div class='angular-view' data-dynamic-page=''></div>"}}, "navbar": {"collapseWidth": 768}, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "year": 2014, "datetimeFormat": "d MMM y, h:mm:ss a", "page": "/lux/docs/*slug"};</script>
+var lux = {context: {"ngModules": ["ngAnimate", "lux.google", "highlight", "ui.router"], "lux_version": "0.1.1-alpha.1", "url": "http://quantmind.github.io/lux", "date": "2014-11-03T14-56-29", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "brand": "Lux", "name": "Lux", "datetimeFormat": "d MMM y, h:mm:ss a", "apiUrls": {}, "google": {"analytics": {"ga": "_gaTrack", "id": "UA-54439804-2"}}, "pages": {"/lux/docs/*slug": {"api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs"}, "url": "/lux/docs/*slug", "controller": "Html5", "parent": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "name": "docsview"}, "/lux/docs/": {"api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs"}, "url": "/lux/docs/", "controller": "Html5", "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "name": "docs"}, "/lux/docs": {"redirectTo": "/lux/docs/", "url": "/lux/docs"}, "/lux/": {"api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site"}, "url": "/lux/", "controller": "Html5", "parent": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "name": ""}, "/lux": {"redirectTo": "/lux/", "url": "/lux"}, "/lux/*slug": {"api": {"type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site"}, "url": "/lux/*slug", "controller": "Html5", "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "name": "view"}}, "uiRouter": true, "media": "/media", "python_version": "3.4.1", "dateFormat": "d MMM y", "page": "/lux/docs/*slug", "year": 2014, "navbar": {"collapseWidth": 768}, "oauths": null, "html5mode": true}};</script>
+<script type='text/javascript'>
+lux.require=function(a,b){if(lux.angular||!lux.context.uiRouter){var c={callback:b};lux.requireQueue.push(c),require(rcfg.min(a),function(){c.arguments=Array.prototype.slice.call(arguments,0)})}},lux.requireQueue=[],lux.loadRequire=function(a){if(!this.loadingRequire){var b=this.requireQueue,c=[];this.loadingRequire=!0,this.requireQueue=c;for(var d=0;d<b.length;++d)void 0===b[d].arguments?c.push(b[d]):b[d].callback.apply(this.root,b[d].arguments);this.loadingRequire=!1,c.length?setTimeout(function(){lux.loadRequire(a)}):a&&a()}};</script>
 <script type="text/javascript">
-var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/media/", "minify": true, "deps": ["luxsite/luxsite"], "paths": {}};
+var require = {"minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "waitSeconds": 200, "paths": {}, "deps": ["luxsite/luxsite"]};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -35,7 +37,7 @@ var require = {"waitSeconds": 200, "baseUrl": "http://quantmind.github.io/lux/me
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='animate-fade angular-view' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer api_forms-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer api_forms-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -493,21 +495,14 @@ providing one.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="lux.forms.fields.Field.widget_attrs">
-<tt class="descname">widget_attrs</tt><a class="headerlink" href="#lux.forms.fields.Field.widget_attrs" title="Permalink to this definition">¶</a></dt>
-<dd><p>dictionary of widget attributes used for setting the widget
-html attributes. For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">widget_attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;title&#39;</span><span class="p">:</span><span class="s">&#39;my title&#39;</span><span class="p">}</span>
-</pre></div>
-</div>
-<p>It can also be a callable which accept a <tt class="xref py py-class docutils literal"><span class="pre">BoundField</span></tt> as the
-only parameter.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">None</span></tt>.</p>
+<dt id="lux.forms.fields.Field.attrs">
+<tt class="descname">attrs</tt><a class="headerlink" href="#lux.forms.fields.Field.attrs" title="Permalink to this definition">¶</a></dt>
+<dd><p>dictionary of attributes.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.forms.fields.Field.handle_params">
-<tt class="descname">handle_params</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#Field.handle_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.Field.handle_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">handle_params</tt><big>(</big><em>validator=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#Field.handle_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.Field.handle_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called during initialization for handling extra key-valued
 parameters.</p>
 </dd></dl>
@@ -633,124 +628,23 @@ For example, if <tt class="docutils literal"><span class="pre">toslug</span></tt
 </dd></dl>
 
 <dl class="class">
-<dt id="lux.forms.fields.ChoiceFieldOptions">
-<em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">ChoiceFieldOptions</tt><big>(</big><em>choices</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions" title="Permalink to this definition">¶</a></dt>
-<dd><p>A class for handling <a class="reference internal" href="#lux.forms.fields.ChoiceField" title="lux.forms.fields.ChoiceField"><tt class="xref py py-class docutils literal"><span class="pre">ChoiceField</span></tt></a> options. Each
-parameters can be overridden at during initialisation. It can handle both
-queries on models as well as list of two-elements tuples <tt class="docutils literal"><span class="pre">(value,</span> <span class="pre">label)</span></tt>.</p>
-<dl class="attribute">
-<dt id="lux.forms.fields.ChoiceFieldOptions.query">
-<tt class="descname">query</tt><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.query" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>In most cases, this is the only attribute required. It can be</dt>
-<dd><ul class="first last simple">
-<li>an iterable over two elements tuples (but not a generator).</li>
-<li>a query on a model</li>
-<li><tt class="docutils literal"><span class="pre">None</span></tt></li>
-<li>a callable returning one of the above. The callable must accept
-a <tt class="xref py py-class docutils literal"><span class="pre">BoundField</span></tt> instance as only parameter.
-It can be a <em>generator function</em>.</li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lux.forms.fields.ChoiceFieldOptions.autocomplete">
-<tt class="descname">autocomplete</tt><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.autocomplete" title="Permalink to this definition">¶</a></dt>
-<dd><p>An optional boolean indicating if the field is rendered as
-an autocomplete widget.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lux.forms.fields.ChoiceFieldOptions.multiple">
-<tt class="descname">multiple</tt><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.multiple" title="Permalink to this definition">¶</a></dt>
-<dd><p><tt class="docutils literal"><span class="pre">True</span></tt> if multiple choices are possible.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lux.forms.fields.ChoiceFieldOptions.search">
-<tt class="descname">search</tt><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.search" title="Permalink to this definition">¶</a></dt>
-<dd><p>A flag indicating if the field can be used as a search input in the case
-no choices where made.</p>
-<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lux.forms.fields.ChoiceFieldOptions.empty_label">
-<tt class="descname">empty_label</tt><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.empty_label" title="Permalink to this definition">¶</a></dt>
-<dd><p>If provided it represents an empty choice</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lux.forms.fields.ChoiceFieldOptions.all">
-<tt class="descname">all</tt><big>(</big><em>bfield</em>, <em>html=False</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.all" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generator of all choices. If <em>html</em> is <tt class="docutils literal"><span class="pre">True</span></tt> it adds the
-<tt class="xref py py-attr docutils literal"><span class="pre">empty_label`</span></tt> if required.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lux.forms.fields.ChoiceFieldOptions.values">
-<tt class="descname">values</tt><big>(</big><em>bfield</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.values" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generator of values in select</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lux.forms.fields.ChoiceFieldOptions.html_value">
-<tt class="descname">html_value</tt><big>(</big><em>val</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.html_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.html_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert <em>val</em> into a suitable value to be included in the
-widget HTML.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lux.forms.fields.ChoiceFieldOptions.html_single_value">
-<tt class="descname">html_single_value</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.html_single_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.html_single_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert the single <em>value</em> into a suitable html value</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lux.forms.fields.ChoiceFieldOptions.url">
-<tt class="descname">url</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.url" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieve a url for search.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lux.forms.fields.ChoiceFieldOptions.clean">
-<tt class="descname">clean</tt><big>(</big><em>value</em>, <em>bfield</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.clean" title="Permalink to this definition">¶</a></dt>
-<dd><p>Perform the cleaning of <em>value</em> for the <tt class="xref py py-class docutils literal"><span class="pre">BoundField</span></tt>
-instance <em>bfield</em>. The <tt class="xref py py-meth docutils literal"><span class="pre">ChoiceField.clean()</span></tt> uses this method to
-clean its values.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lux.forms.fields.ChoiceFieldOptions.get_widget_data">
-<tt class="descname">get_widget_data</tt><big>(</big><em>bfield</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceFieldOptions.get_widget_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceFieldOptions.get_widget_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Called by the <a class="reference internal" href="#lux.forms.fields.Field.get_widget_data" title="lux.forms.fields.Field.get_widget_data"><tt class="xref py py-meth docutils literal"><span class="pre">Field.get_widget_data()</span></tt></a> method of
-<a class="reference internal" href="#lux.forms.fields.ChoiceField" title="lux.forms.fields.ChoiceField"><tt class="xref py py-class docutils literal"><span class="pre">ChoiceField</span></tt></a>.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
 <dt id="lux.forms.fields.ChoiceField">
 <em class="property">class </em><tt class="descclassname">lux.forms.fields.</tt><tt class="descname">ChoiceField</tt><big>(</big><em>required=None</em>, <em>default=None</em>, <em>initial=None</em>, <em>validation_error=None</em>, <em>help_text=None</em>, <em>label=None</em>, <em>widget=None</em>, <em>widget_attrs=None</em>, <em>attrname=None</em>, <em>wrong_value_message=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceField" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference internal" href="#lux.forms.fields.Field" title="lux.forms.fields.Field"><tt class="xref py py-class docutils literal"><span class="pre">Field</span></tt></a> which validates against a set of <tt class="docutils literal"><span class="pre">choices</span></tt>.</p>
+<dd><p>A <a class="reference internal" href="#lux.forms.fields.Field" title="lux.forms.fields.Field"><tt class="xref py py-class docutils literal"><span class="pre">Field</span></tt></a> which validates against a set of <tt class="docutils literal"><span class="pre">options</span></tt>.</p>
 <p>It has several additional attributes which can be specified
-via the <a class="reference internal" href="#lux.forms.fields.ChoiceFieldOptions" title="lux.forms.fields.ChoiceFieldOptions"><tt class="xref py py-class docutils literal"><span class="pre">ChoiceFieldOptions</span></tt></a> class.</p>
+via the <tt class="xref py py-class docutils literal"><span class="pre">ChoiceFieldOptions</span></tt> class.</p>
 <dl class="attribute">
-<dt id="lux.forms.fields.ChoiceField.choices">
-<tt class="descname">choices</tt><a class="headerlink" href="#lux.forms.fields.ChoiceField.choices" title="Permalink to this definition">¶</a></dt>
-<dd><p>An instance of <a class="reference internal" href="#lux.forms.fields.ChoiceFieldOptions" title="lux.forms.fields.ChoiceFieldOptions"><tt class="xref py py-class docutils literal"><span class="pre">ChoiceFieldOptions</span></tt></a> or any of the
-possible values for the <a class="reference internal" href="#lux.forms.fields.ChoiceFieldOptions.query" title="lux.forms.fields.ChoiceFieldOptions.query"><tt class="xref py py-attr docutils literal"><span class="pre">ChoiceFieldOptions.query</span></tt></a>
+<dt id="lux.forms.fields.ChoiceField.options">
+<tt class="descname">options</tt><a class="headerlink" href="#lux.forms.fields.ChoiceField.options" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of <tt class="xref py py-class docutils literal"><span class="pre">ChoiceFieldOptions</span></tt> or any of the
+possible values for the <tt class="xref py py-attr docutils literal"><span class="pre">ChoiceFieldOptions.query</span></tt>
 attribute.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lux.forms.fields.ChoiceField.handle_params">
-<tt class="descname">handle_params</tt><big>(</big><em>choices=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceField.handle_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceField.handle_params" title="Permalink to this definition">¶</a></dt>
-<dd><p>Choices is an iterable or a callable which takes bound field
+<tt class="descname">handle_params</tt><big>(</big><em>options=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/forms/fields#ChoiceField.handle_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.forms.fields.ChoiceField.handle_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>options is an iterable or a callable which takes bound field
 as only argument</p>
 </dd></dl>
 

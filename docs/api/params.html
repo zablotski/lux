@@ -17,9 +17,11 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var luxContext = {"python_version": "3.4.1", "year": 2014, "datetimeFormat": "d MMM y, h:mm:ss a", "uiRouter": true, "url": "http://quantmind.github.io/lux", "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "apiUrls": {}, "oauths": null, "page": "/lux/docs/*slug", "html5mode": true, "lux_version": "0.1.1-alpha.1", "date": "2014-10-22T13-18-02", "dateFormat": "d MMM y", "name": "Lux", "pages": {"/lux/docs/": {"controller": "Html5", "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "name": "docs", "url": "/lux/docs/", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}, "/lux/docs/*slug": {"controller": "Html5", "parent": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "name": "docsview", "url": "/lux/docs/*slug", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}}, "/lux/": {"controller": "Html5", "parent": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "name": "", "url": "/lux/", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}}, "/lux/*slug": {"controller": "Html5", "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "name": "view", "url": "/lux/*slug", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}}}, "ngModules": ["lux.google", "ngAnimate", "ui.router", "highlight"], "navbar": {"collapseWidth": 768}, "media": "/media", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"]};</script>
+var lux = {context: {"hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "navbar": {"collapseWidth": 768}, "datetimeFormat": "d MMM y, h:mm:ss a", "dateFormat": "d MMM y", "year": 2014, "apiUrls": {}, "lux_version": "0.1.1-alpha.1", "media": "/media", "oauths": null, "brand": "Lux", "date": "2014-11-03T14-55-31", "name": "Lux", "html5mode": true, "page": "/lux/docs/*slug", "url": "http://quantmind.github.io/lux", "python_version": "3.4.1", "google": {"analytics": {"ga": "_gaTrack", "id": "UA-54439804-2"}}, "pages": {"/lux/docs/": {"name": "docs", "controller": "Html5", "url": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs", "type": "static"}}, "/lux/": {"name": "", "controller": "Html5", "url": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": null, "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site", "type": "static"}}, "/lux/docs/*slug": {"name": "docsview", "controller": "Html5", "url": "/lux/docs/*slug", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/docs/", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "name": "docs", "type": "static"}}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux/*slug": {"name": "view", "controller": "Html5", "url": "/lux/*slug", "template": "<div class='angular-view' data-dynamic-page=''></div>", "parent": "/lux/", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "name": "site", "type": "static"}}}, "ngModules": ["highlight", "ui.router", "lux.google", "ngAnimate"], "uiRouter": true}};</script>
+<script type='text/javascript'>
+lux.require=function(a,b){if(lux.angular||!lux.context.uiRouter){var c={callback:b};lux.requireQueue.push(c),require(rcfg.min(a),function(){c.arguments=Array.prototype.slice.call(arguments,0)})}},lux.requireQueue=[],lux.loadRequire=function(a){if(!this.loadingRequire){var b=this.requireQueue,c=[];this.loadingRequire=!0,this.requireQueue=c;for(var d=0;d<b.length;++d)void 0===b[d].arguments?c.push(b[d]):b[d].callback.apply(this.root,b[d].arguments);this.loadingRequire=!1,c.length?setTimeout(function(){lux.loadRequire(a)}):a&&a()}};</script>
 <script type="text/javascript">
-var require = {"waitSeconds": 200, "deps": ["luxsite/luxsite"], "paths": {}, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/"};
+var require = {"baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "paths": {}, "waitSeconds": 200, "minify": true};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -127,7 +129,7 @@ available in the standard lux distribution.</p>
 </div>
 <div class="section" id="html-meta">
 <span id="std:setting-HTML_META"></span><h3>HTML_META<a class="headerlink" href="#html-meta" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">&quot;[{'http-equiv':</span> <span class="pre">'X-UA-Compatible',</span> <span class="pre">'content':</span> <span class="pre">'IE=edge'},</span> <span class="pre">{'name':</span> <span class="pre">'viewport',</span> <span class="pre">'content':</span> <span class="pre">'width=device-width,</span> <span class="pre">initial-scale=1'}]&quot;</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;[{'content':</span> <span class="pre">'IE=edge',</span> <span class="pre">'http-equiv':</span> <span class="pre">'X-UA-Compatible'},</span> <span class="pre">{'name':</span> <span class="pre">'viewport',</span> <span class="pre">'content':</span> <span class="pre">'width=device-width,</span> <span class="pre">initial-scale=1'}]&quot;</span></tt></p>
 <p>List of default <tt class="docutils literal"><span class="pre">meta</span></tt> elements to add to the html headelement</p>
 </div>
 <div class="section" id="html-title">
@@ -137,7 +139,7 @@ available in the standard lux distribution.</p>
 </div>
 <div class="section" id="links">
 <span id="std:setting-LINKS"></span><h3>LINKS<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h3>
-<p>Default: <tt class="docutils literal"><span class="pre">&quot;{'python':</span> <span class="pre">'https://www.python.org/',</span> <span class="pre">'pulsar':</span> <span class="pre">'http://pythonhosted.org/pulsar',</span> <span class="pre">'lux':</span> <span class="pre">'https://github.com/quantmind/lux'}&quot;</span></tt></p>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;{'lux':</span> <span class="pre">'https://github.com/quantmind/lux',</span> <span class="pre">'python':</span> <span class="pre">'https://www.python.org/',</span> <span class="pre">'pulsar':</span> <span class="pre">'http://pythonhosted.org/pulsar'}&quot;</span></tt></p>
 <p>Links used throughout the web site</p>
 </div>
 <div class="section" id="locale">
@@ -212,9 +214,6 @@ available in the standard lux distribution.</p>
 <span id="std:setting-USE_ETAGS"></span><h3>USE_ETAGS<a class="headerlink" href="#use-etags" title="Permalink to this headline">¶</a></h3>
 <p>Default: <tt class="docutils literal"><span class="pre">'False'</span></tt></p>
 </div>
-</div>
-<div class="section" id="sessions">
-<h2>Sessions<a class="headerlink" href="#sessions" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="api">
 <h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
@@ -356,6 +355,79 @@ available in the standard lux distribution.</p>
 <span id="std:setting-STATIC_TEMPLATE"></span><h3>STATIC_TEMPLATE<a class="headerlink" href="#static-template" title="Permalink to this headline">¶</a></h3>
 <p>Default: <tt class="docutils literal"><span class="pre">'home.html'</span></tt></p>
 <p>Default static template</p>
+</div>
+</div>
+<div class="section" id="authentication">
+<span id="parameters-auth"></span><h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="account-activation-days">
+<span id="std:setting-ACCOUNT_ACTIVATION_DAYS"></span><h3>ACCOUNT_ACTIVATION_DAYS<a class="headerlink" href="#account-activation-days" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'2'</span></tt></p>
+<p>Number of days the activation code is valid</p>
+</div>
+<div class="section" id="authentication-backend">
+<span id="std:setting-AUTHENTICATION_BACKEND"></span><h3>AUTHENTICATION_BACKEND<a class="headerlink" href="#authentication-backend" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'lux.extensions.sessions.AuthBackend'</span></tt></p>
+<p>Python dotted path to a class used to provide a backend for authentication.</p>
+</div>
+<div class="section" id="auth-salt-size">
+<span id="std:setting-AUTH_SALT_SIZE"></span><h3>AUTH_SALT_SIZE<a class="headerlink" href="#auth-salt-size" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'8'</span></tt></p>
+<p>Salt size for encription algorithm</p>
+</div>
+<div class="section" id="check-username">
+<span id="std:setting-CHECK_USERNAME"></span><h3>CHECK_USERNAME<a class="headerlink" href="#check-username" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'&lt;function</span> <span class="pre">Extension.&lt;lambda&gt;</span> <span class="pre">at</span> <span class="pre">0x109a04b70&gt;'</span></tt></p>
+<p>Check if the username is valid</p>
+</div>
+<div class="section" id="crypt-algorithm">
+<span id="std:setting-CRYPT_ALGORITHM"></span><h3>CRYPT_ALGORITHM<a class="headerlink" href="#crypt-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'lux.utils.crypt.arc4'</span></tt></p>
+<p>Python dotted path to module which provides the <tt class="docutils literal"><span class="pre">encrypt</span></tt> and <tt class="docutils literal"><span class="pre">descript</span></tt> method for password and sensitive data encryption/decription</p>
+</div>
+<div class="section" id="csrf-expiry">
+<span id="std:setting-CSRF_EXPIRY"></span><h3>CSRF_EXPIRY<a class="headerlink" href="#csrf-expiry" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'3600'</span></tt></p>
+<p>Cross Site Request Forgery token expiry in seconds.</p>
+</div>
+<div class="section" id="csrf-param">
+<span id="std:setting-CSRF_PARAM"></span><h3>CSRF_PARAM<a class="headerlink" href="#csrf-param" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'authenticity_token'</span></tt></p>
+<p>CSRF parameter name in forms</p>
+</div>
+<div class="section" id="default-permission-level">
+<span id="std:setting-DEFAULT_PERMISSION_LEVEL"></span><h3>DEFAULT_PERMISSION_LEVEL<a class="headerlink" href="#default-permission-level" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'read'</span></tt></p>
+<p>When no roles has tested positive for permissions, this parameter is used to check if a model has permission for an action</p>
+</div>
+<div class="section" id="permission-levels">
+<span id="std:setting-PERMISSION_LEVELS"></span><h3>PERMISSION_LEVELS<a class="headerlink" href="#permission-levels" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;{'read':</span> <span class="pre">10,</span> <span class="pre">'delete':</span> <span class="pre">40,</span> <span class="pre">'update':</span> <span class="pre">30,</span> <span class="pre">'create':</span> <span class="pre">20}&quot;</span></tt></p>
+<p>When a model</p>
+</div>
+<div class="section" id="reset-password-url">
+<span id="std:setting-RESET_PASSWORD_URL"></span><h3>RESET_PASSWORD_URL<a class="headerlink" href="#reset-password-url" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">''</span></tt></p>
+<p>If given, add the router to handle password resets</p>
+</div>
+<div class="section" id="secret-key">
+<span id="std:setting-SECRET_KEY"></span><h3>SECRET_KEY<a class="headerlink" href="#secret-key" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'secret-key'</span></tt></p>
+<p>A string or bytes used for encripting data. Must be unique to the application and long and random enough</p>
+</div>
+<div class="section" id="session-cookie-name">
+<span id="std:setting-SESSION_COOKIE_NAME"></span><h3>SESSION_COOKIE_NAME<a class="headerlink" href="#session-cookie-name" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'LUX'</span></tt></p>
+<p>Name of the cookie which stores session id</p>
+</div>
+<div class="section" id="session-expiry">
+<span id="std:setting-SESSION_EXPIRY"></span><h3>SESSION_EXPIRY<a class="headerlink" href="#session-expiry" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'604800'</span></tt></p>
+<p>Expiry for a session in seconds.</p>
+</div>
+<div class="section" id="session-messages">
+<span id="std:setting-SESSION_MESSAGES"></span><h3>SESSION_MESSAGES<a class="headerlink" href="#session-messages" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">'True'</span></tt></p>
+<p>Handle session messages</p>
 </div>
 </div>
 <div class="section" id="oauth-and-ogp">
