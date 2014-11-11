@@ -1,6 +1,6 @@
 //      Lux Library - v0.1.0
 
-//      Compiled 2014-11-03.
+//      Compiled 2014-11-11.
 //      Copyright (c) 2014 - Luca Sbardella
 //      Licensed BSD.
 //      For all details and documentation:
@@ -926,7 +926,7 @@ function(angular, root) {
             });
         }]);
 
-angular.module('templates-page', ['page/breadcrumbs.tpl.html', 'page/tooltip.tpl.html']);
+angular.module('templates-page', ['page/breadcrumbs.tpl.html']);
 
 angular.module("page/breadcrumbs.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("page/breadcrumbs.tpl.html",
@@ -936,14 +936,6 @@ angular.module("page/breadcrumbs.tpl.html", []).run(["$templateCache", function(
     "        <span ng-if=\"step.last\">{{step.label}}</span>\n" +
     "    </li>\n" +
     "</ol>");
-}]);
-
-angular.module("page/tooltip.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("page/tooltip.tpl.html",
-    "<div class=\"tooltip in\" ng-show=\"title\">\n" +
-    "    <div class=\"tooltip-arrow\"></div>\n" +
-    "    <div class=\"tooltip-inner\" ng-bind=\"title\"></div>\n" +
-    "</div>");
 }]);
 
     function addPageInfo(page, $scope, dateFilter, $lux) {
@@ -1250,8 +1242,11 @@ angular.module("page/tooltip.tpl.html", []).run(["$templateCache", function($tem
             promise,
             api;
         //
-        if (form.$invalid)
-            return this.showErrors();
+        // Flag the form as submitted
+        form.submitted = true;
+        if (form.$invalid) {
+            return;
+        }
 
         // Get the api information
         if (!target && apiname) {
@@ -1574,6 +1569,8 @@ angular.module("page/tooltip.tpl.html", []).run(["$templateCache", function($tem
                     forEach(field.options, function (opt) {
                         if (typeof(opt) === 'string') {
                             opt = {'value': opt};
+                        } else if (isArray(opt)) {
+                            opt = {'value': opt[0], 'repr': opt[1] || opt[0]};
                         }
                         opt = $($document[0].createElement('option'))
                                 .attr('value', opt.value).html(opt.repr || opt.value);
@@ -1621,12 +1618,15 @@ angular.module("page/tooltip.tpl.html", []).run(["$templateCache", function($tem
                 inputError: function (scope, element) {
                     var field = scope.field,
                         self = this,
+                        // True when the form is submitted
+                        submitted = scope.formName + '.submitted',
+                        // True if the field is dirty
                         dirty = [scope.formName, field.name, '$dirty'].join('.'),
                         invalid = [scope.formName, field.name, '$invalid'].join('.'),
                         error = [scope.formName, field.name, '$error'].join('.') + '.',
                         input = $(element[0].querySelector(scope.info.element)),
                         p = $($document[0].createElement('p'))
-                                .attr('ng-show', dirty + ' && ' + invalid)
+                                .attr('ng-show', '(' + submitted + ' || ' + dirty + ') && ' + invalid)
                                 .addClass('text-danger')
                                 .addClass(scope.formErrorClass)
                                 .html('{{formErrors.' + field.name + '}}'),
@@ -2131,18 +2131,24 @@ angular.module("blog/pagination.tpl.html", []).run(["$templateCache", function($
   $templateCache.put("blog/pagination.tpl.html",
     "<ul class=\"media-list\">\n" +
     "    <li ng-repeat=\"post in items\" class=\"media\" data-ng-controller='BlogEntry'>\n" +
-    "        <a href=\"{{post.html_url}}\" class=\"pull-left hidden-xs dir-entry-image\">\n" +
-    "          <img ng-src=\"{{post.image}}\" alt=\"{{post.title}}\">\n" +
+    "        <a href=\"{{post.html_url}}\">\n" +
+    "            <div class=\"clearfix\">\n" +
+    "                <img ng-src=\"{{post.image}}\" class=\"hidden-xs post-image\" alt=\"{{post.title}}\">\n" +
+    "                <img ng-src=\"{{post.image}}\" alt=\"{{post.title}}\" class=\"visible-xs post-image-xs center-block\">\n" +
+    "                <div class=\"post-body hidden-xs\">\n" +
+    "                    <h3 class=\"media-heading\">{{post.title}}</h3>\n" +
+    "                    <p data-ng-if=\"post.description\">{{post.description}}</p>\n" +
+    "                    <p class=\"text-info small\">by {{post.authors}} on {{post.dateText}}</p>\n" +
+    "                </div>\n" +
+    "                <div class=\"visible-xs\">\n" +
+    "                    <br>\n" +
+    "                    <h3 class=\"media-heading text-center\">{{post.title}}</h3>\n" +
+    "                    <p data-ng-if=\"post.description\">{{post.description}}</p>\n" +
+    "                    <p class=\"text-info small\">by {{post.authors}} on {{post.dateText}}</p>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <hr>\n" +
     "        </a>\n" +
-    "        <a href=\"{{post.html_url}}\" class=\"visible-xs\">\n" +
-    "            <img ng-src=\"{{post.image}}\" alt=\"{{post.title}}\" class=\"dir-entry-image\">\n" +
-    "        </a>\n" +
-    "        <p class=\"visible-xs\"></p>\n" +
-    "        <div class=\"media-body\">\n" +
-    "            <h4 class=\"media-heading\"><a href=\"{{post.html_url}}\">{{post.title}}</a></h4>\n" +
-    "            <p data-ng-if=\"post.description\">{{post.description}}</p>\n" +
-    "            <p class=\"text-info small\">by {{post.authors}} on {{post.dateText}}</p>\n" +
-    "        </div>\n" +
     "    </li>\n" +
     "</ul>");
 }]);
@@ -2152,6 +2158,11 @@ angular.module("blog/pagination.tpl.html", []).run(["$templateCache", function($
     //
     //  Simple blog pagination directives and code highlight with highlight.js
     angular.module('lux.blog', ['templates-blog', 'lux.services', 'highlight', 'lux.scroll'])
+        .value('blogDefaults', {
+            centerMath: true,
+            fallback: true
+        })
+        //
         .controller('BlogEntry', ['$scope', 'dateFilter', '$lux', function ($scope, dateFilter, $lux) {
             var post = $scope.post;
             if (!post) {
@@ -2175,17 +2186,53 @@ angular.module("blog/pagination.tpl.html", []).run(["$templateCache", function($
             };
         })
         //
-        .directive('katex', function () {
+        .directive('katex', ['blogDefaults', function (blogDefaults) {
+
+            function error (element, err) {
+                element.html("<div class='alert alert-danger' role='alert'>" + err + "</div>");
+            }
+
+            function render(katex, text, element) {
+                try {
+                    katex.render(text, element[0]);
+                }
+                catch(err) {
+                    if (blogDefaults.fallback) {
+                        require(['mathjax'], function (mathjax) {
+                            try {
+                                if (text.substring(0, 15) === '\\displaystyle {')
+                                    text = text.substring(15, text.length-1);
+                                element.append(text);
+                                mathjax.Hub.Queue(["Typeset", mathjax.Hub, element[0]]);
+                            } catch (e) {
+                                error(element, err += ' - ' + e);
+                            }
+                        });
+                    } else
+                        error(element, err);
+                }
+            }
+
             return {
+                restrict: 'AE',
+
                 link: function (scope, element, attrs) {
                     var text = element.html();
-                    element.addClass('katex-outer').html();
-                    require(['katex'], function (katex) {
-                        katex.render(text, element[0]);
-                    });
+                    if (element[0].tagName === 'DIV') {
+                        if (blogDefaults.centerMath)
+                            element.addClass('text-center');
+                        text = '\\displaystyle {' + text + '}';
+                        element.addClass('katex-outer');
+                    }
+                    if (typeof(katex) === 'undefined')
+                        require(['katex'], function (katex) {
+                            render(katex, text, element);
+                        });
+                    else
+                        render(katex, text, element);
                 }
             };
-        });
+        }]);
 
     //
     //  Code highlighting with highlight.js
@@ -2231,12 +2278,32 @@ angular.module("blog/pagination.tpl.html", []).run(["$templateCache", function($
 
         });
     };
+
+
+    angular.module('lux.bs', ['mgcrea.ngStrap', 'templates-bs'])
+
+        .config(['$tooltipProvider', function($tooltipProvider) {
+
+            extend($tooltipProvider.defaults, {
+                template: "bs/tooltip.tpl.html"
+            });
+        }]);
+angular.module('templates-bs', ['bs/tooltip.tpl.html']);
+
+angular.module("bs/tooltip.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("bs/tooltip.tpl.html",
+    "<div class=\"tooltip in\" ng-show=\"title\">\n" +
+    "    <div class=\"tooltip-arrow\"></div>\n" +
+    "    <div class=\"tooltip-inner\" ng-bind=\"title\"></div>\n" +
+    "</div>");
+}]);
+
 angular.module('templates-nav', ['nav/link.tpl.html', 'nav/navbar.tpl.html', 'nav/navbar2.tpl.html']);
 
 angular.module("nav/link.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("nav/link.tpl.html",
     "<a ng-if=\"link.title\" ng-href=\"{{link.href}}\" data-title=\"{{link.title}}\" ng-click=\"clickLink($event, link)\"\n" +
-    "data-template=\"page/tooltip.tpl.html\" bs-tooltip=\"tooltip\">\n" +
+    "bs-tooltip=\"tooltip\">\n" +
     "<i ng-if=\"link.icon\" class=\"{{link.icon}}\"></i> {{link.name}}</a>\n" +
     "<a ng-if=\"!link.title\" ng-href=\"{{link.href}}\">\n" +
     "<i ng-if=\"link.icon\" class=\"{{link.icon}}\"></i> {{link.name}}</a>");
@@ -2357,7 +2424,7 @@ angular.module("nav/navbar2.tpl.html", []).run(["$templateCache", function($temp
         fluid: true
     };
 
-    angular.module('lux.nav', ['templates-nav', 'templates-page', 'lux.services', 'mgcrea.ngStrap'])
+    angular.module('lux.nav', ['templates-nav', 'lux.services', 'lux.bs'])
         //
         .service('navService', ['$location', function ($location) {
 
@@ -2472,8 +2539,6 @@ angular.module("nav/navbar2.tpl.html", []).run(["$templateCache", function($temp
         //  Directive for the navbar with sidebar (nivebar2 template)
         .directive('navSideBar', ['$compile', '$document', function ($compile, $document) {
             return {
-                require: 'navbar2',
-
                 templateUrl: "nav/navbar2.tpl.html",
 
                 restrict: 'A',
