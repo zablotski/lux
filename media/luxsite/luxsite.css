@@ -1,15 +1,15 @@
 @charset "UTF-8";
 /*
 ------------------------------------------------------------------
-Created by lux in 0.08 seconds
-Date: 2014-11-11 17:10:51
+Created by lux in 0.21 seconds
+Date: 2014-11-11 17:42:19
 
 http://quantmind.github.io/lux/
 ------------------------------------------------------------------ */
 
 .lazyContainer {
-    position: relative;
     width: 100%;
+    position: relative;
 }
 
 .push-bottom {
@@ -3321,12 +3321,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 .hljs{display:block;overflow-x:auto;padding:0.5em;background:#3f3f3f;color:#dcdcdc;-webkit-text-size-adjust:none}.hljs-keyword,.hljs-tag,.css .hljs-class,.css .hljs-id,.lisp .hljs-title,.nginx .hljs-title,.hljs-request,.hljs-status,.clojure .hljs-attribute{color:#e3ceab}.django .hljs-template_tag,.django .hljs-variable,.django .hljs-filter .hljs-argument{color:#dcdcdc}.hljs-number,.hljs-date{color:#8cd0d3}.dos .hljs-envvar,.dos .hljs-stream,.hljs-variable,.apache .hljs-sqbracket{color:#efdcbc}.dos .hljs-flow,.diff .hljs-change,.python .exception,.python .hljs-built_in,.hljs-literal,.tex .hljs-special{color:#efefaf}.diff .hljs-chunk,.hljs-subst{color:#8f8f8f}.dos .hljs-keyword,.hljs-decorator,.hljs-title,.hljs-type,.diff .hljs-header,.ruby .hljs-class .hljs-parent,.apache .hljs-tag,.nginx .hljs-built_in,.tex .hljs-command,.hljs-prompt{color:#efef8f}.dos .hljs-winutils,.ruby .hljs-symbol,.ruby .hljs-symbol .hljs-string,.ruby .hljs-string{color:#dca3a3}.diff .hljs-deletion,.hljs-string,.hljs-tag .hljs-value,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-javadoc,.smalltalk .hljs-class,.smalltalk .hljs-localvars,.smalltalk .hljs-array,.css .hljs-rules .hljs-value,.hljs-attr_selector,.hljs-pseudo,.apache .hljs-cbracket,.tex .hljs-formula,.coffeescript .hljs-attribute{color:#cc9393}.hljs-shebang,.diff .hljs-addition,.hljs-comment,.hljs-annotation,.hljs-template_comment,.hljs-pi,.hljs-doctype{color:#7f9f7f}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:0.5}
 body {
+    font-size: 18px;
+    font-family: "freight-text-pro",Georgia,Cambria,"Times New Roman",Times,serif;
+    background: #fff;
+    line-height: 1.5;
     font-style: normal;
     color: rgba(0, 0, 0, 0.8);
-    font-family: "freight-text-pro",Georgia,Cambria,"Times New Roman",Times,serif;
-    line-height: 1.5;
-    background: #fff;
-    font-size: 18px;
     height: 101%;
     min-height: 101%;
 }
@@ -3349,9 +3349,9 @@ p.form-error {
 }
 
 .absolute-full {
-    position: absolute;
     bottom: 0;
     top: 0;
+    position: absolute;
 }
 
 .nav.navbar-nav > li > a {
@@ -3393,10 +3393,10 @@ p.form-error {
 }
 @media all and (min-width:768px) {
     .sidebar {
-        position: absolute;
+        margin-top: 51px;
         z-index: 1;
         width: 250px;
-        margin-top: 51px;
+        position: absolute;
     }
 
 }
@@ -3413,10 +3413,10 @@ p.form-error {
 }
 
 .animate-fade.ng-enter {
-    position: absolute;
-    width: 100%;
     top: 0;
     left: 0;
+    width: 100%;
+    position: absolute;
     -webkit-animation: fadeIn 1s;
        -moz-animation: fadeIn 1s;
         -ms-animation: fadeIn 1s;
@@ -3424,10 +3424,10 @@ p.form-error {
 }
 
 .animate-fade.ng-leave {
-    position: absolute;
-    width: 100%;
     top: 0;
     left: 0;
+    width: 100%;
+    position: absolute;
     -webkit-animation: fadeOut 1s;
        -moz-animation: fadeOut 1s;
         -ms-animation: fadeOut 1s;
@@ -3435,15 +3435,15 @@ p.form-error {
 }
 
 .katex-outer {
-    margin-bottom: 10px;
+    margin-right: auto;
     display: block;
     margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 10px;
 }
 
 code.hljs.inline {
-    padding: 2px 4px;
     display: inline;
+    padding: 2px 4px;
 }
 
 dl dd {
@@ -3467,9 +3467,9 @@ dl.function dt tt.descname {
 
 dl.class dt,
 dl.function dt {
+    font-size: 18px;
     font-weight: normal;
     color: #888;
-    font-size: 18px;
 }
 
 .media-list > .media > a {
@@ -3487,10 +3487,10 @@ dl.function dt {
 }
 
 .post-image {
-    height: auto;
-    width: 140px;
-    max-height: 140px;
     float: left;
+    width: 140px;
+    height: auto;
+    max-height: 140px;
 }
 
 .post-image-xs {
@@ -3510,10 +3510,10 @@ dt:hover > a.headerlink {
 }
 
 a.headerlink {
+    visibility: hidden;
     padding: 0 4px;
     text-decoration: none;
     color: #eee;
-    visibility: hidden;
 }
 
 a.headerlink:hover {
@@ -3613,8 +3613,8 @@ html {
 }
 
 #top a.navbar-brand img {
-    height: 50px;
     width: auto;
+    height: 50px;
 }
 
 #page-header {
@@ -3628,10 +3628,10 @@ html {
 }
 
 #page-footer {
-    color: #e5c700;
     background-color: #005a8a;
     min-height: 300px;
     padding-top: 20px;
+    color: #e5c700;
 }
 
 .page-header {
@@ -3640,9 +3640,9 @@ html {
 }
 
 .page-header.index-header {
-    height: 100%;
-    color: #eee;
-    width: 100%;
     background-color: #005a8a;
     min-height: 300px;
+    width: 100%;
+    height: 100%;
+    color: #eee;
 }
