@@ -17,11 +17,12 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var lux = {context: {"name": "Lux", "lux_version": "0.1.1-alpha.1", "date": "2014-11-11T21-51-41", "oauths": null, "uiRouter": true, "dateFormat": "d MMM y", "navbar": {"collapseWidth": 768}, "datetimeFormat": "d MMM y, h:mm:ss a", "url": "http://quantmind.github.io/lux", "page": "/lux/docs/*slug", "pages": {"/lux/*slug": {"name": "view", "controller": "Html5", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/*slug"}, "/lux/docs/": {"name": "docs", "controller": "Html5", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/docs/"}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux/": {"name": "", "controller": "Html5", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "parent": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}, "/lux/docs/*slug": {"name": "docsview", "controller": "Html5", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "parent": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/docs/*slug"}}, "html5mode": true, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "media": "/media", "python_version": "3.4.2", "ngModules": ["ui.router", "lux.google", "highlight", "ngAnimate"], "brand": "Lux", "year": 2014, "apiUrls": {}, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}}};</script>
+var lux = {context: {"oauths": null, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "python_version": "2.7.8", "dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "media": "/media", "brand": "Lux", "year": 2014, "navbar": {"collapseWidth": 768}, "pages": {"/lux/docs/*slug": {"name": "docsview", "parent": "/lux/docs/", "url": "/lux/docs/*slug", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/": {"name": "", "parent": null, "url": "/lux/", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/*slug": {"name": "view", "parent": "/lux/", "url": "/lux/*slug", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/docs/": {"name": "docs", "parent": "/lux/", "url": "/lux/docs/", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}}, "date": "2014-11-24T13-56-43", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "html5mode": true, "ngModules": ["lux.google", "highlight", "ui.router", "ngAnimate"], "datetimeFormat": "d MMM y, h:mm:ss a", "lux_version": "0.1.2-alpha.1", "apiUrls": {}, "page": "/lux/docs/*slug", "uiRouter": "lux.ui.router", "name": "Lux"}};
+</script>
 <script type='text/javascript'>
 lux.require=function(a,b){if(lux.angular||!lux.context.uiRouter){var c={callback:b};lux.requireQueue.push(c),require(rcfg.min(a),function(){c.arguments=Array.prototype.slice.call(arguments,0)})}},lux.requireQueue=[],lux.loadRequire=function(a){if(!this.loadingRequire){var b=this.requireQueue,c=[];this.loadingRequire=!0,this.requireQueue=c;for(var d=0;d<b.length;++d)void 0===b[d].arguments?c.push(b[d]):b[d].callback.apply(this.root,b[d].arguments);this.loadingRequire=!1,c.length?setTimeout(function(){lux.loadRequire(a)}):a&&a()}};</script>
 <script type="text/javascript">
-var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"]};
+var require = {"paths": {}, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "waitSeconds": 200};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -37,7 +38,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='animate-fade angular-view' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer api_angular-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer api_angular-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -58,7 +59,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
                     <div class="section" id="module-lux.extensions.angular">
 <span id="angularjs-integration"></span><span id="extension-angular"></span><h1>AngularJS Integration<a class="headerlink" href="#module-lux.extensions.angular" title="Permalink to this headline">¶</a></h1>
-<p>THis extension does not provide any middleware but it is required
+<p>This extension does not provide any middleware but it is required
 when using <a class="reference internal" href="../js/#jsapi"><em>lux.js</em></a> javascript module and
 provides the link between <a class="reference external" href="https://angularjs.org/">AngularJS</a> and Python.</p>
 <p><strong>Required extensions</strong>: <a class="reference internal" href="ui#module-lux.extensions.ui" title="lux.extensions.ui"><tt class="xref py py-mod docutils literal"><span class="pre">lux.extensions.ui</span></tt></a></p>
@@ -109,7 +110,7 @@ is as simple as:</p>
 
 <dl class="attribute">
 <dt id="lux.extensions.angular.Router.uirouter">
-<tt class="descname">uirouter</tt><em class="property"> = True</em><a class="headerlink" href="#lux.extensions.angular.Router.uirouter" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">uirouter</tt><em class="property"> = 'lux.ui.router'</em><a class="headerlink" href="#lux.extensions.angular.Router.uirouter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Override the <a class="reference internal" href="params#std:setting-ANGULAR_UI_ROUTER"><tt class="xref std std-setting docutils literal"><span class="pre">ANGULAR_UI_ROUTER</span></tt></a> setting for this
 <a class="reference internal" href="#lux.extensions.angular.Router" title="lux.extensions.angular.Router"><tt class="xref py py-class docutils literal"><span class="pre">Router</span></tt></a>. If set to <tt class="docutils literal"><span class="pre">False</span></tt> the <a class="reference external" href="https://github.com/angular-ui/ui-router">ui-router</a> won&#8217;t be used
 and the whole html5 document is loaded when accessed.</p>
@@ -125,8 +126,8 @@ this method performs the following tasks:</p>
 <li><p class="first">Collets children routers operating in <a class="reference internal" href="#spa-router"><em>ui mode</em></a>
 and build the sitemap used by angular <a class="reference external" href="https://github.com/angular-ui/ui-router">ui-router</a>.</p>
 </li>
-<li><p class="first">The <tt class="docutils literal"><span class="pre">$html_main</span></tt> content, rendered by the <a class="reference internal" href="#lux.extensions.angular.Router.build_main" title="lux.extensions.angular.Router.build_main"><tt class="xref py py-meth docutils literal"><span class="pre">build_main()</span></tt></a> method is
-wrapped by a <tt class="docutils literal"><span class="pre">div</span></tt> element:</p>
+<li><p class="first">The <tt class="docutils literal"><span class="pre">$html_main</span></tt> content, rendered by the <a class="reference internal" href="#lux.extensions.angular.Router.build_main" title="lux.extensions.angular.Router.build_main"><tt class="xref py py-meth docutils literal"><span class="pre">build_main()</span></tt></a>
+method is wrapped by a <tt class="docutils literal"><span class="pre">div</span></tt> element:</p>
 <div class="highlight-python"><div class="highlight"><pre>&lt;div id=&quot;seo-view&quot; data-ui-main=&quot;main&quot; class=&quot;hidden&quot;&gt;
     $html_main
 &lt;/div&gt;
@@ -163,7 +164,7 @@ Add animation class if specified in <a class="reference internal" href="params#s
 
 <dl class="method">
 <dt id="lux.extensions.angular.Router.sitemap">
-<tt class="descname">sitemap</tt><big>(</big><em>app</em>, <em>ngmodules</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/angular#Router.sitemap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.angular.Router.sitemap" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">sitemap</tt><big>(</big><em>app</em>, <em>ngmodules</em>, <em>uirouter</em><big>)</big><a class="reference internal" href="../modules/lux/extensions/angular#Router.sitemap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.extensions.angular.Router.sitemap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the sitemap used by angular <a class="reference external" href="https://github.com/angular-ui/ui-router">ui-router</a></p>
 </dd></dl>
 
@@ -190,7 +191,7 @@ Add animation class if specified in <a class="reference internal" href="params#s
                 <div class='hidden-xs'>
                     <ul class="fa-ul text-left">
     <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
-    <li>Site build with Lux on python 3.4.2</li>
+    <li>Site build with Lux on python 2.7.8</li>
     <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
@@ -201,7 +202,7 @@ Add animation class if specified in <a class="reference internal" href="params#s
                 <div class='text-center visible-xs'>
                     <ul class="fa-ul text-left">
     <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
-    <li>Site build with Lux on python 3.4.2</li>
+    <li>Site build with Lux on python 2.7.8</li>
     <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>

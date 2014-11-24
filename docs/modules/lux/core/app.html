@@ -17,11 +17,12 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var lux = {context: {"name": "Lux", "lux_version": "0.1.1-alpha.1", "date": "2014-11-11T21-51-41", "oauths": null, "uiRouter": true, "dateFormat": "d MMM y", "navbar": {"collapseWidth": 768}, "datetimeFormat": "d MMM y, h:mm:ss a", "url": "http://quantmind.github.io/lux", "page": "/lux/docs/*slug", "pages": {"/lux/*slug": {"name": "view", "controller": "Html5", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/*slug"}, "/lux/docs/": {"name": "docs", "controller": "Html5", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/docs/"}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux/": {"name": "", "controller": "Html5", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "parent": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}, "/lux/docs/*slug": {"name": "docsview", "controller": "Html5", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "parent": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/docs/*slug"}}, "html5mode": true, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "media": "/media", "python_version": "3.4.2", "ngModules": ["ui.router", "lux.google", "highlight", "ngAnimate"], "brand": "Lux", "year": 2014, "apiUrls": {}, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}}};</script>
+var lux = {context: {"oauths": null, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "python_version": "2.7.8", "dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "media": "/media", "brand": "Lux", "year": 2014, "navbar": {"collapseWidth": 768}, "pages": {"/lux/docs/*slug": {"name": "docsview", "parent": "/lux/docs/", "url": "/lux/docs/*slug", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/": {"name": "", "parent": null, "url": "/lux/", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/*slug": {"name": "view", "parent": "/lux/", "url": "/lux/*slug", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/docs/": {"name": "docs", "parent": "/lux/", "url": "/lux/docs/", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}}, "date": "2014-11-24T13-56-43", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "html5mode": true, "ngModules": ["lux.google", "highlight", "ui.router", "ngAnimate"], "datetimeFormat": "d MMM y, h:mm:ss a", "lux_version": "0.1.2-alpha.1", "apiUrls": {}, "page": "/lux/docs/*slug", "uiRouter": "lux.ui.router", "name": "Lux"}};
+</script>
 <script type='text/javascript'>
 lux.require=function(a,b){if(lux.angular||!lux.context.uiRouter){var c={callback:b};lux.requireQueue.push(c),require(rcfg.min(a),function(){c.arguments=Array.prototype.slice.call(arguments,0)})}},lux.requireQueue=[],lux.loadRequire=function(a){if(!this.loadingRequire){var b=this.requireQueue,c=[];this.loadingRequire=!0,this.requireQueue=c;for(var d=0;d<b.length;++d)void 0===b[d].arguments?c.push(b[d]):b[d].callback.apply(this.root,b[d].arguments);this.loadingRequire=!1,c.length?setTimeout(function(){lux.loadRequire(a)}):a&&a()}};</script>
 <script type="text/javascript">
-var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"]};
+var require = {"paths": {}, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "waitSeconds": 200};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -37,7 +38,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='animate-fade angular-view' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_core_app-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_core_app-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -67,11 +68,12 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 
 <span class="kn">import</span> <span class="nn">pulsar</span>
 <span class="kn">from</span> <span class="nn">pulsar</span> <span class="kn">import</span> <span class="n">HttpException</span><span class="p">,</span> <span class="n">ImproperlyConfigured</span>
-<span class="kn">from</span> <span class="nn">pulsar.utils.httpurl</span> <span class="kn">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">remove_double_slash</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.httpurl</span> <span class="kn">import</span> <span class="n">remove_double_slash</span>
 <span class="kn">from</span> <span class="nn">pulsar.apps.wsgi</span> <span class="kn">import</span> <span class="p">(</span><span class="n">WsgiHandler</span><span class="p">,</span> <span class="n">HtmlDocument</span><span class="p">,</span> <span class="n">test_wsgi_environ</span><span class="p">,</span>
                               <span class="n">LazyWsgi</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pulsar.utils.pep</span> <span class="kn">import</span> <span class="n">itervalues</span>
 <span class="kn">from</span> <span class="nn">pulsar.utils.log</span> <span class="kn">import</span> <span class="n">lazyproperty</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.importer</span> <span class="kn">import</span> <span class="n">module_attribute</span>
 
 <span class="kn">from</span> <span class="nn">.commands</span> <span class="kn">import</span> <span class="n">ConsoleParser</span><span class="p">,</span> <span class="n">CommandError</span>
 <span class="kn">from</span> <span class="nn">.extension</span> <span class="kn">import</span> <span class="n">Extension</span><span class="p">,</span> <span class="n">Parameter</span><span class="p">,</span> <span class="n">EventHandler</span>
@@ -275,7 +277,9 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                    <span class="s">&#39;supporting the cache protocol&#39;</span><span class="p">)),</span>
         <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;DEFAULT_FROM_EMAIL&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
                   <span class="s">&#39;Default email address to send email from&#39;</span><span class="p">),</span>
-        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;LOCALE&#39;</span><span class="p">,</span> <span class="s">&#39;en_GB&#39;</span><span class="p">,</span> <span class="s">&#39;Default locale&#39;</span><span class="p">)</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;LOCALE&#39;</span><span class="p">,</span> <span class="s">&#39;en_GB&#39;</span><span class="p">,</span> <span class="s">&#39;Default locale&#39;</span><span class="p">),</span>
+        <span class="n">Parameter</span><span class="p">(</span><span class="s">&#39;EMAIL_BACKEND&#39;</span><span class="p">,</span> <span class="s">&#39;lux.core.mail.EmailBackend&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;Default locale&#39;</span><span class="p">)</span>
         <span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">callable</span><span class="p">):</span>
@@ -323,9 +327,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">environ</span><span class="p">:</span>
             <span class="c"># No WSGI environment, build a test one</span>
-            <span class="n">environ</span> <span class="o">=</span> <span class="n">test_wsgi_environ</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">kw</span><span class="p">:</span>
-            <span class="n">environ</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span>
+            <span class="n">environ</span> <span class="o">=</span> <span class="n">test_wsgi_environ</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">wsgi_request</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">app_handler</span><span class="o">=</span><span class="n">app_handler</span><span class="p">,</span>
                                <span class="n">urlargs</span><span class="o">=</span><span class="n">urlargs</span><span class="p">)</span>
         <span class="n">environ</span><span class="p">[</span><span class="s">&#39;error.handler&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;ERROR_HANDLER&#39;</span><span class="p">]</span>
@@ -372,7 +374,8 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="k">if</span> <span class="n">required</span><span class="p">:</span>
             <span class="n">head</span><span class="o">.</span><span class="n">scripts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s">&#39;REQUIREJS_CONFIG&#39;</span><span class="p">])</span>
             <span class="n">head</span><span class="o">.</span><span class="n">scripts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s">&#39;REQUIREJS_URL&#39;</span><span class="p">])</span>
-            <span class="n">head</span><span class="o">.</span><span class="n">scripts</span><span class="o">.</span><span class="n">require</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">required</span><span class="p">)</span>
+            <span class="n">head</span><span class="o">.</span><span class="n">scripts</span><span class="o">.</span><span class="n">require</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="n">media_path</span><span class="o">+</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)</span>
+                                         <span class="k">else</span> <span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">required</span><span class="p">))</span>
         <span class="c">#</span>
         <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;HTML_META&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="p">():</span>
             <span class="n">head</span><span class="o">.</span><span class="n">add_meta</span><span class="p">(</span><span class="o">**</span><span class="n">entry</span><span class="p">)</span>
@@ -409,6 +412,13 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
             <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
                 <span class="k">pass</span>    <span class="c"># No management module</span>
         <span class="k">return</span> <span class="n">cmnds</span>
+</div>
+    <span class="nd">@lazyproperty</span>
+<div class="viewcode-block" id="Application.email_backend"><a class="viewcode-back" href="../../../api/core#lux.core.app.Application.email_backend">[docs]</a>    <span class="k">def</span> <span class="nf">email_backend</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Email backend for this application</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">dotted_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;EMAIL_BACKEND&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">module_attribute</span><span class="p">(</span><span class="n">dotted_path</span><span class="p">)(</span><span class="bp">self</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="Application.get_command"><a class="viewcode-back" href="../../../api/core#lux.core.app.Application.get_command">[docs]</a>    <span class="k">def</span> <span class="nf">get_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Construct and return a :class:`.Command` for this application</span>
@@ -591,11 +601,10 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
             <span class="k">if</span> <span class="n">status_code</span><span class="p">:</span>
                 <span class="n">request</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="n">status_code</span>
             <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-            <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
             <span class="k">if</span> <span class="n">doc</span><span class="o">.</span><span class="n">jscontext</span><span class="p">:</span>
                 <span class="n">jscontext</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">jscontext</span><span class="p">)</span>
                 <span class="n">doc</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">embedded_js</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
-                    <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;var lux = {context: </span><span class="si">%s</span><span class="s">};&#39;</span> <span class="o">%</span> <span class="n">jscontext</span><span class="p">)</span>
+                    <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;var lux = {context: </span><span class="si">%s</span><span class="s">};</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">jscontext</span><span class="p">)</span>
             <span class="n">body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_template</span><span class="p">(</span><span class="n">template_name</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
             <span class="n">doc</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">doc</span><span class="o">.</span><span class="n">http_response</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -631,8 +640,8 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                 <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">extension</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">version</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">has_module</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s">&#39;Invalid project setup. The Application &#39;</span>
-                                   <span class="s">&#39;config module must be within a valid python &#39;</span>
-                                   <span class="s">&#39;module.&#39;</span><span class="p">)</span>
+                                   <span class="s">&#39;config module must be within a valid &#39;</span>
+                                   <span class="s">&#39;python module.&#39;</span><span class="p">)</span>
         <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">callable</span><span class="o">.</span><span class="n">_params</span>
         <span class="n">parser</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_parser</span><span class="p">(</span><span class="n">with_commands</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">add_help</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
         <span class="n">opts</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_known_args</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
@@ -708,7 +717,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                 <div class='hidden-xs'>
                     <ul class="fa-ul text-left">
     <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
-    <li>Site build with Lux on python 3.4.2</li>
+    <li>Site build with Lux on python 2.7.8</li>
     <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
@@ -719,7 +728,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                 <div class='text-center visible-xs'>
                     <ul class="fa-ul text-left">
     <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
-    <li>Site build with Lux on python 3.4.2</li>
+    <li>Site build with Lux on python 2.7.8</li>
     <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>

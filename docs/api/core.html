@@ -17,11 +17,12 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var lux = {context: {"name": "Lux", "lux_version": "0.1.1-alpha.1", "date": "2014-11-11T21-51-41", "oauths": null, "uiRouter": true, "dateFormat": "d MMM y", "navbar": {"collapseWidth": 768}, "datetimeFormat": "d MMM y, h:mm:ss a", "url": "http://quantmind.github.io/lux", "page": "/lux/docs/*slug", "pages": {"/lux/*slug": {"name": "view", "controller": "Html5", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/*slug"}, "/lux/docs/": {"name": "docs", "controller": "Html5", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/docs/"}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux/": {"name": "", "controller": "Html5", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "parent": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}, "/lux/docs/*slug": {"name": "docsview", "controller": "Html5", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "parent": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/docs/*slug"}}, "html5mode": true, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "media": "/media", "python_version": "3.4.2", "ngModules": ["ui.router", "lux.google", "highlight", "ngAnimate"], "brand": "Lux", "year": 2014, "apiUrls": {}, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}}};</script>
+var lux = {context: {"oauths": null, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "python_version": "2.7.8", "dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "media": "/media", "brand": "Lux", "year": 2014, "navbar": {"collapseWidth": 768}, "pages": {"/lux/docs/*slug": {"name": "docsview", "parent": "/lux/docs/", "url": "/lux/docs/*slug", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/": {"name": "", "parent": null, "url": "/lux/", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/*slug": {"name": "view", "parent": "/lux/", "url": "/lux/*slug", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/docs/": {"name": "docs", "parent": "/lux/", "url": "/lux/docs/", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}}, "date": "2014-11-24T13-56-43", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "html5mode": true, "ngModules": ["lux.google", "highlight", "ui.router", "ngAnimate"], "datetimeFormat": "d MMM y, h:mm:ss a", "lux_version": "0.1.2-alpha.1", "apiUrls": {}, "page": "/lux/docs/*slug", "uiRouter": "lux.ui.router", "name": "Lux"}};
+</script>
 <script type='text/javascript'>
 lux.require=function(a,b){if(lux.angular||!lux.context.uiRouter){var c={callback:b};lux.requireQueue.push(c),require(rcfg.min(a),function(){c.arguments=Array.prototype.slice.call(arguments,0)})}},lux.requireQueue=[],lux.loadRequire=function(a){if(!this.loadingRequire){var b=this.requireQueue,c=[];this.loadingRequire=!0,this.requireQueue=c;for(var d=0;d<b.length;++d)void 0===b[d].arguments?c.push(b[d]):b[d].callback.apply(this.root,b[d].arguments);this.loadingRequire=!1,c.length?setTimeout(function(){lux.loadRequire(a)}):a&&a()}};</script>
 <script type="text/javascript">
-var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"]};
+var require = {"paths": {}, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "waitSeconds": 200};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -37,7 +38,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='animate-fade angular-view' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer api_core-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer api_core-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -112,7 +113,7 @@ the <a class="reference internal" href="#lux.core.app.Application.config_module"
 <dl class="attribute">
 <dt id="lux.core.app.Application.handler">
 <tt class="descname">handler</tt><a class="headerlink" href="#lux.core.app.Application.handler" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="http://quantmind.github.io/pulsar/apps/wsgi/async.html#pulsar.apps.wsgi.handlers.WsgiHandler" title="(in pulsar v0.9.2-beta.1)"><tt class="xref py py-class docutils literal"><span class="pre">WsgiHandler</span></tt></a> for this
+<dd><p>The <a class="reference external" href="http://quantmind.github.io/pulsar/apps/wsgi/async.html#pulsar.apps.wsgi.handlers.WsgiHandler" title="(in pulsar v0.9.3-beta.1)"><tt class="xref py py-class docutils literal"><span class="pre">WsgiHandler</span></tt></a> for this
 application. It is created the first time the callable
 method of this <a class="reference internal" href="#lux.core.app.Application" title="lux.core.app.Application"><tt class="xref py py-class docutils literal"><span class="pre">Application</span></tt></a> is accessed by the WSGI
 server.</p>
@@ -165,6 +166,12 @@ Instead one can use the <a class="reference internal" href="#lux.core.wrappers.W
 <dt id="lux.core.app.Application.commands">
 <tt class="descname">commands</tt><a class="reference internal" href="../modules/lux/core/app#Application.commands"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.commands" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load all commands from installed applications</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lux.core.app.Application.email_backend">
+<tt class="descname">email_backend</tt><a class="reference internal" href="../modules/lux/core/app#Application.email_backend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.app.Application.email_backend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Email backend for this application</p>
 </dd></dl>
 
 <dl class="method">
@@ -518,7 +525,7 @@ It can be <tt class="docutils literal"><span class="pre">None</span></tt>.</p>
 <dl class="class">
 <dt id="lux.core.wrappers.WsgiRequest">
 <em class="property">class </em><tt class="descclassname">lux.core.wrappers.</tt><tt class="descname">WsgiRequest</tt><big>(</big><em>environ</em>, <em>app_handler=None</em>, <em>urlargs=None</em><big>)</big><a class="reference internal" href="../modules/lux/core/wrappers#WsgiRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.wrappers.WsgiRequest" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extend pulsar <a class="reference external" href="http://quantmind.github.io/pulsar/apps/wsgi/wrappers.html#pulsar.apps.wsgi.wrappers.WsgiRequest" title="(in pulsar v0.9.2-beta.1)"><tt class="xref py py-class docutils literal"><span class="pre">WsgiRequest</span></tt></a> with
+<dd><p>Extend pulsar <a class="reference external" href="http://quantmind.github.io/pulsar/apps/wsgi/wrappers.html#pulsar.apps.wsgi.wrappers.WsgiRequest" title="(in pulsar v0.9.3-beta.1)"><tt class="xref py py-class docutils literal"><span class="pre">WsgiRequest</span></tt></a> with
 additional methods and attributes.</p>
 <dl class="attribute">
 <dt id="lux.core.wrappers.WsgiRequest.app">
@@ -563,7 +570,7 @@ given <tt class="docutils literal"><span class="pre">action</span></tt></p>
 <dl class="class">
 <dt id="lux.core.wrappers.Router">
 <em class="property">class </em><tt class="descclassname">lux.core.wrappers.</tt><tt class="descname">Router</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../modules/lux/core/wrappers#Router"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lux.core.wrappers.Router" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extend pulsar <a class="reference external" href="http://quantmind.github.io/pulsar/apps/wsgi/routing.html#pulsar.apps.wsgi.routers.Router" title="(in pulsar v0.9.2-beta.1)"><tt class="xref py py-class docutils literal"><span class="pre">Router</span></tt></a> with content
+<dd><p>Extend pulsar <a class="reference external" href="http://quantmind.github.io/pulsar/apps/wsgi/routing.html#pulsar.apps.wsgi.routers.Router" title="(in pulsar v0.9.3-beta.1)"><tt class="xref py py-class docutils literal"><span class="pre">Router</span></tt></a> with content
 management.</p>
 <dl class="method">
 <dt id="lux.core.wrappers.Router.template_response">
@@ -631,7 +638,7 @@ attribute.</p>
 <span class="go">&#39;post&#39;</span>
 </pre></div>
 </div>
-<p>Check the <a class="reference external" href="http://quantmind.github.io/pulsar/tutorials/httpbin.html#tutorials-httpbin" title="(in pulsar v0.9.2-beta.1)"><em class="xref std std-ref">HttpBin example</em></a>
+<p>Check the <a class="reference external" href="http://quantmind.github.io/pulsar/tutorials/httpbin.html#tutorials-httpbin" title="(in pulsar v0.9.3-beta.1)"><em class="xref std std-ref">HttpBin example</em></a>
 for a sample usage.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -654,41 +661,6 @@ the <a class="reference internal" href="#lux.core.wrappers.Router" title="lux.co
 </table>
 </dd></dl>
 
-<dl class="class">
-<dt id="lux.core.wrappers.EnvironMixin">
-<em class="property">class </em><tt class="descclassname">lux.core.wrappers.</tt><tt class="descname">EnvironMixin</tt><big>(</big><em>environ</em>, <em>name=None</em><big>)</big><a class="headerlink" href="#lux.core.wrappers.EnvironMixin" title="Permalink to this definition">¶</a></dt>
-<dd><p>A wrapper around a <a href="#id1"><span class="problematic" id="id2">WSGI_</span></a> environ.</p>
-<p>Instances of this class have the <a class="reference internal" href="#lux.core.wrappers.EnvironMixin.environ" title="lux.core.wrappers.EnvironMixin.environ"><tt class="xref py py-attr docutils literal"><span class="pre">environ</span></tt></a> attribute as their
-only private data. Every other attribute is stored in the <a class="reference internal" href="#lux.core.wrappers.EnvironMixin.environ" title="lux.core.wrappers.EnvironMixin.environ"><tt class="xref py py-attr docutils literal"><span class="pre">environ</span></tt></a>
-itself at the <tt class="docutils literal"><span class="pre">pulsar.cache</span></tt> wsgi-extension key.</p>
-<dl class="attribute">
-<dt id="lux.core.wrappers.EnvironMixin.environ">
-<tt class="descname">environ</tt><a class="headerlink" href="#lux.core.wrappers.EnvironMixin.environ" title="Permalink to this definition">¶</a></dt>
-<dd><p><a href="#id3"><span class="problematic" id="id4">WSGI_</span></a> environ dictionary</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lux.core.wrappers.EnvironMixin.cache">
-<tt class="descname">cache</tt><a class="headerlink" href="#lux.core.wrappers.EnvironMixin.cache" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference external" href="http://quantmind.github.io/pulsar/api/utilities.html#attribute-dictionary" title="(in pulsar v0.9.2-beta.1)"><em class="xref std std-ref">attribute dictionary</em></a> of
-pulsar-specific data stored in the <a class="reference internal" href="#lux.core.wrappers.EnvironMixin.environ" title="lux.core.wrappers.EnvironMixin.environ"><tt class="xref py py-attr docutils literal"><span class="pre">environ</span></tt></a> at
-the wsgi-extension key <tt class="docutils literal"><span class="pre">pulsar.cache</span></tt></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="lux.core.wrappers.EnvironMixin.connection">
-<tt class="descname">connection</tt><a class="headerlink" href="#lux.core.wrappers.EnvironMixin.connection" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <tt class="xref py py-class docutils literal"><span class="pre">Connection</span></tt> handling the request</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lux.core.wrappers.EnvironMixin.get">
-<tt class="descname">get</tt><big>(</big><em>key</em>, <em>default=None</em><big>)</big><a class="headerlink" href="#lux.core.wrappers.EnvironMixin.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shortcut to the <a class="reference internal" href="#lux.core.wrappers.EnvironMixin.environ" title="lux.core.wrappers.EnvironMixin.environ"><tt class="xref py py-attr docutils literal"><span class="pre">environ</span></tt></a> get method.</p>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="function">
 <dt id="lux.core.wrappers.html_factory">
 <tt class="descclassname">lux.core.wrappers.</tt><tt class="descname">html_factory</tt><big>(</big><em>tag</em>, <em>**defaults</em><big>)</big><a class="headerlink" href="#lux.core.wrappers.html_factory" title="Permalink to this definition">¶</a></dt>
@@ -698,12 +670,6 @@ dictionary of <tt class="docutils literal"><span class="pre">defaults</span></tt
 <span class="gp">&gt;&gt;&gt; </span><span class="n">html</span> <span class="o">=</span> <span class="n">input_factory</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#39;bla&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</dd></dl>
-
-<dl class="function">
-<dt id="lux.core.wrappers.get_event_loop">
-<tt class="descclassname">lux.core.wrappers.</tt><tt class="descname">get_event_loop</tt><big>(</big><big>)</big><a class="headerlink" href="#lux.core.wrappers.get_event_loop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Equivalent to calling get_event_loop_policy().get_event_loop().</p>
 </dd></dl>
 
 <dl class="class">
@@ -881,7 +847,7 @@ executed by its callable method.</p>
                 <div class='hidden-xs'>
                     <ul class="fa-ul text-left">
     <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
-    <li>Site build with Lux on python 3.4.2</li>
+    <li>Site build with Lux on python 2.7.8</li>
     <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
@@ -892,7 +858,7 @@ executed by its callable method.</p>
                 <div class='text-center visible-xs'>
                     <ul class="fa-ul text-left">
     <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
-    <li>Site build with Lux on python 3.4.2</li>
+    <li>Site build with Lux on python 2.7.8</li>
     <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>

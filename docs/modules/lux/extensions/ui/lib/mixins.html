@@ -17,11 +17,12 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var lux = {context: {"name": "Lux", "lux_version": "0.1.1-alpha.1", "date": "2014-11-11T21-51-41", "oauths": null, "uiRouter": true, "dateFormat": "d MMM y", "navbar": {"collapseWidth": 768}, "datetimeFormat": "d MMM y, h:mm:ss a", "url": "http://quantmind.github.io/lux", "page": "/lux/docs/*slug", "pages": {"/lux/*slug": {"name": "view", "controller": "Html5", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/*slug"}, "/lux/docs/": {"name": "docs", "controller": "Html5", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/docs/"}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux/": {"name": "", "controller": "Html5", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "parent": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}, "/lux/docs/*slug": {"name": "docsview", "controller": "Html5", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "parent": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/docs/*slug"}}, "html5mode": true, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "media": "/media", "python_version": "3.4.2", "ngModules": ["ui.router", "lux.google", "highlight", "ngAnimate"], "brand": "Lux", "year": 2014, "apiUrls": {}, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}}};</script>
+var lux = {context: {"oauths": null, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "python_version": "2.7.8", "dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "media": "/media", "brand": "Lux", "year": 2014, "navbar": {"collapseWidth": 768}, "pages": {"/lux/docs/*slug": {"name": "docsview", "parent": "/lux/docs/", "url": "/lux/docs/*slug", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/": {"name": "", "parent": null, "url": "/lux/", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/*slug": {"name": "view", "parent": "/lux/", "url": "/lux/*slug", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/docs/": {"name": "docs", "parent": "/lux/", "url": "/lux/docs/", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}}, "date": "2014-11-24T13-56-43", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "html5mode": true, "ngModules": ["lux.google", "highlight", "ui.router", "ngAnimate"], "datetimeFormat": "d MMM y, h:mm:ss a", "lux_version": "0.1.2-alpha.1", "apiUrls": {}, "page": "/lux/docs/*slug", "uiRouter": "lux.ui.router", "name": "Lux"}};
+</script>
 <script type='text/javascript'>
 lux.require=function(a,b){if(lux.angular||!lux.context.uiRouter){var c={callback:b};lux.requireQueue.push(c),require(rcfg.min(a),function(){c.arguments=Array.prototype.slice.call(arguments,0)})}},lux.requireQueue=[],lux.loadRequire=function(a){if(!this.loadingRequire){var b=this.requireQueue,c=[];this.loadingRequire=!0,this.requireQueue=c;for(var d=0;d<b.length;++d)void 0===b[d].arguments?c.push(b[d]):b[d].callback.apply(this.root,b[d].arguments);this.loadingRequire=!1,c.length?setTimeout(function(){lux.loadRequire(a)}):a&&a()}};</script>
 <script type="text/javascript">
-var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"]};
+var require = {"paths": {}, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "waitSeconds": 200};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -37,7 +38,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='animate-fade angular-view' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_extensions_ui_lib_mixins-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_extensions_ui_lib_mixins-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -66,6 +67,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Animation&#39;</span><span class="p">,</span>
            <span class="s">&#39;Opacity&#39;</span><span class="p">,</span>
            <span class="s">&#39;Clearfix&#39;</span><span class="p">,</span>
+           <span class="s">&#39;CenterBlock&#39;</span><span class="p">,</span>
            <span class="s">&#39;InlineBlock&#39;</span><span class="p">,</span>
            <span class="s">&#39;Textoverflow&#39;</span><span class="p">,</span>
            <span class="s">&#39;clear_anchor&#39;</span><span class="p">,</span>
@@ -93,11 +95,11 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 
 
 <span class="c">############################################################################</span>
-<span class="c">##    BATTERY INCLUDED MIXINS</span>
+<span class="c">#    BATTERY INCLUDED MIXINS</span>
 <span class="c">############################################################################</span>
 
 
-<span class="c">################################################# ANIMATION</span>
+<span class="c"># ################################################ ANIMATION</span>
 <div class="viewcode-block" id="Animation"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Animation">[docs]</a><span class="k">class</span> <span class="nc">Animation</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Bind the animation to a selector (element) by specifying at least</span>
 <span class="sd">    these two properties:</span>
@@ -116,21 +118,33 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 <span class="sd">        css(&#39;.myelement&#39;,</span>
 <span class="sd">            Animation(&#39;fade&#39;, &#39;1s&#39;))</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">fill_mode</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">duration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fill_mode</span> <span class="o">=</span> <span class="n">fill_mode</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="n">duration</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">duration</span><span class="p">)</span>
-        <span class="n">animation</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
-        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;-webkit-animation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">animation</span>
-        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;   -moz-animation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">animation</span>
-        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;    -ms-animation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">animation</span>
-        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;        animation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">animation</span>
+        <span class="n">function</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">)</span>
+        <span class="n">fill_mode</span> <span class="o">=</span> <span class="n">as_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fill_mode</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
+            <span class="n">elem</span><span class="p">[</span><span class="s">&#39;-webkit-animation-name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="n">elem</span><span class="p">[</span><span class="s">&#39;   -moz-animation-name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="n">duration</span><span class="p">:</span>
+            <span class="n">elem</span><span class="p">[</span><span class="s">&#39;-webkit-animation-duration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">duration</span>
+            <span class="n">elem</span><span class="p">[</span><span class="s">&#39;   -moz-animation-duration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">duration</span>
+        <span class="k">if</span> <span class="n">function</span><span class="p">:</span>
+            <span class="n">elem</span><span class="p">[</span><span class="s">&#39;-webkit-animation-timing-function&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">function</span>
+            <span class="n">elem</span><span class="p">[</span><span class="s">&#39;   -moz-animation-timing-function&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="k">if</span> <span class="n">fill_mode</span><span class="p">:</span>
+            <span class="n">elem</span><span class="p">[</span><span class="s">&#39;-webkit-animation-fill-mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fill_mode</span>
+            <span class="n">elem</span><span class="p">[</span><span class="s">&#39;        animation-fill-mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fill_mode</span>
 
 
-<span class="c">################################################# OPACITY</span></div>
+<span class="c"># ################################################ OPACITY</span></div>
 <div class="viewcode-block" id="Opacity"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Opacity">[docs]</a><span class="k">class</span> <span class="nc">Opacity</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Add opacity to an element.</span>
 
@@ -154,7 +168,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="n">elem</span><span class="p">[</span><span class="s">&#39;filter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;alpha(opacity=</span><span class="si">%s</span><span class="s">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">value</span><span class="p">)</span>
 
 
-<span class="c">################################################# CLEARFIX</span></div>
+<span class="c"># ################################################ CLEARFIX</span></div>
 <div class="viewcode-block" id="Clearfix"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Clearfix">[docs]</a><span class="k">class</span> <span class="nc">Clearfix</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A ``clearfix`` is a way for an element to automatically clear after</span>
 <span class="sd">itself, so that you don&#39;t need to add additional markup.</span>
@@ -167,7 +181,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="n">elem</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s">&#39;:after&#39;</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="s">&#39;both&#39;</span><span class="p">)</span>
 
 
-<span class="c">################################################# InlineBlock</span></div>
+<span class="c"># ################################################ InlineBlock</span></div>
 <div class="viewcode-block" id="InlineBlock"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.InlineBlock">[docs]</a><span class="k">class</span> <span class="nc">InlineBlock</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Cross browser inline block form</span>
 
@@ -179,7 +193,16 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="n">elem</span><span class="p">[</span><span class="s">&#39;*display&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;inline&#39;</span>
 
 
-<span class="c">################################################# TEXT OVERFLOW</span></div>
+<span class="c"># ################################################ CenterBlock</span></div>
+<div class="viewcode-block" id="CenterBlock"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.CenterBlock">[docs]</a><span class="k">class</span> <span class="nc">CenterBlock</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Center block a-la bootstrap&#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
+        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;display&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;block&#39;</span>
+        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;margin-left&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;auto&#39;</span>
+        <span class="n">elem</span><span class="p">[</span><span class="s">&#39;margin-right&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;auto&#39;</span>
+
+
+<span class="c"># ################################################ TEXT OVERFLOW</span></div>
 <span class="k">class</span> <span class="nc">Textoverflow</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
@@ -198,7 +221,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                  <span class="n">cursor</span><span class="o">=</span><span class="s">&#39;inherit&#39;</span><span class="p">)</span>
 
 
-<span class="c">################################################# FIXTOP</span>
+<span class="c"># ################################################ FIXTOP</span>
 <div class="viewcode-block" id="fixtop"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.fixtop">[docs]</a><span class="k">class</span> <span class="nc">fixtop</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Fix an element at the top of the page.&#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zindex</span><span class="o">=</span><span class="mi">2000</span><span class="p">):</span>
@@ -221,7 +244,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="n">elem</span><span class="p">[</span><span class="s">&#39;z_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;auto&#39;</span>
 
 
-<span class="c">################################################# CSS BORDER</span>
+<span class="c"># ################################################ CSS BORDER</span>
 <div class="viewcode-block" id="Border"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Border">[docs]</a><span class="k">class</span> <span class="nc">Border</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;A :class:`Mixin` for adding border to a css element.</span>
 
@@ -270,7 +293,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="k">return</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span>
 
 
-<span class="c">################################################# CSS3 BOX SHADOW</span></div>
+<span class="c"># ################################################ CSS3 BOX SHADOW</span></div>
 <div class="viewcode-block" id="Shadow"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Shadow">[docs]</a><span class="k">class</span> <span class="nc">Shadow</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;The box-shadow css3 property attaches one or more drop-shadows to the</span>
 <span class="sd">    box. The property is a comma-separated list of shadows, each specified by</span>
@@ -337,7 +360,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
             <span class="n">elem</span><span class="p">[</span><span class="s">&#39;        box-shadow&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">shadow</span>
 
 
-<span class="c">################################################# CSS3 BOX SIZING</span></div>
+<span class="c"># ################################################ CSS3 BOX SIZING</span></div>
 <div class="viewcode-block" id="BoxSizing"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.BoxSizing">[docs]</a><span class="k">class</span> <span class="nc">BoxSizing</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;The box-sizing CSS3 property.</span>
 
@@ -370,7 +393,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
             <span class="n">elem</span><span class="p">[</span><span class="s">&#39;        box-sizing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
 
-<span class="c">################################################# CSS3 RADIUS</span></div>
+<span class="c"># ################################################ CSS3 RADIUS</span></div>
 <div class="viewcode-block" id="Radius"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Radius">[docs]</a><span class="k">class</span> <span class="nc">Radius</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;css3 border radius. The optional location parameter specifies the</span>
 <span class="sd">    location where to apply the radius. For example, &#39;top&#39;, &#39;bottom&#39;, &#39;left&#39;,</span>
@@ -405,7 +428,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                 <span class="n">elem</span><span class="p">[</span><span class="s">&#39;        border</span><span class="si">%s</span><span class="s">-radius&#39;</span> <span class="o">%</span> <span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
 
 
-<span class="c">################################################# CSS3 BACKGROUNd</span></div>
+<span class="c"># ################################################ CSS3 BACKGROUNd</span></div>
 <div class="viewcode-block" id="Background"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Background">[docs]</a><span class="k">class</span> <span class="nc">Background</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Set the background property of an element</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -437,7 +460,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
             <span class="n">elem</span><span class="p">[</span><span class="s">&#39;background-attachment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attachment</span>
 
 
-<span class="c">################################################# CSS3 GRADIENT</span></div>
+<span class="c"># ################################################ CSS3 GRADIENT</span></div>
 <div class="viewcode-block" id="Gradient"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Gradient">[docs]</a><span class="k">class</span> <span class="nc">Gradient</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;css3 gradient. Don&#39;t initialise directly, use :func:`gradient`</span>
 <span class="sd">instead.</span>
@@ -525,7 +548,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                           <span class="s">&quot;GradientType={2})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
         <span class="c">#</span>
         <span class="c"># Reset filters for IE</span>
-        <span class="c">#elem[&#39;filter&#39;] = (&#39;progid:DXImageTransform.Microsoft.gradient&#39;</span>
+        <span class="c"># elem[&#39;filter&#39;] = (&#39;progid:DXImageTransform.Microsoft.gradient&#39;</span>
         <span class="c">#                  &#39;(enabled = false)&#39;)</span>
 
     <span class="k">def</span> <span class="nf">hgradient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
@@ -542,7 +565,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="k">return</span> <span class="n">Gradient</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
 
 
-<span class="c">################################################# PLACEHOLDER</span>
+<span class="c"># ################################################ PLACEHOLDER</span>
 <span class="k">class</span> <span class="nc">Placeholder</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
@@ -556,7 +579,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
              <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
 
 
-<span class="c">################################################# BCD - BACKGROUND-COLOR-DECO</span>
+<span class="c"># ################################################ BCD - BACKGROUND-COLOR-DECO</span>
 <div class="viewcode-block" id="Bcd"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Bcd">[docs]</a><span class="k">class</span> <span class="nc">Bcd</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Background-color-decorator :class:`Mixin`.</span>
 
@@ -597,7 +620,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="k">return</span> <span class="n">Bcd</span><span class="p">(</span><span class="o">**</span><span class="n">as_params</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
 
 
-<span class="c">################################################# CLICKABLE</span>
+<span class="c"># ################################################ CLICKABLE</span>
 <div class="viewcode-block" id="Clickable"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Clickable">[docs]</a><span class="k">class</span> <span class="nc">Clickable</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Defines the default, hover and active state.&#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">hover</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cursor</span><span class="o">=</span><span class="s">&#39;pointer&#39;</span><span class="p">,</span>
@@ -618,7 +641,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
             <span class="n">elem</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s">&#39;:active,.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">classes</span><span class="o">.</span><span class="n">active</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">)</span>
 
 
-<span class="c">################################################# TRANSLATE</span></div>
+<span class="c"># ################################################ TRANSLATE</span></div>
 <div class="viewcode-block" id="Transform"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Transform">[docs]</a><span class="k">class</span> <span class="nc">Transform</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Defines a 2D transform.</span>
 
@@ -689,7 +712,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="n">elem</span><span class="p">[</span><span class="s">&#39;        transform&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
 
-<span class="c">################################################# TRANSITION</span></div>
+<span class="c"># ################################################ TRANSITION</span></div>
 <div class="viewcode-block" id="Transition"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Transition">[docs]</a><span class="k">class</span> <span class="nc">Transition</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Define a CSS3 transition.</span>
 
@@ -758,7 +781,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="n">elem</span><span class="p">[</span><span class="s">&#39;        transition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transition</span>
 
 
-<span class="c">################################################# INCLUDE CSS</span></div>
+<span class="c"># ################################################ INCLUDE CSS</span></div>
 <div class="viewcode-block" id="CssInclude"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.CssInclude">[docs]</a><span class="k">class</span> <span class="nc">CssInclude</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Include one or more css resources. The correct use of this</span>
 <span class="sd">    :class:`.Mixin` is within the ``body`` tag only::</span>
@@ -874,7 +897,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
             <span class="n">elem</span><span class="p">[</span><span class="s">&#39;background-position&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span>
 
 
-<span class="c">################################################# FONT-FACE</span>
+<span class="c"># ################################################ FONT-FACE</span>
 <span class="k">class</span> <span class="nc">Fontface</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">svg</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
@@ -901,7 +924,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="n">elem</span><span class="p">[</span><span class="s">&#39;-webkit-font-smoothing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;antialiased&#39;</span>
 
 
-<span class="c">################################################# Stack</span>
+<span class="c"># ################################################ Stack</span>
 <div class="viewcode-block" id="Stack"><a class="viewcode-back" href="../../../../../api/ui#lux.extensions.ui.lib.mixins.Stack">[docs]</a><span class="k">class</span> <span class="nc">Stack</span><span class="p">(</span><span class="n">Mixin</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Stack :class:`Stackable` mixins.&#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mixins</span><span class="p">):</span>
@@ -935,7 +958,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                 <div class='hidden-xs'>
                     <ul class="fa-ul text-left">
     <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
-    <li>Site build with Lux on python 3.4.2</li>
+    <li>Site build with Lux on python 2.7.8</li>
     <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
@@ -946,7 +969,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                 <div class='text-center visible-xs'>
                     <ul class="fa-ul text-left">
     <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
-    <li>Site build with Lux on python 3.4.2</li>
+    <li>Site build with Lux on python 2.7.8</li>
     <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>

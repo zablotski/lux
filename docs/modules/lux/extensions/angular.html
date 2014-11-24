@@ -17,11 +17,12 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var lux = {context: {"name": "Lux", "lux_version": "0.1.1-alpha.1", "date": "2014-11-11T21-51-41", "oauths": null, "uiRouter": true, "dateFormat": "d MMM y", "navbar": {"collapseWidth": 768}, "datetimeFormat": "d MMM y, h:mm:ss a", "url": "http://quantmind.github.io/lux", "page": "/lux/docs/*slug", "pages": {"/lux/*slug": {"name": "view", "controller": "Html5", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/*slug"}, "/lux/docs/": {"name": "docs", "controller": "Html5", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/docs/"}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux/": {"name": "", "controller": "Html5", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "parent": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}, "/lux/docs/*slug": {"name": "docsview", "controller": "Html5", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "parent": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/docs/*slug"}}, "html5mode": true, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "media": "/media", "python_version": "3.4.2", "ngModules": ["ui.router", "lux.google", "highlight", "ngAnimate"], "brand": "Lux", "year": 2014, "apiUrls": {}, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}}};</script>
+var lux = {context: {"oauths": null, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "python_version": "2.7.8", "dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "media": "/media", "brand": "Lux", "year": 2014, "navbar": {"collapseWidth": 768}, "pages": {"/lux/docs/*slug": {"name": "docsview", "parent": "/lux/docs/", "url": "/lux/docs/*slug", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/": {"name": "", "parent": null, "url": "/lux/", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/*slug": {"name": "view", "parent": "/lux/", "url": "/lux/*slug", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/docs/": {"name": "docs", "parent": "/lux/", "url": "/lux/docs/", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}}, "date": "2014-11-24T13-56-43", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "html5mode": true, "ngModules": ["lux.google", "highlight", "ui.router", "ngAnimate"], "datetimeFormat": "d MMM y, h:mm:ss a", "lux_version": "0.1.2-alpha.1", "apiUrls": {}, "page": "/lux/docs/*slug", "uiRouter": "lux.ui.router", "name": "Lux"}};
+</script>
 <script type='text/javascript'>
 lux.require=function(a,b){if(lux.angular||!lux.context.uiRouter){var c={callback:b};lux.requireQueue.push(c),require(rcfg.min(a),function(){c.arguments=Array.prototype.slice.call(arguments,0)})}},lux.requireQueue=[],lux.loadRequire=function(a){if(!this.loadingRequire){var b=this.requireQueue,c=[];this.loadingRequire=!0,this.requireQueue=c;for(var d=0;d<b.length;++d)void 0===b[d].arguments?c.push(b[d]):b[d].callback.apply(this.root,b[d].arguments);this.loadingRequire=!1,c.length?setTimeout(function(){lux.loadRequire(a)}):a&&a()}};</script>
 <script type="text/javascript">
-var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"]};
+var require = {"paths": {}, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "waitSeconds": 200};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -37,7 +38,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='animate-fade angular-view' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_extensions_angular-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_extensions_angular-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -57,8 +58,8 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
             <div class="modules_lux_extensions_angular-main col-md-12">
                 <div class="center-block" style="max-width: 900px" data-highlight data-hash-scroll>
                     <h1>Source code for lux.extensions.angular</h1><div class="highlight"><pre>
-<span class="sd">&#39;&#39;&#39;\</span>
-<span class="sd">THis extension does not provide any middleware but it is required</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">This extension does not provide any middleware but it is required</span>
 <span class="sd">when using :ref:`lux.js &lt;jsapi&gt;` javascript module and</span>
 <span class="sd">provides the link between AngularJS_ and Python.</span>
 
@@ -101,8 +102,16 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 
 <span class="kn">from</span> <span class="nn">pulsar.apps.wsgi</span> <span class="kn">import</span> <span class="n">MediaMixin</span><span class="p">,</span> <span class="n">Html</span><span class="p">,</span> <span class="n">route</span>
 <span class="kn">from</span> <span class="nn">pulsar.utils.httpurl</span> <span class="kn">import</span> <span class="n">urlparse</span>
+<span class="kn">from</span> <span class="nn">pulsar.utils.html</span> <span class="kn">import</span> <span class="n">escape</span>
 
 <span class="kn">from</span> <span class="nn">.ui</span> <span class="kn">import</span> <span class="n">add_css</span>
+
+
+<span class="k">def</span> <span class="nf">add_ng_modules</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">modules</span><span class="p">):</span>
+    <span class="n">ngmodules</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">jscontext</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;ngModules&#39;</span><span class="p">,</span> <span class="p">()))</span>
+    <span class="n">ngmodules</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">jscontext</span><span class="p">[</span><span class="s">&#39;ngModules&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ngmodules</span>
+    <span class="k">return</span> <span class="n">ngmodules</span>
 
 
 <span class="k">class</span> <span class="nc">Extension</span><span class="p">(</span><span class="n">lux</span><span class="o">.</span><span class="n">Extension</span><span class="p">):</span>
@@ -142,7 +151,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
     <span class="n">ngmodules</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="sd">&#39;&#39;&#39;Optional list of angular modules to include</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">uirouter</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">uirouter</span> <span class="o">=</span> <span class="s">&#39;lux.ui.router&#39;</span>
     <span class="sd">&#39;&#39;&#39;Override the :setting:`ANGULAR_UI_ROUTER` setting for this</span>
 <span class="sd">    :class:`.Router`. If set to ``False`` the `ui-router`_ won&#39;t be used</span>
 <span class="sd">    and the whole html5 document is loaded when accessed.&#39;&#39;&#39;</span>
@@ -156,8 +165,8 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 
 <span class="sd">        * Collets children routers operating in :ref:`ui mode &lt;spa-router&gt;`</span>
 <span class="sd">          and build the sitemap used by angular `ui-router`_.</span>
-<span class="sd">        * The ``$html_main`` content, rendered by the :meth:`build_main` method is</span>
-<span class="sd">          wrapped by a ``div`` element::</span>
+<span class="sd">        * The ``$html_main`` content, rendered by the :meth:`build_main`</span>
+<span class="sd">          method is wrapped by a ``div`` element::</span>
 
 <span class="sd">            &lt;div id=&quot;seo-view&quot; data-ui-main=&quot;main&quot; class=&quot;hidden&quot;&gt;</span>
 <span class="sd">                $html_main</span>
@@ -180,12 +189,11 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="c"># Build the ui-view main</span>
         <span class="n">main</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_main</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="c">#</span>
-        <span class="n">ngmodules</span> <span class="o">=</span> <span class="n">jscontext</span><span class="p">[</span><span class="s">&#39;ngModules&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">jscontext</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;ngModules&#39;</span><span class="p">,</span> <span class="p">()))</span>
-        <span class="n">ngmodules</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;NGMODULES&#39;</span><span class="p">])</span>
+        <span class="n">ngmodules</span> <span class="o">=</span> <span class="n">add_ng_modules</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;NGMODULES&#39;</span><span class="p">])</span>
         <span class="c">#</span>
         <span class="c"># Using Angular Ui-Router</span>
         <span class="k">if</span> <span class="n">uirouter</span><span class="p">:</span>
-            <span class="n">jscontext</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sitemap</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">ngmodules</span><span class="p">))</span>
+            <span class="n">jscontext</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sitemap</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">ngmodules</span><span class="p">,</span> <span class="n">uirouter</span><span class="p">))</span>
             <span class="n">jscontext</span><span class="p">[</span><span class="s">&#39;page&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">router_href</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_route</span><span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ngmodules</span><span class="p">:</span>
             <span class="n">ngmodules</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ngmodules</span><span class="p">)</span>
@@ -223,6 +231,9 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">pass</span>
 </div>
+    <span class="k">def</span> <span class="nf">state_template_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
+        <span class="k">pass</span>
+
     <span class="k">def</span> <span class="nf">get_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
         <span class="k">return</span> <span class="s">&#39;Html5&#39;</span>
 
@@ -231,7 +242,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">pass</span>
 </div>
-<div class="viewcode-block" id="Router.sitemap"><a class="viewcode-back" href="../../../api/angular#lux.extensions.angular.Router.sitemap">[docs]</a>    <span class="k">def</span> <span class="nf">sitemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">ngmodules</span><span class="p">):</span>
+<div class="viewcode-block" id="Router.sitemap"><a class="viewcode-back" href="../../../api/angular#lux.extensions.angular.Router.sitemap">[docs]</a>    <span class="k">def</span> <span class="nf">sitemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">ngmodules</span><span class="p">,</span> <span class="n">uirouter</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Build the sitemap used by angular `ui-router`_</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span>
@@ -241,7 +252,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
             <span class="n">ngmodules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;ui.router&#39;</span><span class="p">)</span>
             <span class="n">sitemap</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;hrefs&#39;</span><span class="p">:</span> <span class="p">[],</span>
                        <span class="s">&#39;pages&#39;</span><span class="p">:</span> <span class="p">{},</span>
-                       <span class="s">&#39;uiRouter&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+                       <span class="s">&#39;uiRouter&#39;</span><span class="p">:</span> <span class="n">uirouter</span><span class="p">,</span>
                        <span class="s">&#39;ngModules&#39;</span><span class="p">:</span> <span class="n">ngmodules</span><span class="p">}</span>
             <span class="n">add_to_sitemap</span><span class="p">(</span><span class="n">sitemap</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>
             <span class="n">root</span><span class="o">.</span><span class="n">_sitemap</span> <span class="o">=</span> <span class="n">sitemap</span>
@@ -256,9 +267,12 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="k">pass</span>
 </div>
     <span class="k">def</span> <span class="nf">make_router</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cls</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="n">cls</span> <span class="o">=</span> <span class="n">cls</span> <span class="ow">or</span> <span class="n">Router</span>
-        <span class="k">if</span> <span class="n">cls</span> <span class="ow">is</span> <span class="n">Router</span> <span class="ow">and</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;get&#39;</span><span class="p">:</span>
-            <span class="n">method</span> <span class="o">=</span> <span class="s">&#39;build_main&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cls</span><span class="p">:</span>
+            <span class="n">cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span>
+            <span class="k">if</span> <span class="n">cls</span> <span class="o">!=</span> <span class="n">Router</span><span class="p">:</span>
+                <span class="n">cls</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s">&#39;get&#39;</span><span class="p">:</span>
+                <span class="n">method</span> <span class="o">=</span> <span class="s">&#39;build_main&#39;</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Router</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">make_router</span><span class="p">(</span>
             <span class="n">rule</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="n">handler</span><span class="p">,</span> <span class="n">cls</span><span class="o">=</span><span class="n">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
@@ -302,6 +316,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
     <span class="n">page</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;url&#39;</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span>
             <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="n">router</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
             <span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="n">router</span><span class="o">.</span><span class="n">state_template</span><span class="p">(</span><span class="n">app</span><span class="p">),</span>
+            <span class="s">&#39;templateUrl&#39;</span><span class="p">:</span> <span class="n">router</span><span class="o">.</span><span class="n">state_template_url</span><span class="p">(</span><span class="n">app</span><span class="p">),</span>
             <span class="s">&#39;api&#39;</span><span class="p">:</span> <span class="n">router</span><span class="o">.</span><span class="n">get_api_info</span><span class="p">(</span><span class="n">app</span><span class="p">),</span>
             <span class="s">&#39;controller&#39;</span><span class="p">:</span> <span class="n">router</span><span class="o">.</span><span class="n">get_controller</span><span class="p">(</span><span class="n">app</span><span class="p">),</span>
             <span class="s">&#39;parent&#39;</span><span class="p">:</span> <span class="n">parent</span><span class="p">}</span>
@@ -341,7 +356,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                 <div class='hidden-xs'>
                     <ul class="fa-ul text-left">
     <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
-    <li>Site build with Lux on python 3.4.2</li>
+    <li>Site build with Lux on python 2.7.8</li>
     <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
@@ -352,7 +367,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                 <div class='text-center visible-xs'>
                     <ul class="fa-ul text-left">
     <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
-    <li>Site build with Lux on python 3.4.2</li>
+    <li>Site build with Lux on python 2.7.8</li>
     <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>

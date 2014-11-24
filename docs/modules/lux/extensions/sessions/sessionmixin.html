@@ -17,11 +17,12 @@
 <link href='http://quantmind.github.io/lux/media/luxsite/lux-144.png' rel='apple-touch-icon' sizes='144x144'>
 <link href='http://quantmind.github.io/lux/media/luxsite/luxsite.min.css' rel='stylesheet' type='text/css'>
 <script type='text/javascript'>
-var lux = {context: {"name": "Lux", "lux_version": "0.1.1-alpha.1", "date": "2014-11-11T21-51-41", "oauths": null, "uiRouter": true, "dateFormat": "d MMM y", "navbar": {"collapseWidth": 768}, "datetimeFormat": "d MMM y, h:mm:ss a", "url": "http://quantmind.github.io/lux", "page": "/lux/docs/*slug", "pages": {"/lux/*slug": {"name": "view", "controller": "Html5", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/*slug"}, "/lux/docs/": {"name": "docs", "controller": "Html5", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "parent": "/lux/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/docs/"}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux/": {"name": "", "controller": "Html5", "api": {"name": "site", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/site"}, "parent": null, "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}, "/lux/docs/*slug": {"name": "docsview", "controller": "Html5", "api": {"name": "docs", "type": "static", "url": "http://quantmind.github.io/lux/jsonapi/docs"}, "parent": "/lux/docs/", "template": "<div class='angular-view' data-dynamic-page=''></div>", "url": "/lux/docs/*slug"}}, "html5mode": true, "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "media": "/media", "python_version": "3.4.2", "ngModules": ["ui.router", "lux.google", "highlight", "ngAnimate"], "brand": "Lux", "year": 2014, "apiUrls": {}, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}}};</script>
+var lux = {context: {"oauths": null, "google": {"analytics": {"id": "UA-54439804-2", "ga": "_gaTrack"}}, "python_version": "2.7.8", "dateFormat": "d MMM y", "url": "http://quantmind.github.io/lux", "media": "/media", "brand": "Lux", "year": 2014, "navbar": {"collapseWidth": 768}, "pages": {"/lux/docs/*slug": {"name": "docsview", "parent": "/lux/docs/", "url": "/lux/docs/*slug", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/": {"name": "", "parent": null, "url": "/lux/", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/*slug": {"name": "view", "parent": "/lux/", "url": "/lux/*slug", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/site", "type": "static", "name": "site"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/docs/": {"name": "docs", "parent": "/lux/", "url": "/lux/docs/", "controller": "Html5", "api": {"url": "http://quantmind.github.io/lux/jsonapi/docs", "type": "static", "name": "docs"}, "template": "<div class='angular-view' data-dynamic-page=''></div>", "templateUrl": null}, "/lux/docs": {"url": "/lux/docs", "redirectTo": "/lux/docs/"}, "/lux": {"url": "/lux", "redirectTo": "/lux/"}}, "date": "2014-11-24T13-56-43", "hrefs": ["/lux/", "/lux/docs/", "/lux/docs/*slug", "/lux/docs", "/lux/*slug", "/lux"], "html5mode": true, "ngModules": ["lux.google", "highlight", "ui.router", "ngAnimate"], "datetimeFormat": "d MMM y, h:mm:ss a", "lux_version": "0.1.2-alpha.1", "apiUrls": {}, "page": "/lux/docs/*slug", "uiRouter": "lux.ui.router", "name": "Lux"}};
+</script>
 <script type='text/javascript'>
 lux.require=function(a,b){if(lux.angular||!lux.context.uiRouter){var c={callback:b};lux.requireQueue.push(c),require(rcfg.min(a),function(){c.arguments=Array.prototype.slice.call(arguments,0)})}},lux.requireQueue=[],lux.loadRequire=function(a){if(!this.loadingRequire){var b=this.requireQueue,c=[];this.loadingRequire=!0,this.requireQueue=c;for(var d=0;d<b.length;++d)void 0===b[d].arguments?c.push(b[d]):b[d].callback.apply(this.root,b[d].arguments);this.loadingRequire=!1,c.length?setTimeout(function(){lux.loadRequire(a)}):a&&a()}};</script>
 <script type="text/javascript">
-var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"]};
+var require = {"paths": {}, "minify": true, "baseUrl": "http://quantmind.github.io/lux/media/", "deps": ["luxsite/luxsite"], "waitSeconds": 200};
 </script>
 <script src='http://quantmind.github.io/require-config-js/require.config.min.js' type='application/javascript'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js' type='application/javascript'></script>
@@ -37,7 +38,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 </script></head>
 <body data-ng-controller='Page' data-ng-model='page' data-page=''>
 <div id="page" class="fullpage" data-hash-scroll ng-cloak>
-    <div class='animate-fade angular-view' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_extensions_sessions_sessionmixin-header">
+    <div class='angular-view animate-fade' data-ui-view='main'><div class='hidden' id='seo-view'><section id="page-header" class="page-header-outer modules_lux_extensions_sessions_sessionmixin-header">
     <div class="layer">
         <div class="page-header">
             <div class="container fullpage">
@@ -83,14 +84,11 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 <div class="viewcode-block" id="SessionMixin"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin">[docs]</a><span class="k">class</span> <span class="nc">SessionMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Mixin for :class:`.AuthBackend` via sessions.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">READ</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="n">UPDATE</span> <span class="o">=</span> <span class="mi">20</span>
-    <span class="n">CREATE</span> <span class="o">=</span> <span class="mi">30</span>
-    <span class="n">REMOVE</span> <span class="o">=</span> <span class="mi">40</span>
     <span class="n">ForgotPasswordRouter</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">dismiss_message</span> <span class="o">=</span> <span class="bp">None</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">app</span>
+        <span class="n">wsgi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_wsgi</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;ENCODING&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;SECRET_KEY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
@@ -102,19 +100,48 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="n">algorithm</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;CRYPT_ALGORITHM&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">crypt_module</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="n">algorithm</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">jwt</span> <span class="o">=</span> <span class="n">jwt</span>
-
-    <span class="k">def</span> <span class="nf">request_middleware</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
-        <span class="n">middleware</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;SESSION_MESSAGES&#39;</span><span class="p">]:</span>
-            <span class="n">middleware</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Router</span><span class="p">(</span><span class="s">&#39;_dismiss_message&#39;</span><span class="p">,</span>
-                                     <span class="n">post</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dismiss_message</span><span class="p">))</span>
-            <span class="n">reset</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;RESET_PASSWORD_URL&#39;</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">reset</span><span class="p">:</span>
-                <span class="n">router</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ForgotPasswordRouter</span> <span class="ow">or</span> <span class="n">ForgotPassword</span>
-                <span class="n">middleware</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">router</span><span class="p">(</span><span class="n">reset</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">middleware</span>
+            <span class="n">wsgi</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Router</span><span class="p">(</span><span class="s">&#39;_dismiss_message&#39;</span><span class="p">,</span>
+                                          <span class="n">post</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dismiss_message</span><span class="p">))</span>
 
+    <span class="c"># ABSTRACT METHODS WHICH MUST BE IMPLEMENTED</span>
+<div class="viewcode-block" id="SessionMixin.get_session"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.get_session">[docs]</a>    <span class="k">def</span> <span class="nf">get_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Retrieve a session from its key</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</div>
+<div class="viewcode-block" id="SessionMixin.session_key"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.session_key">[docs]</a>    <span class="k">def</span> <span class="nf">session_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Session key from session object</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</div>
+<div class="viewcode-block" id="SessionMixin.create_registration"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.create_registration">[docs]</a>    <span class="k">def</span> <span class="nf">create_registration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">expiry</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create a registration entry for a user.</span>
+<span class="sd">        This method should return the registration/activation key.&#39;&#39;&#39;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</div>
+<div class="viewcode-block" id="SessionMixin.confirm_registration"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.confirm_registration">[docs]</a>    <span class="k">def</span> <span class="nf">confirm_registration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Confirm registration&#39;&#39;&#39;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</div>
+<div class="viewcode-block" id="SessionMixin.create_session"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.create_session">[docs]</a>    <span class="k">def</span> <span class="nf">create_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">expiry</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create a new session</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</div>
+<div class="viewcode-block" id="SessionMixin.get_user_by_email"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.get_user_by_email">[docs]</a>    <span class="k">def</span> <span class="nf">get_user_by_email</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Get a user from its email address</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</div>
+<div class="viewcode-block" id="SessionMixin.auth_key_used"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.auth_key_used">[docs]</a>    <span class="k">def</span> <span class="nf">auth_key_used</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;The authentication ``key`` has been used and this method is</span>
+<span class="sd">        for setting/updating the backend model accordingly.</span>
+<span class="sd">        Used during password retrieval and user registration</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="c"># MIDDLEWARE</span></div>
     <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
         <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;SESSION_COOKIE_NAME&#39;</span><span class="p">]</span>
         <span class="n">session_key</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
@@ -128,7 +155,6 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
             <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">anonymous</span><span class="p">()</span>
-
 
     <span class="k">def</span> <span class="nf">response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
         <span class="n">session</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">session</span>
@@ -144,6 +170,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
             <span class="n">session</span><span class="o">.</span><span class="n">put</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">response</span>
 
+    <span class="c"># CSRF</span>
     <span class="k">def</span> <span class="nf">csrf_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
         <span class="n">session</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">session</span>
         <span class="k">if</span> <span class="n">session</span><span class="p">:</span>
@@ -173,40 +200,17 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                 <span class="k">break</span>
         <span class="k">return</span> <span class="n">session_key</span>
 
-<div class="viewcode-block" id="SessionMixin.get_session"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.get_session">[docs]</a>    <span class="k">def</span> <span class="nf">get_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Retrieve a session from its key</span>
+<div class="viewcode-block" id="SessionMixin.password_recovery"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.password_recovery">[docs]</a>    <span class="k">def</span> <span class="nf">password_recovery</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Recovery password email</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_user_by_email</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_or_create_registration</span><span class="p">(</span>
+                <span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span>
+                <span class="n">email_subject</span><span class="o">=</span><span class="s">&#39;password_email_subject.txt&#39;</span><span class="p">,</span>
+                <span class="n">email_message</span><span class="o">=</span><span class="s">&#39;password_email.txt&#39;</span><span class="p">,</span>
+                <span class="n">message</span><span class="o">=</span><span class="s">&#39;password_message.txt&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">AuthenticationError</span><span class="p">(</span><span class="s">&quot;Can&#39;t find that email, sorry&quot;</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="SessionMixin.session_key"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.session_key">[docs]</a>    <span class="k">def</span> <span class="nf">session_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Session key from session object</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-</div>
-<div class="viewcode-block" id="SessionMixin.create_registration"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.create_registration">[docs]</a>    <span class="k">def</span> <span class="nf">create_registration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">expiry</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Create a registration entry for a user.</span>
-<span class="sd">        This method should return the registration/activation key.&#39;&#39;&#39;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-</div>
-<div class="viewcode-block" id="SessionMixin.confirm_registration"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.confirm_registration">[docs]</a>    <span class="k">def</span> <span class="nf">confirm_registration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Confirm registration&#39;&#39;&#39;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-</div>
-<div class="viewcode-block" id="SessionMixin.create_session"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.create_session">[docs]</a>    <span class="k">def</span> <span class="nf">create_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">expiry</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Create a new session</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-</div>
-<div class="viewcode-block" id="SessionMixin.auth_key_used"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.auth_key_used">[docs]</a>    <span class="k">def</span> <span class="nf">auth_key_used</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;The authentication ``key`` has been used and this method is</span>
-<span class="sd">        for setting/updating the backend model accordingly.</span>
-<span class="sd">        Used during password retrieval and user registration</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-</div>
-    <span class="k">def</span> <span class="nf">password_recovery</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-
 <div class="viewcode-block" id="SessionMixin.login"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.login">[docs]</a>    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Login a user from a model or from post data</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -224,7 +228,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 <div class="viewcode-block" id="SessionMixin.inactive_user_login"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.inactive_user_login">[docs]</a>    <span class="k">def</span> <span class="nf">inactive_user_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Handle a user not yet active&#39;&#39;&#39;</span>
         <span class="n">cfg</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">config</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;/signup/confirmation/</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">/confirmation/</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s">&#39;REGISTER_URL&#39;</span><span class="p">],</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
         <span class="n">session</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">session</span>
         <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;email&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
                    <span class="s">&#39;email_from&#39;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;DEFAULT_FROM_EMAIL&#39;</span><span class="p">],</span>
@@ -247,7 +251,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
 <span class="sd">        This method send an email to the user so that the email</span>
 <span class="sd">        is verified once the user follows the link in the email.</span>
 
-<span class="sd">        Usually called after user registration.</span>
+<span class="sd">        Usually called after user registration or password recovery.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">user</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">:</span>
             <span class="n">days</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;ACCOUNT_ACTIVATION_DAYS&#39;</span><span class="p">]</span>
@@ -256,13 +260,15 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
             <span class="bp">self</span><span class="o">.</span><span class="n">send_email_confirmation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">auth_key</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">auth_key</span>
 </div>
-<div class="viewcode-block" id="SessionMixin.send_email_confirmation"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.send_email_confirmation">[docs]</a>    <span class="k">def</span> <span class="nf">send_email_confirmation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">auth_key</span><span class="p">,</span>
+<div class="viewcode-block" id="SessionMixin.send_email_confirmation"><a class="viewcode-back" href="../../../../api/sessions#lux.extensions.sessions.sessionmixin.SessionMixin.send_email_confirmation">[docs]</a>    <span class="k">def</span> <span class="nf">send_email_confirmation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">auth_key</span><span class="p">,</span> <span class="n">ctx</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                                 <span class="n">email_subject</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">email_message</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                                 <span class="n">message</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Send an email to user to confirm his/her email address&#39;&#39;&#39;</span>
         <span class="n">app</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">app</span>
         <span class="n">cfg</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span>
         <span class="n">ctx</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;auth_key&#39;</span><span class="p">:</span> <span class="n">auth_key</span><span class="p">,</span>
+               <span class="s">&#39;register_url&#39;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;REGISTER_URL&#39;</span><span class="p">],</span>
+               <span class="s">&#39;reset_password_url&#39;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;RESET_PASSWORD_URL&#39;</span><span class="p">],</span>
                <span class="s">&#39;expiration_days&#39;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;ACCOUNT_ACTIVATION_DAYS&#39;</span><span class="p">],</span>
                <span class="s">&#39;email&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
                <span class="s">&#39;site_uri&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">absolute_uri</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]}</span>
@@ -273,7 +279,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
         <span class="n">subject</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subject</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
         <span class="n">body</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">render_template</span><span class="p">(</span>
             <span class="n">email_message</span> <span class="ow">or</span> <span class="s">&#39;activation_email.txt&#39;</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
-        <span class="n">user</span><span class="o">.</span><span class="n">email_user</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">cfg</span><span class="p">[</span><span class="s">&#39;DEFAULT_FROM_EMAIL&#39;</span><span class="p">])</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">email_user</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
         <span class="n">message</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">render_template</span><span class="p">(</span>
             <span class="n">message</span> <span class="ow">or</span> <span class="s">&#39;activation_message.txt&#39;</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
         <span class="n">request</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -314,7 +320,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                 <div class='hidden-xs'>
                     <ul class="fa-ul text-left">
     <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
-    <li>Site build with Lux on python 3.4.2</li>
+    <li>Site build with Lux on python 2.7.8</li>
     <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
@@ -325,7 +331,7 @@ var require = {"paths": {}, "waitSeconds": 200, "minify": true, "baseUrl": "http
                 <div class='text-center visible-xs'>
                     <ul class="fa-ul text-left">
     <li><i class="fa-li fa fa-copyright"></i>2014 <a href="http://quantmind.com">Quantmind</a></li>
-    <li>Site build with Lux on python 3.4.2</li>
+    <li>Site build with Lux on python 2.7.8</li>
     <li>Docs build with <a href="http://sphinx-doc.org/" target="_blank">Sphinx</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/changelog">Changelog</a></li>
     <li><a href="http://quantmind.github.io/lux/docs/api/">API</a></li>
