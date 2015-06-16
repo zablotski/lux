@@ -1,5 +1,5 @@
 
-    angular.module('lux.grid', ['lux.message', 'templates-grid', 'ngTouch', 'ui.grid', 'ui.grid.pagination', 'ui.grid.selection'])
+    angular.module('lux.grid', ['lux.message', 'templates-grid', 'ngTouch', 'ui.grid', 'ui.grid.pagination', 'ui.grid.selection', 'angularMoment'])
         //
         .constant('gridDefaults', {
             showMenu: true,
@@ -49,6 +49,7 @@
                         column.cellTemplate = '<div class="ui-grid-cell-contents"><a ng-href="{{grid.appScope.objectUrl(COL_FIELD)}}">{{COL_FIELD}}</a></div>';
 
                     if (column.type === 'date') {
+                        column.cellTemplate = '<div style="color:red;">{{COL_FIELD | amCalendar}}</div>';
                         column.sortingAlgorithm = function(a, b) {
                             var dt1 = new Date(a).getTime(),
                                 dt2 = new Date(b).getTime();
